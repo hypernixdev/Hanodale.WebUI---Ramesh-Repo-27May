@@ -3079,12 +3079,20 @@ function gatherPaymentData() {
                         // Create a new row for each product
                     addOrUpdateProductRow(product, desktop_table, mobile_table);
                     $("#productSearch").val("");
+                } else if (response.message) {
+                    alert(response.message);
                 } else {
                     alert('No products found or an error occurred.');
                 }
             },
-            error: function () {
-                alert('Failed to fetch products.');
+            error: function (xhr, status, error) {
+                let errorMessage = "An error occurred while fetching product.";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                } else if (xhr.responseText) {
+                    errorMessage = xhr.responseText;
+                }
+                alert(errorMessage);
             }
         });
     }

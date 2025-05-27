@@ -637,9 +637,38 @@ namespace Hanodale.DataAccessLayer.Services
                                     Location = savedOrderItem.Location,
                                 };
                                 model.OrderItemScanned.Add(newScannedItem);
+
+                                if (savedOrderItem.allowVaryWeight==true)
+                                {
+                                    // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
+                                    var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum  
+                                                && p.barcode == savedOrderItem.scannedLabel 
+                                                && p.IsPickedComplete == false && p.OnHold == false)
+                                        .FirstOrDefault();
+                                    if (vwgBarcode != null)
+                                    {
+                                        vwgBarcode.IsPickedComplete = true;
+                                        model.Entry(vwgBarcode).State = EntityState.Modified;
+                                    }
+                                }
+                                else
+                                {
+                                    // Std Carton is not unique, update as Pickupcomplete = true for top item
+                                    var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum 
+                                                        && p.barcode == savedOrderItem.scannedLabel 
+                                                && p.IsCarton==true && p.IsPickedComplete == false && p.OnHold == false)
+                                        .FirstOrDefault();
+                                    if (stdCartonBarcode != null)
+                                    {
+                                        stdCartonBarcode.IsPickedComplete = true;
+                                        model.Entry(stdCartonBarcode).State = EntityState.Modified;
+                                    }
+                                }
+                                
                             }
                             else
                             {
+                                //Check later this logic when it works - Ramesh
                                 int orderQty = 1; //  (int)Math.Floor(savedOrderItem.orderQty); // Ensure orderQty is not null
 
                                 for (int i = 0; i < orderQty; i++)
@@ -1037,6 +1066,34 @@ namespace Hanodale.DataAccessLayer.Services
                                         returnQty = 0
                                     };
                                     model.OrderItemScanned.Add(newScannedItem);
+
+                                    var orderItem = model.OrderItems.FirstOrDefault(oi => oi.id == newScannedItem.orderItemId);
+                                    if (orderItem.allowVaryWeight == true)
+                                    {
+                                        // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
+                                        var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == orderItem.partNum
+                                                    && p.barcode == newScannedItem.serialNo
+                                                    && p.IsPickedComplete == false && p.OnHold == false)
+                                            .FirstOrDefault();
+                                        if (vwgBarcode != null)
+                                        {
+                                            vwgBarcode.IsPickedComplete = true;
+                                            model.Entry(vwgBarcode).State = EntityState.Modified;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Std Carton is not unique, update as Pickupcomplete = true for top item
+                                        var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == orderItem.partNum
+                                                            && p.barcode == newScannedItem.serialNo
+                                                    && p.IsCarton == true && p.IsPickedComplete == false && p.OnHold == false)
+                                            .FirstOrDefault();
+                                        if (stdCartonBarcode != null)
+                                        {
+                                            stdCartonBarcode.IsPickedComplete = true;
+                                            model.Entry(stdCartonBarcode).State = EntityState.Modified;
+                                        }
+                                    }
                                 }
                             }
 
@@ -1467,6 +1524,33 @@ namespace Hanodale.DataAccessLayer.Services
                                         Location = savedOrderItem.Location,
                                     };
                                     model.OrderItemScanned.Add(newScannedItem);
+
+                                    if (savedOrderItem.allowVaryWeight == true)
+                                    {
+                                        // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
+                                        var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                                    && p.barcode == savedOrderItem.scannedLabel
+                                                    && p.IsPickedComplete == false && p.OnHold == false)
+                                            .FirstOrDefault();
+                                        if (vwgBarcode != null)
+                                        {
+                                            vwgBarcode.IsPickedComplete = true;
+                                            model.Entry(vwgBarcode).State = EntityState.Modified;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Std Carton is not unique, update as Pickupcomplete = true for top item
+                                        var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                                            && p.barcode == savedOrderItem.scannedLabel
+                                                    && p.IsCarton == true && p.IsPickedComplete == false && p.OnHold == false)
+                                            .FirstOrDefault();
+                                        if (stdCartonBarcode != null)
+                                        {
+                                            stdCartonBarcode.IsPickedComplete = true;
+                                            model.Entry(stdCartonBarcode).State = EntityState.Modified;
+                                        }
+                                    }
                                 }
                                 else
                                 {
@@ -2302,7 +2386,16 @@ namespace Hanodale.DataAccessLayer.Services
                                                     && ois.IsCarton == false)
                                                 .ToList();
                     }
-                        
+                    else if (!string.IsNullOrEmpty(barcodeType) && barcodeType == "CartonAndLoose")
+                    {
+                        // PickedComplete also include
+                        cartonList = model.ProductCarton
+                                                .Where(ois => ois.barcode == serialNo
+                                                    && ois.IsPartialCarton == false
+                                                    && ois.OnHold == false)
+                                                .ToList();
+                    }
+
 
                     if (!cartonList.Any())
                         return null;

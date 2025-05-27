@@ -713,6 +713,22 @@ namespace Hanodale.WebUI.Controllers
                                     
                                     
                                 }
+                                else
+                                {
+                                    // Check Serial Barcodes available or not
+                                    // For Valiadtion
+                                    barcodeType = "CartonAndLoose";
+                                    var productCartonAndLooseBarcode = this.orderService.GetProductCartons(partNum, barcodeType);
+                                    if(productCartonAndLooseBarcode != null && productCartonAndLooseBarcode.IsPickedComplete)
+                                    {
+                                        //throw new Exception("This product is already picked complete, you cannot add it again.");
+                                        return Json(new
+                                        {
+                                            success = false,
+                                            message = "This product is already picked complete, you cannot add it again."
+                                        });
+                                    }
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -726,7 +742,12 @@ namespace Hanodale.WebUI.Controllers
 
                         if (_product == null)
                         {
-                            return this.Msg_ErrorInRetriveData();
+                            //return this.Msg_ErrorInRetriveData();
+                            return Json(new
+                            {
+                                success = false,
+                                message = $"Can't find {partNum} Product Or Barcode!"
+                            });
                         }
                         var customer = new Customers();
                         try
