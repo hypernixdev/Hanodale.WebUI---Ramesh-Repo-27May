@@ -1,0 +1,237 @@
+﻿@model Hanodale.WebUI.Models.SearchPanelModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal searchPanelWithSearchBtn", autocomplete = "off" }))
+{
+   
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable nPadding">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+
+        <!-- end widget -->
+
+        <div class="jarviswidget jarviswidget-sortable" id="@(Model.searchType == 1?"wid-id-3476":"wid-id-86235")" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+            <!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+
+            <header role="heading">
+                <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+                <div class="widget-toolbar" role="menu">
+                    <a data-toggle="dropdown" class="dropdown-toggle1 color-box selector" href="javascript:void(0);"></a>
+                    <ul class="dropdown-menu dropdown-menu-right arrow-box-up-right color-select pull-right">
+                        <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
+                        <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
+                        <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
+                        <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
+                        <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
+                        <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
+                        <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
+                        <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
+                        <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
+                        <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
+                        <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
+                        <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
+                        <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
+                        <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
+                        <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
+                        <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
+                        <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
+                        <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
+                        <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">Remove</a></li>
+                    </ul>
+                </div>
+                <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                <h2>Search Panel </h2>
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+            </header>
+
+            <!-- widget div-->
+            <div role="content">
+
+                <!-- widget edit box -->
+                <div class="jarviswidget-editbox">
+                    <!-- This area used as dropdown edit box -->
+
+                </div>
+                <!-- end widget edit box -->
+
+                <!-- widget content -->
+                <div class="widget-body no-padding">
+
+
+                    <fieldset>
+                        <div class="smart-form">
+                            @*<legend>@Resources.PAGE_HEADER_CREATE_USER</legend>*@
+                            @if (Model.searchType != 10)
+                            {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.code, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                    @*@Html.LabelFor(model => model.firstName, new { @class = "", })*@
+                                    <div class="clearfix">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-pencil"></i>
+                                            @Html.EditorFor(model => model.code, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.code) })
+
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+                            @if (Model.searchType == 1 || Model.searchType == 3)
+                            {
+                                                             
+                                 <div class="form-group">
+                                @Html.LabelFor(model => model.partName, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                    @*@Html.LabelFor(model => model.lastName, new { @class = "", })*@
+                                    <div class="clearfix">
+                                        <label class="textarea">
+                                            <i class="icon-append fa fa-comment"></i>
+                                            @Html.EditorFor(model => model.partName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.partName) })
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                  <div class="form-group">
+                                    @Html.LabelFor(model => model.stockGroup_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                        <div class="clearfix">
+                                            <label class="select">
+                                                @Html.EditorFor(model => model.stockGroup_Id, new { @class = "form-control multipleSelect", dataValue = Model.lstStockGroup, setAll = true })
+                                                @*<i></i>*@
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                           else if (Model.searchType == 3)
+                            {                                                          
+                                
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.partName, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                    @*@Html.LabelFor(model => model.lastName, new { @class = "", })*@
+                                    <div class="clearfix">
+                                        <label class="textarea">
+                                            <i class="icon-append fa fa-comment"></i>
+                                            @Html.EditorFor(model => model.description, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.partName) })
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.stockGroup_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                        <div class="clearfix">
+                                            <label class="select">
+                                                @Html.EditorFor(model => model.stockGroup_Id, new { @class = "form-control multipleSelect", dataValue = Model.lstStockGroup, setAll = true })
+                                                @*<i></i>*@
+                                            </label>
+                                        </div>
+                                    </div>  
+                                </div>
+                            }
+                           
+                            else if (Model.searchType == 2)
+                            {
+                                @*<div class="form-group">
+                                    @Html.LabelFor(model => model.createdDateFrom, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label no-required", })
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                        <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-calendar"></i>
+                                                    @Html.EditorFor(model => model.createdDateFrom, new { @class = "datepicker form-control date-picker no-required" })
+                                                </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.createdDateTo, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label no-required", })
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                        <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-calendar"></i>
+                                                    @Html.EditorFor(model => model.createdDateTo, new { @class = "datepicker form-control date-picker no-required" })
+                                                </label>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                
+                                <div class="form-group-holder">
+                                    @Html.LabelFor(model => model.createdDateFrom, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label no-required", })
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                        <div class="clearfix row-flex">
+                                            <div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5 no-margin">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-calendar"></i>
+                                                    @Html.EditorFor(model => model.createdDateFrom, new { @class = "datepicker form-control date-picker no-required" })
+                                                </label>
+                                            </div>
+                                            <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-center-label control-label">@Resources.LABEL_TO</label>
+                                            <div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5 no-margin">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-calendar"></i>
+                                                    @Html.EditorFor(model => model.createdDateTo, new { @class = "datepicker form-control date-picker no-required" })
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (Model.searchType == 10)
+                            {
+                                  <div class="form-group">
+                                    @Html.LabelFor(model => model.ActiveStatus, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                        <div class="clearfix">
+                                            <label class="select">
+                                                @Html.EditorFor(model => model.ActiveStatus, new { @class = "form-control multipleSelect", dataValue = Model.lstStatus, setAll = false })
+                                                @*<i></i>*@
+                                            </label>
+                                        </div>
+                                    </div>  
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <div class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label"></div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                    <button type="button"  class="btn btn-sm btn-primary customFilterDatatableWithSearchBTN" >@Resources.DATATABLE_SEARCH</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- end widget content -->
+            </div>
+            <!-- end widget div -->
+        </div>
+    </article>
+}
+@Scripts.Render(bundles.scripts.common_add_edit)
+@*@Scripts.Render("~/bundles/jqueryval")*@

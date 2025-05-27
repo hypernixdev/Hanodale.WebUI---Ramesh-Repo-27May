@@ -1,0 +1,27 @@
+﻿@model int?
+@{
+    var domainObjectId = ViewBag.dataValue;
+    var SetAll = ViewBag.setAll;
+    var SetNull = ViewBag.setNull;
+    //ViewData.Remove("title");
+}
+
+@if (SetAll != null && SetAll)
+{
+    @Html.DropDownListFor(m => m, (IEnumerable<SelectListItem>)domainObjectId, "All", ViewData)
+}else if (SetNull != null && SetNull)
+{
+   if (domainObjectId == null)
+    {
+        @Html.DropDownListFor(m => m, new List<SelectListItem>(), ViewData)
+    }
+    else
+    {
+        @Html.DropDownListFor(m => m, (IEnumerable<SelectListItem>)domainObjectId, ViewData)
+    }
+}
+else
+{
+    @Html.DropDownListFor(m => m, (IEnumerable<SelectListItem>)domainObjectId, "-- Select --", ViewData)
+}
+

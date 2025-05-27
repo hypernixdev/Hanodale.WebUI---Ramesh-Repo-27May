@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c684707716da4dcf9cc3023502aa7300" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.AdhocReport" Width="1.5" PointX="8.25" PointY="35.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.AssignedBusiness" Width="1.5" PointX="15.75" PointY="38.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.AssignedOrganization" Width="1.5" PointX="15.75" PointY="34.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Budget" Width="1.5" PointX="5.25" PointY="26.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Bulletin" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Business" Width="1.5" PointX="5.25" PointY="35.875" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.BusinessAddress" Width="1.5" PointX="7.5" PointY="63.375" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.BusinessClassification" Width="1.5" PointX="7.5" PointY="40.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.BusinessFile" Width="1.5" PointX="10.5" PointY="34.125" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.BusinessOrganization" Width="1.5" PointX="10.5" PointY="38.875" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.BusinessOther" Width="1.5" PointX="7.5" PointY="67.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.BusinessWorkCategory" Width="1.5" PointX="10.5" PointY="43.125" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.CalendarEvent" Width="1.5" PointX="8.25" PointY="20.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.CalendarSetting" Width="1.5" PointX="10.5" PointY="21.125" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.CompanyProfile" Width="1.5" PointX="5.25" PointY="51" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.DashboardCategory" Width="1.5" PointX="18" PointY="60.875" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.EmailScheduled" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.FileUploadHistory" Width="1.5" PointX="18.75" PointY="38.25" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.HelpDesk" Width="1.5" PointX="15.75" PointY="42.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.HelpDeskLog" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Language_Profile" Width="1.5" PointX="5.25" PointY="55.625" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.LocalizationLanguage" Width="1.5" PointX="11" PointY="9.375" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.LocalizationLanguageResource" Width="1.5" PointX="13.25" PointY="13.625" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.LocalizationResource" Width="1.5" PointX="11" PointY="13.375" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.LocalizationSection" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.MenuItem" Width="1.5" PointX="15.75" PointY="56.625" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ModuleCode" Width="1.5" PointX="18" PointY="57.375" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ModuleItem" Width="1.5" PointX="3" PointY="35" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ModuleType" Width="1.5" PointX="0.75" PointY="36.625" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.News" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Notification" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Organization" Width="1.5" PointX="6" PointY="19.875" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrganizationCategory" Width="1.5" PointX="3.75" PointY="21" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrganizationCategoryConfig" Width="1.5" PointX="6" PointY="16.375" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrganizationEmail" Width="1.5" PointX="8.25" PointY="30.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ReportCategory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ReportSetting" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.RunningCode" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfile" Width="1.5" PointX="18" PointY="33.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadata" Width="1.5" PointX="20.25" PointY="22.375" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataBool" Width="1.5" PointX="22.5" PointY="34.625" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataDateTime" Width="1.5" PointX="22.5" PointY="16.875" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataDecimal" Width="1.5" PointX="22.5" PointY="28.25" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataInteger" Width="1.5" PointX="22.5" PointY="22.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataList" Width="1.5" PointX="22.5" PointY="31" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataListValue" Width="1.5" PointX="24.75" PointY="31.375" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataMultiFileUpload" Width="1.5" PointX="22.5" PointY="14.125" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataSingleFileUpload" Width="1.5" PointX="22.5" PointY="20" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.TableProfileMetadataText" Width="1.5" PointX="22.5" PointY="25.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.UserProfile" Width="1.5" PointX="5" PointY="1" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.UserRight" Width="1.5" PointX="18" PointY="52.25" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.UserRole" Width="1.5" PointX="15.75" PointY="52.25" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.UserType" Width="1.5" PointX="2.75" PointY="2.125" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.WorkCategory" Width="1.5" PointX="8.25" PointY="44.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.UserLocation" Width="1.5" PointX="4.75" PointY="9.75" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_AdhocReport_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_AdhocReport_Organization" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_AssignedBusiness_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_AssignedOrganization_Organization" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_Budget_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_Business_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_Business_ModuleItem_PrimaryCurrency" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessAddress_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessClassification_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessFile_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessOrganization_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessOthers_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessWorkCategory_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessClassification_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessFile_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessOrganization_Organization" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_BusinessWorkCategory_WorkCategory" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_CalendarEvent_Organization" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_CalendarSetting_CalendarEvent" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_CompanyProfile_ModuleItem_CompanyType" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_CompanyProfile_ModuleItem_Service" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_DashboardCategory_DashboardCategory" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_DashboardCategory_MenuItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_FileUploadHistory_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_HeplDesk_ModuleItem_WorkFollowStatus" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_HeplDesk_Organization" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Language___Modul__056ECC6A" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_LocalizationLanguageResource_LocalizationLanguage" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_LocalizationLanguageResource_LocalizationResource" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_LocalizationResource_LocalizationSection" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfile_LocalizationResource" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadata_LocalizationResource_ForGrid" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_MenuItem_MenuItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_ModuleCode_MenuItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfile_MenuItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_UserRights_MenuItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_MasterCode_ModuleType" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrganizationEmail_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_Oraganization_Oraganization" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_Oraganization_OraganizationCategory" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrganizationEmail_Organization" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrganizationCategoryConfig_OrganizationCategory" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrganizationCategoryConfig_OrganizationCategory_Child" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_ReportCategory_ReportCategory" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfile_TableProfile_Parent" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileFieldMetadata_TableProfile" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataBool_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataDateTime_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataDecimal_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataInteger_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataList_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataMultiFileUpload_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataSingleFileUpload_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataText_TableProfileMetadata" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataList_TableProfileMetadataList_Parent" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_TableProfileMetadataListValue_TableProfileMetadataList" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_UserProfile_UserType" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_UserRights_UserRole" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Plant" Width="1.5" PointX="9.125" PointY="26" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Address_City" Width="1.5" PointX="9.125" PointY="48.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Address_Country" Width="1.5" PointX="2.625" PointY="27.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Address_State" Width="1.5" PointX="5.875" PointY="30.75" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Address_C__addre__4F32B74A" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Address_C__addre__5026DB83" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Address_S__addre__4C564A9F" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ShipTo" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Store" Width="1.5" PointX="18.375" PointY="42.625" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Store__address_C__67FE6514" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Store__address_C__69E6AD86" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Store__address_S__68F2894D" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderUOM" Width="1.5" PointX="7.375" PointY="9.875" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Leave_Carry_Forward" Width="1.5" PointX="5.25" PointY="58.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Leave_Sequence" Width="1.5" PointX="5.25" PointY="45.875" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Leave_View_Apply" Width="1.5" PointX="21" PointY="45.75" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Vie__Compa__0F4D3C5F" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Car__Modul__16EE5E27" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Car__Modul__17E28260" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Car__Modul__18D6A699" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Seq__Modul__0B7CAB7B" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Seq__Modul__0C70CFB4" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Vie__Modul__113584D1" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Vie__Modul__1229A90A" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Vie__Modul__131DCD43" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Vie__Modul__1411F17C" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__Leave_Vie__UserR__10416098" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ProductCarton" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ShipToAddress" Width="1.5" PointX="25.625" PointY="24.375" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__ShipToAdd__addre__5AA469F6" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__ShipToAdd__addre__5C8CB268" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__ShipToAdd__addre__5B988E2F" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_shipToAddress_StoreId" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderPayment" Width="1.5" PointX="33.125" PointY="33.5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.UomConv" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.CustomerGroupPriceList" Width="1.5" PointX="15.375" PointY="15.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.CustomerPriceList" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.PriceList" Width="1.5" PointX="8.375" PointY="16.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.PriceListPart" Width="1.5" PointX="10.375" PointY="16.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.IntegrationLog" Width="1.5" PointX="17.375" PointY="1" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.IntegrationLogDetail" Width="1.5" PointX="19.625" PointY="1.375" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_IntegrationLogDetail_IntegrationLog" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.ProductWeightBarcode" Width="1.5" PointX="17.375" PointY="13.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.StockBalance" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderUpdate" Width="1.5" PointX="30.125" PointY="33.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.User" Width="1.5" PointX="24" PointY="40.125" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_AssignedBusiness_User" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_AssignedOrganization_User" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_User_Business" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_FileUploadHistory_User" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_HeplDesk_User" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_User_ModuleItem" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderPayment_User" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderUpdate_User_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_User_User" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_User_UserRole" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_UserRole_User" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Brand" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.LooseConversion" Width="1.5" PointX="3" PointY="16.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.LooseConversionItem" Width="1.5" PointX="19.625" PointY="15.125" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__LooseConv__loose__68BD7F23" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__LooseConv__produ__62108194" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__LooseConv__weigh__69B1A35C" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.POSOrderNumber" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.LooseBarcodeSetting" Width="1.5" PointX="17.375" PointY="8.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Customer" Width="1.5" PointX="13.75" PointY="5" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.District" Width="1.5" PointX="0.75" PointY="10.75" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__ShipToAdd__custo__59B045BD" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Order" Width="1.5" PointX="27.875" PointY="24" />
+        <AssociationConnector Association="HanodaleEntitiesModel.Orders_Customer_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.Order_District_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_Order_User_createdBy" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderPayment_Order" />
+        <AssociationConnector Association="HanodaleEntitiesModel.Order_ShipToAddress_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.Order_User_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderUpdate_Order_FK" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderApproval" Width="1.5" PointX="30.125" PointY="37.5" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderApproval_Order" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderApproval_User" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderApproval_User1" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderItemDeleted" Width="1.5" PointX="33.125" PointY="23.5" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItemDeleted_ModuleItem_Complimentary" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItemDeleted_ModuleItem_OprationStyle" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItemDeleted_ModuleItem_QtyType" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__OrderItemDeleted__order__727BF387" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItemDeleted_OrderUOM" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItemDeleted_User_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItemDeleted_UserCreated_FK" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderItemDiscountApproval" Width="1.5" PointX="33.125" PointY="37.625" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItemDiscountApproval_Order_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItemDiscountApproval_User_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItemDiscountApproval_User_FK_1" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderItems" Width="1.5" PointX="30.125" PointY="23.875" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItems_ModuleItem_Complimentary" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItems_ModuleItem_OprationStyle" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItems_ModuleItem_QtyType" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK__OrderItem__order__727BF387" />
+        <AssociationConnector Association="HanodaleEntitiesModel.FK_OrderItems_OrderUOM" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItems_User_FK" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.SchedulerLog" Width="1.5" PointX="18.375" PointY="4.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.SchedulerSetting" Width="1.5" PointX="19.375" PointY="8.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.PaymentReport" Width="1.5" PointX="16.375" PointY="19.75" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.Product" Width="1.5" PointX="13.375" PointY="22.25" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItemDeleted_Product_FK" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItems_Product_FK" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.OrderItemScanned" Width="1.5" PointX="26.25" PointY="43.875" />
+        <AssociationConnector Association="HanodaleEntitiesModel.OrderItemScanned_UserCreatedBy_FK" />
+        <EntityTypeShape EntityType="HanodaleEntitiesModel.StockBalanceView" Width="1.5" PointX="12.375" PointY="16.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

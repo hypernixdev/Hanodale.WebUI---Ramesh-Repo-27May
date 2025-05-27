@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d04fcc8c-7794-4f4b-8c1a-89bffdf021de" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://htsdev01/FBMailService/DispatchService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DispatchService.wsdl" MetadataType="Wsdl" ID="632a5f7a-abd3-408e-a9f2-303b0279162d" SourceId="1" SourceUrl="http://htsdev01/FBMailService/DispatchService.svc?wsdl" />
+    <MetadataFile FileName="DispatchService.xsd" MetadataType="Schema" ID="03716ca3-5f10-47e3-a6e9-8fb8b2206669" SourceId="1" SourceUrl="http://htsdev01/FBMailService/DispatchService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DispatchService1.xsd" MetadataType="Schema" ID="b87ef7f4-5e47-4a12-b341-4a5377dcf13a" SourceId="1" SourceUrl="http://htsdev01/FBMailService/DispatchService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DispatchService2.xsd" MetadataType="Schema" ID="78441667-d6b1-41e6-aabc-902e8b887400" SourceId="1" SourceUrl="http://htsdev01/FBMailService/DispatchService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DispatchService.disco" MetadataType="Disco" ID="b54b6d64-9fff-4b74-8433-d5aac594e648" SourceId="1" SourceUrl="http://htsdev01/FBMailService/DispatchService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

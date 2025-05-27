@@ -1,0 +1,3577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HanodaleEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address_City">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="address_State_Id" Type="int" />
+    <Property Name="address_Country_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Address_Country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="countryCode" Type="int" />
+  </EntityType>
+  <EntityType Name="Address_State">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="address_Country_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="AdhocReport">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="organization_Id" Type="int" Nullable="false" />
+    <Property Name="reportType_Id" Type="int" Nullable="false" />
+    <Property Name="reportName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="reportFileName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="500" />
+    <Property Name="isCommon" Type="bit" Nullable="false" />
+    <Property Name="isVisible" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AssignedBusiness">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_Id" Type="int" Nullable="false" />
+    <Property Name="business_Id" Type="int" Nullable="false" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssignedOrganization">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_Id" Type="int" Nullable="false" />
+    <Property Name="organization_Id" Type="int" Nullable="false" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="brandCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="brandDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="sysRowID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Budget">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="budgetType_Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="500" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="modifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bulletin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="context" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Business">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="businessType_Id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="code" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="55" />
+    <Property Name="phone2" Type="nvarchar" MaxLength="55" />
+    <Property Name="fax" Type="nvarchar" MaxLength="55" />
+    <Property Name="webSite" Type="varchar" MaxLength="100" />
+    <Property Name="primaryContact" Type="nvarchar" MaxLength="55" />
+    <Property Name="primaryEmail" Type="nvarchar" MaxLength="55" />
+    <Property Name="primaryCurrency" Type="int" />
+    <Property Name="remarks" Type="varchar" MaxLength="50" />
+    <Property Name="isMAHBRegistered" Type="bit" />
+    <Property Name="registrationNo" Type="varchar" MaxLength="100" />
+    <Property Name="registrationDate" Type="datetime" />
+    <Property Name="expiryDate" Type="datetime" />
+    <Property Name="referenceId" Type="varchar" MaxLength="100" />
+    <Property Name="rocNo" Type="varchar" MaxLength="100" />
+    <Property Name="businessCategory" Type="varchar" MaxLength="200" />
+    <Property Name="paidUpCapital" Type="int" />
+    <Property Name="companyType" Type="int" />
+    <Property Name="address" Type="varchar(max)" />
+    <Property Name="limitation" Type="varchar" MaxLength="500" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="profileLastUpdated" Type="datetime" />
+    <Property Name="gstNo" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="BusinessAddress">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="business_Id" Type="int" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+    <Property Name="city" Type="nvarchar" MaxLength="255" />
+    <Property Name="province" Type="nvarchar" MaxLength="255" />
+    <Property Name="postalCode" Type="varchar" MaxLength="20" />
+    <Property Name="country" Type="varchar" MaxLength="20" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BusinessClassification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="business_Id" Type="int" Nullable="false" />
+    <Property Name="classification_Id" Type="int" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BusinessFile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="business_Id" Type="int" Nullable="false" />
+    <Property Name="fileType_Id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="urlPath" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="500" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BusinessOrganization">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="business_Id" Type="int" Nullable="false" />
+    <Property Name="organization_Id" Type="int" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BusinessOthers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="business_Id" Type="int" Nullable="false" />
+    <Property Name="bumiShare" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="nonBumiShare" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="foreignShare" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="bumiCapital" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="classA" Type="bit" />
+    <Property Name="classB" Type="bit" />
+    <Property Name="classBX" Type="bit" />
+    <Property Name="classC" Type="bit" />
+    <Property Name="classD" Type="bit" />
+    <Property Name="classE" Type="bit" />
+    <Property Name="classEX" Type="bit" />
+    <Property Name="classF" Type="bit" />
+    <Property Name="pkk" Type="bit" />
+    <Property Name="tnb" Type="bit" />
+    <Property Name="jba" Type="bit" />
+    <Property Name="mara" Type="bit" />
+    <Property Name="jkr" Type="bit" />
+    <Property Name="dbkl" Type="bit" />
+    <Property Name="financeMinistry" Type="bit" />
+    <Property Name="jkh" Type="bit" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BusinessWorkCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="business_Id" Type="int" Nullable="false" />
+    <Property Name="workCategory_Id" Type="int" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CalendarEvent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="organization_Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="icon" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="eventColor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="allowToSelect" Type="bit" Nullable="false" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CalendarSetting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="calendarEvent_Id" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CompanyProfile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="10" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="totalCapital" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="companyType_Id" Type="int" />
+    <Property Name="noOfUser" Type="int" />
+    <Property Name="service_Id" Type="int" />
+    <Property Name="phoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="effectiveDate" Type="datetime" Nullable="false" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="totalRevenue" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="address1" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="address2" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="city" Type="nvarchar" MaxLength="255" />
+    <Property Name="state" Type="nvarchar" MaxLength="100" />
+    <Property Name="country" Type="nvarchar" MaxLength="100" />
+    <Property Name="custID" Type="nvarchar" MaxLength="100" />
+    <Property Name="address3" Type="nvarchar" MaxLength="255" />
+    <Property Name="groupCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Company" Type="nvarchar" MaxLength="20" />
+    <Property Name="tin" Type="nvarchar" MaxLength="20" />
+    <Property Name="creditHold" Type="bit" />
+  </EntityType>
+  <EntityType Name="CustomerGroupPriceList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sysRowID" Type="nvarchar" MaxLength="100" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" />
+    <Property Name="groupCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="seqNum" Type="nvarchar" MaxLength="10" />
+    <Property Name="listCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerPriceList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="CustNum" Type="int" />
+    <Property Name="ShipToNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="SeqNum" Type="int" />
+    <Property Name="ListCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sysRowID" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DashboardCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parent_Id" Type="int" />
+    <Property Name="menu_Id" Type="int" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="url" Type="nvarchar" MaxLength="200" />
+    <Property Name="icon" Type="nvarchar" MaxLength="50" />
+    <Property Name="backColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="fontColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="ordering" Type="int" Nullable="false" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="districtID" Type="nvarchar" MaxLength="50" />
+    <Property Name="districtDesc" Type="nvarchar" MaxLength="255" />
+    <Property Name="sysRowID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmailScheduled">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="emailContent" Type="nvarchar(max)" />
+    <Property Name="emailTo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="emailCC" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="filePath" Type="nvarchar" MaxLength="1000" />
+    <Property Name="fileName" Type="nvarchar" MaxLength="2000" />
+    <Property Name="status_Id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FileUploadHistory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uploadType" Type="int" Nullable="false" />
+    <Property Name="fileName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="totalRecords" Type="int" Nullable="false" />
+    <Property Name="user_Id" Type="int" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HelpDesk">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="organization_Id" Type="int" Nullable="false" />
+    <Property Name="user_Id" Type="int" />
+    <Property Name="workFollowStatus_Id" Type="int" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="feedback" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="department" Type="nvarchar" MaxLength="200" />
+    <Property Name="designation" Type="nvarchar" MaxLength="200" />
+    <Property Name="officePhone" Type="nvarchar" MaxLength="200" />
+    <Property Name="cellPhone" Type="nvarchar" MaxLength="200" />
+    <Property Name="email" Type="nvarchar" MaxLength="200" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="feedbackTag" Type="varchar" MaxLength="100" />
+    <Property Name="feedbackDate" Type="datetime" />
+    <Property Name="feedbackModule" Type="varchar" MaxLength="100" />
+    <Property Name="remarks" Type="varchar" MaxLength="500" />
+    <Property Name="receivedBy" Type="varchar" MaxLength="100" />
+    <Property Name="receivedDate" Type="datetime" />
+    <Property Name="inprogressDate" Type="datetime" />
+    <Property Name="actionDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HelpDeskLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="helpDesk_Id" Type="int" />
+    <Property Name="auditLog" Type="varchar" MaxLength="100" />
+    <Property Name="remarks" Type="varchar" MaxLength="500" />
+    <Property Name="createdBy" Type="varchar" MaxLength="100" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="fileNames" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="IntegrationLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="apiPoint" Type="varchar" MaxLength="50" />
+    <Property Name="triggerPoint" Type="varchar" MaxLength="50" />
+    <Property Name="startDateTime" Type="datetime" />
+    <Property Name="responseReturnTime" Type="datetime" />
+    <Property Name="responseStatus" Type="varchar" MaxLength="20" />
+    <Property Name="responseMessage" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="IntegrationLogDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="integrationLog_Id" Type="int" />
+    <Property Name="jsonInput" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Language_Profile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="ModuleItem_Byte_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Leave_Carry_Forward">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Moduleitem_LeaveType_Id" Type="int" />
+    <Property Name="Moduleitem_Jobgrade_Id" Type="int" />
+    <Property Name="Moduleitem_LeaveCarryForwardMethod_Id" Type="int" />
+    <Property Name="Value" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="Effective_Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Leave_Sequence">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Moduleitem_LeaveType_Id" Type="int" />
+    <Property Name="Sequence_No" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModuleItem_LeaveTypeApplied_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Leave_View_Apply">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_Profile_Id" Type="int" Nullable="false" />
+    <Property Name="UserRole_Id" Type="int" Nullable="false" />
+    <Property Name="Moduleitem_LeaveType_Id" Type="int" />
+    <Property Name="Moduleitem_LeaveViewStatus_Id" Type="int" />
+    <Property Name="Moduleitem_LeaveApplyStatus_Id" Type="int" />
+    <Property Name="Moduleitem_LeaveCancelStatus_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="LocalizationLanguage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="culture" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="shortName" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="flagIconName" Type="varchar" MaxLength="50" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocalizationLanguageResource">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="localizationLanguage_Id" Type="int" Nullable="false" />
+    <Property Name="localizationResource_Id" Type="int" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocalizationResource">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="localizationSection_Id" Type="int" Nullable="false" />
+    <Property Name="keyName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="defaultValue" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocalizationSection">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="sector" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="LooseBarcodeSetting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="barcodeFromPos" Type="int" />
+    <Property Name="barcodeToPos" Type="int" />
+    <Property Name="weightFromPos" Type="int" />
+    <Property Name="weightToPos" Type="int" />
+    <Property Name="weightMutiply" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="barcodeLength" Type="int" />
+  </EntityType>
+  <EntityType Name="LooseConversion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productCarton_Id" Type="int" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="postingStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LooseConversionItem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="looseConversion_Id" Type="int" />
+    <Property Name="weighScaleBarcode_Id" Type="int" />
+    <Property Name="barcode" Type="nvarchar" MaxLength="255" />
+    <Property Name="LooseQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RunningBalance" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reference_Id" Type="int" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="pageUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="imageUrl" Type="nvarchar" MaxLength="60" />
+    <Property Name="ordering" Type="int" />
+    <Property Name="menuType_Id" Type="int" />
+    <Property Name="menuLevel_Id" Type="int" />
+    <Property Name="reportCategory_Id" Type="int" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="showAsMain" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModuleCode">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu_Id" Type="int" />
+    <Property Name="prefix" Type="varchar" MaxLength="5" />
+    <Property Name="mask" Type="varchar" MaxLength="10" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ModuleItem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="modulType_Id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+    <Property Name="sortOrder" Type="int" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="ModuleType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="loggedBy" Type="varchar" MaxLength="20" />
+    <Property Name="loggedDate" Type="datetime" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="module" Type="varchar" MaxLength="50" />
+    <Property Name="module_refId" Type="int" />
+    <Property Name="user_Id" Type="int" />
+    <Property Name="message" Type="varchar" MaxLength="200" />
+    <Property Name="status" Type="bit" />
+    <Property Name="createdBy" Type="varchar" MaxLength="100" />
+    <Property Name="createdDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="orderNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="customer_Id" Type="int" Nullable="false" />
+    <Property Name="entryPerson" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="shipToAddress_Id" Type="int" />
+    <Property Name="orderDate" Type="datetime" />
+    <Property Name="salesRepList" Type="nvarchar" MaxLength="50" />
+    <Property Name="orderComment" Type="nvarchar" MaxLength="1000" />
+    <Property Name="district" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="docOrderAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="orderStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="verifiedBy" Type="int" />
+    <Property Name="verifiedDate" Type="datetime2" Precision="0" />
+    <Property Name="verifiedStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="verifyRemarks" Type="nvarchar" MaxLength="255" />
+    <Property Name="cancelRemarks" Type="nvarchar" MaxLength="255" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="syncStatus" Type="bit" />
+    <Property Name="epicoreResponse" Type="nvarchar" MaxLength="255" />
+    <Property Name="oneTimeCustomer" Type="bit" />
+    <Property Name="orderContact" Type="nvarchar" MaxLength="100" />
+    <Property Name="orderContactPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="orderContactName" Type="nvarchar" MaxLength="100" />
+    <Property Name="epicoreOrderId" Type="nvarchar" MaxLength="20" />
+    <Property Name="shipPackNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="syncedAt" Type="datetime" />
+    <Property Name="epicoreInvNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="UD16Key1" Type="nvarchar" MaxLength="255" />
+    <Property Name="districtId" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderApproval">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_Id" Type="int" Nullable="false" />
+    <Property Name="submittedUser_Id" Type="int" Nullable="false" />
+    <Property Name="submittedDate" Type="datetime" Nullable="false" />
+    <Property Name="approvalStatus" Type="varchar" MaxLength="20" />
+    <Property Name="remarks" Type="nvarchar" MaxLength="100" />
+    <Property Name="approvedUser_Id" Type="int" />
+    <Property Name="approvedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OrderItemDeleted">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderId" Type="int" />
+    <Property Name="orderLine" Type="int" Nullable="false" />
+    <Property Name="partNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="lineDesc" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="ium" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="salesUm" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="unitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="orderQty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="listPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="product_Id" Type="int" />
+    <Property Name="QtyType_ModuleItem_Id" Type="int" />
+    <Property Name="OrderUOM_Id" Type="int" />
+    <Property Name="operationStyle_ModuleItem_Id" Type="int" />
+    <Property Name="operationCost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="complimentary_ModuleItem_Id" Type="int" />
+    <Property Name="Comments" Type="varchar" MaxLength="200" />
+    <Property Name="scannedQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="allowVaryWeight" Type="bit" />
+    <Property Name="originalUnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="finalQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="orderItemId" Type="int" />
+    <Property Name="IsItemReturned" Type="bit" />
+    <Property Name="avlQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="scannedLabel" Type="nvarchar" MaxLength="100" />
+    <Property Name="realOriginalUnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="actualOperationCost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="deletedBy" Type="int" />
+    <Property Name="deletedAt" Type="datetime" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="discountPer" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="discountAmt" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="OrderItemDiscountApproval">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderItem_Id" Type="int" Nullable="false" />
+    <Property Name="discount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="approverUser_Id" Type="int" Nullable="false" />
+    <Property Name="approvalDate" Type="datetime" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+    <Property Name="requester_Id" Type="int" Nullable="false" />
+    <Property Name="orderId" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderItems">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderId" Type="int" />
+    <Property Name="orderLine" Type="int" Nullable="false" />
+    <Property Name="partNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="lineDesc" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="ium" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="salesUm" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="unitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="orderQty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="listPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="product_Id" Type="int" />
+    <Property Name="QtyType_ModuleItem_Id" Type="int" />
+    <Property Name="OrderUOM_Id" Type="int" />
+    <Property Name="operationStyle_ModuleItem_Id" Type="int" />
+    <Property Name="operationCost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="complimentary_ModuleItem_Id" Type="int" />
+    <Property Name="Comments" Type="varchar" MaxLength="200" />
+    <Property Name="scannedQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="allowVaryWeight" Type="bit" />
+    <Property Name="originalUnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="finalQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="orderItemId" Type="int" />
+    <Property Name="IsItemReturned" Type="bit" />
+    <Property Name="avlQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="scannedLabel" Type="nvarchar" MaxLength="100" />
+    <Property Name="realOriginalUnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="actualOperationCost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="discountPer" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="discountAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="returnTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="freezer" Type="nvarchar" MaxLength="25" />
+    <Property Name="row" Type="nvarchar" MaxLength="50" />
+    <Property Name="column" Type="nvarchar" MaxLength="50" />
+    <Property Name="level" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="OrderItemScanned">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="serialNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="scannedQty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="scannedBy" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="scannedDate" Type="datetime" Nullable="false" />
+    <Property Name="orderItemId" Type="int" />
+    <Property Name="orderId" Type="int" />
+    <Property Name="verifyStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsItemReturned" Type="bit" />
+    <Property Name="ReturnReason" Type="nvarchar" MaxLength="255" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="returnQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="freezer" Type="nvarchar" MaxLength="25" />
+    <Property Name="row" Type="nvarchar" MaxLength="50" />
+    <Property Name="column" Type="nvarchar" MaxLength="50" />
+    <Property Name="level" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="OrderPayment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_Id" Type="int" Nullable="false" />
+    <Property Name="paymentType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="refNumber" Type="varchar" MaxLength="100" />
+    <Property Name="paymentDate" Type="datetime" Nullable="false" />
+    <Property Name="paymentStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bank" Type="varchar" MaxLength="100" />
+    <Property Name="user_Id" Type="int" Nullable="false" />
+    <Property Name="IsRefund" Type="bit" />
+  </EntityType>
+  <EntityType Name="OrderUOM">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="disableLooseQty" Type="bit" />
+    <Property Name="disableFullQty" Type="bit" />
+    <Property Name="defaultLooseQty" Type="bit" />
+  </EntityType>
+  <EntityType Name="OrderUpdate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_Id" Type="int" />
+    <Property Name="actionName" Type="nvarchar" MaxLength="100" />
+    <Property Name="actionDate" Type="datetime2" Precision="3" />
+    <Property Name="order_Id" Type="int" />
+    <Property Name="orderStatus" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parent_Id" Type="int" />
+    <Property Name="orgCategory_Id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="prefix" Type="varchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="20" />
+    <Property Name="sapcode" Type="varchar" MaxLength="20" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OrganizationCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="isChildNodeAllowed" Type="bit" Nullable="false" />
+    <Property Name="backColor" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="imageUrl" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="forceColor" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="ordring" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationCategoryConfig">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orgCategory_Id" Type="int" Nullable="false" />
+    <Property Name="childOrgCategory_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationEmail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="organization_Id" Type="int" Nullable="false" />
+    <Property Name="department_Id" Type="int" Nullable="false" />
+    <Property Name="emailTo" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="emailFrom" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="smtp" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="smptPort" Type="int" Nullable="false" />
+    <Property Name="isSSL" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PaymentReport">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="paymentDate" Type="datetime" Nullable="false" />
+    <Property Name="epiCashEntryTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="epicorCountOfSalesOrders" Type="int" Nullable="false" />
+    <Property Name="totalCash" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="totalCreditCard" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="totalCheque" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="totalAdvanceCash" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="totalAdvanceCreditCard" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="totalAdvanceCheque" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="totalEntries" Type="int" Nullable="false" />
+    <Property Name="totalDiscount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="epiAdvanceEntryTotal" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Plant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="plant" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="address1" Type="nvarchar" MaxLength="255" />
+    <Property Name="address2" Type="nvarchar" MaxLength="255" />
+    <Property Name="address3" Type="nvarchar" MaxLength="255" />
+    <Property Name="city" Type="nvarchar" MaxLength="100" />
+    <Property Name="state" Type="nvarchar" MaxLength="100" />
+    <Property Name="zip" Type="nvarchar" MaxLength="20" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POSOrderNumber">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="LastRunningNumber" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PriceList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="ListCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="CurrencyCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ListDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sysRowID" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PriceListPart">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="ListCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="PartNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="BasePrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UomCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sysRowID" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="partNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="100" />
+    <Property Name="ProdGrup_Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Part_ClassID" Type="nvarchar" MaxLength="10" />
+    <Property Name="PartClass_Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country_Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="UOMClass_DefUomCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="Part_SalesUM" Type="nvarchar" MaxLength="10" />
+    <Property Name="Part_IUM" Type="nvarchar" MaxLength="10" />
+    <Property Name="UOMClass_BaseUOMCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="Country_CountryNum" Type="int" />
+    <Property Name="UOMClass_ClassType" Type="nvarchar" MaxLength="10" />
+    <Property Name="UOMClass_Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Company" Type="nchar" MaxLength="8" />
+    <Property Name="Part_ShortChar01_Temprature_Type_Code" Type="nchar" MaxLength="50" />
+    <Property Name="Part_RefCategory_Item_Brand_Code" Type="nchar" MaxLength="10" />
+    <Property Name="UD04_Character01_Item_Brand" Type="nvarchar(max)" />
+    <Property Name="Part_CheckBox01_Allow_Selling_Loose" Type="bit" />
+    <Property Name="AllowSellingVaryWeight" Type="bit" />
+    <Property Name="UOMConv_ConvFactor" Type="bit" />
+    <Property Name="Part_CheckBox03_Slice" Type="bit" />
+    <Property Name="Part_CheckBox04_Cube" Type="bit" />
+    <Property Name="Part_ShortChar03_LooseUOM" Type="nvarchar" MaxLength="10" />
+    <Property Name="Part_CheckBox05_Standard_Full_Qty" Type="bit" />
+    <Property Name="Part_RunOut" Type="bit" />
+    <Property Name="Part_InActive" Type="bit" />
+    <Property Name="Part_OnHold" Type="bit" />
+    <Property Name="Part_CheckBox13_Strip" Type="bit" />
+    <Property Name="Part_Character04_Generic_Code" Type="nvarchar(max)" />
+    <Property Name="Part_Number03_Avg_Weight" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="itemBrandCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="syncId" Type="nvarchar" MaxLength="38" />
+    <Property Name="inActive" Type="bit" />
+    <Property Name="conversionFactor" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CurrentPrice" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ProductCarton">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productKey" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="epicorPartNo" Type="nvarchar" MaxLength="255" />
+    <Property Name="barcode" Type="nvarchar" MaxLength="255" />
+    <Property Name="vendorProductCode" Type="nvarchar" MaxLength="255" />
+    <Property Name="productBarcodeLength" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="productCodeFromPosition" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="productCodeToPosition" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="weightFromPosition" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="weightToPosition" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="weightValue" Type="nvarchar" MaxLength="255" />
+    <Property Name="weightMutiplier" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="createdBy" Type="varchar" MaxLength="20" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="CtnQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PickedCtnQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsPickedComplete" Type="bit" />
+    <Property Name="IsCarton" Type="bit" />
+    <Property Name="IsPartialCarton" Type="bit" />
+    <Property Name="IumQty" Type="decimal" Precision="8" Scale="4" />
+    <Property Name="Ium" Type="nvarchar" MaxLength="50" />
+    <Property Name="LooseQty" Type="decimal" Precision="8" Scale="4" />
+    <Property Name="LooseUom" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsVaryWg" Type="bit" />
+    <Property Name="ReceivedDate" Type="datetime" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="SeqNum" Type="bigint" />
+    <Property Name="OnHold" Type="bit" />
+  </EntityType>
+  <EntityType Name="ProductWeightBarcode">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="epicorePartNo" Type="nvarchar" MaxLength="255" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="fullBarcode" Type="nvarchar" MaxLength="255" />
+    <Property Name="barcode" Type="nvarchar" MaxLength="255" />
+    <Property Name="barcodeFromPos" Type="nvarchar" MaxLength="255" />
+    <Property Name="barcodeToPos" Type="nvarchar" MaxLength="255" />
+    <Property Name="weightFromPos" Type="nvarchar" MaxLength="255" />
+    <Property Name="weightToPos" Type="nvarchar" MaxLength="255" />
+    <Property Name="weightMultiply" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="barcodeLength" Type="nvarchar" MaxLength="255" />
+    <Property Name="offSet1" Type="nvarchar" MaxLength="255" />
+    <Property Name="offSet2" Type="nvarchar" MaxLength="255" />
+    <Property Name="weightValue" Type="nvarchar" MaxLength="255" />
+    <Property Name="createdBy" Type="varchar" MaxLength="20" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="20" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="StdLooseQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="StdLooseUom" Type="nvarchar" MaxLength="100" />
+    <Property Name="PickedStdLooseQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsPickedComplete" Type="bit" />
+  </EntityType>
+  <EntityType Name="ReportCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parent_Id" Type="int" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="icon" Type="nvarchar" MaxLength="100" />
+    <Property Name="fontColor" Type="varchar" MaxLength="7" />
+    <Property Name="backColor" Type="varchar" MaxLength="200" />
+    <Property Name="ordering" Type="int" Nullable="false" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+    <Property Name="issue" Type="varchar" MaxLength="20" />
+    <Property Name="rev" Type="varchar" MaxLength="20" />
+    <Property Name="tag" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ReportSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyName" Type="varchar" MaxLength="200" />
+    <Property Name="address" Type="varchar" MaxLength="500" />
+    <Property Name="tel" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="RunningCode">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="moduleName" Type="varchar" MaxLength="100" />
+    <Property Name="prefix" Type="varchar" MaxLength="100" />
+    <Property Name="organization_Id" Type="int" />
+    <Property Name="runningNo" Type="int" />
+    <Property Name="module_Id" Type="int" />
+    <Property Name="runningId" Type="int" />
+  </EntityType>
+  <EntityType Name="SchedulerLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="schedulerSetting_Id" Type="int" Nullable="false" />
+    <Property Name="startDateTime" Type="datetime" Nullable="false" />
+    <Property Name="endDateTime" Type="datetime" />
+    <Property Name="result" Type="bit" />
+    <Property Name="totalRecordProcessed" Type="int" />
+    <Property Name="errorMessage" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="SchedulerSetting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="syncModule_Id" Type="int" Nullable="false" />
+    <Property Name="startDate" Type="date" />
+    <Property Name="timeSlot" Type="int" Nullable="false" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="createdBy" Type="int" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShipTo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShipToAddress">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="store_Id" Type="int" />
+    <Property Name="customer_Id" Type="int" />
+    <Property Name="shippingCode" Type="nvarchar" MaxLength="14" />
+    <Property Name="address1" Type="varchar" MaxLength="50" />
+    <Property Name="address2" Type="varchar" MaxLength="50" />
+    <Property Name="address3" Type="varchar" MaxLength="50" />
+    <Property Name="address_City_Id" Type="int" />
+    <Property Name="address_State_Id" Type="int" />
+    <Property Name="address_Country_Id" Type="int" />
+    <Property Name="zip" Type="nvarchar" MaxLength="50" />
+    <Property Name="custID" Type="nvarchar" MaxLength="50" />
+    <Property Name="city" Type="nvarchar" MaxLength="100" />
+    <Property Name="state" Type="nvarchar" MaxLength="100" />
+    <Property Name="country" Type="nvarchar" MaxLength="100" />
+    <Property Name="plantName" Type="nvarchar" MaxLength="100" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="StockBalance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="partNum" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="warehouseCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="uom" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="onHandQty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="uniqueField" Type="nvarchar" MaxLength="100" />
+    <Property Name="Freezer" Type="nvarchar" MaxLength="255" />
+    <Property Name="Row" Type="nvarchar" MaxLength="255" />
+    <Property Name="Column" Type="nvarchar" MaxLength="255" />
+    <Property Name="Level" Type="nvarchar" MaxLength="255" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="plant" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="address1" Type="nvarchar" MaxLength="255" />
+    <Property Name="address2" Type="nvarchar" MaxLength="255" />
+    <Property Name="address3" Type="nvarchar" MaxLength="255" />
+    <Property Name="address_City_id" Type="int" />
+    <Property Name="address_State_id" Type="int" />
+    <Property Name="address_Country_id" Type="int" />
+    <Property Name="zip" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TableProfile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="menu_Id" Type="int" />
+    <Property Name="parent_Id" Type="int" />
+    <Property Name="url" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="localizationResource_Id" Type="int" Nullable="false" />
+    <Property Name="icon" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="sortOrder" Type="int" Nullable="false" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadata">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tableProfile_Id" Type="int" Nullable="false" />
+    <Property Name="fieldName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="valueFieldName" Type="varchar" MaxLength="100" />
+    <Property Name="localizationResourceForGrid_Id" Type="int" Nullable="false" />
+    <Property Name="isMandatory" Type="bit" Nullable="false" />
+    <Property Name="visibilityInGridView" Type="bit" Nullable="false" />
+    <Property Name="visibilityInCreate" Type="bit" Nullable="false" />
+    <Property Name="isEditableInCreate" Type="bit" Nullable="false" />
+    <Property Name="visibilityInEdit" Type="bit" Nullable="false" />
+    <Property Name="isEditableInEdit" Type="bit" Nullable="false" />
+    <Property Name="templateName" Type="varchar" MaxLength="50" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+    <Property Name="validationRule" Type="varchar" MaxLength="100" />
+    <Property Name="sortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataBool">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="selectionOption" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="defaultValue" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataDateTime">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="minDate" Type="datetime" />
+    <Property Name="maxDate" Type="datetime" />
+    <Property Name="isAllowPastDate" Type="bit" />
+    <Property Name="isFollowCalendarSetting" Type="bit" />
+    <Property Name="isCurrentDateDefault" Type="bit" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataDecimal">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="minValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="maxValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="defaultValue" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataInteger">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="minValue" Type="int" />
+    <Property Name="maxValue" Type="int" />
+    <Property Name="defaultValue" Type="int" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataList">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="parent_Id" Type="int" />
+    <Property Name="isMultiValue" Type="bit" Nullable="false" />
+    <Property Name="lookUpValue" Type="int" />
+    <Property Name="lookDefaultValue" Type="int" />
+    <Property Name="dataRetrieveURL" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataListValue">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tableProfileMetadataList_Id" Type="int" Nullable="false" />
+    <Property Name="fieldText" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="visibility" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataMultiFileUpload">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="allowedFileUploadExtension" Type="varchar" MaxLength="200" />
+    <Property Name="maxAllowedFileUpload" Type="int" />
+    <Property Name="hasDownloadOption" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataSingleFileUpload">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="allowedFileUploadExtension" Type="varchar" MaxLength="200" />
+    <Property Name="hasImageViewer" Type="bit" Nullable="false" />
+    <Property Name="hasDownloadOption" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TableProfileMetadataText">
+    <Key>
+      <PropertyRef Name="tableProfileMetadata_Id" />
+    </Key>
+    <Property Name="tableProfileMetadata_Id" Type="int" Nullable="false" />
+    <Property Name="minLength" Type="int" />
+    <Property Name="maxLength" Type="int" />
+    <Property Name="defaultValue" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UomConv">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" />
+    <Property Name="partNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="uomCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="convFactor" Type="varchar" MaxLength="25" />
+    <Property Name="convOperator" Type="nvarchar" MaxLength="2" />
+    <Property Name="uniqueField" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userRole_Id" Type="int" Nullable="false" />
+    <Property Name="bussiness_Id" Type="int" />
+    <Property Name="bussinessType_Id" Type="int" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="200" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" />
+    <Property Name="userName" Type="nvarchar" MaxLength="100" />
+    <Property Name="passwordHash" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="verified" Type="bit" />
+    <Property Name="language" Type="int" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="status" Type="varchar" MaxLength="20" />
+    <Property Name="isTermsAccepted" Type="bit" />
+    <Property Name="address" Type="varchar(max)" />
+    <Property Name="employeeNo" Type="varchar" MaxLength="50" />
+    <Property Name="department" Type="nvarchar" MaxLength="255" />
+    <Property Name="jobTitle" Type="varchar" MaxLength="255" />
+    <Property Name="mobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="officeNo" Type="varchar" MaxLength="50" />
+    <Property Name="salaryId" Type="varchar" MaxLength="50" />
+    <Property Name="gred" Type="int" />
+    <Property Name="idNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="birthDate" Type="datetime" />
+    <Property Name="age" Type="int" />
+    <Property Name="accountNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="bankId" Type="int" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="employeegroupId" Type="int" />
+    <Property Name="entryDate" Type="datetime" />
+    <Property Name="expireddate" Type="datetime" />
+    <Property Name="yearofservice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="isAccessAllOrganization" Type="bit" />
+    <Property Name="profileImageName" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HXPOSV2.dbo.UserLocation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserLocation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="refId" Type="int" />
+    <Property Name="refType" Type="varchar" MaxLength="10" />
+    <Property Name="locationId" Type="int" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userType_Id" Type="int" Nullable="false" />
+    <Property Name="person_Id" Type="int" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="128" />
+    <Property Name="passwordHash" Type="nvarchar" MaxLength="50" />
+    <Property Name="verified" Type="bit" />
+    <Property Name="language" Type="int" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserRights">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userRole_Id" Type="int" Nullable="false" />
+    <Property Name="menuItem_Id" Type="int" Nullable="false" />
+    <Property Name="canView" Type="bit" Nullable="false" />
+    <Property Name="canAdd" Type="bit" Nullable="false" />
+    <Property Name="canEdit" Type="bit" Nullable="false" />
+    <Property Name="canDelete" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_Id" Type="int" Nullable="false" />
+    <Property Name="roleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="isAdmin" Type="bit" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="landingPage" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="userTypeId" />
+    </Key>
+    <Property Name="userTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="500" />
+    <Property Name="isVisible" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HXPOSV2.dbo.StockBalanceView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StockBalanceView">
+    <Key>
+      <PropertyRef Name="partNum" />
+      <PropertyRef Name="totalQtyBeforePayment" />
+      <PropertyRef Name="totalQtyAfterPayment" />
+    </Key>
+    <Property Name="partNum" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="uom" Type="nvarchar" MaxLength="10" />
+    <Property Name="onHandQty" Type="decimal" Precision="38" Scale="6" />
+    <Property Name="totalQtyBeforePayment" Type="decimal" Precision="38" Scale="6" Nullable="false" />
+    <Property Name="totalQtyAfterPayment" Type="decimal" Precision="38" Scale="6" Nullable="false" />
+    <Property Name="remainingQty" Type="decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <Association Name="FK__Address_C__addre__503BEA1C">
+    <End Role="Address_State" Type="Self.Address_State" Multiplicity="0..1" />
+    <End Role="Address_City" Type="Self.Address_City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_State">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Address_City">
+        <PropertyRef Name="address_State_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Address_C__addre__51300E55">
+    <End Role="Address_Country" Type="Self.Address_Country" Multiplicity="0..1" />
+    <End Role="Address_City" Type="Self.Address_City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_Country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Address_City">
+        <PropertyRef Name="address_Country_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Address_S__addre__5224328E">
+    <End Role="Address_Country" Type="Self.Address_Country" Multiplicity="0..1" />
+    <End Role="Address_State" Type="Self.Address_State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_Country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Address_State">
+        <PropertyRef Name="address_Country_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Language___Modul__6FB49575">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Language_Profile" Type="Self.Language_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Language_Profile">
+        <PropertyRef Name="ModuleItem_Byte_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Car__Modul__70A8B9AE">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_Carry_Forward" Type="Self.Leave_Carry_Forward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_Carry_Forward">
+        <PropertyRef Name="Moduleitem_LeaveType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Car__Modul__719CDDE7">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_Carry_Forward" Type="Self.Leave_Carry_Forward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_Carry_Forward">
+        <PropertyRef Name="Moduleitem_Jobgrade_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Car__Modul__72910220">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_Carry_Forward" Type="Self.Leave_Carry_Forward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_Carry_Forward">
+        <PropertyRef Name="Moduleitem_LeaveCarryForwardMethod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Seq__Modul__73852659">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_Sequence" Type="Self.Leave_Sequence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_Sequence">
+        <PropertyRef Name="Moduleitem_LeaveType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Seq__Modul__74794A92">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_Sequence" Type="Self.Leave_Sequence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_Sequence">
+        <PropertyRef Name="ModuleItem_LeaveTypeApplied_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Vie__Compa__756D6ECB">
+    <End Role="CompanyProfile" Type="Self.CompanyProfile" Multiplicity="1" />
+    <End Role="Leave_View_Apply" Type="Self.Leave_View_Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyProfile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_View_Apply">
+        <PropertyRef Name="Company_Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Vie__Modul__76619304">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_View_Apply" Type="Self.Leave_View_Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_View_Apply">
+        <PropertyRef Name="Moduleitem_LeaveType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Vie__Modul__7755B73D">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_View_Apply" Type="Self.Leave_View_Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_View_Apply">
+        <PropertyRef Name="Moduleitem_LeaveViewStatus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Vie__Modul__7849DB76">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_View_Apply" Type="Self.Leave_View_Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_View_Apply">
+        <PropertyRef Name="Moduleitem_LeaveApplyStatus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Vie__Modul__793DFFAF">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Leave_View_Apply" Type="Self.Leave_View_Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_View_Apply">
+        <PropertyRef Name="Moduleitem_LeaveCancelStatus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave_Vie__UserR__7A3223E8">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="Leave_View_Apply" Type="Self.Leave_View_Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Leave_View_Apply">
+        <PropertyRef Name="UserRole_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LooseConv__loose__30592A6F">
+    <End Role="LooseConversion" Type="Self.LooseConversion" Multiplicity="0..1" />
+    <End Role="LooseConversionItem" Type="Self.LooseConversionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LooseConversion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LooseConversionItem">
+        <PropertyRef Name="looseConversion_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LooseConv__produ__26CFC035">
+    <End Role="ProductCarton" Type="Self.ProductCarton" Multiplicity="0..1" />
+    <End Role="LooseConversion" Type="Self.LooseConversion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCarton">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LooseConversion">
+        <PropertyRef Name="productCarton_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LooseConv__weigh__314D4EA8">
+    <End Role="ProductWeightBarcode" Type="Self.ProductWeightBarcode" Multiplicity="0..1" />
+    <End Role="LooseConversionItem" Type="Self.LooseConversionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductWeightBarcode">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LooseConversionItem">
+        <PropertyRef Name="weighScaleBarcode_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__order__727BF387">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItemDeleted__order__727BF387">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ShipToAdd__addre__15DA3E5D">
+    <End Role="Address_City" Type="Self.Address_City" Multiplicity="0..1" />
+    <End Role="ShipToAddress" Type="Self.ShipToAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_City">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ShipToAddress">
+        <PropertyRef Name="address_City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ShipToAdd__addre__16CE6296">
+    <End Role="Address_State" Type="Self.Address_State" Multiplicity="0..1" />
+    <End Role="ShipToAddress" Type="Self.ShipToAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_State">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ShipToAddress">
+        <PropertyRef Name="address_State_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ShipToAdd__addre__17C286CF">
+    <End Role="Address_Country" Type="Self.Address_Country" Multiplicity="0..1" />
+    <End Role="ShipToAddress" Type="Self.ShipToAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_Country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ShipToAddress">
+        <PropertyRef Name="address_Country_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ShipToAdd__custo__18B6AB08">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="ShipToAddress" Type="Self.ShipToAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ShipToAddress">
+        <PropertyRef Name="customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Store__address_C__1A9EF37A">
+    <End Role="Address_City" Type="Self.Address_City" Multiplicity="0..1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_City">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="address_City_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Store__address_C__1B9317B3">
+    <End Role="Address_Country" Type="Self.Address_Country" Multiplicity="0..1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_Country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="address_Country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Store__address_S__1C873BEC">
+    <End Role="Address_State" Type="Self.Address_State" Multiplicity="0..1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_State">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="address_State_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdhocReport_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="AdhocReport" Type="Self.AdhocReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdhocReport">
+        <PropertyRef Name="reportType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdhocReport_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="AdhocReport" Type="Self.AdhocReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdhocReport">
+        <PropertyRef Name="organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignedBusiness_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="AssignedBusiness" Type="Self.AssignedBusiness" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AssignedBusiness">
+        <PropertyRef Name="business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignedBusiness_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="AssignedBusiness" Type="Self.AssignedBusiness" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AssignedBusiness">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignedOrganization_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="AssignedOrganization" Type="Self.AssignedOrganization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AssignedOrganization">
+        <PropertyRef Name="organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignedOrganization_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AssignedOrganization" Type="Self.AssignedOrganization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AssignedOrganization">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="Budget" Type="Self.Budget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Budget">
+        <PropertyRef Name="budgetType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Business_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="Business" Type="Self.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="businessType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Business_ModuleItem_PrimaryCurrency">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="Business" Type="Self.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="primaryCurrency" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAddress_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessAddress" Type="Self.BusinessAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessAddress">
+        <PropertyRef Name="business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessClassification_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessClassification" Type="Self.BusinessClassification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessClassification">
+        <PropertyRef Name="business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessClassification_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="BusinessClassification" Type="Self.BusinessClassification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessClassification">
+        <PropertyRef Name="classification_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessFile_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessFile" Type="Self.BusinessFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessFile">
+        <PropertyRef Name="business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessFile_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="BusinessFile" Type="Self.BusinessFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessFile">
+        <PropertyRef Name="fileType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessOrganization_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessOrganization" Type="Self.BusinessOrganization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessOrganization">
+        <PropertyRef Name="business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessOrganization_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="BusinessOrganization" Type="Self.BusinessOrganization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessOrganization">
+        <PropertyRef Name="organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessOthers_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessOthers" Type="Self.BusinessOthers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessOthers">
+        <PropertyRef Name="business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessWorkCategory_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessWorkCategory" Type="Self.BusinessWorkCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessWorkCategory">
+        <PropertyRef Name="business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessWorkCategory_WorkCategory">
+    <End Role="WorkCategory" Type="Self.WorkCategory" Multiplicity="1" />
+    <End Role="BusinessWorkCategory" Type="Self.BusinessWorkCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusinessWorkCategory">
+        <PropertyRef Name="workCategory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CalendarEvent_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="CalendarEvent" Type="Self.CalendarEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CalendarEvent">
+        <PropertyRef Name="organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CalendarSetting_CalendarEvent">
+    <End Role="CalendarEvent" Type="Self.CalendarEvent" Multiplicity="1" />
+    <End Role="CalendarSetting" Type="Self.CalendarSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CalendarEvent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CalendarSetting">
+        <PropertyRef Name="calendarEvent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyProfile_ModuleItem_CompanyType">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="CompanyProfile" Type="Self.CompanyProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CompanyProfile">
+        <PropertyRef Name="companyType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyProfile_ModuleItem_Service">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="CompanyProfile" Type="Self.CompanyProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CompanyProfile">
+        <PropertyRef Name="service_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DashboardCategory_DashboardCategory">
+    <End Role="DashboardCategory" Type="Self.DashboardCategory" Multiplicity="0..1" />
+    <End Role="DashboardCategory1" Type="Self.DashboardCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DashboardCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DashboardCategory1">
+        <PropertyRef Name="parent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DashboardCategory_MenuItem">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="0..1" />
+    <End Role="DashboardCategory" Type="Self.DashboardCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DashboardCategory">
+        <PropertyRef Name="menu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FileUploadHistory_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="FileUploadHistory" Type="Self.FileUploadHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FileUploadHistory">
+        <PropertyRef Name="uploadType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FileUploadHistory_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="FileUploadHistory" Type="Self.FileUploadHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FileUploadHistory">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HeplDesk_ModuleItem_WorkFollowStatus">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="HelpDesk" Type="Self.HelpDesk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HelpDesk">
+        <PropertyRef Name="workFollowStatus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HeplDesk_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="HelpDesk" Type="Self.HelpDesk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HelpDesk">
+        <PropertyRef Name="organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HeplDesk_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="HelpDesk" Type="Self.HelpDesk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HelpDesk">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IntegrationLogDetail_IntegrationLog">
+    <End Role="IntegrationLog" Type="Self.IntegrationLog" Multiplicity="0..1" />
+    <End Role="IntegrationLogDetail" Type="Self.IntegrationLogDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IntegrationLog">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="IntegrationLogDetail">
+        <PropertyRef Name="integrationLog_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalizationLanguageResource_LocalizationLanguage">
+    <End Role="LocalizationLanguage" Type="Self.LocalizationLanguage" Multiplicity="1" />
+    <End Role="LocalizationLanguageResource" Type="Self.LocalizationLanguageResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalizationLanguage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LocalizationLanguageResource">
+        <PropertyRef Name="localizationLanguage_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalizationLanguageResource_LocalizationResource">
+    <End Role="LocalizationResource" Type="Self.LocalizationResource" Multiplicity="1" />
+    <End Role="LocalizationLanguageResource" Type="Self.LocalizationLanguageResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalizationResource">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LocalizationLanguageResource">
+        <PropertyRef Name="localizationResource_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalizationResource_LocalizationSection">
+    <End Role="LocalizationSection" Type="Self.LocalizationSection" Multiplicity="1" />
+    <End Role="LocalizationResource" Type="Self.LocalizationResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalizationSection">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LocalizationResource">
+        <PropertyRef Name="localizationSection_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MasterCode_ModuleType">
+    <End Role="ModuleType" Type="Self.ModuleType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ModuleItem">
+        <PropertyRef Name="modulType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuItem_MenuItem">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="0..1" />
+    <End Role="MenuItem1" Type="Self.MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MenuItem1">
+        <PropertyRef Name="reference_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModuleCode_MenuItem">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="0..1" />
+    <End Role="ModuleCode" Type="Self.ModuleCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ModuleCode">
+        <PropertyRef Name="menu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oraganization_Oraganization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="Organization1" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Organization1">
+        <PropertyRef Name="parent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oraganization_OraganizationCategory">
+    <End Role="OrganizationCategory" Type="Self.OrganizationCategory" Multiplicity="1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="orgCategory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User_createdBy">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderApproval_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderApproval" Type="Self.OrderApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderApproval">
+        <PropertyRef Name="order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderApproval_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="OrderApproval" Type="Self.OrderApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderApproval">
+        <PropertyRef Name="submittedUser_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderApproval_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="OrderApproval" Type="Self.OrderApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderApproval">
+        <PropertyRef Name="approvedUser_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItemDeleted_ModuleItem_Complimentary">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="complimentary_ModuleItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItemDeleted_ModuleItem_OprationStyle">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="operationStyle_ModuleItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItemDeleted_ModuleItem_QtyType">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="QtyType_ModuleItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItemDeleted_OrderUOM">
+    <End Role="OrderUOM" Type="Self.OrderUOM" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderUOM">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="OrderUOM_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItems_ModuleItem_Complimentary">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="complimentary_ModuleItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItems_ModuleItem_OprationStyle">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="operationStyle_ModuleItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItems_ModuleItem_QtyType">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="QtyType_ModuleItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItems_OrderUOM">
+    <End Role="OrderUOM" Type="Self.OrderUOM" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderUOM">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="OrderUOM_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderPayment_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderPayment" Type="Self.OrderPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderPayment">
+        <PropertyRef Name="order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderPayment_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="OrderPayment" Type="Self.OrderPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderPayment">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationCategoryConfig_OrganizationCategory">
+    <End Role="OrganizationCategory" Type="Self.OrganizationCategory" Multiplicity="1" />
+    <End Role="OrganizationCategoryConfig" Type="Self.OrganizationCategoryConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrganizationCategoryConfig">
+        <PropertyRef Name="orgCategory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationCategoryConfig_OrganizationCategory_Child">
+    <End Role="OrganizationCategory" Type="Self.OrganizationCategory" Multiplicity="1" />
+    <End Role="OrganizationCategoryConfig" Type="Self.OrganizationCategoryConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrganizationCategoryConfig">
+        <PropertyRef Name="childOrgCategory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationEmail_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="1" />
+    <End Role="OrganizationEmail" Type="Self.OrganizationEmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrganizationEmail">
+        <PropertyRef Name="department_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationEmail_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="OrganizationEmail" Type="Self.OrganizationEmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrganizationEmail">
+        <PropertyRef Name="organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportCategory_ReportCategory">
+    <End Role="ReportCategory" Type="Self.ReportCategory" Multiplicity="0..1" />
+    <End Role="ReportCategory1" Type="Self.ReportCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReportCategory1">
+        <PropertyRef Name="parent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_shipToAddress_StoreId">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="ShipToAddress" Type="Self.ShipToAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ShipToAddress">
+        <PropertyRef Name="store_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfile_LocalizationResource">
+    <End Role="LocalizationResource" Type="Self.LocalizationResource" Multiplicity="1" />
+    <End Role="TableProfile" Type="Self.TableProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalizationResource">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfile">
+        <PropertyRef Name="localizationResource_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfile_MenuItem">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="0..1" />
+    <End Role="TableProfile" Type="Self.TableProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfile">
+        <PropertyRef Name="menu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfile_TableProfile_Parent">
+    <End Role="TableProfile" Type="Self.TableProfile" Multiplicity="0..1" />
+    <End Role="TableProfile1" Type="Self.TableProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfile1">
+        <PropertyRef Name="parent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileFieldMetadata_TableProfile">
+    <End Role="TableProfile" Type="Self.TableProfile" Multiplicity="1" />
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadata">
+        <PropertyRef Name="tableProfile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadata_LocalizationResource_ForGrid">
+    <End Role="LocalizationResource" Type="Self.LocalizationResource" Multiplicity="1" />
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalizationResource">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadata">
+        <PropertyRef Name="localizationResourceForGrid_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataBool_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataBool" Type="Self.TableProfileMetadataBool" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataBool">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataDateTime_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataDateTime" Type="Self.TableProfileMetadataDateTime" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataDateTime">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataDecimal_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataDecimal" Type="Self.TableProfileMetadataDecimal" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataDecimal">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataInteger_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataInteger" Type="Self.TableProfileMetadataInteger" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataInteger">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataList_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataList" Type="Self.TableProfileMetadataList" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataList">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataList_TableProfileMetadataList_Parent">
+    <End Role="TableProfileMetadataList" Type="Self.TableProfileMetadataList" Multiplicity="0..1" />
+    <End Role="TableProfileMetadataList1" Type="Self.TableProfileMetadataList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadataList">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataList1">
+        <PropertyRef Name="parent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataListValue_TableProfileMetadataList">
+    <End Role="TableProfileMetadataList" Type="Self.TableProfileMetadataList" Multiplicity="1" />
+    <End Role="TableProfileMetadataListValue" Type="Self.TableProfileMetadataListValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadataList">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataListValue">
+        <PropertyRef Name="tableProfileMetadataList_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataMultiFileUpload_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataMultiFileUpload" Type="Self.TableProfileMetadataMultiFileUpload" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataMultiFileUpload">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataSingleFileUpload_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataSingleFileUpload" Type="Self.TableProfileMetadataSingleFileUpload" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataSingleFileUpload">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableProfileMetadataText_TableProfileMetadata">
+    <End Role="TableProfileMetadata" Type="Self.TableProfileMetadata" Multiplicity="1" />
+    <End Role="TableProfileMetadataText" Type="Self.TableProfileMetadataText" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TableProfileMetadata">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TableProfileMetadataText">
+        <PropertyRef Name="tableProfileMetadata_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="bussiness_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_ModuleItem">
+    <End Role="ModuleItem" Type="Self.ModuleItem" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="bussinessType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User1" Type="Self.User" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserRole">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="userRole_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="userTypeId" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="userType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRights_MenuItem">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="1" />
+    <End Role="UserRights" Type="Self.UserRights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserRights">
+        <PropertyRef Name="menuItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRights_UserRole">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="UserRights" Type="Self.UserRights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserRights">
+        <PropertyRef Name="userRole_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Order_District_FK">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="districtId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Order_ShipToAddress_FK">
+    <End Role="ShipToAddress" Type="Self.ShipToAddress" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShipToAddress">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="shipToAddress_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Order_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="verifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItemDeleted_Product_FK">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItemDeleted_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="deletedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItemDeleted_UserCreated_FK">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="OrderItemDeleted" Type="Self.OrderItemDeleted" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDeleted">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItemDiscountApproval_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="OrderItemDiscountApproval" Type="Self.OrderItemDiscountApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDiscountApproval">
+        <PropertyRef Name="approverUser_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItemDiscountApproval_User_FK_1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="OrderItemDiscountApproval" Type="Self.OrderItemDiscountApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemDiscountApproval">
+        <PropertyRef Name="requester_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItems_Product_FK">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItems_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItemScanned_UserCreatedBy_FK">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="OrderItemScanned" Type="Self.OrderItemScanned" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderItemScanned">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Orders_Customer_FK">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderUpdate_Order_FK">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderUpdate" Type="Self.OrderUpdate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderUpdate">
+        <PropertyRef Name="order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderUpdate_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="OrderUpdate" Type="Self.OrderUpdate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrderUpdate">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DB_Ticket_Datatable_Details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="type" Type="varchar" Mode="In" />
+    <Parameter Name="fromDate" Type="date" Mode="In" />
+    <Parameter Name="toDate" Type="date" Mode="In" />
+    <Parameter Name="organizationId" Type="int" Mode="In" />
+    <Parameter Name="search" Type="nvarchar" Mode="In" />
+    <Parameter Name="sortColumn" Type="nvarchar" Mode="In" />
+    <Parameter Name="sortType" Type="nvarchar" Mode="In" />
+    <Parameter Name="displayStart" Type="int" Mode="In" />
+    <Parameter Name="isplayLength" Type="int" Mode="In" />
+    <Parameter Name="totalRecordNo" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="DB_Ticket_Statistic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="statisticType" Type="varchar" Mode="In" />
+    <Parameter Name="fromDate" Type="date" Mode="In" />
+    <Parameter Name="toDate" Type="date" Mode="In" />
+    <Parameter Name="organizationId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DB_Ticket_Statistic_Bar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="statisticType" Type="varchar" Mode="In" />
+    <Parameter Name="fromDate" Type="date" Mode="In" />
+    <Parameter Name="toDate" Type="date" Mode="In" />
+    <Parameter Name="organizationId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DB_User_Dashboard_Items" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="organizationId" Type="int" Mode="In" />
+    <Parameter Name="ticketCount" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="GetReportFiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="HanodaleEntitiesModelStoreContainer">
+    <EntitySet Name="Address_City" EntityType="Self.Address_City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address_Country" EntityType="Self.Address_Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address_State" EntityType="Self.Address_State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdhocReport" EntityType="Self.AdhocReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssignedBusiness" EntityType="Self.AssignedBusiness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssignedOrganization" EntityType="Self.AssignedOrganization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Budget" EntityType="Self.Budget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bulletin" EntityType="Self.Bulletin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessAddress" EntityType="Self.BusinessAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessClassification" EntityType="Self.BusinessClassification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessFile" EntityType="Self.BusinessFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessOrganization" EntityType="Self.BusinessOrganization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessOthers" EntityType="Self.BusinessOthers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessWorkCategory" EntityType="Self.BusinessWorkCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CalendarEvent" EntityType="Self.CalendarEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CalendarSetting" EntityType="Self.CalendarSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyProfile" EntityType="Self.CompanyProfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerGroupPriceList" EntityType="Self.CustomerGroupPriceList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerPriceList" EntityType="Self.CustomerPriceList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DashboardCategory" EntityType="Self.DashboardCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailScheduled" EntityType="Self.EmailScheduled" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileUploadHistory" EntityType="Self.FileUploadHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpDesk" EntityType="Self.HelpDesk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpDeskLog" EntityType="Self.HelpDeskLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IntegrationLog" EntityType="Self.IntegrationLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IntegrationLogDetail" EntityType="Self.IntegrationLogDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Language_Profile" EntityType="Self.Language_Profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leave_Carry_Forward" EntityType="Self.Leave_Carry_Forward" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leave_Sequence" EntityType="Self.Leave_Sequence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leave_View_Apply" EntityType="Self.Leave_View_Apply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocalizationLanguage" EntityType="Self.LocalizationLanguage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocalizationLanguageResource" EntityType="Self.LocalizationLanguageResource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocalizationResource" EntityType="Self.LocalizationResource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocalizationSection" EntityType="Self.LocalizationSection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LooseBarcodeSetting" EntityType="Self.LooseBarcodeSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LooseConversion" EntityType="Self.LooseConversion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LooseConversionItem" EntityType="Self.LooseConversionItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleCode" EntityType="Self.ModuleCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleItem" EntityType="Self.ModuleItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleType" EntityType="Self.ModuleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderApproval" EntityType="Self.OrderApproval" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderItemDeleted" EntityType="Self.OrderItemDeleted" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderItemDiscountApproval" EntityType="Self.OrderItemDiscountApproval" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderItemScanned" EntityType="Self.OrderItemScanned" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderPayment" EntityType="Self.OrderPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderUOM" EntityType="Self.OrderUOM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderUpdate" EntityType="Self.OrderUpdate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationCategory" EntityType="Self.OrganizationCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationCategoryConfig" EntityType="Self.OrganizationCategoryConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationEmail" EntityType="Self.OrganizationEmail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentReport" EntityType="Self.PaymentReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSOrderNumber" EntityType="Self.POSOrderNumber" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PriceList" EntityType="Self.PriceList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PriceListPart" EntityType="Self.PriceListPart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCarton" EntityType="Self.ProductCarton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductWeightBarcode" EntityType="Self.ProductWeightBarcode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportCategory" EntityType="Self.ReportCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportSetting" EntityType="Self.ReportSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RunningCode" EntityType="Self.RunningCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SchedulerLog" EntityType="Self.SchedulerLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SchedulerSetting" EntityType="Self.SchedulerSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipTo" EntityType="Self.ShipTo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipToAddress" EntityType="Self.ShipToAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockBalance" EntityType="Self.StockBalance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfile" EntityType="Self.TableProfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadata" EntityType="Self.TableProfileMetadata" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataBool" EntityType="Self.TableProfileMetadataBool" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataDateTime" EntityType="Self.TableProfileMetadataDateTime" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataDecimal" EntityType="Self.TableProfileMetadataDecimal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataInteger" EntityType="Self.TableProfileMetadataInteger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataList" EntityType="Self.TableProfileMetadataList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataListValue" EntityType="Self.TableProfileMetadataListValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataMultiFileUpload" EntityType="Self.TableProfileMetadataMultiFileUpload" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataSingleFileUpload" EntityType="Self.TableProfileMetadataSingleFileUpload" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableProfileMetadataText" EntityType="Self.TableProfileMetadataText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UomConv" EntityType="Self.UomConv" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRights" EntityType="Self.UserRights" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkCategory" EntityType="Self.WorkCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLocation" EntityType="Self.UserLocation" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[UserLocation].[id] AS [id], 
+[UserLocation].[refId] AS [refId], 
+[UserLocation].[refType] AS [refType], 
+[UserLocation].[locationId] AS [locationId]
+FROM [dbo].[UserLocation] AS [UserLocation]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StockBalanceView" EntityType="Self.StockBalanceView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[StockBalanceView].[partNum] AS [partNum], 
+[StockBalanceView].[uom] AS [uom], 
+[StockBalanceView].[onHandQty] AS [onHandQty], 
+[StockBalanceView].[totalQtyBeforePayment] AS [totalQtyBeforePayment], 
+[StockBalanceView].[totalQtyAfterPayment] AS [totalQtyAfterPayment], 
+[StockBalanceView].[remainingQty] AS [remainingQty]
+FROM [dbo].[StockBalanceView] AS [StockBalanceView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Address_C__addre__503BEA1C" Association="Self.FK__Address_C__addre__503BEA1C">
+      <End Role="Address_State" EntitySet="Address_State" />
+      <End Role="Address_City" EntitySet="Address_City" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Address_C__addre__51300E55" Association="Self.FK__Address_C__addre__51300E55">
+      <End Role="Address_Country" EntitySet="Address_Country" />
+      <End Role="Address_City" EntitySet="Address_City" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Address_S__addre__5224328E" Association="Self.FK__Address_S__addre__5224328E">
+      <End Role="Address_Country" EntitySet="Address_Country" />
+      <End Role="Address_State" EntitySet="Address_State" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Language___Modul__6FB49575" Association="Self.FK__Language___Modul__6FB49575">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Language_Profile" EntitySet="Language_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Car__Modul__70A8B9AE" Association="Self.FK__Leave_Car__Modul__70A8B9AE">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_Carry_Forward" EntitySet="Leave_Carry_Forward" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Car__Modul__719CDDE7" Association="Self.FK__Leave_Car__Modul__719CDDE7">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_Carry_Forward" EntitySet="Leave_Carry_Forward" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Car__Modul__72910220" Association="Self.FK__Leave_Car__Modul__72910220">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_Carry_Forward" EntitySet="Leave_Carry_Forward" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Seq__Modul__73852659" Association="Self.FK__Leave_Seq__Modul__73852659">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_Sequence" EntitySet="Leave_Sequence" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Seq__Modul__74794A92" Association="Self.FK__Leave_Seq__Modul__74794A92">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_Sequence" EntitySet="Leave_Sequence" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Vie__Compa__756D6ECB" Association="Self.FK__Leave_Vie__Compa__756D6ECB">
+      <End Role="CompanyProfile" EntitySet="CompanyProfile" />
+      <End Role="Leave_View_Apply" EntitySet="Leave_View_Apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Vie__Modul__76619304" Association="Self.FK__Leave_Vie__Modul__76619304">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_View_Apply" EntitySet="Leave_View_Apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Vie__Modul__7755B73D" Association="Self.FK__Leave_Vie__Modul__7755B73D">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_View_Apply" EntitySet="Leave_View_Apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Vie__Modul__7849DB76" Association="Self.FK__Leave_Vie__Modul__7849DB76">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_View_Apply" EntitySet="Leave_View_Apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Vie__Modul__793DFFAF" Association="Self.FK__Leave_Vie__Modul__793DFFAF">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Leave_View_Apply" EntitySet="Leave_View_Apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave_Vie__UserR__7A3223E8" Association="Self.FK__Leave_Vie__UserR__7A3223E8">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="Leave_View_Apply" EntitySet="Leave_View_Apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LooseConv__loose__30592A6F" Association="Self.FK__LooseConv__loose__30592A6F">
+      <End Role="LooseConversion" EntitySet="LooseConversion" />
+      <End Role="LooseConversionItem" EntitySet="LooseConversionItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LooseConv__produ__26CFC035" Association="Self.FK__LooseConv__produ__26CFC035">
+      <End Role="ProductCarton" EntitySet="ProductCarton" />
+      <End Role="LooseConversion" EntitySet="LooseConversion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LooseConv__weigh__314D4EA8" Association="Self.FK__LooseConv__weigh__314D4EA8">
+      <End Role="ProductWeightBarcode" EntitySet="ProductWeightBarcode" />
+      <End Role="LooseConversionItem" EntitySet="LooseConversionItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__order__727BF387" Association="Self.FK__OrderItem__order__727BF387">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItemDeleted__order__727BF387" Association="Self.FK__OrderItemDeleted__order__727BF387">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShipToAdd__addre__15DA3E5D" Association="Self.FK__ShipToAdd__addre__15DA3E5D">
+      <End Role="Address_City" EntitySet="Address_City" />
+      <End Role="ShipToAddress" EntitySet="ShipToAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShipToAdd__addre__16CE6296" Association="Self.FK__ShipToAdd__addre__16CE6296">
+      <End Role="Address_State" EntitySet="Address_State" />
+      <End Role="ShipToAddress" EntitySet="ShipToAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShipToAdd__addre__17C286CF" Association="Self.FK__ShipToAdd__addre__17C286CF">
+      <End Role="Address_Country" EntitySet="Address_Country" />
+      <End Role="ShipToAddress" EntitySet="ShipToAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShipToAdd__custo__18B6AB08" Association="Self.FK__ShipToAdd__custo__18B6AB08">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="ShipToAddress" EntitySet="ShipToAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Store__address_C__1A9EF37A" Association="Self.FK__Store__address_C__1A9EF37A">
+      <End Role="Address_City" EntitySet="Address_City" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Store__address_C__1B9317B3" Association="Self.FK__Store__address_C__1B9317B3">
+      <End Role="Address_Country" EntitySet="Address_Country" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Store__address_S__1C873BEC" Association="Self.FK__Store__address_S__1C873BEC">
+      <End Role="Address_State" EntitySet="Address_State" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdhocReport_ModuleItem" Association="Self.FK_AdhocReport_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="AdhocReport" EntitySet="AdhocReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdhocReport_Organization" Association="Self.FK_AdhocReport_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="AdhocReport" EntitySet="AdhocReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignedBusiness_Business" Association="Self.FK_AssignedBusiness_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="AssignedBusiness" EntitySet="AssignedBusiness" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignedBusiness_User" Association="Self.FK_AssignedBusiness_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="AssignedBusiness" EntitySet="AssignedBusiness" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignedOrganization_Organization" Association="Self.FK_AssignedOrganization_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="AssignedOrganization" EntitySet="AssignedOrganization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignedOrganization_User" Association="Self.FK_AssignedOrganization_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="AssignedOrganization" EntitySet="AssignedOrganization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_ModuleItem" Association="Self.FK_Budget_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Budget" EntitySet="Budget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Business_ModuleItem" Association="Self.FK_Business_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Business" EntitySet="Business" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Business_ModuleItem_PrimaryCurrency" Association="Self.FK_Business_ModuleItem_PrimaryCurrency">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="Business" EntitySet="Business" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAddress_Business" Association="Self.FK_BusinessAddress_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessAddress" EntitySet="BusinessAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessClassification_Business" Association="Self.FK_BusinessClassification_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessClassification" EntitySet="BusinessClassification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessClassification_ModuleItem" Association="Self.FK_BusinessClassification_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="BusinessClassification" EntitySet="BusinessClassification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessFile_Business" Association="Self.FK_BusinessFile_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessFile" EntitySet="BusinessFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessFile_ModuleItem" Association="Self.FK_BusinessFile_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="BusinessFile" EntitySet="BusinessFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessOrganization_Business" Association="Self.FK_BusinessOrganization_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessOrganization" EntitySet="BusinessOrganization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessOrganization_Organization" Association="Self.FK_BusinessOrganization_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="BusinessOrganization" EntitySet="BusinessOrganization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessOthers_Business" Association="Self.FK_BusinessOthers_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessOthers" EntitySet="BusinessOthers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessWorkCategory_Business" Association="Self.FK_BusinessWorkCategory_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessWorkCategory" EntitySet="BusinessWorkCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessWorkCategory_WorkCategory" Association="Self.FK_BusinessWorkCategory_WorkCategory">
+      <End Role="WorkCategory" EntitySet="WorkCategory" />
+      <End Role="BusinessWorkCategory" EntitySet="BusinessWorkCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CalendarEvent_Organization" Association="Self.FK_CalendarEvent_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="CalendarEvent" EntitySet="CalendarEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CalendarSetting_CalendarEvent" Association="Self.FK_CalendarSetting_CalendarEvent">
+      <End Role="CalendarEvent" EntitySet="CalendarEvent" />
+      <End Role="CalendarSetting" EntitySet="CalendarSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyProfile_ModuleItem_CompanyType" Association="Self.FK_CompanyProfile_ModuleItem_CompanyType">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="CompanyProfile" EntitySet="CompanyProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyProfile_ModuleItem_Service" Association="Self.FK_CompanyProfile_ModuleItem_Service">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="CompanyProfile" EntitySet="CompanyProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DashboardCategory_DashboardCategory" Association="Self.FK_DashboardCategory_DashboardCategory">
+      <End Role="DashboardCategory" EntitySet="DashboardCategory" />
+      <End Role="DashboardCategory1" EntitySet="DashboardCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DashboardCategory_MenuItem" Association="Self.FK_DashboardCategory_MenuItem">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="DashboardCategory" EntitySet="DashboardCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileUploadHistory_ModuleItem" Association="Self.FK_FileUploadHistory_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="FileUploadHistory" EntitySet="FileUploadHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileUploadHistory_User" Association="Self.FK_FileUploadHistory_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="FileUploadHistory" EntitySet="FileUploadHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HeplDesk_ModuleItem_WorkFollowStatus" Association="Self.FK_HeplDesk_ModuleItem_WorkFollowStatus">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="HelpDesk" EntitySet="HelpDesk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HeplDesk_Organization" Association="Self.FK_HeplDesk_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="HelpDesk" EntitySet="HelpDesk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HeplDesk_User" Association="Self.FK_HeplDesk_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="HelpDesk" EntitySet="HelpDesk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IntegrationLogDetail_IntegrationLog" Association="Self.FK_IntegrationLogDetail_IntegrationLog">
+      <End Role="IntegrationLog" EntitySet="IntegrationLog" />
+      <End Role="IntegrationLogDetail" EntitySet="IntegrationLogDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalizationLanguageResource_LocalizationLanguage" Association="Self.FK_LocalizationLanguageResource_LocalizationLanguage">
+      <End Role="LocalizationLanguage" EntitySet="LocalizationLanguage" />
+      <End Role="LocalizationLanguageResource" EntitySet="LocalizationLanguageResource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalizationLanguageResource_LocalizationResource" Association="Self.FK_LocalizationLanguageResource_LocalizationResource">
+      <End Role="LocalizationResource" EntitySet="LocalizationResource" />
+      <End Role="LocalizationLanguageResource" EntitySet="LocalizationLanguageResource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalizationResource_LocalizationSection" Association="Self.FK_LocalizationResource_LocalizationSection">
+      <End Role="LocalizationSection" EntitySet="LocalizationSection" />
+      <End Role="LocalizationResource" EntitySet="LocalizationResource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MasterCode_ModuleType" Association="Self.FK_MasterCode_ModuleType">
+      <End Role="ModuleType" EntitySet="ModuleType" />
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuItem_MenuItem" Association="Self.FK_MenuItem_MenuItem">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="MenuItem1" EntitySet="MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModuleCode_MenuItem" Association="Self.FK_ModuleCode_MenuItem">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="ModuleCode" EntitySet="ModuleCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oraganization_Oraganization" Association="Self.FK_Oraganization_Oraganization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="Organization1" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oraganization_OraganizationCategory" Association="Self.FK_Oraganization_OraganizationCategory">
+      <End Role="OrganizationCategory" EntitySet="OrganizationCategory" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User_createdBy" Association="Self.FK_Order_User_createdBy">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderApproval_Order" Association="Self.FK_OrderApproval_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderApproval" EntitySet="OrderApproval" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderApproval_User" Association="Self.FK_OrderApproval_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderApproval" EntitySet="OrderApproval" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderApproval_User1" Association="Self.FK_OrderApproval_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderApproval" EntitySet="OrderApproval" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItemDeleted_ModuleItem_Complimentary" Association="Self.FK_OrderItemDeleted_ModuleItem_Complimentary">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItemDeleted_ModuleItem_OprationStyle" Association="Self.FK_OrderItemDeleted_ModuleItem_OprationStyle">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItemDeleted_ModuleItem_QtyType" Association="Self.FK_OrderItemDeleted_ModuleItem_QtyType">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItemDeleted_OrderUOM" Association="Self.FK_OrderItemDeleted_OrderUOM">
+      <End Role="OrderUOM" EntitySet="OrderUOM" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_ModuleItem_Complimentary" Association="Self.FK_OrderItems_ModuleItem_Complimentary">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_ModuleItem_OprationStyle" Association="Self.FK_OrderItems_ModuleItem_OprationStyle">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_ModuleItem_QtyType" Association="Self.FK_OrderItems_ModuleItem_QtyType">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_OrderUOM" Association="Self.FK_OrderItems_OrderUOM">
+      <End Role="OrderUOM" EntitySet="OrderUOM" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderPayment_Order" Association="Self.FK_OrderPayment_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderPayment" EntitySet="OrderPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderPayment_User" Association="Self.FK_OrderPayment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderPayment" EntitySet="OrderPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationCategoryConfig_OrganizationCategory" Association="Self.FK_OrganizationCategoryConfig_OrganizationCategory">
+      <End Role="OrganizationCategory" EntitySet="OrganizationCategory" />
+      <End Role="OrganizationCategoryConfig" EntitySet="OrganizationCategoryConfig" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationCategoryConfig_OrganizationCategory_Child" Association="Self.FK_OrganizationCategoryConfig_OrganizationCategory_Child">
+      <End Role="OrganizationCategory" EntitySet="OrganizationCategory" />
+      <End Role="OrganizationCategoryConfig" EntitySet="OrganizationCategoryConfig" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationEmail_ModuleItem" Association="Self.FK_OrganizationEmail_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="OrganizationEmail" EntitySet="OrganizationEmail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationEmail_Organization" Association="Self.FK_OrganizationEmail_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="OrganizationEmail" EntitySet="OrganizationEmail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportCategory_ReportCategory" Association="Self.FK_ReportCategory_ReportCategory">
+      <End Role="ReportCategory" EntitySet="ReportCategory" />
+      <End Role="ReportCategory1" EntitySet="ReportCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_shipToAddress_StoreId" Association="Self.FK_shipToAddress_StoreId">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="ShipToAddress" EntitySet="ShipToAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfile_LocalizationResource" Association="Self.FK_TableProfile_LocalizationResource">
+      <End Role="LocalizationResource" EntitySet="LocalizationResource" />
+      <End Role="TableProfile" EntitySet="TableProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfile_MenuItem" Association="Self.FK_TableProfile_MenuItem">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="TableProfile" EntitySet="TableProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfile_TableProfile_Parent" Association="Self.FK_TableProfile_TableProfile_Parent">
+      <End Role="TableProfile" EntitySet="TableProfile" />
+      <End Role="TableProfile1" EntitySet="TableProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileFieldMetadata_TableProfile" Association="Self.FK_TableProfileFieldMetadata_TableProfile">
+      <End Role="TableProfile" EntitySet="TableProfile" />
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadata_LocalizationResource_ForGrid" Association="Self.FK_TableProfileMetadata_LocalizationResource_ForGrid">
+      <End Role="LocalizationResource" EntitySet="LocalizationResource" />
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataBool_TableProfileMetadata" Association="Self.FK_TableProfileMetadataBool_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataBool" EntitySet="TableProfileMetadataBool" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataDateTime_TableProfileMetadata" Association="Self.FK_TableProfileMetadataDateTime_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataDateTime" EntitySet="TableProfileMetadataDateTime" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataDecimal_TableProfileMetadata" Association="Self.FK_TableProfileMetadataDecimal_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataDecimal" EntitySet="TableProfileMetadataDecimal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataInteger_TableProfileMetadata" Association="Self.FK_TableProfileMetadataInteger_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataInteger" EntitySet="TableProfileMetadataInteger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataList_TableProfileMetadata" Association="Self.FK_TableProfileMetadataList_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataList" EntitySet="TableProfileMetadataList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataList_TableProfileMetadataList_Parent" Association="Self.FK_TableProfileMetadataList_TableProfileMetadataList_Parent">
+      <End Role="TableProfileMetadataList" EntitySet="TableProfileMetadataList" />
+      <End Role="TableProfileMetadataList1" EntitySet="TableProfileMetadataList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataListValue_TableProfileMetadataList" Association="Self.FK_TableProfileMetadataListValue_TableProfileMetadataList">
+      <End Role="TableProfileMetadataList" EntitySet="TableProfileMetadataList" />
+      <End Role="TableProfileMetadataListValue" EntitySet="TableProfileMetadataListValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataMultiFileUpload_TableProfileMetadata" Association="Self.FK_TableProfileMetadataMultiFileUpload_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataMultiFileUpload" EntitySet="TableProfileMetadataMultiFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataSingleFileUpload_TableProfileMetadata" Association="Self.FK_TableProfileMetadataSingleFileUpload_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataSingleFileUpload" EntitySet="TableProfileMetadataSingleFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableProfileMetadataText_TableProfileMetadata" Association="Self.FK_TableProfileMetadataText_TableProfileMetadata">
+      <End Role="TableProfileMetadata" EntitySet="TableProfileMetadata" />
+      <End Role="TableProfileMetadataText" EntitySet="TableProfileMetadataText" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Business" Association="Self.FK_User_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_ModuleItem" Association="Self.FK_User_ModuleItem">
+      <End Role="ModuleItem" EntitySet="ModuleItem" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User1" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_UserType" Association="Self.FK_UserProfile_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRights_MenuItem" Association="Self.FK_UserRights_MenuItem">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="UserRights" EntitySet="UserRights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRights_UserRole" Association="Self.FK_UserRights_UserRole">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="UserRights" EntitySet="UserRights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="Order_District_FK" Association="Self.Order_District_FK">
+      <End Role="District" EntitySet="District" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="Order_ShipToAddress_FK" Association="Self.Order_ShipToAddress_FK">
+      <End Role="ShipToAddress" EntitySet="ShipToAddress" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="Order_User_FK" Association="Self.Order_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItemDeleted_Product_FK" Association="Self.OrderItemDeleted_Product_FK">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItemDeleted_User_FK" Association="Self.OrderItemDeleted_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItemDeleted_UserCreated_FK" Association="Self.OrderItemDeleted_UserCreated_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderItemDeleted" EntitySet="OrderItemDeleted" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItemDiscountApproval_User_FK" Association="Self.OrderItemDiscountApproval_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderItemDiscountApproval" EntitySet="OrderItemDiscountApproval" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItemDiscountApproval_User_FK_1" Association="Self.OrderItemDiscountApproval_User_FK_1">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderItemDiscountApproval" EntitySet="OrderItemDiscountApproval" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItems_Product_FK" Association="Self.OrderItems_Product_FK">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItems_User_FK" Association="Self.OrderItems_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItemScanned_UserCreatedBy_FK" Association="Self.OrderItemScanned_UserCreatedBy_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderItemScanned" EntitySet="OrderItemScanned" />
+    </AssociationSet>
+    <AssociationSet Name="Orders_Customer_FK" Association="Self.Orders_Customer_FK">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="OrderUpdate_Order_FK" Association="Self.OrderUpdate_Order_FK">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderUpdate" EntitySet="OrderUpdate" />
+    </AssociationSet>
+    <AssociationSet Name="OrderUpdate_User_FK" Association="Self.OrderUpdate_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="OrderUpdate" EntitySet="OrderUpdate" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

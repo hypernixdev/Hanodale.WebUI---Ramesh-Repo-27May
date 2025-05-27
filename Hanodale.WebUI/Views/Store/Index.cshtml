@@ -1,0 +1,214 @@
+@model Hanodale.WebUI.Models.GridViewIndexModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<style>
+    .hidden-column {
+        display: none; /* Hides the column */
+        /* Hide columns on phone (max-width 767px) */
+        
+    }
+    @@media (max-width: 767px) {
+        #dt_store th:nth-child(5), /* 5th column */
+        #dt_store td:nth-child(5),
+        #dt_store th:nth-child(6), /* 6th column */
+        #dt_store td:nth-child(6),
+        #dt_store th:nth-child(7), /* 7th column */
+        #dt_store td:nth-child(7){
+        display: none !important;
+        }
+    }
+    /* Hide columns on tablet (max-width 1024px) */
+    @@media (max-width: 1024px) {
+        #dt_store th:nth-child(5), /* 5th column */
+        #dt_store td:nth-child(5),
+        #dt_store th:nth-child(6), /* 6th column */
+        #dt_store td:nth-child(6),
+        #dt_store th:nth-child(7), /* 7th column */
+        #dt_store td:nth-child(7) {
+            display: none !important;
+        }
+    }
+</style>
+<!-- Hidden Variable -->
+<input type="hidden" id="alert-delete" value="@Html.GetGlobalResource("MSG_CONFIRM_DELETE")">
+<input type="hidden" class="mainPart" value="store">
+@*<input type="hidden" class="table-congif" value="store" data-columncount="@Model.columnCount" data-button="false"  data-condition="true" data-conditionId="1" data-extended-event-btn="false" data-disall="true" data-auto-hide-column="true" data-export-btn="true">*@
+<input type="hidden" class="table-congif" value="store" data-columncount="@Model.columnCount" data-button="true" data-condition="false" data-extended-event-btn="false" data-disall="true" data-auto-hide-column="true" data-export-btn="true">
+
+<!-- Hidden Variable -->
+
+<div class="row-flex">
+
+
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>
+            @Html.GetGlobalResource("PAGE_HEADER_MANAGE_STORE")
+        </h1>
+    </div>
+    <!-- Sync Stores Button -->
+    @if (Model.accessRight.canAdd && !Model.readOnly)
+    {
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
+            <button id="syncStoresBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync Stores
+            </button>
+        </div>
+    }
+    
+    
+</div>
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+            @Html.Action("GetCustomSearchPanel", "Store")
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-234"
+                 data-widget-editbutton="false"
+                 data-widget-deletebutton="false"
+                 data-widget-colorbutton="false"
+                 data-widget-sortable="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+                    <h2>@Html.GetGlobalResource("STORE_GRID_TITLE")</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table id="dt_store" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+
+                                <tr>
+                                    @if (Model.lstColumn != null)
+                                    {
+                                        foreach (var item in Model.lstColumn)
+                                        {
+                                            // Apply 'toggle-column' class for specific columns
+                                            var toggleClass = (item.resourceKeyName == "STORE_ADDRESS1" ||
+                                                               item.resourceKeyName == "STORE_ADDRESS2" ||
+                                                               item.resourceKeyName == "STORE_ADDRESS3") ? "toggle-column" : "";
+
+
+                                            <th class="@toggleClass">
+                                                @Html.GetGlobalResource(item.resourceKeyName)
+                                            </th>
+                                        }
+                                        <th class="table-column-header" style="width: @(Model.gridViewButtonColumnWidth);"></th>
+                                    }
+                                </tr>
+                                <!--<tr>-->
+                                @*<th class="" style="width: 40px;">#</th>*@
+                                <!--<th class="table-column-header" style="width: 40px;">
+                                <div class="smart-form" style="margin-bottom: 4px">
+                                    <label class=" checkbox">
+                                        <input type="checkbox" name="checkbox" class=" checkAsAll"><i></i>
+                                    </label>
+                                </div>
+
+                            </th>
+
+
+                        </tr>-->
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+@Scripts.Render(bundles.scripts.common_index)
+
+<script>
+    $(document).ready(function() {
+            $('#syncStoresBtn').on('click', function() {
+                // Disable button to prevent multiple clicks
+                $(this).prop('disabled', true);
+
+                // API call to sync Stores
+                var apiUrl = '@Url.Action("SyncStores", "Store")'; // Adjust the API endpoint as needed
+
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    success: function(response) {
+                        if (response.success) {
+                            userMessage.show("Success", 'Stores synced successfully!');
+                            // Enable the button again after successful sync
+                            $('#syncStoresBtn').prop('disabled', false);
+                        } else {
+                            userMessage.show("Error", response.message);
+                            // Enable the button again after successful sync
+                            $('#syncStoresBtn').prop('disabled', false);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        userMessage.show("Error", 'An error occurred while syncing Stores: ' + error);
+                        // Enable the button again even if there is an error
+                        $('#syncStoresBtn').prop('disabled', false);
+                    }
+                });
+            });
+    });
+
+</script>
+<script>
+   
+    function toggleColumnVisibility() {
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+        var headerCells = document.querySelectorAll('th.toggle-column'); // Select header cells
+        var bodyCells = document.querySelectorAll('td.toggle-column');   // Select body cells
+
+        if (screenWidth <= 768) {  // Phone/Tablet screen size
+            headerCells.forEach(function (cell) {
+                cell.classList.add('hidden-column'); // Hide header
+            });
+            bodyCells.forEach(function (cell) {
+                cell.classList.add('hidden-column'); // Hide body cells
+            });
+        } else {
+            headerCells.forEach(function (cell) {
+                cell.classList.remove('hidden-column'); // Show header
+            });
+            bodyCells.forEach(function (cell) {
+                cell.classList.remove('hidden-column'); // Show body cells
+            });
+        }
+    }
+
+    // Run function on page load and window resize
+    document.addEventListener('DOMContentLoaded', toggleColumnVisibility);
+    window.onresize = toggleColumnVisibility;
+</script>
+<!-- Protected Script -->

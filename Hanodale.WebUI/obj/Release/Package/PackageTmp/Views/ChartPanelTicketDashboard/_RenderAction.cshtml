@@ -1,0 +1,18 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+@if (Model.readOnly || Model.canView)
+{
+    <span class="view-chart-dashboard btn btn-ribbon " data-url="CHARTPANELTICKETDASHBOARD_ID" title="View" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye "></i>
+    </span>
+}
+@if (!Model.readOnly &&  Model.canEdit)
+{
+    <span class="pencil maintenance-chart-dashboard btn btn-ribbon " data-url="CHARTPANELTICKETDASHBOARD_ID" title="Edit" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}

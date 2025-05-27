@@ -1,0 +1,70 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelTicketDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+    var counter = 0;
+}
+<!-- row -->
+<div class="row">
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+        <div class="jarviswidget jarviswidget-color-darken" id="wid-id-4453303"
+            data-widget-editbutton="false"
+            data-widget-colorbutton="false">
+            <div>
+                <!-- widget edit box -->
+                <div class="jarviswidget-editbox">
+                    <!-- This area used as dropdown edit box -->
+                </div>
+                <!-- end widget edit box -->
+
+                <!-- widget content -->
+                <div class="widget-body no-padding ">
+                    @foreach (var group in Model.lstPieChartSubItem)
+                    {
+                        counter++;
+                        <div id="pieCharPanelTicketDashboard_@counter" class="widget-body no-padding placeholderChartMainContent col-sm-6 col-md-6 col-lg-6">
+                            <div style="padding: 20px; width: 100%;">
+                                <ul class="charPanelDashboard" >
+                                    <div class="chartPieHeader">@group.title</div>
+                                    <div class="chartPiePanelStatusMessage">@string.Format(Resources.PAGE_HEADER_CHART_PANEL_LABEL_LAST_LOADED_DATA, Model.loadedDateFromString, Model.loadedDateToString). @string.Format(Resources.PAGE_HEADER_CHART_PANEL_LABEL_LAST_UPDATED_LONG_STRING_DATE, Model.lastUpdatedDateString, Model.lastUpdatedTimeString)</div>
+                                    @foreach (var item in group.lstPieChart)
+                                    {
+                                        <li id="pieCharPanelTicketDashboardPlaceholder_@item.chartType" class="dashboardChartBox col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="pieChartInnerBox">
+                                                <div class="chartPieTitleLabel"><a class="viewDetail" data-id="@item.type" data-section="@item.sectionType" title="@Resources.BTN_VIEW_DETAIL">@item.title</a></div>
+                                                <div class="innerChartContent">
+                                                    <div class="placeholderDonutHoleChartBody" id="pieCharPanelDashboardPlaceholderBody_@item.chartType"></div>
+                                                    <div class="charLegendaSpliter"></div>
+                                                    <div class="mainChartLegend">
+                                                        <div id="chartLegend_@item.chartType"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                                <div class="downloadMainBox">
+                                    <a class="download" data-id="pieCharPanelTicketDashboard_@counter" data-name="@group.title" title="@Resources.LABEL_DOWNLOAD_AS_PDF"><i class="fa fa-lg fa-fw fa-download"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<script src="~/Scripts/plugin/flot/jquery.flot.tooltip.min.js"></script>
+<script src="~/Scripts/flot/jspdf.min.js"></script>
+<script src="~/Scripts/flot/html2canvas.js"></script>
+<script src="~/Scripts/ProtectedScripts/draw-pie-chart.js"></script>
+<script>
+    $(document).ready(function () {
+        drawPieChart("ChartPanelTicketDashboard", "GetPieChartInfo", true, true)
+    })
+
+</script>

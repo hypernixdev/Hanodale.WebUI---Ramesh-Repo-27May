@@ -1,0 +1,2043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APPLICATION_NAME" xml:space="preserve">
+    <value>Your Application Name</value>
+  </data>
+  <data name="BTN_BACK" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BTN_CREATE_ROLE" xml:space="preserve">
+    <value>Create Role</value>
+  </data>
+  <data name="BTN_CREATE_USER" xml:space="preserve">
+    <value>Create User</value>
+  </data>
+  <data name="BTN_RESET" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="BTN_SAVE" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="BTN_UPDATE" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="CINEMA_CINEMA_LOCATION" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="CINEMA_CODE" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CINEMA_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ACTIVE_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="MSG_CHANGE_PASSWORD" xml:space="preserve">
+    <value>Password has been changed successfully</value>
+  </data>
+  <data name="MSG_CONFIRM_DELETE" xml:space="preserve">
+    <value>Are you sure you want to delete?</value>
+  </data>
+  <data name="MSG_CONFIRM_SAVE" xml:space="preserve">
+    <value>Are you sure you want to save?</value>
+  </data>
+  <data name="MSG_CONFIRM_UPDATE" xml:space="preserve">
+    <value>Are you sure you want to update?</value>
+  </data>
+  <data name="MSG_DELETE" xml:space="preserve">
+    <value>The record was successfully deleted</value>
+  </data>
+  <data name="MSG_EMAIL" xml:space="preserve">
+    <value>The email has been sent successfully</value>
+  </data>
+  <data name="MSG_EMAIL_FORGOT" xml:space="preserve">
+    <value>Your login details  have been sent to your registered email address</value>
+  </data>
+  <data name="MSG_ERR_CHANGE_PASSWORD" xml:space="preserve">
+    <value>The current password is invalid</value>
+  </data>
+  <data name="MSG_ERR_DELETE" xml:space="preserve">
+    <value>There was an error in deleting the record</value>
+  </data>
+  <data name="MSG_ERR_EMAIL" xml:space="preserve">
+    <value>There was an error in sending the email</value>
+  </data>
+  <data name="MSG_ERR_RETRIEVE" xml:space="preserve">
+    <value>There was an error in retrieving the data</value>
+  </data>
+  <data name="MSG_ERR_SAVE" xml:space="preserve">
+    <value>There was an error in saving the record</value>
+  </data>
+  <data name="MSG_ERR_SERVICE" xml:space="preserve">
+    <value>There was an error in connecting to the server</value>
+  </data>
+  <data name="MSG_ERR_UPDATE" xml:space="preserve">
+    <value>There was an error in updating the record</value>
+  </data>
+  <data name="MSG_INVALID_EMAIL" xml:space="preserve">
+    <value>The email address entered is invalid</value>
+  </data>
+  <data name="MSG_INVALID_USER_OR_PASSWORD" xml:space="preserve">
+    <value>The User Name or Password provided is incorrect.</value>
+  </data>
+  <data name="MSG_NO_RECORD" xml:space="preserve">
+    <value>No record found</value>
+  </data>
+  <data name="MSG_RECORD_IN_USE" xml:space="preserve">
+    <value>Record in use it cannot be deleted</value>
+  </data>
+  <data name="MSG_REQUIRED" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="MSG_RESET_PASSWORD" xml:space="preserve">
+    <value>Password has been reset successfully</value>
+  </data>
+  <data name="MSG_RESET_PASSWORD_CONFIRM" xml:space="preserve">
+    <value>Are you sure you want to reset password?</value>
+  </data>
+  <data name="MSG_RESET_PASSWORD_ERR" xml:space="preserve">
+    <value>Error in resetting password</value>
+  </data>
+  <data name="MSG_SAVE" xml:space="preserve">
+    <value>The record has been successfully saved</value>
+  </data>
+  <data name="MSG_UPDATE" xml:space="preserve">
+    <value>The record has been successfully updated</value>
+  </data>
+  <data name="MSG_USER_INACTIVE" xml:space="preserve">
+    <value>This user is currently inactive</value>
+  </data>
+  <data name="InvalidEmailAddress" xml:space="preserve">
+    <value>Enter a valid email address for {0}</value>
+  </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>Enter a valid phone number for {0}</value>
+  </data>
+  <data name="MaxStringLength" xml:space="preserve">
+    <value>The maximum length is {1} characters</value>
+  </data>
+  <data name="MinStringLength" xml:space="preserve">
+    <value>The minimum length is {1} character</value>
+  </data>
+  <data name="MaxMinStringLength" xml:space="preserve">
+    <value>The minimum length is {1} and the maximum length is {2} characters</value>
+  </data>
+  <data name="AllowanceRange" xml:space="preserve">
+    <value>The range can be between {1} and {2}</value>
+  </data>
+  <data name="NO_ACCESS_RIGHTS" xml:space="preserve">
+    <value>You do not have permission to Access</value>
+  </data>
+  <data name="NO_ACCESS_RIGHTS_ADD" xml:space="preserve">
+    <value>You do not have permission to Add</value>
+  </data>
+  <data name="NO_ACCESS_RIGHTS_DELETE" xml:space="preserve">
+    <value>You do not have permission to Delete</value>
+  </data>
+  <data name="NO_ACCESS_RIGHTS_EDIT" xml:space="preserve">
+    <value>You do not have permission to Edit</value>
+  </data>
+  <data name="NO_ACCESS_RIGHTS_VIEW" xml:space="preserve">
+    <value>You do not have permission to View</value>
+  </data>
+  <data name="NO_ACCESS_RIGHTS_VIEW_OR_EDIT" xml:space="preserve">
+    <value>You do not have permission to View or Edit</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_ROLE" xml:space="preserve">
+    <value>Create Role</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_USER" xml:space="preserve">
+    <value>Create User </value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_ROLE" xml:space="preserve">
+    <value>Edit Role</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_USER" xml:space="preserve">
+    <value>Edit User </value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_ROLE" xml:space="preserve">
+    <value>Manage User Role</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_USER" xml:space="preserve">
+    <value>Manage User</value>
+  </data>
+  <data name="PAGE_HEADER_PROFILE" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="PAGE_HEADER_HELP" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="PROFILE_CINEMA" xml:space="preserve">
+    <value>Cinema</value>
+  </data>
+  <data name="PROFILE_CODE" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="PROFILE_EMAIL" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="PROFILE_LANGUAGE" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="PROFILE_LOCATION" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="PROFILE_LOGIN_ID" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="PROFILE_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PROFILE_ROLE" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="PROFILE_VIEW_LOCATION" xml:space="preserve">
+    <value>View Branch</value>
+  </data>
+  <data name="RECORD_EXISTS_CODE" xml:space="preserve">
+    <value>The cinema code"CODE" already exists</value>
+  </data>
+  <data name="RECORD_EXISTS_LOCATION" xml:space="preserve">
+    <value>The cinema location  "LOCATION_NAME" already exists</value>
+  </data>
+  <data name="ROLE_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ROLE_NAME" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="ROLE_RECORD_EXISTS" xml:space="preserve">
+    <value>The Role "ROLE_NAME" Already Exists !</value>
+  </data>
+  <data name="ROLE_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="STATUS_ACTIVE" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="STATUS_INACTIVE" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="USER_FIRST_NAME" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="USER_GIRD_CREATED_BY" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="USER_GIRD_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="USER_GRID_EMAIL" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="USER_GRID_LOGIN_ID" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="USER_GRID_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="USER_GRID_ROLE" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="USER_LAST_NAME" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="USER_LOGIN_ID" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="USER_PASSWORD" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="USER_RECORD_EXISTS" xml:space="preserve">
+    <value>A user already exists with this email address. Please select a different email address</value>
+  </data>
+  <data name="USER_ROLE" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="USER_STATUS" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="USER_URLPATH" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="USER_IMAGE" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="PAGE_HEADER_RIGHTS" xml:space="preserve">
+    <value>Manage User Rights</value>
+  </data>
+  <data name="RIGHTS_ROLE" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="DATATABLE_EMPTY_TABLE" xml:space="preserve">
+    <value>No data available</value>
+  </data>
+  <data name="DATATABLE_INFO" xml:space="preserve">
+    <value>Showing _START_ to _END_ of _TOTAL_ entries</value>
+  </data>
+  <data name="DATATABLE_INFO_EMPTY" xml:space="preserve">
+    <value>No entries to show</value>
+  </data>
+  <data name="DATATABLE_INFO_FILTERED" xml:space="preserve">
+    <value>- filtering from _MAX_ records</value>
+  </data>
+  <data name="DATATABLE_MENU" xml:space="preserve">
+    <value>Display _MENU_ records</value>
+  </data>
+  <data name="DATATABLE_SEARCH" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="DATATABLE_ZERO_RECORD" xml:space="preserve">
+    <value>No records to display</value>
+  </data>
+  <data name="CINEMA_GRID_CINEMA" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="CINEMA_GRID_CODE" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CINEMA_GRID_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="CINEMA_GRID_TITLE" xml:space="preserve">
+    <value>Results for "Created Branch"</value>
+  </data>
+  <data name="RECORD_EXISTS_ICNUMBER" xml:space="preserve">
+    <value>The IC Number "IC_NUMBER" already exists</value>
+  </data>
+  <data name="RECORD_EXISTS_MEMBER_CARD_NO" xml:space="preserve">
+    <value>The Member Card Number "MEMBER_CARD_NO" already exists</value>
+  </data>
+  <data name="MENU_CHANGE_PASSWORD" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="MENU_ONLINE_HELP" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="MENU_LOGOUT" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MENU_PROFILE" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="WELCOME" xml:space="preserve">
+    <value>Welcome,</value>
+  </data>
+  <data name="BTN_CHANGE_PASSWORD" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="CHANGE_PASSWORD_CONFIRMPASSWORD" xml:space="preserve">
+    <value>Confirm New Password</value>
+  </data>
+  <data name="CHANGE_PASSWORD_NEWPASSWORD" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="CHANGE_PASSWORD_OLDPASSWORD" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="PAGE_HEADER_CHANGE_PASSWORD" xml:space="preserve">
+    <value>Change Your Password</value>
+  </data>
+  <data name="BTN_CLOSE" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WELCOME_ALERT" xml:space="preserve">
+    <value>Welcome to Facility Boss System!</value>
+  </data>
+  <data name="USER_LOCATION" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="GRID_TITLE_USER" xml:space="preserve">
+    <value>List of User(s)</value>
+  </data>
+  <data name="GRID_RIGHTS_ADD" xml:space="preserve">
+    <value>Can Add</value>
+  </data>
+  <data name="GRID_RIGHTS_DELETE" xml:space="preserve">
+    <value>Can Delete</value>
+  </data>
+  <data name="GRID_RIGHTS_EDIT" xml:space="preserve">
+    <value>Can Edit</value>
+  </data>
+  <data name="GRID_RIGHTS_MENU" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="GRID_RIGHTS_TITLE" xml:space="preserve">
+    <value>List of User Right(s)</value>
+  </data>
+  <data name="GRID_RIGHTS_VIEW" xml:space="preserve">
+    <value>Can View</value>
+  </data>
+  <data name="GRID_TITLE_ROLE" xml:space="preserve">
+    <value>List of Role(s)</value>
+  </data>
+  <data name="USER_DELETE_WARNING" xml:space="preserve">
+    <value>Your not authorize to delete your own user</value>
+  </data>
+  <data name="ACCOUNT_INACTIVE" xml:space="preserve">
+    <value>Your account is inactive. Please contact system administrator</value>
+  </data>
+  <data name="MSG_INVALID_USER_OR_EMAIL" xml:space="preserve">
+    <value>The email you entered is incorrect</value>
+  </data>
+  <data name="MSG_SENT_FORGOT_EMAIL" xml:space="preserve">
+    <value>Password has been sent to "EMAIL". Please check your email</value>
+  </data>
+  <data name="BTN_SAVE_CONTINUE" xml:space="preserve">
+    <value>Save &amp; Continue</value>
+  </data>
+  <data name="MSG_LEAD_STATUS_CHANGE" xml:space="preserve">
+    <value>You cannot save. Please select Lead Status except "WIP" and "Open"</value>
+  </data>
+  <data name="MSG_WARNING" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="MENU_SUPPORT" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="ROLE_ISADMIN" xml:space="preserve">
+    <value>Is Admin</value>
+  </data>
+  <data name="BUSINESS_CODE" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="BUSINESS_FAX" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="BUSINESS_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="BUSINESS_PHONE" xml:space="preserve">
+    <value>Hand Phone</value>
+  </data>
+  <data name="BUSINESS_PHONE2" xml:space="preserve">
+    <value>Office Phone </value>
+  </data>
+  <data name="BUSINESS_PRIMARY_CONTACT" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="BUSINESS_PRIMARY_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="BUSINESS_REMARKS" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="BUSINESS_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="BUSINESS_WEBSITE" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="BTN_CREATE_BUSINESS" xml:space="preserve">
+    <value>Create Business</value>
+  </data>
+  <data name="BUSINESS_GRID_TITLE" xml:space="preserve">
+    <value>List of Business(s)</value>
+  </data>
+  <data name="BUSINESS_PRIMARY_CURRENCY" xml:space="preserve">
+    <value>Primary Currency</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_BUSINESS" xml:space="preserve">
+    <value>Manage Business</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_BUSINESS" xml:space="preserve">
+    <value>Create Business</value>
+  </data>
+  <data name="BUSINESS_COST_CENTER_INFO" xml:space="preserve">
+    <value>Cost Center Assignment</value>
+  </data>
+  <data name="BUSINESSADDRESS_ADDRESS" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="BUSINESSADDRESS_CITY" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="BUSINESSADDRESS_COUNTRY" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="BUSINESSADDRESS_POSTAL_CODE" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="BUSINESSADDRESS_PROVINCE" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="BTN_CREATE_MODULEITEM" xml:space="preserve">
+    <value>Create Module Item</value>
+  </data>
+  <data name="MODULEITEM_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="MODULEITEM_GRID_TITLE" xml:space="preserve">
+    <value>List of Module Item(s)</value>
+  </data>
+  <data name="MODULEITEM_MODULETYPE" xml:space="preserve">
+    <value>Module Type</value>
+  </data>
+  <data name="MODULEITEM_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_MODULEITEM" xml:space="preserve">
+    <value>Manage Module Item</value>
+  </data>
+  <data name="MODULEITEM_MODULETYPE_ID" xml:space="preserve">
+    <value>Module Type</value>
+  </data>
+  <data name="MODULEITEM_SORTORDER" xml:space="preserve">
+    <value>Sort Order</value>
+  </data>
+  <data name="MODULEITEM_VISIBILITY" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_MODULEITEM" xml:space="preserve">
+    <value>Create Module Item</value>
+  </data>
+  <data name="BTN_CREATE_BUSINESSFILE" xml:space="preserve">
+    <value>Create Business File</value>
+  </data>
+  <data name="BUSINESSFILE_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="BUSINESSFILE_FILE_TYPE" xml:space="preserve">
+    <value>File Type</value>
+  </data>
+  <data name="BUSINESSFILE_GRID_TITLE" xml:space="preserve">
+    <value>List of Created Business File(s)</value>
+  </data>
+  <data name="BUSINESSFILE_MODIFIEDDATE" xml:space="preserve">
+    <value>Modified Date</value>
+  </data>
+  <data name="BUSINESSFILE_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="BUSINESSFILE_URLPATH" xml:space="preserve">
+    <value>URL Path</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_BUSINESSFILE" xml:space="preserve">
+    <value>Create Business File</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_BUSINESSFILE" xml:space="preserve">
+    <value>Manage Business File</value>
+  </data>
+  <data name="RequiredInput" xml:space="preserve">
+    <value>Please enter your  {0}</value>
+  </data>
+  <data name="USER_GRID_LASTNAME" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="USER_ROLE_ACTIVE" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="USER_ROLE_ADMIN" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="USER_ROLE_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="USER_ROLE_NAME" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="USER_ROLE_TYPE" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="USER_ROLE_LANDINGPAGE" xml:space="preserve">
+    <value>Landing Page </value>
+  </data>
+  <data name="BTN_SAVECHANGES" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="RequiredSelect" xml:space="preserve">
+    <value>Please select {0}</value>
+  </data>
+  <data name="USER_RIGHT_ITEMS" xml:space="preserve">
+    <value>User Rights Settings</value>
+  </data>
+  <data name="BUSINESSFILE_RECORD_EXISTS" xml:space="preserve">
+    <value>The Business "BUSINESSFILE_NAME" Already Exists!  </value>
+  </data>
+  <data name="BUSINESS_RECORD_EXISTS" xml:space="preserve">
+    <value>The Business "BUSINESS NAME" and "BUSINESS TYPE" already exists!  </value>
+  </data>
+  <data name="BTN_CREATE_ASSETWARRANTY" xml:space="preserve">
+    <value>Create Asset Warranty</value>
+  </data>
+  <data name="BUSINESS_CLASSIFICATION_CLASSIFICATION" xml:space="preserve">
+    <value>Industry Type</value>
+  </data>
+  <data name="BUSINESSADDRESS_RECORD_EXISTS" xml:space="preserve">
+    <value>The Business "BUSINESS_ADDRESS" Already Exists!  </value>
+  </data>
+  <data name="BTN_SWITCH_GRID" xml:space="preserve">
+    <value>Switch to Grid View</value>
+  </data>
+  <data name="BTN_SWITCH_TREE" xml:space="preserve">
+    <value>Switch to Tree View</value>
+  </data>
+  <data name="MSG_ERR_INVALIDMODEL" xml:space="preserve">
+    <value>Your model is not valid !</value>
+  </data>
+  <data name="BUSINESSFILE_FILETYPE" xml:space="preserve">
+    <value>File Type</value>
+  </data>
+  <data name="USER_BUSINESS" xml:space="preserve">
+    <value>Default Business</value>
+  </data>
+  <data name="BUSINESS_BUSINESS_TYPE" xml:space="preserve">
+    <value>Business Type</value>
+  </data>
+  <data name="USER_ASSIGNED_ORGANIZATION" xml:space="preserve">
+    <value>Assigned Organization(s)</value>
+  </data>
+  <data name="USER_DEFAULT_ORGANIZATION" xml:space="preserve">
+    <value>Default Organization</value>
+  </data>
+  <data name="HELPDESK_CONDITION" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="HELPDESK_CONTACT_NO" xml:space="preserve">
+    <value>Contact No</value>
+  </data>
+  <data name="HELPDESK_DEPARTMENT" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="HELPDESK_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="HELPDESK_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="HELPDESK_RAISED_BY" xml:space="preserve">
+    <value>Raised By</value>
+  </data>
+  <data name="HELPDESK_RAISED_DATE" xml:space="preserve">
+    <value>Raised Date</value>
+  </data>
+  <data name="HELPDESK_RECORD_ID" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="BTN_SUBMIT_FOR_APPROVAL" xml:space="preserve">
+    <value>Submit for Approval</value>
+  </data>
+  <data name="BTN_CREATE_HELPDESK" xml:space="preserve">
+    <value>Create Ticket</value>
+  </data>
+  <data name="HELPDESK_CELLPHONE" xml:space="preserve">
+    <value>Cell Phone</value>
+  </data>
+  <data name="HELPDESK_CODE" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="HELPDESK_DESIGNATION" xml:space="preserve">
+    <value>Designation</value>
+  </data>
+  <data name="HELPDESK_FEEDBACK" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="HELPDESK_GRID_TITLE" xml:space="preserve">
+    <value>List of Ticket(s)</value>
+  </data>
+  <data name="HELPDESK_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="HELPDESK_OFFICEPHONE" xml:space="preserve">
+    <value>Office Phone</value>
+  </data>
+  <data name="HELPDESK_USERTYPE" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="HELPDESK_WORKFOLLOW_ID" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_HELPDESK" xml:space="preserve">
+    <value>Manage Ticket</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_HELPDESK" xml:space="preserve">
+    <value>Create Ticket</value>
+  </data>
+  <data name="HELPDESK_RECORD_EXISTS" xml:space="preserve">
+    <value>The Ticket "NAME"Already Exists!</value>
+  </data>
+  <data name="HELPDESK_REMARKS" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="MSG_CONFIRM_APPROVE" xml:space="preserve">
+    <value>Are you sure to approve the record ?</value>
+  </data>
+  <data name="MSG_CONFIRM_REJECT" xml:space="preserve">
+    <value>Are you sure to reject the record ?</value>
+  </data>
+  <data name="MSG_RECORD_SUBMITTED" xml:space="preserve">
+    <value>Record has already been submitted </value>
+  </data>
+  <data name="MSG_RECORD_MODULE_NAME" xml:space="preserve">
+    <value>The Module "TYPE &amp; NAME" already exists!</value>
+  </data>
+  <data name="USER_COMPANY_INFO" xml:space="preserve">
+    <value>Organization Information</value>
+  </data>
+  <data name="USER_PERSONAL_INFO" xml:space="preserve">
+    <value>Personal Information</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="BTN_ADDNEW" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="USER_GRID_EMPLOYEE_NO" xml:space="preserve">
+    <value>Emp No</value>
+  </data>
+  <data name="USER_GRID_JOBTITLE" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="USER_ORGANISATION" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="USER_ADDRESS" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="USER_DEPARTMENT" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="USER_MOBILENO" xml:space="preserve">
+    <value>Mobile No</value>
+  </data>
+  <data name="USER_OFFICENO" xml:space="preserve">
+    <value>Office No</value>
+  </data>
+  <data name="USER_EMPLOYEE_INFO" xml:space="preserve">
+    <value>Employee Information</value>
+  </data>
+  <data name="USER_SALARYID" xml:space="preserve">
+    <value>Staff No</value>
+  </data>
+  <data name="USERROLE_ROLE_INFO" xml:space="preserve">
+    <value>Role Information</value>
+  </data>
+  <data name="HELPDESK_FEEDBACKBY_INFO" xml:space="preserve">
+    <value>Feedback By</value>
+  </data>
+  <data name="HELPDESK_ISSUE_INFO" xml:space="preserve">
+    <value>Issue / Feedback</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_HELPDESK" xml:space="preserve">
+    <value>Edit Ticket</value>
+  </data>
+  <data name="HELPDESK_APPROVAL_GRID_TITLE" xml:space="preserve">
+    <value>List of Ticket Approval(s)</value>
+  </data>
+  <data name="HELPDESK_MAINCOST" xml:space="preserve">
+    <value>Main Cost Center</value>
+  </data>
+  <data name="HELPDESK_SUBCOST" xml:space="preserve">
+    <value>Sub Cost Center</value>
+  </data>
+  <data name="HELPDESK_ORGANISATION_INFO" xml:space="preserve">
+    <value>Organization Information</value>
+  </data>
+  <data name="BTN_SUBMIT" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="BTN_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ROLE_GRID_TITLE" xml:space="preserve">
+    <value>List of Role(s)</value>
+  </data>
+  <data name="USER_EMPLOYEE_NO" xml:space="preserve">
+    <value>Thumbprint No</value>
+  </data>
+  <data name="USER_GRID_TITLE" xml:space="preserve">
+    <value>List of User(s)</value>
+  </data>
+  <data name="USER_JOBTITLE" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="USER_LOGON_INFO" xml:space="preserve">
+    <value>User Information</value>
+  </data>
+  <data name="MODULEITEM_INFO" xml:space="preserve">
+    <value>Module Item Information</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_MODULEITEM" xml:space="preserve">
+    <value>Edit Module Item</value>
+  </data>
+  <data name="ROLE_INFO" xml:space="preserve">
+    <value>Role Information</value>
+  </data>
+  <data name="BTN_ADD" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="BTN_CREATE_WORKCATEGORY" xml:space="preserve">
+    <value>Create Work Category</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_WORKCATEGORY" xml:space="preserve">
+    <value>Create Work Category</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_WORKCATEGORY" xml:space="preserve">
+    <value>Edit Work Category</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_WORKCATEGORY" xml:space="preserve">
+    <value>Manage Work Category</value>
+  </data>
+  <data name="WORKCATEGORY_ID" xml:space="preserve">
+    <value>Work Category</value>
+  </data>
+  <data name="WORKCATEGORY_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="WORKCATEGORY_GRID_TITLE" xml:space="preserve">
+    <value>List of Work Category(s)</value>
+  </data>
+  <data name="WORKCATEGORY_INFO" xml:space="preserve">
+    <value>Work Category Details</value>
+  </data>
+  <data name="WORKCATEGORY_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="WORKCATEGORY_REMARKS" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="WORKCATEGORY_VISIBILITY" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="BTN_GROUPEDIT" xml:space="preserve">
+    <value>Group Edit</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_BUSINESS" xml:space="preserve">
+    <value>Edit Business</value>
+  </data>
+  <data name="BUSINESS_INFO" xml:space="preserve">
+    <value>Business Details</value>
+  </data>
+  <data name="BUSINESS_WORKCATEGORY_INFO" xml:space="preserve">
+    <value>Work Category Assignment</value>
+  </data>
+  <data name="USER_REMEMBER_ME" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="FILES_INFO" xml:space="preserve">
+    <value>File Details</value>
+  </data>
+  <data name="CONTACT_INFO" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="DOCUMENT_INFO" xml:space="preserve">
+    <value>Document Details</value>
+  </data>
+  <data name="OTHERS_INFO" xml:space="preserve">
+    <value>Other Details</value>
+  </data>
+  <data name="RFITEM_INFO" xml:space="preserve">
+    <value>Spare Parts Details</value>
+  </data>
+  <data name="DELIVERYDETAILS_INFO" xml:space="preserve">
+    <value>Delivery Details</value>
+  </data>
+  <data name="DETAILS_INFO" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="PAYMENTDETAILS_INFO" xml:space="preserve">
+    <value>Payment Details</value>
+  </data>
+  <data name="CALENDAR_EVENT_ADD" xml:space="preserve">
+    <value>Add Event</value>
+  </data>
+  <data name="CALENDAR_EVENT_ALLOW_TO_SELECT" xml:space="preserve">
+    <value>Allow to select</value>
+  </data>
+  <data name="CALENDAR_EVENT_COLOR" xml:space="preserve">
+    <value>Select Event Color</value>
+  </data>
+  <data name="CALENDAR_EVENT_CREATE" xml:space="preserve">
+    <value>Create Calendar Event</value>
+  </data>
+  <data name="CALENDAR_EVENT_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CALENDAR_EVENT_GRID_TITLE" xml:space="preserve">
+    <value>List of Calendar Event(s)</value>
+  </data>
+  <data name="CALENDAR_EVENT_ICON" xml:space="preserve">
+    <value>Select Event Icon</value>
+  </data>
+  <data name="CALENDAR_EVENT_MY_DRAGGABLE" xml:space="preserve">
+    <value>Draggable</value>
+  </data>
+  <data name="CALENDAR_EVENT_MY_EVENT" xml:space="preserve">
+    <value>My Event</value>
+  </data>
+  <data name="CALENDAR_EVENT_PAGE_HEADER_MANAGE" xml:space="preserve">
+    <value>Manage Calendar Event</value>
+  </data>
+  <data name="CALENDAR_EVENT_TITLE" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="CALENDAR_EVENT_VISIBILITY" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="CALENDAR_PAGE_HEADER_CREATE" xml:space="preserve">
+    <value>Copy From Another Calendar</value>
+  </data>
+  <data name="CALENDAR_SETTING_COPY_CALENDAR" xml:space="preserve">
+    <value>Create from another calendar</value>
+  </data>
+  <data name="CALENDAR_SETTING_CREATE" xml:space="preserve">
+    <value>Create New Calendar</value>
+  </data>
+  <data name="CALENDAR_SETTING_DATE" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="CALENDAR_SETTING_FROM_YEAR" xml:space="preserve">
+    <value>From Year</value>
+  </data>
+  <data name="CALENDAR_SETTING_GRID_TITLE" xml:space="preserve">
+    <value>List of Calendar Setting(s)</value>
+  </data>
+  <data name="CALENDAR_SETTING_PAGE_HEADER_MANAGE" xml:space="preserve">
+    <value>Manage Calendar Setting</value>
+  </data>
+  <data name="CALENDAR_SETTING_REPLACE" xml:space="preserve">
+    <value>Replace with exist events ?</value>
+  </data>
+  <data name="CALENDAR_SETTING_SAVE_CHANGES" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="CALENDAR_SETTING_TO_YEAR" xml:space="preserve">
+    <value>To Year</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_CALENDAR_EVENT" xml:space="preserve">
+    <value>Create Event</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_CALENDAR_SETTING" xml:space="preserve">
+    <value>Create Setting</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_CALENDAR_EVENT" xml:space="preserve">
+    <value>Edit Event</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_CALENDAR_SETTING" xml:space="preserve">
+    <value>Edit Setting</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_ROLE" xml:space="preserve">
+    <value>View Role</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_USER" xml:space="preserve">
+    <value>View User</value>
+  </data>
+  <data name="MAINTENANCE_INFO" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="REPORT_INFO" xml:space="preserve">
+    <value>Report Information</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_ASSETWARRANTY" xml:space="preserve">
+    <value>Edit Asset Warranty</value>
+  </data>
+  <data name="BTN_CREATE_TRADESRATE" xml:space="preserve">
+    <value>Create Rates</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_MODULEITEM" xml:space="preserve">
+    <value>View Module Item</value>
+  </data>
+  <data name="ROLLBACK_UPDATE" xml:space="preserve">
+    <value>The record has been successfully rollbacked</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_HELPDESK" xml:space="preserve">
+    <value>View Ticket</value>
+  </data>
+  <data name="BUSINESS_ADDRESS" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="BUSINESS_BUSINESSCATEGORY" xml:space="preserve">
+    <value>Business Category</value>
+  </data>
+  <data name="BUSINESS_COMPANYTYPE" xml:space="preserve">
+    <value>Company Type</value>
+  </data>
+  <data name="BUSINESS_EXPIRYDATE" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
+  <data name="BUSINESS_ISMAHBREGISTERED" xml:space="preserve">
+    <value>MAHB Registered</value>
+  </data>
+  <data name="BUSINESS_LIMITATION" xml:space="preserve">
+    <value>Limitation</value>
+  </data>
+  <data name="BUSINESS_PAIDUPCAPTIAL" xml:space="preserve">
+    <value>Paid Up Capital</value>
+  </data>
+  <data name="BUSINESS_REFERENCEID" xml:space="preserve">
+    <value>Reference Id</value>
+  </data>
+  <data name="BUSINESS_REGISTRATIONDATE" xml:space="preserve">
+    <value>MAHB Registration Date</value>
+  </data>
+  <data name="BUSINESS_REGISTRATIONNO" xml:space="preserve">
+    <value>MAHB Registration No</value>
+  </data>
+  <data name="BUSINESS_ROCNO" xml:space="preserve">
+    <value>ROC Number</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_BUSINESS" xml:space="preserve">
+    <value>View Business</value>
+  </data>
+  <data name="BUSINESS_PHONES" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="BUSINESS_PRIMARY_CONTACTS" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="CONTACTDETAILS_INFO" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_BUSINESSOTHERS" xml:space="preserve">
+    <value>Create Others</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_BUSINESSOTHERS" xml:space="preserve">
+    <value>Edit Others</value>
+  </data>
+  <data name="BUSINESSOTHERS_BUMICAPITAL" xml:space="preserve">
+    <value>Bumi Capital</value>
+  </data>
+  <data name="BUSINESSOTHERS_BUMISHARE" xml:space="preserve">
+    <value>Bumiputera Company</value>
+  </data>
+  <data name="BUSINESSOTHERS_FOREGINSHARE" xml:space="preserve">
+    <value>Foreign Company</value>
+  </data>
+  <data name="BUSINESSOTHERS_NONBUMISHARE" xml:space="preserve">
+    <value>Non Bumiputera Company</value>
+  </data>
+  <data name="CLASS_INFO" xml:space="preserve">
+    <value>Civil Contractor By Class</value>
+  </data>
+  <data name="COMPANY_INFO" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="CONTRACTOR_INFO" xml:space="preserve">
+    <value>Register Contractor To</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_OTHERS" xml:space="preserve">
+    <value>View Others</value>
+  </data>
+  <data name="BTN_CREATE_TRAININGSTAFF_FILEHISTORY" xml:space="preserve">
+    <value>File History</value>
+  </data>
+  <data name="BTN_CREATE_TRAININGSTAFF_UPLOAD" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="FILEHISTORY_FILENAME" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="FILEHISTORY_TOTALRECORDS" xml:space="preserve">
+    <value>Total Records</value>
+  </data>
+  <data name="FILEHISTORY_UPLOADEDBY" xml:space="preserve">
+    <value>Uploaded By</value>
+  </data>
+  <data name="FILEHISTORY_UPLOADEDDATE" xml:space="preserve">
+    <value>Uploaded Date</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_ADHOCREPORT" xml:space="preserve">
+    <value>Manage Adhoc Report</value>
+  </data>
+  <data name="ADHOCREPORT_ISCOMMON" xml:space="preserve">
+    <value>Is Common</value>
+  </data>
+  <data name="ADHOCREPORT_ISVISIBLE" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="ADHOCREPORT_REMARKS" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="ADHOCREPORT_REPORTFILENAME" xml:space="preserve">
+    <value>Report File Name</value>
+  </data>
+  <data name="ADHOCREPORT_REPORTNAME" xml:space="preserve">
+    <value>Report Name</value>
+  </data>
+  <data name="ADHOCREPORT_REPORTTYPEID" xml:space="preserve">
+    <value>Report Type</value>
+  </data>
+  <data name="ADHOCREPORT_GRID_TITLE" xml:space="preserve">
+    <value>List of Adhoc Report(s)</value>
+  </data>
+  <data name="ADHOCREPORT_INFO" xml:space="preserve">
+    <value>Adhoc Report Details</value>
+  </data>
+  <data name="BTN_CREATE_ADHOCREPORT" xml:space="preserve">
+    <value>Create Adhoc Report</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_ADHOCREPORT" xml:space="preserve">
+    <value>Create Adhoc Report</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_ADHOCREPORT" xml:space="preserve">
+    <value>Edit Adhoc Report</value>
+  </data>
+  <data name="FILEHISTORY_DETAILS" xml:space="preserve">
+    <value>File History Details</value>
+  </data>
+  <data name="FILEHISTORY_GRID_TITLE" xml:space="preserve">
+    <value>List of Files</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_FILEHISTORY" xml:space="preserve">
+    <value>View File History</value>
+  </data>
+  <data name="AdhocReport_RECORD_EXISTS" xml:space="preserve">
+    <value>Record exists already with the same name</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_ADHOCREPORT" xml:space="preserve">
+    <value>View Adhoc Report</value>
+  </data>
+  <data name="COMPONENT_INFO" xml:space="preserve">
+    <value>Component Details</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_FILEHISTORY" xml:space="preserve">
+    <value>Manage File History</value>
+  </data>
+  <data name="ORGANIZATION_RECORD_EXISTS" xml:space="preserve">
+    <value>The Organization "NAME" Already Exists !</value>
+  </data>
+  <data name="USER_ACCOUNTNO" xml:space="preserve">
+    <value>Account No</value>
+  </data>
+  <data name="USER_AGE" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="USER_BANK" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="USER_BIRTHDATE" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="USER_EMPLOYEEGROUP" xml:space="preserve">
+    <value>Employee Group</value>
+  </data>
+  <data name="USER_ENTRYDATE" xml:space="preserve">
+    <value>Entry Date</value>
+  </data>
+  <data name="USER_EXPIREDDATE" xml:space="preserve">
+    <value>Expired Date</value>
+  </data>
+  <data name="USER_GRED" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="USER_IDNO" xml:space="preserve">
+    <value>Id No</value>
+  </data>
+  <data name="USER_SALARY" xml:space="preserve">
+    <value>Salary Amount</value>
+  </data>
+  <data name="USER_YEAROFSERVICE" xml:space="preserve">
+    <value>Year Of Service</value>
+  </data>
+  <data name="USER_USERNAME" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="USER_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="BUSINESS_PROFILELASTUPDATED" xml:space="preserve">
+    <value>Profile Last Updated</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>Last Service</value>
+  </data>
+  <data name="USER_ASSIGNED_BUSINESS" xml:space="preserve">
+    <value>Assigned Business</value>
+  </data>
+  <data name="BTN_CREATE_ORGANIZATION" xml:space="preserve">
+    <value>Create New Main Cost Center</value>
+  </data>
+  <data name="ORGANIZATION_CATEGORY_TYPE" xml:space="preserve">
+    <value>Category Type</value>
+  </data>
+  <data name="ORGANIZATION_CATEGORY_NAME" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="ORGANIZATION_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ORGANIZATION_GRID_TITLE" xml:space="preserve">
+    <value>List of Organization(s)</value>
+  </data>
+  <data name="ORGANIZATION_INFO" xml:space="preserve">
+    <value>Organization Item Information</value>
+  </data>
+  <data name="ORGANIZATION_MAIN_COST_CENTER" xml:space="preserve">
+    <value>Main Cost Center</value>
+  </data>
+  <data name="ORGANIZATION_MAIN_COST_CENTER1" xml:space="preserve">
+    <value>Main Cost Center</value>
+  </data>
+  <data name="ORGANIZATION_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ORGANIZATION_PARENT_NAME" xml:space="preserve">
+    <value>Parent Name</value>
+  </data>
+  <data name="ORGANIZATION_PREFIX" xml:space="preserve">
+    <value>Prefix</value>
+  </data>
+  <data name="ORGANIZATION_RECORD_EXISTS1" xml:space="preserve">
+    <value>The Organization "NAME" Already Exists !</value>
+  </data>
+  <data name="ORGANIZATION_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_COST_CENTER" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_COST_CENTER" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_ORGANIZATION" xml:space="preserve">
+    <value>Manage Organization</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_COST_CENTER" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="MSG_APPROVED" xml:space="preserve">
+    <value>The record has been successfully approved.</value>
+  </data>
+  <data name="HELPDESK_REJECT_INFO" xml:space="preserve">
+    <value>Approval Information</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_WORKCATEGORY" xml:space="preserve">
+    <value>View Work Category</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_GROUPEDIT" xml:space="preserve">
+    <value>Group Edit</value>
+  </data>
+  <data name="BUSINESSFILE_INFO" xml:space="preserve">
+    <value>Business File Details</value>
+  </data>
+  <data name="BUSINESSADDRESS_INFO" xml:space="preserve">
+    <value>Business Address Details</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_BUSINESSADDRESS" xml:space="preserve">
+    <value>Create Business Address</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_BUSINESSADDRESS" xml:space="preserve">
+    <value>Edit Business Address</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_BUSINESSFILE" xml:space="preserve">
+    <value>Edit Business File</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_BUSINESSADDRESS" xml:space="preserve">
+    <value>View Business Address</value>
+  </data>
+  <data name="MSG_SUBMITAPPROVAL" xml:space="preserve">
+    <value>The record has been successfully submitted for approval</value>
+  </data>
+  <data name="MSG_REJECTED" xml:space="preserve">
+    <value>The record has been successfully rejected.</value>
+  </data>
+  <data name="MSG_UNLOCK" xml:space="preserve">
+    <value>The record unlocked successfully.</value>
+  </data>
+  <data name="USER_BUSINESSTYPE" xml:space="preserve">
+    <value>Business Type</value>
+  </data>
+  <data name="USER_VISIBILITY" xml:space="preserve">
+    <value>Assign All Cost Centers</value>
+  </data>
+  <data name="BTN_MAINTENANCE" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="MSG_INVALIDFILE" xml:space="preserve">
+    <value>File format is Invalid!</value>
+  </data>
+  <data name="AdhocReport_FILENAME_REPORTTYPE_RECORD_EXISTS" xml:space="preserve">
+    <value>Selected File and Report Type Already exists!</value>
+  </data>
+  <data name="AdhocReport_REPORTNAME_REPORTTYPE_RECORD_EXISTS" xml:space="preserve">
+    <value>Selected Report Type and Report Name Already exists!</value>
+  </data>
+  <data name="MSG_CONFIRM_SUBMIT" xml:space="preserve">
+    <value>Are you sure to submit the record?</value>
+  </data>
+  <data name="MSG_CONFIRM_RELEASE" xml:space="preserve">
+    <value>Are you sure to release the record ?</value>
+  </data>
+  <data name="MSG_RECORD_ASSIGNEDUSER" xml:space="preserve">
+    <value>Supplier is not assigned to the user !</value>
+  </data>
+  <data name="RECORD_EXISTS" xml:space="preserve">
+    <value>One or more records is exist into database. Please check the conflict</value>
+  </data>
+  <data name="MSG_SUBMITTED" xml:space="preserve">
+    <value>The record has been successfully submitted.</value>
+  </data>
+  <data name="USER_RECORD_EMAIL_EXISTS" xml:space="preserve">
+    <value>The User "EMAIL ID" Already Exist ! </value>
+  </data>
+  <data name="USER_RECORD_STAFF_EXISTS" xml:space="preserve">
+    <value>The User "STAFF NO" Already Exist !</value>
+  </data>
+  <data name="ORGANIZATION_CODE" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="ORGANIZATION_SAPCODE" xml:space="preserve">
+    <value>SAP Code</value>
+  </data>
+  <data name="EMAIL_INFO" xml:space="preserve">
+    <value>Configuration Details</value>
+  </data>
+  <data name="ORGANIZATIONEMAIL_DEPARTMENT_NAME" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="ORGANIZATIONEMAIL_GRID_TITLE" xml:space="preserve">
+    <value>List of Email Configuration</value>
+  </data>
+  <data name="ORGANIZATION_EMAILFROM" xml:space="preserve">
+    <value>Email From</value>
+  </data>
+  <data name="ORGANIZATION_EMAILTO" xml:space="preserve">
+    <value>Email To</value>
+  </data>
+  <data name="ORGANIZATION_ISSL" xml:space="preserve">
+    <value>Is SSL</value>
+  </data>
+  <data name="ORGANIZATION_PASSWORD" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ORGANIZATION_SMTP" xml:space="preserve">
+    <value>SMTP</value>
+  </data>
+  <data name="ORGANIZATION_SMTPPORT" xml:space="preserve">
+    <value>SMTP Port</value>
+  </data>
+  <data name="ORGANIZATION_USERNAME" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_EMAIL_CONFIG" xml:space="preserve">
+    <value>Create Email Configuration</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_EMAIL_CONFIGURATION" xml:space="preserve">
+    <value>Create Email Configuration</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_EMAIL_CONFIG" xml:space="preserve">
+    <value>Edit Email Configuration</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_ORGANISATIONEMAIL" xml:space="preserve">
+    <value>Manage Email Configuration</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_EMAIL_CONFIG" xml:space="preserve">
+    <value>View Email Configuration</value>
+  </data>
+  <data name="MSG_CONFIRM_ROLLBACK" xml:space="preserve">
+    <value>Are you sure rollback ?</value>
+  </data>
+  <data name="MSG_ROLLBACK" xml:space="preserve">
+    <value>The record has been successfully rollback.</value>
+  </data>
+  <data name="MSG_WORKCATEGORY_ORGANIZATION_MANDATORY" xml:space="preserve">
+    <value>Work category assignment &amp; cost center assignment should be mandatory</value>
+  </data>
+  <data name="CONFIRM_PASSWORD" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="NEW_PASSWORD" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="OLD_PASSWORD" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="BUSINESS_GSTNUMBER" xml:space="preserve">
+    <value>GST Number</value>
+  </data>
+  <data name="MSG_CALLBACK" xml:space="preserve">
+    <value>The record has been successfully callback.</value>
+  </data>
+  <data name="PAGE_HEADER_CALLBACK_HELPDESK" xml:space="preserve">
+    <value>Ticket Callback</value>
+  </data>
+  <data name="PASSWORD_INFO" xml:space="preserve">
+    <value>Password Information</value>
+  </data>
+  <data name="BUDGET_ENDORSED" xml:space="preserve">
+    <value>Budget Endorsed/Required (RM)</value>
+  </data>
+  <data name="CLARIFICATION_AND_NEGOTIATION" xml:space="preserve">
+    <value>Clarification and Negotiation</value>
+  </data>
+  <data name="COST_APPROVED_FROM_CLIENT" xml:space="preserve">
+    <value>Cost Approved from Client (RM)</value>
+  </data>
+  <data name="COST_CENTRE_UTW" xml:space="preserve">
+    <value>Cost Centre UTW</value>
+  </data>
+  <data name="DELIVERY_PERIOD" xml:space="preserve">
+    <value>Delivery Period</value>
+  </data>
+  <data name="GL_CODE" xml:space="preserve">
+    <value>GL Code</value>
+  </data>
+  <data name="GROSS_MARGIN" xml:space="preserve">
+    <value>Gross Margin - RM</value>
+  </data>
+  <data name="GROSS_MARGIN_PERC" xml:space="preserve">
+    <value>Gross Margin (%)</value>
+  </data>
+  <data name="MANPOWER" xml:space="preserve">
+    <value>Manpower - RM</value>
+  </data>
+  <data name="NO_COST_CENTRE_SAP" xml:space="preserve">
+    <value>No Cost Centre SAP</value>
+  </data>
+  <data name="OTHERS" xml:space="preserve">
+    <value>Others - RM</value>
+  </data>
+  <data name="PARTS" xml:space="preserve">
+    <value>Parts - RM</value>
+  </data>
+  <data name="PO_LOA_WI" xml:space="preserve">
+    <value>PO / LOA / WI</value>
+  </data>
+  <data name="PR_REF_NO" xml:space="preserve">
+    <value>PR (e@works)</value>
+  </data>
+  <data name="PR_SAP_NO" xml:space="preserve">
+    <value>PR SAP</value>
+  </data>
+  <data name="REGISTERED_MAHB" xml:space="preserve">
+    <value>(i) Registered MAHB</value>
+  </data>
+  <data name="SELECTED_SUPPLIER" xml:space="preserve">
+    <value>Selected Supplier</value>
+  </data>
+  <data name="SITE_VISIT_DATE" xml:space="preserve">
+    <value>Site Visit Date</value>
+  </data>
+  <data name="SUB_COST_CENTRE" xml:space="preserve">
+    <value>Sub Cost Centre</value>
+  </data>
+  <data name="UTW_COST" xml:space="preserve">
+    <value>UTW Cost - RM</value>
+  </data>
+  <data name="VENDOR_COST" xml:space="preserve">
+    <value>Vendor Cost - RM</value>
+  </data>
+  <data name="BUSINESSTHREEFIELDS_RECORD_EXISTS" xml:space="preserve">
+    <value>Please Enter ROC Number &lt;br/&gt;&lt;br/&gt; Please Enter Registration No &lt;br/&gt;&lt;br/&gt; Please Enter Registration Date</value>
+  </data>
+  <data name="BUSINESS_REGISTERDATE_EXISTS" xml:space="preserve">
+    <value>Please Enter Registration Date</value>
+  </data>
+  <data name="BUSINESS_REGISTERNO_EXISTS" xml:space="preserve">
+    <value>Please Enter MAHB Registration No</value>
+  </data>
+  <data name="BUSINESS_ROCNO_EXISTS" xml:space="preserve">
+    <value>Please Enter ROC Number</value>
+  </data>
+  <data name="AMOUNT_PO" xml:space="preserve">
+    <value>Amount PO (RM)</value>
+  </data>
+  <data name="COST_CENTER" xml:space="preserve">
+    <value>Cost Center</value>
+  </data>
+  <data name="GM_APPROVED" xml:space="preserve">
+    <value>Approved / Not Approved By GM</value>
+  </data>
+  <data name="MEMBER_APPROVED" xml:space="preserve">
+    <value>Approved / Not Approved By Member (Finance)</value>
+  </data>
+  <data name="REMARKS" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="BTN_CREATE_NEWS" xml:space="preserve">
+    <value>Create News</value>
+  </data>
+  <data name="NEWS_DESCRIPTION" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="NEWS_GRID_TITLE" xml:space="preserve">
+    <value>Announcements</value>
+  </data>
+  <data name="NEWS_INFO" xml:space="preserve">
+    <value>News Information</value>
+  </data>
+  <data name="NEWS_LOGGED_BY" xml:space="preserve">
+    <value>Logged By</value>
+  </data>
+  <data name="NEWS_LOGGED_DATE" xml:space="preserve">
+    <value>Logged Date</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_NEWS" xml:space="preserve">
+    <value>Create News</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_NEWS" xml:space="preserve">
+    <value>Edit News</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_NEWS" xml:space="preserve">
+    <value>Manage News</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_NEWS" xml:space="preserve">
+    <value>View News</value>
+  </data>
+  <data name="NEWS_RECORD_EXISTS" xml:space="preserve">
+    <value>The News "CODE" Already Exists!</value>
+  </data>
+  <data name="MSG_CONFIRM_FOLLOWUP" xml:space="preserve">
+    <value>Are you sure you want to follow up?</value>
+  </data>
+  <data name="BTN_EVALUATION" xml:space="preserve">
+    <value>Evaluation</value>
+  </data>
+  <data name="BTN_SUPPLIER" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="MSG_GROUPEDIT_RECORD" xml:space="preserve">
+    <value>Please Insert Atleast One Record For Group Edit !</value>
+  </data>
+  <data name="MSG_APPROVED_EXIST" xml:space="preserve">
+    <value>Please approve the record for the below level.</value>
+  </data>
+  <data name="BTN_ACTIVATE" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="BTN_DEACTIVATE" xml:space="preserve">
+    <value>De Activate</value>
+  </data>
+  <data name="MSG_ERROR_GROUPEDIT" xml:space="preserve">
+    <value>Please Insert Atleast One Record For Group Edit !</value>
+  </data>
+  <data name="MSG_ERR_USER_NOT_CONFIGURED" xml:space="preserve">
+    <value>User is not configured! Please add user prior to activation!</value>
+  </data>
+  <data name="MSG_ASSIGNED" xml:space="preserve">
+    <value>The record has been successfully Assigned</value>
+  </data>
+  <data name="MSG_ERR_ASSIGN" xml:space="preserve">
+    <value>There was an error in Asigning the record</value>
+  </data>
+  <data name="BACK_TO_LOGIN_PAGE" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="FORGOT_PASSWOD" xml:space="preserve">
+    <value>Forgot password</value>
+  </data>
+  <data name="MSG_RECALL" xml:space="preserve">
+    <value>The record has been sucessfully {0}.</value>
+  </data>
+  <data name="USER_RECORD_USERNAME_EXISTS" xml:space="preserve">
+    <value>The User "Display Name" Already Exist !</value>
+  </data>
+  <data name="ORGANIZATION_LIST_TITLE" xml:space="preserve">
+    <value>Organization List</value>
+  </data>
+  <data name="MSG_ORGANIZATION_ASSIGNED" xml:space="preserve">
+    <value>Organization assigned cannot be changed !</value>
+  </data>
+  <data name="MSG_NAME_ALREADY_EXIST" xml:space="preserve">
+    <value>Name already exists!</value>
+  </data>
+  <data name="CALENDAR_REMOVE_AFTER_DROG" xml:space="preserve">
+    <value>Remove after drop</value>
+  </data>
+  <data name="CALENDAR_REMOVE_EVENT" xml:space="preserve">
+    <value>Note: For remove event from calendar, You need to double click on the event</value>
+  </data>
+  <data name="COMPANY_NAME" xml:space="preserve">
+    <value>Urusan Teknologi Wawasan Sdn Bhd (459878D)</value>
+  </data>
+  <data name="FORGOT_PASSWORD_LINK" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="HELPDESK_TICKET_LINK" xml:space="preserve">
+    <value>HelpDesk Ticket</value>
+  </data>
+  <data name="LOGIN_BTN" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LOGIN_HEADER" xml:space="preserve">
+    <value>Welcome to POS</value>
+  </data>
+  <data name="SEND_ME_BTN" xml:space="preserve">
+    <value>Send Me!</value>
+  </data>
+  <data name="PR_EWORKS" xml:space="preserve">
+    <value>PR (Eworks)</value>
+  </data>
+  <data name="PR_SAP" xml:space="preserve">
+    <value>PR (SAP)</value>
+  </data>
+  <data name="MSG_ALREADY_APPROVED" xml:space="preserve">
+    <value>Record has been already approved or lower level user still not approved !</value>
+  </data>
+  <data name="APPLICABLE_NONAPPLICABLE" xml:space="preserve">
+    <value>Applicable/Not Applicable</value>
+  </data>
+  <data name="EVALUATION_RESULT" xml:space="preserve">
+    <value>Evaluation Result</value>
+  </data>
+  <data name="BTN_FOLLOWUP" xml:space="preserve">
+    <value>Follow up</value>
+  </data>
+  <data name="INCOMING_PPM_GRID_TITLE" xml:space="preserve">
+    <value>Incoming PPM</value>
+  </data>
+  <data name="SELECT_ATLEAST_ONECLAUSE" xml:space="preserve">
+    <value>Please select atleast one clause !</value>
+  </data>
+  <data name="CREATED_DATE" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="FILTERBY" xml:space="preserve">
+    <value>Filter By</value>
+  </data>
+  <data name="INVAILDEMAILID" xml:space="preserve">
+    <value>Enter the vaild Email address</value>
+  </data>
+  <data name="MSG_CONFIRM_SAVES" xml:space="preserve">
+    <value>Are you sure to submit the record?</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Registration No</value>
+  </data>
+  <data name="BTN_CLOSED" xml:space="preserve">
+    <value>Closed </value>
+  </data>
+  <data name="MESSAGE_BUT" xml:space="preserve">
+    <value> But </value>
+  </data>
+  <data name="BTN_ALL" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="BTN_RE_ORDER" xml:space="preserve">
+    <value>Re-Order</value>
+  </data>
+  <data name="RE_ORDER_TOOLTIP" xml:space="preserve">
+    <value>Re-Order Level Count Reached!</value>
+  </data>
+  <data name="BTN_SAVE_UPLOAD" xml:space="preserve">
+    <value>Upload &amp; Save</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_PROFILE" xml:space="preserve">
+    <value>User Profile</value>
+  </data>
+  <data name="COMMON_LBL_CREATEDBY" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="COMMON_LBL_CREATEDDATE" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="COMMON_LBL_MODIFIEDBY" xml:space="preserve">
+    <value>Modified By</value>
+  </data>
+  <data name="COMMON_LBL_MODIFIEDDATE" xml:space="preserve">
+    <value>Modified Date</value>
+  </data>
+  <data name="USER_MANUAL_PDF_USER_MANUAL" xml:space="preserve">
+    <value>User Manual</value>
+  </data>
+  <data name="USER_MANUAL_PDF_INTRODUCTION" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="USER_MANUAL_PDF_MAINTENANCE" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="USER_MANUAL_PDF_HELPDESK_TICKET" xml:space="preserve">
+    <value>HelpDesk Ticket</value>
+  </data>
+  <data name="USER_MANUAL_PDF_CONFIGURATION" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="USER_MANUAL_PDF_VENDOR" xml:space="preserve">
+    <value>Vendor</value>
+  </data>
+  <data name="MSG_CONFIRM_CHECK" xml:space="preserve">
+    <value>Are you sure to set all checked?</value>
+  </data>
+  <data name="MSG_CONFIRM_VERIFY" xml:space="preserve">
+    <value>Are you sure to set all verified?</value>
+  </data>
+  <data name="USER_MANUAL_MOBILEAPP" xml:space="preserve">
+    <value>Smart Apps</value>
+  </data>
+  <data name="INSPECTION_GRID_TITLE" xml:space="preserve">
+    <value>List of Inspection(s)</value>
+  </data>
+  <data name="LABEL_FROM" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="LABEL_TO" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="LABEL_PERCENTAGE" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="LABEL_DOWNLOAD_AS_PDF" xml:space="preserve">
+    <value>Download as PDF</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_LABEL_LAST_UPDATED" xml:space="preserve">
+    <value>Last Updated</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_LABEL_LAST_UPDATED_LONG_STRING_DATE" xml:space="preserve">
+    <value>Last Updated: {0} at {1}</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_LABEL_LAST_LOADED_DATA" xml:space="preserve">
+    <value>Data Loaded from {0} till {1}</value>
+  </data>
+  <data name="LABEL_ITEM_LAST_MONTH" xml:space="preserve">
+    <value>Last Month</value>
+  </data>
+  <data name="LABEL_ITEM_LAST_3_MONTHS" xml:space="preserve">
+    <value>Last 3 Months</value>
+  </data>
+  <data name="LABEL_ITEM_LAST_6_MONTHS" xml:space="preserve">
+    <value>Last 6 Months</value>
+  </data>
+  <data name="LABEL_ITEM_LAST_YEAR" xml:space="preserve">
+    <value>Last Year</value>
+  </data>
+  <data name="LABEL_ITEM_CURRENT_MONTH" xml:space="preserve">
+    <value>Current Month</value>
+  </data>
+  <data name="LABEL_ITEM_CURRENT_YEAR" xml:space="preserve">
+    <value>Current Year</value>
+  </data>
+  <data name="LABEL_ITEM_OTHER_DATE" xml:space="preserve">
+    <value>Other Date</value>
+  </data>
+  <data name="LABEL_DATE_FROM" xml:space="preserve">
+    <value>Date From</value>
+  </data>
+  <data name="LABEL_FILTER_DATE" xml:space="preserve">
+    <value>Filter Date</value>
+  </data>
+  <data name="LABEL_DATE_TO" xml:space="preserve">
+    <value>Date To</value>
+  </data>
+  <data name="BTN_VIEW_DETAIL" xml:space="preserve">
+    <value>View Detail</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_ALERT_MESSAGE_SAME_YEAR" xml:space="preserve">
+    <value>Note: Selected "Date From" and "Date To" should be in the same year </value>
+  </data>
+  <data name="BTN_VIEW_MORE_DETAILS" xml:space="preserve">
+    <value>View More Details</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TICKET_DASHBOARD_TICKET" xml:space="preserve">
+    <value>Ticket Dashboard</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TITLE_TICKET" xml:space="preserve">
+    <value>Ticket</value>
+  </data>
+  <data name="PAGE_HEADER_PIE_CHART_PANEL_TITLE_TICKET" xml:space="preserve">
+    <value>Ticket (Stacking Bar Chart)</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TICKET_DASHBOARD_TICKET_STATUS" xml:space="preserve">
+    <value>Ticket Status</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TICKET_DASHBOARD_TOTAL_TICKET_BY_CRFSS_ELEMENT" xml:space="preserve">
+    <value>Total Ticket by CRFSS Element</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TICKET_DASHBOARD_TOTAL_TICKET" xml:space="preserve">
+    <value>Total Ticket</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TICKET_DASHBOARD_TOTAL_CRFSS_TICKET" xml:space="preserve">
+    <value>Total CRFSS Ticket</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TICKET_DASHBOARD_TOTAL_COMPLETED" xml:space="preserve">
+    <value>Total Completed (On Time)</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TICKET_DASHBOARD_TOTAL_TICKET_OVERDUE" xml:space="preserve">
+    <value>Total Ticket Overdue</value>
+  </data>
+  <data name="TICKET_GRID_TITLE" xml:space="preserve">
+    <value>List of Ticket(s)</value>
+  </data>
+  <data name="SEARCH_PANEL" xml:space="preserve">
+    <value>Search Panel</value>
+  </data>
+  <data name="HELP_DESK_FILE_ATTACHMENT" xml:space="preserve">
+    <value>Attachment(s)</value>
+  </data>
+  <data name="HELP_DESK_FILE_UPPLOAD_TITLE" xml:space="preserve">
+    <value>File Uploads</value>
+  </data>
+  <data name="ERROR_PAGE_BACK_TO_DASHBOARD" xml:space="preserve">
+    <value>Back to Dashboard</value>
+  </data>
+  <data name="DASHBOARD" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="ERROR_PAGE_OOPS_MESSAGE" xml:space="preserve">
+    <value>Oops! An Error Occurred</value>
+  </data>
+  <data name="ERROR_PAGE_ERROR_MESSAGE" xml:space="preserve">
+    <value>An unexpected error has occurred. Please contact the system administrator</value>
+  </data>
+  <data name="ERROR_PAGE_MORE_DETAILS" xml:space="preserve">
+    <value>More Details</value>
+  </data>
+  <data name="ERROR_PAGE_EXCEPTION" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="ERROR_PAGE_CONTROLLER_NAME" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="ERROR_PAGE_ACTION_NAME" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="HELP_DESK_ASSET" xml:space="preserve">
+    <value>Asset</value>
+  </data>
+  <data name="HELP_DESK_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="HELP_DESK_MODULE" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="LABEL_CREATED_DATE_FROM" xml:space="preserve">
+    <value>Created Date From</value>
+  </data>
+  <data name="DEFECT_NAME" xml:space="preserve">
+    <value>Defect(s)</value>
+  </data>
+  <data name="BTN_CREATE_COMPANYPROFILE" xml:space="preserve">
+    <value>Create Company Profile</value>
+  </data>
+  <data name="COMPANYPROFILE_GRID_TITLE" xml:space="preserve">
+    <value>List of Company Profile(s)</value>
+  </data>
+  <data name="PAGE_HEADER_MANAGE_COMPANYPROFILE" xml:space="preserve">
+    <value>Manage Company Profile</value>
+  </data>
+  <data name="PAGE_HEADER_CREATE_COMPANYPROFILE" xml:space="preserve">
+    <value>Create Company Profile</value>
+  </data>
+  <data name="COMPANYPROFILE_INFO" xml:space="preserve">
+    <value>Company Profile Information</value>
+  </data>
+  <data name="PAGE_HEADER_EDIT_COMPANYPROFILE" xml:space="preserve">
+    <value>Edit Company Profile</value>
+  </data>
+  <data name="PAGE_HEADER_VIEW_COMPANYPROFILE" xml:space="preserve">
+    <value>View Company Profile</value>
+  </data>
+  <data name="COMPANYPROFILE_CODE" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="COMPANYPROFILE_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="COMPANYPROFILE_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="COMPANYPROFILE_TOTAL_CAPITAL" xml:space="preserve">
+    <value>Total Capital</value>
+  </data>
+  <data name="COMPANYPROFILE_COMPANYTYPE_ID" xml:space="preserve">
+    <value>Company Type</value>
+  </data>
+  <data name="COMPANYPROFILE_IS_ACTIVE" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="COMPANYPROFILE_NO_OF_USER" xml:space="preserve">
+    <value>No Of User</value>
+  </data>
+  <data name="COMPANYPROFILE_SERVICE_ID" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="COMPANYPROFILE_PHONE_NO" xml:space="preserve">
+    <value>Phone No</value>
+  </data>
+  <data name="COMPANYPROFILE_EMAIL_ADDRESS" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="COMPANYPROFILE_EFECTIVE_DATE" xml:space="preserve">
+    <value>Effective Date</value>
+  </data>
+  <data name="COMPANYPROFILE_TOTAL_REVENUE" xml:space="preserve">
+    <value>Total Revenue</value>
+  </data>
+  <data name="LABEL_VIEW" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="LABEL_EDIT" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="LABEL_DELETE" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="PROJECT_NAME" xml:space="preserve">
+    <value>Saino HRM</value>
+  </data>
+  <data name="MSG_COMPANYPROFILE_EXIST" xml:space="preserve">
+    <value>A record with the same "Code" and "Name" already exists!</value>
+  </data>
+  <data name="MSG_ERROR_UPLOAD_EMPLOYEE_PROFILE" xml:space="preserve">
+    <value>Your uploaded file data has issue.Please check the Row:{0} and Column Name:{1}</value>
+  </data>
+  <data name="MSG_SELECT_FILE" xml:space="preserve">
+    <value>Please select a file</value>
+  </data>
+  <data name="MSG_CONFIRM_UPLOAD" xml:space="preserve">
+    <value>Are you sure you want to upload?</value>
+  </data>
+  <data name="MSG_SAVE_WITH_ERROR_LIST" xml:space="preserve">
+    <value>The file record(s) has been successfully saved but there were some record(s) with issue to save as below: {0}</value>
+  </data>
+  <data name="MSG_ERROR_EMPLOYEE_PROFILE_UPLOAD_NAME_NOT_EXIST" xml:space="preserve">
+    <value>The {0} of {1} is not exist</value>
+  </data>
+  <data name="BTN_DOWNLOAD_EXCEL_TEMPLATE" xml:space="preserve">
+    <value>Download Excel Template</value>
+  </data>
+  <data name="BTN_UPLOAD_EXCEL_TEMPLATE" xml:space="preserve">
+    <value>Upload Excel Template</value>
+  </data>
+  <data name="UPLOAD_FILE_URLPATH" xml:space="preserve">
+    <value>URL Path</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_ORDER_DASHBOARD_ORDER" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_TITLE_ORDER" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="PAGE_HEADER_PIE_CHART_PANEL_TITLE_ORDER" xml:space="preserve">
+    <value>Order (Bar Chart)</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_ORDER_DASHBOARD_ORDER_STATUS" xml:space="preserve">
+    <value>Order Status</value>
+  </data>
+  <data name="PAGE_HEADER_CHART_PANEL_ORDER_DASHBOARD_TOTAL_ORDER" xml:space="preserve">
+    <value>Total Order</value>
+  </data>
+  <data name="DASHBOARD_CHART_TYPE" xml:space="preserve">
+    <value>Chart Type</value>
+  </data>
+  <data name="DASHBOARD_CHART" xml:space="preserve">
+    <value>Chart</value>
+  </data>
+  <data name="MSG_SCHEDULERSETUP_EXIST_RECORD" xml:space="preserve">
+    <value>The record already exists!</value>
+  </data>
+</root>

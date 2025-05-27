@@ -1,0 +1,328 @@
+@model Hanodale.WebUI.Models.StoreModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="MSG_CONFIRM_SAVE" value="@Html.GetGlobalResource("MSG_CONFIRM_SAVE")">
+<input type="hidden" id="MSG_CONFIRM_UPDATE" value="@Html.GetGlobalResource("MSG_CONFIRM_UPDATE")">
+<input type="hidden" id="form-congif" value="store" data-readOnly="@Model.readOnly">
+<!-- Hidden Variable -->
+
+<div class="widget-body">
+</div>
+
+<div id="content" style="opacity: 1; border: none">
+    <div class="row-flex">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-edit fa-fw "></i>
+
+                @if (Model.isEdit && !Model.readOnly)
+                {
+                    @Html.GetGlobalResource("PAGE_HEADER_EDIT_STORE")
+                }
+                else if (!Model.isEdit && !Model.readOnly)
+                {
+                    @Html.GetGlobalResource("PAGE_HEADER_CREATE_STORE")
+                }
+                else if (Model.readOnly)
+                {
+                    @Html.GetGlobalResource("PAGE_HEADER_VIEW_STORE")
+                }
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="formSpliter"></div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <div class="row">
+            <div id="message" class="alert alert-success" style="display: none"></div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal" }))
+            {  @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+                        <header role="heading">
+                            <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+
+                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                            <h2>@Html.GetGlobalResource("STORE_INFO")</h2>
+                            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+
+                                <fieldset>
+                                    <div class="smart-form">
+
+
+
+                                        @if (Model.company_Metadata.visibilityInCreate)
+                                        {
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.company, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" })
+                                                @*<label class="col-xs-12 col-sm-6 col-md-3 col-lg-3 control-label required" for="@Model.code_Metadata.fieldName" aria-required="true">@Resources.ADHOCREPORT_INFO</label>*@
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.company, new { @class = "form-control" + Model.company_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.company) })
+                                                            @Html.ValidationMessageFor(m => m.company)
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.plant_Metadata.visibilityInCreate)
+                                        {
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.plant, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" })
+                                                @*<label class="col-xs-12 col-sm-6 col-md-3 col-lg-3 control-label required" for="@Model.code_Metadata.fieldName" aria-required="true">@Resources.ADHOCREPORT_INFO</label>*@
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.plant, new { @class = "form-control" + Model.plant_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.plant) })
+                                                            @Html.ValidationMessageFor(m => m.plant)
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                      
+
+                                        @if (Model.address1_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.address1, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.address1, new { @class = "form-control" + Model.address1_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.address1) })
+                                                            @Html.ValidationMessageFor(m => m.address1)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Model.address2_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.address2, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.address2, new { @class = "form-control" + Model.address2_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.address2) })
+                                                            @Html.ValidationMessageFor(m => m.address2)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Model.address3_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.address3, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.address3, new { @class = "form-control" + Model.address3_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.address3) })
+                                                            @Html.ValidationMessageFor(m => m.address3)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+
+
+
+
+
+
+                                        @if (Model.country_Id_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.country_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="select">
+                                                            @Html.EditorFor(model => model.country_Id, new { @class = "form-control multipleSelect " + Model.country_Id_Metadata.mandatoryClass, data_has_parent = Model.country_Id_Metadata.hasDropdownParent, data_retrieve_url = Model.country_Id_Metadata.dataRetrieveURL, data_parent_name = Model.country_Id_Metadata.dropdownParentFieldName, dataValue = Model.lstCountry })
+                                                            @Html.ValidationMessageFor(m => m.country_Id)
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.state_Id_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.state_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="select">
+                                                            @Html.EditorFor(model => model.state_Id, new { @class = "form-control multipleSelect " + Model.state_Id_Metadata.mandatoryClass, data_has_parent = Model.state_Id_Metadata.hasDropdownParent, data_parent_name = Model.state_Id_Metadata.dropdownParentFieldName, data_retrieve_url = Model.state_Id_Metadata.dataRetrieveURL, dataValue = Model.lstState })
+                                                            @Html.ValidationMessageFor(m => m.state_Id)
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.city_Id_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.city_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="select">
+                                                            @Html.EditorFor(model => model.city_Id, new { @class = "form-control multipleSelect " + Model.city_Id_Metadata.mandatoryClass, data_has_parent = Model.city_Id_Metadata.hasDropdownParent, data_parent_name = Model.city_Id_Metadata.dropdownParentFieldName, data_retrieve_url = Model.city_Id_Metadata.dataRetrieveURL, dataValue = Model.lstCity })
+                                                            @Html.ValidationMessageFor(m => m.city_Id)
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Model.zip_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.zip, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.zip, new { @class = "form-control" + Model.zip_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.zip) })
+                                                            @Html.ValidationMessageFor(m => m.zip)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+
+
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-color-blueDark jarviswidget-sortable" id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <footer id="btnSection">
+                                    <div class="form-group">
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+
+                                            @if (!@Model.readOnly)
+                                            {
+                                                <button id="update-store" class="btn btn-sm btn-primary" data-value="update" type="button" style="@(Model.isEdit ? "" : "display: none")">
+                                                    <i class="fa fa-pencil"></i>
+                                                    @Html.GetGlobalResource("BTN_UPDATE")
+                                                </button>
+                                                if (!Model.isEdit)
+                                                {
+                                                    <button id="save-store" class="btn btn-sm btn-primary" data-value="save" type="button">
+                                                        <i class="fa fa-save"></i>
+                                                        @Html.GetGlobalResource("BTN_SAVE")
+                                                    </button>
+                                                }
+                                                <button class="btn btn-sm btn-primary" type="reset" data-dest="#d-cp-Store">
+                                                    <i class="fa fa-refresh"></i>
+                                                    @Html.GetGlobalResource("BTN_RESET")
+                                                </button>
+                                            }
+                                            <button id="backTo-store" class="btn btn-sm btn-primary" type="button" data-url="Store/Index" data-dest="#d-cp-Store">
+                                                <i class="fa fa-mail-reply"></i>
+                                                @Html.GetGlobalResource("BTN_BACK")
+                                            </button>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+
+            }
+        </div>
+
+    </section>
+
+
+
+</div>
+
+
+<!-- Protected Script -->
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+<!-- /.page-content -->

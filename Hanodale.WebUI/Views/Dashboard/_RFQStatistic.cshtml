@@ -1,0 +1,691 @@
+﻿@model Hanodale.WebUI.Models.DashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+<!-- Hidden Variable -->
+@Html.HiddenFor(model => model.check)
+@*<input type="hidden" class="mainPart" value="rfqstatisticdashboard">*@
+ @if (@Model.check)
+    {
+<input type="hidden" class="table-congif" value="rfqstatisticdashboard" data-columncount="4" data-conditionid="4" data-button="false" data-condition="false" data-extended-event-btn="true" data-hidebtn="false" data-export-btn="true" data-record-id="1">
+ }
+<input type="hidden" class="table-congif" value="rfqdashboard" data-columncount="5" data-conditionid="4" data-button="false" data-condition="false" data-extended-event-btn="true" data-hidebtn="false" data-export-btn="true" data-record-id="1">
+<input type="hidden" class="table-congif" value="rfqdashboard" data-columncount="5" data-conditionid="4" data-button="false" data-condition="false" data-extended-event-btn="true" data-hidebtn="false" data-export-btn="true" data-record-id="2" data-destination-table="rfqdashboardsubmitted">
+<!-- Hidden Variable -->
+
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<style>
+    div.dataTables_wrapper {
+        margin: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    div.dt-toolbar {
+        padding: 0px;
+        padding-bottom: 5px;
+    }
+
+        div.dt-toolbar div {
+            padding: 0px;
+        }
+</style>
+
+<section>
+    @if (@Model.check)
+    {
+        <div class="row">
+
+            <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3166"
+                data-widget-editbutton="false"
+                data-widget-colorbutton="false"
+                @*data-widget-deletebutton="false"
+                
+                data-widget-fullscreenbutton="true"
+				data-widget-custombutton="false"
+                data-widget-togglebutton="true"
+				data-widget-collapsed="false"
+                data-widget-sortable="true"*@
+                >
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-table"></i></span>
+                        <h2>@Resources.RFQ_RFQ_STATISTIC_TITLE</h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+
+                        <!-- widget content -->
+                        <div class="widget-body no-padding ">
+                            <div id="pieCharPanelPurchaseDashboard" class="widget-body no-padding placeholderChartMainContent">
+                        <div style="padding: 20px; width: 100%;">
+                            <ul class="row-flex charPanelDashboard">
+                                    <li id="pieCharPanelPurchaseDashboardPlaceholder_" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="pieChartInnerBox">
+                                            <div class="innerChartContent">
+                                                <div class="placeholderChartBody" id="statusPlaceholder"></div>
+                                                <div class="charLegendaSpliter"></div>
+                                                <div class="mainChartLegend">
+                                                    <div id="chartLegend"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                            </ul>
+                            <div class="downloadMainBox">
+                                <a class="download" data-id="statusPlaceholder" data-name="@Resources.RFQ_RFQ_STATISTIC_TITLE" title="@Resources.LABEL_DOWNLOAD_AS_PDF"><i class="fa fa-lg fa-fw fa-download"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                           @* <div style="padding: 20px; border: 1px solid #ddd;">
+                                <div id="statusPlaceholder" style="padding: 0px; position: relative; width: 90%; margin: 2% 5%;"></div>
+                                <a class="download" data-id="statusPlaceholder" data-name="@Resources.RFQ_RFQ_STATISTIC_TITLE" style="cursor:pointer">Download as PDF</a>
+                            </div>*@
+
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+    }
+    @if (!@Model.check)
+    {
+        <div class="row">
+            
+            <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3134"
+                data-widget-editbutton="false"
+                data-widget-colorbutton="false"
+                @*data-widget-deletebutton="false"
+                
+                data-widget-fullscreenbutton="true"
+				data-widget-custombutton="false"
+                data-widget-togglebutton="true"
+				data-widget-collapsed="false"
+                data-widget-sortable="true"*@
+                >
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-table"></i></span>
+                        <h2>@Resources.RFQ_DUE_FOR_OPENING_TITLE</h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+
+                        <!-- widget content -->
+                        <div class="widget-body no-padding ">
+                            <table id="dt_rfqdashboard" class="table table-striped table-bordered table-hover" width="100%">
+                                <div class="smart-form" id="dt_rfqdashboard-search-panel">
+
+                                    <div class="row" style="margin: 20px 10px 5px 10px">
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6" style="text-align: left; margin-bottom: 0">
+                                                <div class="col-sm-11">
+                                                    @Html.LabelFor(model => model.createdFrom, new { @class = "col-md-12 control-label", style = "font-weight:bold" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6" style="text-align: left; margin-bottom: 0">
+                                                <div class="col-sm-11">
+                                                    @Html.LabelFor(model => model.createdTo, new { @class = "col-md-12 control-label", style = "font-weight:bold" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin: 0px 10px">
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-qrcode"></i>
+                                                            @Html.EditorFor(model => model.createdFrom, new { @class = "datepicker form-control date-picker date" })
+                                                            @Html.ValidationMessageFor(m => m.createdFrom)
+                                                            <i></i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-qrcode"></i>
+                                                            @Html.EditorFor(model => model.createdTo, new { @class = "datepicker form-control date-picker" })
+                                                            @Html.ValidationMessageFor(m => m.createdTo)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <thead>
+                                    <tr>
+                                        <th data-class="expand" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQMASTER_CODE</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQMASTER_DESCRIPTION</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_TOTAL_SUPPLIER</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_CLOSING_DATE</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-calendar text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_SITE_VISIT_DATE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+
+        <div class="row">
+
+            <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3315"
+                data-widget-editbutton="false"
+                data-widget-colorbutton="false"
+                @*data-widget-deletebutton="false"
+                
+                data-widget-fullscreenbutton="true"
+				data-widget-custombutton="false"
+                data-widget-togglebutton="true"
+				data-widget-collapsed="false"
+                data-widget-sortable="true"*@
+                >
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-table"></i></span>
+                        <h2>@Resources.RFQ_SUBMITTED_TITLE</h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body no-padding ">
+                            <table id="dt_rfqdashboardsubmitted" class="table table-striped table-bordered table-hover" width="100%">
+                                <div class="smart-form" id="dt_rfqdashboardsubmitted-search-panel">
+
+                                    <div class="row" style="margin: 20px 10px 5px 10px">
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6" style="text-align: left; margin-bottom: 0">
+                                                <div class="col-sm-11">
+                                                    @Html.LabelFor(model => model.createdDateFrom, new { @class = "col-md-12 control-label", style = "font-weight:bold" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6" style="text-align: left; margin-bottom: 0">
+                                                <div class="col-sm-11">
+                                                    @Html.LabelFor(model => model.createdDateTo, new { @class = "col-md-12 control-label", style = "font-weight:bold" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 0px 10px">
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-qrcode"></i>
+                                                            @Html.EditorFor(model => model.createdDateFrom, new { id = "cdf1", name = "cdf1", @class = "datepicker form-control date-picker date" })
+                                                            @Html.ValidationMessageFor(m => m.createdDateFrom)
+                                                            <i></i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-qrcode"></i>
+                                                            @Html.EditorFor(model => model.createdDateTo, new { id = "cdf2", name = "cdf2", @class = "datepicker form-control date-picker" })
+                                                            @Html.ValidationMessageFor(m => m.createdDateTo)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 20px 10px 5px 10px">
+                                        <div class="col-xs-6 col-sm-6">
+
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6" style="text-align: left; margin-bottom: 0">
+                                                <div class="col-sm-11">
+                                                    @Html.LabelFor(model => model.PurchaseRequestType_Id, new { @class = "col-md-12 control-label", style = "font-weight:bold" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6" style="text-align: left; margin-bottom: 0">
+                                                <div class="col-sm-11">
+                                                    @Html.LabelFor(model => model.RFQStatus_Id, new { @class = "col-md-12 control-label", style = "font-weight:bold" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 0px 10px">
+                                        <div class="col-xs-6 col-sm-6">
+
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                    <div class="clearfix">
+                                                        <label class="select">
+                                                            @Html.EditorFor(model => model.PurchaseRequestType_Id, new { @class = "form-control multipleSelect", dataValue = Model.lstPurchaseRequestType })
+                                                            @Html.ValidationMessageFor(m => m.PurchaseRequestType_Id)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                    <div class="clearfix">
+                                                        <label class="select">
+                                                            @Html.EditorFor(model => model.RFQStatus_Id, new { @class = "form-control multipleSelect", dataValue = Model.lstRFQstatus })
+                                                            @Html.ValidationMessageFor(m => m.RFQStatus_Id)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @Scripts.Render(bundles.scripts.common_add_edit)
+
+                                </div>
+                                <thead>
+                                    <tr>
+                                        <th data-class="expand" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQMASTER_CODE</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQMASTER_DESCRIPTION</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_TOTAL_SUPPLIER</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-calendar text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_CLOSING_DATE</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_SITE_VISIT_DATE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+    }
+    @if (@Model.check)
+    {
+        <div class="row">
+            <article class="col-sm-12">
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3615"
+                    data-widget-editbutton="false"
+                    data-widget-colorbutton="false">
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-table"></i></span>
+                        <h2>@Resources.RFQ_PENDING_RFQ_TITLE</h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body no-padding ">
+                            <table id="dt_rfqstatisticdashboard" class="table table-striped table-bordered table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th data-class="expand" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQMASTER_CODE</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQMASTER_DESCRIPTION</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-calendar text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_CLOSING_DATE</th>
+                                        <th data-hide="phone,tablet" style="text-align:center">@*<i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>*@@Resources.RFQ_SITE_VISIT_DATE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    }
+</section>
+@Scripts.Render(bundles.scripts.common_index)
+
+@if (Model.check)
+    {
+<script src="~/Scripts/plugin/flot/jquery.flot.tooltip.min.js"></script>
+<script src="~/Scripts/flot/jspdf.min.js"></script>
+<script src="~/Scripts/flot/html2canvas.js"></script>
+    
+    <script>
+        $(".download").on("click", function (e) {
+            e.preventDefault();
+            var canvasName = $(this).attr('data-id');
+            var fileName = $(this).attr('data-name');
+            var elem = $("#" + canvasName);
+
+            html2canvas(elem, {
+                onrendered: function (canvas) {
+                    var url = canvas.toDataURL();
+                    $("<a>", {
+                        href: url,
+                        download: fileName.replace(/ /g, "_") + '.jpg'
+                    })
+                    .on("click", function () { $(this).remove() })
+                    .appendTo("body")[0].click()
+                }
+            })
+
+            //html2canvas($("#" + canvasName).get(0), {
+            //    onrendered: function (canvas) {
+
+            //        var imgData = canvas.toDataURL('image/png');
+            //        //console.log('Report Image URL: ' + imgData);
+            //        var doc = new jsPDF('landscape');
+
+            //        doc.addImage(imgData, 'PNG', 10, 10, 190, 95);
+            //        doc.save(fileName.replace(/ /g, "_") + '.pdf');
+            //    }
+            //});
+        });
+
+
+
+        ExtendedFilterMethod();
+
+
+        function ExtendedFilterMethod() {
+            var color = ["#3A15E8", "#CA0000", "#13A515", "#F0F522", "#F5912D", "#228DF5", "#F522CB", "#22D5F5", "#B822F5", "#B8F522", "#614E43"];
+            $.ajax({
+                type: "POST",
+                url: "RFQStatisticDashboard/GetRFQCHartInfo",
+                data: {},
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var status = [];
+                    var totalStatus = 0;
+
+                    $.each(data.status, function () {
+                        totalStatus += this.Value;
+                    });
+
+                    if (totalStatus == 0)
+                        totalStatus = 1;
+
+                    for (var i = 0; i < data.status.length; i++) {
+                        status.push({ label: data.status[i].Key + " [" + Math.round((data.status[i].Value / totalStatus) * 100) + "%] (" + data.status[i].Value + ")", data: data.status[i].Value, color: color[i] });
+                    }
+
+                    plotStatus = $.plot($("#statusPlaceholder"), status,
+                               {
+                                   series: {
+                                       pie: {
+                                           show: true,
+                                           radius: 1,
+                                           label: {
+                                               show: true,
+                                               radius: 2 / 3,
+                                               formatter: function (label, series) {
+                                                   return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;max-width: 60px;">' + label + '</div>';
+
+                                               },
+                                               //threshold: 0.1
+                                           }
+                                       }
+                                   },
+                                   legend: {
+                                       show: true,
+                                       container: $("#chartLegend"),
+                                       flexibleLegend:true
+                                   },
+                                   grid: {
+                                       hoverable: true
+                                   },
+                                   tooltip: true,
+                                   tooltipOpts: {
+                                       content: "%s (%p.0%)", // show percentages, rounding to 2 decimal places
+                                       shifts: {
+                                           x: 20,
+                                           y: 0
+                                       },
+                                       defaultTheme: false
+                                   }
+                               });
+                },
+
+
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //  log error
+                    _showErrorMessage();
+                }
+            });
+        }
+
+        //function ExtendedFilterMethod() {
+
+        //    var createdStartFrom = $('#c1').val();
+        //    var createdEndTo = $('#c2').val();
+        //    var purchaseRequestType_Id = $('#c3').val();
+        //    var RFQStatus_Id = $('#c4').val();
+
+        //    var color = ["#3A15E8", "#CA0000", "#13A515", "#F0F522", "#F5912D", "#228DF5", "#F522CB", "#22D5F5", "#B822F5", "#B8F522", "#614E43"];
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "RFQStatisticDashboard/GetRFQCHartInfoFilter",
+        //        data: JSON.stringify({ createdStartFrom: createdStartFrom, createdEndTo: createdEndTo, purchaseRequestType_Id: purchaseRequestType_Id, RFQStatus_Id: RFQStatus_Id }),
+        //        cache: false,
+        //        contentType: "application/json; charset=utf-8",
+        //        success: function (data) {
+        //            var status = [];
+        //            var totalStatus = 0;
+
+        //            $.each(data.status, function () {
+        //                totalStatus += this.Value;
+        //            });
+
+        //            if (totalStatus == 0)
+        //                totalStatus = 1;
+
+        //            for (var i = 0; i < data.status.length; i++) {
+        //                status.push({ label: data.status[i].Key + " [" + Math.round((data.status[i].Value / totalStatus) * 100) + "%] (" + data.status[i].Value + ")", data: data.status[i].Value, color: color[i] });
+        //            }
+
+        //            plotStatus = $.plot($("#statusPlaceholder"), status,
+        //                       {
+        //                           series: {
+        //                               pie: {
+        //                                   show: true,
+        //                                   radius: 1,
+        //                                   label: {
+        //                                       show: true,
+        //                                       radius: 2 / 3,
+        //                                       formatter: function (label, series) {
+        //                                           return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;max-width: 60px;">' + label + '</div>';
+
+        //                                       },
+        //                                       //threshold: 0.1
+        //                                   }
+        //                               }
+        //                           },
+        //                           legend: {
+        //                               show: true,
+        //                           },
+        //                           grid: {
+        //                               hoverable: true
+        //                           },
+        //                           tooltip: true,
+        //                           tooltipOpts: {
+        //                               content: "%s (%p.0%)", // show percentages, rounding to 2 decimal places
+        //                               shifts: {
+        //                                   x: 20,
+        //                                   y: 0
+        //                               },
+        //                               defaultTheme: false
+        //                           }
+        //                       });
+        //        },
+
+
+        //        error: function (xhr, ajaxOptions, thrownError) {
+        //            //log error
+        //            _showErrorMessage();
+        //        }
+        //    });
+        //}
+
+
+        //$("#c1, #c2,#c3, #c4").on("change", function (e) {
+        //    var createdStartFrom = $('#c1').val();
+        //    var createdEndTo = $('#c2').val();
+        //    var purchaseRequestType_Id = $('#c3').val();
+        //    var RFQStatus_Id = $('#c4').val();
+        //    var color = ["#3A15E8", "#CA0000", "#13A515", "#F0F522", "#F5912D", "#228DF5", "#F522CB", "#22D5F5", "#B822F5", "#B8F522", "#614E43"];
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "RFQStatisticDashboard/GetRFQCHartInfoFilter",
+        //        data: JSON.stringify({ createdStartFrom: createdStartFrom, createdEndTo: createdEndTo, purchaseRequestType_Id: purchaseRequestType_Id, RFQStatus_Id: RFQStatus_Id }),
+        //        cache: false,
+        //        contentType: "application/json; charset=utf-8",
+        //        success: function (data) {
+        //            var status = [];
+        //            var totalStatus = 0;
+
+        //            $.each(data.status, function () {
+        //                totalStatus += this.Value;
+        //            });
+
+        //            if (totalStatus == 0)
+        //                totalStatus = 1;
+
+        //            for (var i = 0; i < data.status.length; i++) {
+        //                status.push({ label: data.status[i].Key + " [" + Math.round((data.status[i].Value / totalStatus) * 100) + "%] (" + data.status[i].Value + ")", data: data.status[i].Value, color: color[i] });
+        //            }
+
+        //            plotStatus = $.plot($("#statusPlaceholder"), status,
+        //                       {
+        //                           series: {
+        //                               pie: {
+        //                                   show: true,
+        //                                   radius: 1,
+        //                                   label: {
+        //                                       show: true,
+        //                                       radius: 2 / 3,
+        //                                       formatter: function (label, series) {
+        //                                           return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;max-width: 60px;">' + label + '</div>';
+
+        //                                       },
+        //                                       //threshold: 0.1
+        //                                   }
+        //                               }
+        //                           },
+        //                           legend: {
+        //                               show: true,
+        //                           },
+        //                           grid: {
+        //                               hoverable: true
+        //                           },
+        //                           tooltip: true,
+        //                           tooltipOpts: {
+        //                               content: "%s (%p.0%)", // show percentages, rounding to 2 decimal places
+        //                               shifts: {
+        //                                   x: 20,
+        //                                   y: 0
+        //                               },
+        //                               defaultTheme: false
+        //                           }
+        //                       });
+        //        },
+
+
+        //        error: function (xhr, ajaxOptions, thrownError) {
+        //            //log error
+        //            _showErrorMessage();
+        //        }
+        //    });
+        //})
+</script>
+    }
+@*@Scripts.Render(bundles.scripts.workorder_index)*@
+<!-- Protected Script -->
+<style>
+    #statusPlaceholder, #categoryPlaceholder {
+        width: 450px;
+        height: 250px;
+    }
+</style>
+<script>
+    var _check = $("#check").val();
+    _initActionExtended = function (partName, readOnly, paging, destinationTbl) {
+        if (destinationTbl)
+            partName = destinationTbl;
+       
+       
+        
+
+        if (_check == "true" || _check == "True" || _check == "value")
+            {
+
+                $('#dt_' + partName + ' .linkToGrid').on("click", function () {
+                    var recordId = $(this).attr("data-value")
+
+                    if (recordId) {
+                        var actionUrl = "QuotationSubmission/Index/";
+                        var param = { recordId: recordId, authenicated: true }
+                        navigate.viewByParameter(actionUrl, param);
+                    }
+                })
+            }
+        else
+        {
+            $('#dt_' + partName + ' .linkToGrid').on("click", function () {
+                var recordId = $(this).attr("data-value")
+
+                 if (recordId) {
+                     var actionUrl = "QuotationAdmin/Index/";
+                     var param = { recordId: recordId, authenicated: true }
+                     navigate.viewByParameter(actionUrl, param);
+                 }
+             })
+            }
+    }
+
+   
+
+</script>
+

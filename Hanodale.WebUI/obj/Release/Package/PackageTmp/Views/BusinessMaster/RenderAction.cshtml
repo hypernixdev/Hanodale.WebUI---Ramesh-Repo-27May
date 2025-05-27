@@ -1,0 +1,12 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+@if (Model.canView)
+{
+    <span class="edit-businessmaster btn btn-ribbon " data-url="BUSINESSMASTER_ID" data-placement="bottom" data-rel="tooltip" title="View" data-container="body">
+        <i class="fa fa-eye"></i>
+    </span>
+}

@@ -1,0 +1,107 @@
+﻿@model Hanodale.WebUI.Models.LoginModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<style>
+     .blackBtn {
+            margin-bottom:5px; padding: 4px 10px 4px 5px; background: #404040; border-color: #000;color: #fff
+        }
+    .signInHeader {
+        width:100%; background-color: #fff!important; font-weight: bold; text-align: left; border: none; font-size: 16px; padding-top: 0; padding: 0px; text-align:center!important
+    }
+</style>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center">
+                    <div id="loginContent" class="well no-padding" style="border: none; box-shadow: none; ">
+                        @using (Html.BeginForm("SignIn", "Auth", FormMethod.Post, new { id = "login-form", @class = "smart-form client-form" }))
+                        { 
+                            @Html.AntiForgeryToken()
+                            <header class="signInHeader">
+                                <h2 style="font-weight: bold;margin: 20px 0;">@Resources.LOGIN_HEADER</h2>
+                            </header>
+
+                            <fieldset style="padding-top: 10px; text-align: left; width:100%">
+                                @Html.ValidationSummary(true)
+                                <section>
+                                    
+                                    @Html.LabelFor(p => p.UserName)
+                                    <label class="input">
+                                        <i class="icon-append fa fa-envelope"></i>
+
+                                        @Html.TextBoxFor(p => p.UserName, new {@class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.UserName) })
+                                        @Html.ValidationMessageFor(p => p.UserName)
+                                        @*<input type="email" name="email">*@
+                                        @*   <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>Please enter email address/username</b>*@
+
+                                    </label>
+                                </section>
+
+                                <section style="margin-bottom: 5px">
+                                    @Html.LabelFor(p => p.Password)
+                                    <label class="input">
+                                        <i id="hide-pass" class="icon-append fa fa-eye-slash" style="border:none"></i>
+                                        @*<input type="password" name="password">*@
+                                        @Html.TextBoxFor(p => p.Password, new {type="password", @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.Password)})
+                                        @Html.ValidationMessageFor(p => p.Password)
+                                        @*<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>Enter your password</b>*@
+                                    </label>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 note" style="margin-bottom: 20px">
+                                        <div id="forgot-pas
+                                             sword" class="row-flex">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                                @*<label class="checkbox" style="padding: 5px">
+                                                    @Html.CheckBoxFor(p => p.RememberMe)
+                                                    <i></i>@Html.LabelFor(p => p.RememberMe , new { style = "margin-left:22px;" })
+                                                </label>*@
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="padding-top: 5px; text-align: right">
+                                                <a style="text-decoration:underline" href="ForgotPassword">@Resources.FORGOT_PASSWORD_LINK</a><br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <footer class="clear" style="border: none; padding: 0; background-color: #fff">
+                                        <button type="submit" class="btn btn-primary" style="font-weight: bold; margin: 0; margin-bottom: 15px;">
+                                            @Resources.LOGIN_BTN
+                                        </button>
+                                     
+                                    </footer>
+                                 
+                                    <div class="note" id="create-helpdesk">
+                                    </div>
+                                </section>
+
+                                <section style="margin-bottom: 3px">
+                                </section>
+                            </fieldset>
+                   
+                        }
+
+                    </div>
+            </div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#hide-pass').on('click', function () 
+        {
+            var _type = $('#Password').attr('type');
+            if (_type == 'text') {
+                $('#Password').attr('type','password');
+                $(this).removeClass('fa-eye');
+                $(this).addClass('fa-eye-slash');
+            } else {
+                $('#Password').attr('type', 'text');
+                $(this).removeClass('fa-eye-slash');
+                $(this).addClass('fa-eye');
+            }
+            
+        })
+    })
+    
+</script>
+@*@Scripts.Render(bundles.scripts.common_add_edit)*@
+    @Scripts.Render("~/bundles/login-jqueryval")
+

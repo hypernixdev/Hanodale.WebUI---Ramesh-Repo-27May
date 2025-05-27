@@ -1,0 +1,84 @@
+﻿@model List<Hanodale.WebUI.Models.MainMenuModel>
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+
+<!-- NAVIGATION : This navigation is also responsive -->
+<nav>
+    <ul class="nav-list">
+        @foreach (var menu in Model)
+        {
+            var isMainMenu = menu.subMenus.Where(a => a.isMainMenu == true).FirstOrDefault();
+
+            if (isMainMenu != null && ((bool)isMainMenu.isMainMenu) == true)
+            {
+            <li>
+                <a href="#" data-main="Dashboard" data-sub="" data-url="@menu.pageUrl" title="@menu.menuName">
+                    <i class="fa fa-lg fa-fw @menu.imageUrl"></i><span class="menu-item-parent">@menu.menuName</span>
+                </a>
+            </li>
+            }
+            else
+            {
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw @menu.imageUrl"></i><span  class="menu-item-parent">@menu.menuName</span></a>
+                <ul>
+                    @foreach (var subMenu in menu.subMenus)
+                    {
+                        <li>
+                            <a href="#" data-main="@menu.menuName" data-sub="@subMenu.subMenuName" data-url="@subMenu.pageUrl">@subMenu.subMenuName</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            }
+        }
+    </ul>
+</nav>
+<span class="minifyme" data-action="minifyMenu">
+    <i class="fa fa-arrow-circle-left hit"></i>
+</span>
+
+
+<!-- END NAVIGATION -->
+
+@*<ul class="nav nav-list">
+    @foreach (var menu in Model.mainMenu)
+    {
+        var isMainMenu = menu.subMenus.Where(a=>a.isMainMenu==true).FirstOrDefault();
+
+        if (isMainMenu!=null && ((bool)isMainMenu.isMainMenu)==true)
+        {
+            <li >
+                <a href="#" data-main="Dashboard" data-sub="" data-url="@menu.pageUrl">
+                    <i class="@menu.imageUrl"></i>
+                    <span class="menu-text">@menu.menuName</span>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <i class="@menu.imageUrl"></i>
+                    <span class="menu-text">@menu.menuName</span>
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+                <!-- SubMenu -->
+                <ul class="submenu">
+                    @foreach (var subMenu in menu.subMenus)
+                    {
+                        <li>
+                            <a href="#" data-main="@menu.menuName" data-sub="@subMenu.subMenuName" data-url="@subMenu.pageUrl">
+                                <i class="icon-double-angle-right"></i>
+                                @subMenu.subMenuName
+                            </a>
+                        </li>
+                    }
+                </ul> <!-- /.submenu-list -->
+            </li>
+        }
+    }
+</ul><!-- /.nav-list -->*@

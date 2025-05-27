@@ -1,0 +1,450 @@
+﻿@using System.Web.Optimization;
+@using Hanodale.WebUI
+@using Hanodale.Utility.Globalize
+@{
+    ViewBag.Title = "_ResultNewScreenLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en-BG">
+    
+<head>
+    <meta charset="utf-8">
+
+    <title>HRMS</title>
+    @* @Html.MetaAcceptLanguage()*@
+    <meta name="accept-language" content="en-GB" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/font-awesome.min.css">
+
+    <!-- basic styles & page specific plugin styles-->
+    @Styles.Render(bundles.styles.layout)
+
+    <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production.min.css">
+    @*<link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production-plugins.min.css" />*@
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-skins.min.css">
+
+
+    <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/demo.min.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="~/Content/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Content/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <link rel="apple-touch-icon" href="~/Content/img/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/img/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/img/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/img/splash/touch-icon-ipad-retina.png">
+
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href="~/Content/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="~/Content/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="~/Content/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+    <link href="~/Content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <!-- Add all of css related for the project -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/your_style.css">
+
+    @Scripts.Render("~/bundles/modernizr")
+
+     <script src="~/Scripts/plugin/jquery/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/plugin/jquery/jquery-ui-1.8.24.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/globalize/globalize.js"></script>
+
+     <script src="~/Scripts/plugin/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugin/datatables/dataTables.colVis.min.js"></script>
+    <script src="~/Scripts/plugin/datatables/dataTables.tableTools.min.js"></script>
+    <script src="~/Scripts/plugin/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+
+
+</head>
+     <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/Scripts/app.config.js"></script>
+
+    <!-- Demo purpose only -->
+    <script src="~/Scripts/demo.min.js"></script>
+
+    <!-- MAIN APP JS FILE -->
+    <script src="~/Scripts/app.min.js"></script>
+
+    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+    <!-- Voice command : plugin -->
+    <script src="~/Scripts/speech/voicecommand.min.js"></script>
+<body class="">
+    <input type="hidden" id="isGuest" value="true" />
+    <!--Grid lable -->
+    <input type="hidden" id="DATATABLE_MENU" value ="@Resources.DATATABLE_MENU">
+    <input type="hidden" id="DATATABLE_INFO" value ="@Resources.DATATABLE_INFO">
+    <input type="hidden" id="DATATABLE_INFO_EMPTY" value ="@Resources.DATATABLE_INFO_EMPTY">
+    <input type="hidden" id="DATATABLE_ZERO_RECORD" value ="@Resources.DATATABLE_ZERO_RECORD">
+    <input type="hidden" id="DATATABLE_SEARCH" value ="@Resources.DATATABLE_SEARCH">
+    <input type="hidden" id="DATATABLE_INFO_FILTERED" value ="@Resources.DATATABLE_INFO_FILTERED">
+    <input type="hidden" id="DATATABLE_EMPTY_TABLE" value ="@Resources.DATATABLE_EMPTY_TABLE">
+
+    <!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+     <script src="~/Scripts/plugin/jquery/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/plugin/jquery/jquery-ui-1.8.24.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/globalize/globalize.js"></script>
+    
+
+    <!-- MAIN PANEL -->
+    <div id="main" role="main" class="main" style="margin-left:0">
+
+        <!-- MAIN CONTENT -->
+        <div id="content" class="container">
+
+            @RenderBody()
+
+        </div>
+
+    </div>
+
+
+    @*@Scripts.Render("~/bundles/unobtrusive")*@
+
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+   
+
+    @*<script src="~/Scripts/globalize/globalize.js"></script>*@
+
+
+    @* <script src="~/Scripts/date-time/bootstrap-datepicker.min.js"></script>*@
+    @*<script src="~/Scripts/plugin/jquery-validate/jquery.validate.js"></script>
+    <script src="~/Scripts/plugin/jquery-validate/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/plugin/jquery-validate/jquery.validate.unobtrusive-custom-for-bootstrap.js"></script>*@
+    @*<script src="~/Scripts/plugin/jquery-validate/jquery.validate.globalize.js"></script>*@
+
+    @Scripts.Render(Html.JsCultureBundle())
+
+    @RenderSection("scripts", required: false)
+
+    @* ///////////////////////////////////////// here \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*@
+
+
+    <!-- /.main-container -->
+
+    <!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+		Note: These tiles are completely responsive,
+		you can add as many as you like
+		-->
+    @*@Html.Action("LoadMenuShortcuts", "Navigation")*@
+    <!-- END SHORTCUT AREA -->
+
+    <!--================================================== -->
+
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/Scripts/plugin/pace/pace.min.js"></script>
+
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+    <script>
+        if (!window.jQuery) {
+            document.write('<script src="Scripts/libs/jquery-2.0.2.min.js"><\/script>');
+        }
+    </script>
+
+    <!--jQuery.Validation.Globalize 1.0.1*-->
+
+
+
+    @*    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>*@
+    <script>
+        if (!window.jQuery.ui) {
+            document.write('<script src="Scripts/libs/jquery-ui-1.10.3.min.js"><\/script>');
+        }
+    </script>
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/Scripts/app.config.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+    <script src="~/Scripts/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    @*<script src="~/Scripts/bootstrap/bootstrap.min.js"></script>*@
+
+    <!-- CUSTOM NOTIFICATION -->
+    <script src="~/Scripts/notification/SmartNotification.min.js"></script>
+
+    <!-- JARVIS WIDGETS -->
+    <script src="~/Scripts/smartwidgets/jarvis.widget.min.js"></script>
+
+    <!-- EASY PIE CHARTS -->
+    <script src="~/Scripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+    <!-- SPARKLINES -->
+    <script src="~/Scripts/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+    @*<!-- JQUERY VALIDATE -->
+    <script src="~/Scripts/plugin/jquery-validate/jquery.validate.min.js"></script>*@
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="~/Scripts/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+    <!-- JQUERY SELECT2 INPUT -->
+    <script src="~/Scripts/plugin/select2/select2.min.js"></script>
+
+    <!-- JQUERY UI + Bootstrap Slider -->
+    <script src="~/Scripts/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+    <!-- browser msie issue fix -->
+    <script src="~/Scripts/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+    <!-- FastClick: For mobile devices -->
+    <script src="~/Scripts/plugin/fastclick/fastclick.min.js"></script>
+
+     <script src="~/Scripts/plugin/flot-new/jquery.flot.js"></script>
+    <script src="~/Scripts/plugin/flot-new/jquery.flot.pie.js"></script>
+
+    <!-- Demo purpose only -->
+    <script src="~/Scripts/demo.min.js"></script>
+
+    <!-- MAIN APP JS FILE -->
+    <script src="~/Scripts/app.min.js"></script>
+
+    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+    <!-- Voice command : plugin -->
+    <script src="~/Scripts/speech/voicecommand.min.js"></script>
+
+    <!-- PAGE RELATED PLUGIN(S) -->
+
+    @*<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>*@
+    <script src="~/Scripts/plugin/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugin/datatables/dataTables.colVis.min.js"></script>
+    <script src="~/Scripts/plugin/datatables/dataTables.tableTools.min.js"></script>
+    <script src="~/Scripts/plugin/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+    <script src="~/Scripts/jquery-ui.multidatespicker.js"></script>
+    <!--[if IE 8]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+
+
+    <!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+    <script src="~/Scripts/ProtectedScripts/web.util.js"></script>
+    <script src="~/Scripts/ProtectedScripts/web.navigate.js"></script>
+
+    @*<script src="~/Scripts/jquery.nestable.min.js"></script>*@
+
+    <script src="~/Scripts/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript">
+
+        $('a#show-shortcut').click(function () {
+            var container = $("#main > #content");
+            var _businessType = $(this).attr("data-businessType");
+            if (_businessType == 65) {
+                $.ajax({
+                    type: "POST",
+                    datatype: 'json',
+                    url: "User/UserInfo/",
+                    data: {},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        container.html("");
+                        container.html(data.viewMarkup);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        //log error
+                        //_showErrorMessage();
+                    }
+                });
+            }
+
+        });
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        //$(document).ready(function () {
+
+        //    pageSetUp();
+        //    $('.multipleSelect1').select2();
+        //    $('#nav-search').show();
+
+        //})
+
+        //$('#organization_Id').data('lastSelected', $('#organization_Id').find("option:selected"));
+        //$('#mainCostCenter_Id').data('lastSelected', $('#mainCostCenter_Id').find("option:selected"));
+
+        //How frequently to check for session expiration in milliseconds
+        //var sess_pollInterval = 1500000;
+        ////How many minutes the session is valid for
+        //var sess_expirationMinutes = 5;
+        ////How many minutes before the warning prompt
+        //var sess_warningMinutes = 1;
+        //var sess_intervalID;
+        //var sess_lastActivity;
+
+
+        //sessClearInterval();
+
+
+        //function initSession() {
+        //    sess_lastActivity = new Date();
+        //    sessSetInterval();
+        //    //$(document).bind('keypress.session', function (ed, e) {
+        //    //    sessKeyPressed(ed, e);
+        //    //});
+        //}
+        //function sessSetInterval() {
+        //    ReleaseSession();
+        //    sess_intervalID = setInterval('sessInterval()', sess_pollInterval);
+        //}
+        //function sessClearInterval() {
+        //    clearInterval(sess_intervalID);
+
+        //}
+        ////function sessKeyPressed(ed, e) {
+        ////    sess_lastActivity = new Date();
+        ////}
+        //function sessLogOut() {
+        //    sessClearInterval()
+        //    //window.location.href = '';
+        //}
+
+        //function ReleaseSession() {
+        //    sess_lastActivity = new Date();
+        //    //initSession();
+        //    //sessSetInterval();
+
+        //    var param = {
+        //        id: $('#organization_Id').val()
+        //    }
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "Auth/ReleaseSession/",
+        //        data: JSON.stringify(param),
+        //        cache: false,
+        //        contentType: "application/json; charset=utf-8",
+        //        success: function (data) {
+        //            //alert('OK 1111111111')
+        //        },
+        //        error: function (xhr, ajaxOptions, thrownError) {
+        //            //log error
+        //        }
+        //    });
+        //}
+
+        //function sessInterval() {
+        //    var now = new Date();
+        //    //get milliseconds of differneces
+        //    var diff = now - sess_lastActivity;
+        //    //get minutes between differences
+        //    var diffMins = (diff / 1000 / 60);
+        //    if (diffMins >= sess_warningMinutes) {
+        //        //warn before expiring
+        //        //stop the timer
+        //        //sessClearInterval();
+        //        //prompt for attention
+        //        //var message = 'Your session will expire in ' +
+        //        //(sess_expirationMinutes - sess_warningMinutes) +
+        //        //' minutes (as of ' + now.toTimeString() + ')' + 'press OK to remain logged in ' +
+        //        //'or press Cancel to log off. ' + ' \nIf you are logged off any changes will be lost.'
+        //        //$.SmartMessageBox({
+        //        //    title: "Alert!",
+        //        //    content: message,
+        //        //    buttons: '[No][Yes]'
+        //        //},
+        //        //function (ButtonPressed) {
+        //        //    if (ButtonPressed === "Yes") {
+        //        //        now = new Date();
+        //        //        diff = now - sess_lastActivity;
+        //        //        diffMins = (diff / 1000 / 60);
+        //        //        if (diffMins > sess_expirationMinutes) {
+        //        //            sessLogOut();
+        //        //        }
+        //        //        else {
+        //        //            sess_lastActivity = now;
+        //        //            var param = {
+        //        //                id: $('#organization_Id').val()
+        //        //            }
+        //        //            $.ajax({
+        //        //                type: "POST",
+        //        //                url: "Auth/ReleaseSession/",
+        //        //                data: JSON.stringify(param),
+        //        //                cache: false,
+        //        //                contentType: "application/json; charset=utf-8",
+        //        //                success: function (data) {
+        //        //                },
+        //        //                error: function (xhr, ajaxOptions, thrownError) {
+        //        //                    //log error
+        //        //                }
+        //        //            });
+
+        //        //        }
+        //        //    } else {
+        //        //        sessLogOut();
+        //        //    }
+        //        //});
+
+
+        //        var active = confirm('Your session will expire in ' +
+        //        (sess_expirationMinutes - sess_warningMinutes) +
+        //        ' minutes (as of ' + now.toTimeString() + ')' + 'press OK to remain logged in ' +
+        //        'or press Cancel to log off. ' + ' \nIf you are logged off any changes will be lost.');
+        //        if (active == true) {
+        //            now = new Date();
+        //            diff = now - sess_lastActivity;
+        //            diffMins = (diff / 1000 / 60);
+        //            if (diffMins > sess_expirationMinutes) {
+        //                sessLogOut();
+        //            }
+        //            else {
+        //                ReleaseSession();
+        //            }
+        //        }
+        //        else {
+        //            sessLogOut();
+        //        }
+        //    }
+        //}
+
+        //initSession();
+
+
+    </script>
+
+
+    <!-- Your GOOGLE ANALYTICS CODE Below -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+</body>
+</html>

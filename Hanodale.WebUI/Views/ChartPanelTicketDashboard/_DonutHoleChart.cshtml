@@ -1,0 +1,62 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelTicketDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+}
+<!-- row -->
+<div class="row">
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+        <div class="jarviswidget jarviswidget-color-darken" id="wid-id-39903"
+            data-widget-editbutton="false"
+            data-widget-colorbutton="false">
+            <div>
+                <!-- widget edit box -->
+                <div class="jarviswidget-editbox">
+                    <!-- This area used as dropdown edit box -->
+                </div>
+                <!-- end widget edit box -->
+
+                <!-- widget content -->
+                <div class="widget-body no-padding ">
+                    <div style="padding: 20px;">
+                        @foreach (var item in Model.lstDonutHole)
+                        {
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div id="charPanelTicketDashboard" style="text-align: center">
+                                    <div class="chartPieTitle">@Resources.PAGE_HEADER_CHART_PANEL_TITLE_TICKET</div>
+                                    <div class="chartPiePanelStatusMessage">@string.Format(Resources.PAGE_HEADER_CHART_PANEL_LABEL_LAST_LOADED_DATA, Model.loadedDateFromString, Model.loadedDateToString). @string.Format(Resources.PAGE_HEADER_CHART_PANEL_LABEL_LAST_UPDATED_LONG_STRING_DATE, Model.lastUpdatedDateString, Model.lastUpdatedTimeString)</div>
+                                    <div class="easyPieChartFrame">
+                                        <div class="percentage easyPieChart" data-percent="@item.valuePercentage" data-provide="easypie" data-bar-color="@item.backColor" data-track-color="#ededed" data-scale-color="#000000" data-line-width="9">
+                                            <p class="centerTitle">@item.valueStr</p>
+                                        </div>
+                                        <p class="chartTitleLabel">
+                                            <a class="viewDetail" data-id="@item.type" >@item.title</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="downloadMainBox">
+                            <a class="download" data-id="charPanelTicketDashboard" data-name="@Resources.PAGE_HEADER_CHART_PANEL_TITLE_TICKET" title="@Resources.LABEL_DOWNLOAD_AS_PDF"><i class="fa fa-lg fa-fw fa-download"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<script>
+    drowCHart()
+    function drowCHart() {
+        $('div[data-provide="easypie" ]').easyPieChart({
+            lineWidth: 8,
+            lineCap: 'square',
+            scaleLength: 0,
+        });
+    }
+</script>

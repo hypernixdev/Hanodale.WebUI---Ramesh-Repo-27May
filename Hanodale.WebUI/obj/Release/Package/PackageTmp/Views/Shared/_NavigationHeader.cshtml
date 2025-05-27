@@ -1,0 +1,179 @@
+﻿@model Hanodale.WebUI.Models.UserModel
+@using Hanodale.Utility.Globalize
+@using System.Configuration
+@using Hanodale.WebUI.Helpers
+
+@{
+    Layout = null;
+}
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding row-flex navigation-header flex-center-align">
+    <div id="logo-group" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 nPadding row-flex flex-center-align">
+        <!-- PLACE YOUR LOGO HERE -->
+        <span id="logo" style="margin-top: 0px!important;">
+@*            <img src="~/Content/img/smartasset.png" alt="SmartAdmin">*@
+            <img src="~/Content/Login/logo.png" style="width:80px"  />
+        </span>
+        <span id="activity" style="margin-top: 0px!important; color: red; width: 27px; height: 27px" class="activity-dropdown"><i class="fa fa-bell"></i><b class="badge  bounceIn animated"></b></span>
+        <div class="ajax-dropdown" style="display: none;">
+            <div style="margin-bottom: 10px">
+                <span>Last updated on:</span> <span id="headerNotificationLastUpdatedDate"></span>
+
+                <button type="button" id="reloadNotification" class="btn btn-xs btn-default  reloadNotification"><i class="fa fa-refresh fa-spin"></i>Reload</button>
+
+            </div>
+            <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+            <div class="btn-group btn-group-justified" data-toggle="buttons">
+                <label class="btn btn-default active changeList " id="1" style="padding: 7px;">
+                    <input type="radio" name="activity1">
+                    New Tickets
+                    <br />
+                    <div style="text-align: center;">(<span id="headerNotificationCount"></span>)</div>
+                </label>
+            </div>
+
+            <!-- notification content -->
+            <div class="ajax-notifications_1 notificationInnerContentBox custom-scroll">
+            </div>
+
+        </div>
+
+        
+    </div>
+
+    <!-- projects dropdown -->
+    <div class="project-context1 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+        @if (@Model.roleName != "Supplier")
+        {
+            @Html.Action(MVC.Navigation.LoadMainCostCenter())
+        }
+    </div>
+    <!-- end projects dropdown -->
+
+    <!-- pulled right: nav area -->
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 row-flex left-header-kit flex-center-align no-padding">
+
+        <!-- collapse menu button -->
+        <div id="hide-menu" class="btn-header ">
+            <span><a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a></span>
+        </div>
+
+        <div class="dropdown">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle-btn" data-toggle="dropdown">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="./ChangePassword" data-action="changePassword"><i class="fa fa-arrow-down"></i><u>C</u>hange Password</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i>Full <u>S</u>creen</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="~/Auth/SignOut" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i><strong><u>L</u>ogout</strong></a>
+            </div>
+        </div>
+        @*
+        @Html.Action("GetLanguage", "SiteLanguage")
+        *@
+
+        @if (@Model.roleName != "Supplier")
+        {
+
+            <div class="dropdown">
+                <button id="introduction" type="button" class="btn btn-sm btn-primary dropdown-toggle-btn dropdown-toggle" data-toggle="dropdown">
+                    <span>
+                        @Resources.USER_MANUAL_PDF_USER_MANUAL
+                    </span>
+                    <i class="fa fa-list"></i>
+
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="#" data-pdf-name="1 Introduction.pdf" title="@Resources.USER_MANUAL_PDF_INTRODUCTION" data-title="@Resources.USER_MANUAL_PDF_INTRODUCTION" class="dropdown-item padding-8 showPDFFiles">@Resources.USER_MANUAL_PDF_INTRODUCTION</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" data-pdf-name="4 Maintenance.pdf" title="@Resources.USER_MANUAL_PDF_MAINTENANCE" data-title="@Resources.USER_MANUAL_PDF_MAINTENANCE" class="dropdown-item padding-8 showPDFFiles">@Resources.USER_MANUAL_PDF_MAINTENANCE</a>
+                    <a href="#" data-pdf-name="7 HelpDesk Ticket.pdf" title="@Resources.USER_MANUAL_PDF_HELPDESK_TICKET" data-title="@Resources.USER_MANUAL_PDF_HELPDESK_TICKET" class="dropdown-item padding-8 showPDFFiles">@Resources.USER_MANUAL_PDF_HELPDESK_TICKET</a>
+                    <a href="#" data-pdf-name="8 Configuration.pdf" title="@Resources.USER_MANUAL_PDF_CONFIGURATION" data-title="@Resources.USER_MANUAL_PDF_CONFIGURATION" class="dropdown-item padding-8 showPDFFiles">@Resources.USER_MANUAL_PDF_CONFIGURATION</a>
+                    <a href="#" data-pdf-name="9 Smart Apps.pdf" title="@Resources.USER_MANUAL_MOBILEAPP" data-title="@Resources.USER_MANUAL_MOBILEAPP" class="dropdown-item padding-8 showPDFFiles">@Resources.USER_MANUAL_MOBILEAPP</a>
+                </div>
+            </div>
+            @*
+                        <a href="~/Auth/DownloadFile?path=MAHB280319.apk">
+                            <img src="~/Images/Dashboard/app.jpg" alt="Smart Apps" width="30" height="30" border="0" title="Download Mobile APK" /></a>
+                *@
+                    }
+
+                </div>
+                <!-- end pulled right: nav area -->
+
+            </div>
+
+            @*<script type="text/javascript">
+
+                $(document).ready(function () {
+                    $(document).on('click', '.downloadFile', function (e) {
+                        var pdfName = $(this).attr("data-pdf-name");
+                        window.open("PDF_Files/" + pdfName, "User Manual", "width=800,height=600,scrollbars=yes, target=_blank");
+                    });
+
+                    var sses_LoadNotification;
+                    $(document).on("click", '.changeList', function () {
+                        //$('.changeList').live('click', function () {
+                        $('.custom-scroll').hide();
+                        $('.ajax-notifications_' + $(this).attr('id')).show();
+                    })
+                    $(document).on("click", '#reloadNotification', function () {
+                        //$('#reloadNotification').live('click', function () {
+
+                        clearInterval(sses_LoadNotification);
+                        LoadNotification();
+                        sses_LoadNotification = setInterval(function () { LoadNotification(); }, 60000);
+                    })
+
+
+                    $(document).ready(function () {
+                        sses_LoadNotification = setInterval(function () { LoadNotification(); }, 60000);
+                        LoadNotification()
+                    })
+
+                    function LoadNotification() {
+                        //load view without postback
+
+                        $.ajax({
+                            type: "POST",
+                            url: "Dashboard/MyNotifications/",
+                            data: {},
+                            cache: false,
+                            hideLoading: true,
+                            hideError: true,
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                if (data.status == "Erorr") {
+                                }
+                                else {
+                                    $('#headerNotificationLastUpdatedDate').text(data.loadDate)
+                                    $('.bounceIn').html(data.totalCount)
+                                    $('.ajax-notifications_1').html(data.notificationList)
+                                    $('.ajax-notifications_2').html(data.instructionList)
+                                    $('.ajax-notifications_3').html(data.programPlanningList)
+                                    $('#headerNotificationCount').text(data.notificationCount)
+                                    $('#headerInstructionCount').text(data.instructionCount)
+                                    $('#headerProgramCount').text(data.programPlanningCount)
+                                    $('#reloadNotification').prop('disabled', false)
+                                    $('#reloadNotification').removeClass('disabled')
+                                }
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                //log error
+                                //_showErrorMessage();
+                            }
+                        });
+
+
+                    }
+                    $(document).on("click", '#notifiDashboard', function () {
+                        //$('#notifiDashboard').live('click', function () {
+                        var data_sub = $(this).attr('data-sub');
+                        $('ul.nav-list li a[data-sub="' + data_sub + '"]').trigger('click');
+                        $('#activity.activity-dropdown').trigger('click');
+                    })
+                })
+
+            </script>*@

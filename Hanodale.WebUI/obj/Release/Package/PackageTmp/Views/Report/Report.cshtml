@@ -1,0 +1,16 @@
+﻿@model Hanodale.WebUI.Models.FileHistoryViewModel
+<style>
+   .report .modal-dialog {
+        width: 60%;
+        height:900px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+</style>
+<input id="user-id" type="hidden" value="@Model.user_Id" />
+<input id="report-id" type="hidden" value="@Model.totalRecords" />
+<div id="dialog" data-value="@Model.user_Id" data-url="@Model.totalRecords">
+
+    <iframe id="ifrmReportViewer"  style="width:100%;height:100%;min-height: 450px;overflow:auto; border:hidden" ></iframe>
+ 
+</div>

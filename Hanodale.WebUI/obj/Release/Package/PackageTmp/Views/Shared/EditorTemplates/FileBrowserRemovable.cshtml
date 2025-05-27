@@ -1,0 +1,13 @@
+﻿@model string
+@{
+    var domainObjectId = ViewBag.dataValue;
+    //if (domainObjectId == null || domainObjectId=="undefined"){
+    //    domainObjectId = new List<SelectListItem>();
+    //}
+    ViewData.Add("rows", "2");
+}
+
+@*@Html.TextBoxFor(model=>model,ViewData)*@
+
+<span class="button" data-role="removeFile" style="margin-right: 105px;">Remove</span><span class="button" data-role="changeFile">Change File</span>@Html.TextBoxFor(model=>model, Model, new { @placeholder="Select File" , @readonly="", data_id = "URLPath", })
+

@@ -1,0 +1,42 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+@if (Model.canView)
+{
+    <span class="star view-organization btn btn-ribbon " data-url="ORGANIZATION_ID" title="View" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye"></i>
+    </span>
+}
+@if (Model.canView)
+{
+    <span class="check maintenance-view-organization btn btn-ribbon " data-url="ORGANIZATION_ID" title="View" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye"></i>
+    </span>
+}
+@if (Model.canAdd)
+{
+    <span class="pencil add-organization btn btn-ribbon " data-url="ORGANIZATION_ID" title="Add Sub Item" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-pencil "></i>
+    </span>
+}
+@if (Model.canEdit)
+{
+    <span class="eye maintenance-organization btn btn-ribbon " data-url="ORGANIZATION_ID" title="Edit" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}
+@if (Model.canEdit)
+{
+    
+    <span id="pencil" class="trash btn btn-ribbon edit-organization" data-url="ORGANIZATION_ID" data-placement="bottom" title="Edit" data-rel="tooltip">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}
+@if (Model.canDelete)
+{
+    <span id="trash" class="btn btn-ribbon delete-organization" data-url="ORGANIZATION_ID" data-placement="bottom" title="Delete" data-rel="tooltip">
+        <i class="fa fa-trash-o "></i>
+    </span>
+}

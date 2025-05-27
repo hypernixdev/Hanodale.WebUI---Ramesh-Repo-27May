@@ -1,0 +1,70 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelTicketDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+<!-- Hidden Variable -->
+<input type="hidden" id="type" value="@Model.type" />
+<input type="hidden" id="section" value="@Model.section" />
+<!-- Hidden Variable -->
+<input type="hidden" id="dashboardName" value="@Model.dashboardBoxName" />
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<div class="row-flex">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:right">
+<button id="back-to-dashboard" class="btn btn-sm btn-primary" style="margin-bottom:10px" type="button" data-url="Dashboard/Dashboard">
+                                                <i class="fa fa-mail-reply"></i>
+                                                @Resources.BTN_BACK
+                                            </button>
+        </article>
+    </div>
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-sm-12">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-46358"
+                data-widget-editbutton="false"
+                data-widget-colorbutton="false"
+                @*data-widget-deletebutton="false"
+                
+                data-widget-fullscreenbutton="true"
+				data-widget-custombutton="false"
+                data-widget-togglebutton="true"
+				data-widget-collapsed="false"
+                data-widget-sortable="true"*@
+                >
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+                    <h2>@Resources.REPORT_INFO</h2>
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding ">
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+
+<script>
+    $('#back-to-dashboard').on("click", function () {
+
+        var url = $(this).attr("data-url")
+        var param = { dashboardBoxName: $("#dashboardName").val() }
+        if (dashboardName) {
+            navigate.viewByParameter(url, param);
+        }
+    })
+</script>

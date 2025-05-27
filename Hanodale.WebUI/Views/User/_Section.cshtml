@@ -1,0 +1,361 @@
+﻿@model Hanodale.WebUI.Models.UserModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    Layout = null;
+}
+<div class="jarviswidget jarviswidget-sortable" id="purchaseWidget"  data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="display: block" role="widget">
+
+        <header role="heading">
+            <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+            <div class="widget-toolbar" role="menu">
+                <a data-toggle="dropdown" class="dropdown-toggle1 color-box selector" href="javascript:void(0);"></a>
+                <ul class="dropdown-menu dropdown-menu-right arrow-box-up-right color-select pull-right">
+                    <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
+                    <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
+                    <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
+                    <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
+                    <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
+                    <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
+                    <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
+                    <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
+                    <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
+                    <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
+                    <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
+                    <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
+                    <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
+                    <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
+                    <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
+                    <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
+                    <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
+                    <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
+                    <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">Remove</a></li>
+                </ul>
+            </div>
+            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+           <h2>@Resources.USER_EMPLOYEE_INFO</h2>
+            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+        </header>
+
+        <!-- widget div-->
+        <div role="content">
+
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+                <!-- This area used as dropdown edit box -->
+
+            </div>
+            <!-- end widget edit box -->
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+
+                <fieldset>
+                    <div class="smart-form">
+
+                         <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.employeeNo, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-user"></i>
+                                                                @Html.EditorFor(model => model.employeeNo, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.employeeNo) })
+                                                                @Html.ValidationMessageFor(m => m.employeeNo)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.salaryId, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-user"></i>
+                                                                @Html.EditorFor(model => model.salaryId, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.salaryId) })
+                                                                @Html.ValidationMessageFor(m => m.salaryId)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.department, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-pencil"></i>
+                                                                @Html.EditorFor(model => model.department, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.department) })
+                                                                @Html.ValidationMessageFor(m => m.department)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.jobTitle, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-pencil"></i>
+                                                                @Html.EditorFor(model => model.jobTitle, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.jobTitle) })
+                                                                @Html.ValidationMessageFor(m => m.jobTitle)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.mobileNo, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-phone"></i>
+                                                                @Html.EditorFor(model => model.mobileNo, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.mobileNo) })
+                                                                @Html.ValidationMessageFor(m => m.mobileNo)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.officeNo, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-phone"></i>
+                                                                @Html.EditorFor(model => model.officeNo, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.officeNo) })
+                                                                @Html.ValidationMessageFor(m => m.officeNo)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.address, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="textarea">
+                                                                <i class="icon-append fa fa-comment-o"></i>
+                                                                @Html.EditorFor(model => model.address, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.address) })
+                                                                @Html.ValidationMessageFor(m => m.address)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.gred, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="select">
+                                                                @Html.EditorFor(model => model.gred, new { @class = "", dataValue = Model.lstGred })
+                                                                @Html.ValidationMessageFor(m => m.gred)
+                                                                <i></i>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.idNo, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-pencil"></i>
+                                                                @Html.EditorFor(model => model.idNo, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.idNo) })
+                                                                @Html.ValidationMessageFor(m => m.idNo)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.birthDate, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            @Html.EditorFor(model => model.birthDate, new { @id = "birthDate", @class = "datepicker form-control date-picker" })
+                                                            @Html.ValidationMessageFor(m => m.birthDate)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.age, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-pencil"></i>
+                                                                @Html.TextBoxFor(model => model.age, new { @id = "age", @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.age), @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(m => m.age)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.accountNo, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-pencil"></i>
+                                                                @Html.EditorFor(model => model.accountNo, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.accountNo) })
+                                                                @Html.ValidationMessageFor(m => m.accountNo)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.bankId, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="select">
+                                                                @Html.EditorFor(model => model.bankId, new { @class = "", dataValue = Model.lstBank })
+                                                                @Html.ValidationMessageFor(m => m.bankId)
+                                                                <i></i>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.salaryAmount, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-money"></i>
+                                                                @Html.EditorFor(model => model.salaryAmount, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.salaryAmount) })
+                                                                @Html.ValidationMessageFor(m => m.salaryAmount)
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.employeegroupId, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="select">
+                                                                @Html.EditorFor(model => model.employeegroupId, new { @class = "", dataValue = Model.lstEmployeeGroup })
+                                                                @Html.ValidationMessageFor(m => m.employeegroupId)
+                                                                <i></i>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.entryDate, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            @Html.EditorFor(model => model.entryDate, new { @class = "datepicker form-control date-picker" })
+                                                            @Html.ValidationMessageFor(m => m.entryDate)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.expireddate, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            @Html.EditorFor(model => model.expireddate, new { @class = "datepicker form-control date-picker" })
+                                                            @Html.ValidationMessageFor(m => m.expireddate)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    @Html.LabelFor(model => model.yearofservice, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                        <div class="clearfix">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-pencil"></i>
+                                                                @Html.TextBoxFor(model => model.yearofservice, new { @id = "yearofservice", @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.yearofservice), @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(m => m.yearofservice)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                        
+
+                        
+
+
+                        
+
+
+                        
+                        
+                        
+
+                    </div>
+                </fieldset>
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+    </div>

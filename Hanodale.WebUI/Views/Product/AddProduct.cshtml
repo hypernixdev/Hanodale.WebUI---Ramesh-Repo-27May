@@ -1,0 +1,675 @@
+﻿@model Hanodale.WebUI.Models.ViewOrderItemModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    if (Model.partNum == null)
+    {
+        ViewBag.Title = "Add/Edit Product";
+    }
+
+    Layout = null;
+    var labelText = "Product Code";
+}
+<style>
+    .required-label::before {
+        content: "*";
+        color: red;
+        margin-right: 5px;
+    }
+
+    .removerequired-label::before {
+        content: "";
+        color: transparent;
+        margin-right: 5px;
+    }
+
+    .d-none {
+        display: none;
+    }
+</style>
+
+<!-- Hidden Variable -->
+<input type="hidden" id="MSG_CONFIRM_SAVE" value="@Html.GetGlobalResource("MSG_CONFIRM_SAVE")">
+<input type="hidden" id="MSG_CONFIRM_UPDATE" value="@Html.GetGlobalResource("MSG_CONFIRM_UPDATE")">
+
+<!-- Hidden Variable -->
+
+<div class="widget-body">
+</div>
+
+<div id="content" style="opacity: 1; border: none">
+    <div class="row-flex">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-plus-circle fa-fw "></i>
+
+                @(string.IsNullOrEmpty(Model.partNum) ? Html.GetGlobalResource("PRODUCT_ADDPRODUCT") : Html.GetGlobalResource("PRODUCT_EDITPRODUCT"))
+
+
+
+            </h1>
+        </div>
+    </div>
+
+
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <div class="row">
+            <div id="message" class="alert alert-success" style="display: none"></div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal" }))
+            {@Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.product_Id)
+
+            <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <!-- end widget -->
+
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+                    <header role="heading">
+                        <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+
+                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                        <h2>@Html.GetGlobalResource("PRODUCT_INFO")</h2>
+                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                    </header>
+
+                    <!-- widget div-->
+                    <div role="content">
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+
+                            <fieldset>
+                                <input type="hidden" name="product_Id" value="@Model.product_Id" class="product_Id" />
+                                <input type="hidden" name="partNum" value="@Model.partNum" class="partNum" />
+                                <div class="smart-form">
+
+
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" for="code">@labelText</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-pencil"></i>
+                                                    @Html.EditorFor(model => model.code, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.code), @readonly = "readonly" })
+                                                    @Html.ValidationMessageFor(m => m.code)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" for="code">Description</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-pencil"></i>
+                                                    @Html.EditorFor(model => model.description, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.description), @readonly = "readonly" })
+                                                    @Html.ValidationMessageFor(m => m.description)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" for="code">Product Group</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-pencil"></i>
+                                                    @Html.EditorFor(model => model.prodGroup, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.prodGroup), @readonly = "readonly" })
+                                                    @Html.ValidationMessageFor(m => m.prodGroup)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label required-label" for="orderType">Order Type</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <select class="form-control selectOrderType" id="OrderType" style="border:0px !important" required>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" for="orderQty" required>Order Quantity</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-pencil"></i>
+                                                    @Html.EditorFor(model => model.orderQty, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.orderQty) })
+                                                    @Html.ValidationMessageFor(m => m.orderQty)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label required-label" for="orderQtyUOM">Order Quantity UOM</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <select class="form-control selectOrderUOM" id="OrderUOM">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label removerequired-label" for="operationStyle" required>Operation Style</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <select class="form-control selectOperationStyle" id="OperationStyle" style="border:0px !important">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label removerequired-label" for="operationCost">Operation Cost</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-pencil"></i>
+                                                    @Html.EditorFor(model => model.operationCost, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.operationCost), @readonly = "readonly" })
+                                                    @Html.ValidationMessageFor(m => m.operationCost)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label removerequired-label" for="complimentry">Complimentary</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <select class="form-control selectComplimentary" id="Complimentary" style="border:0px !important">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label removerequired-label" for="unitCost">Unit Price</label>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                            <div class="clearfix">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-pencil"></i>
+                                                    @Html.EditorFor(model => model.unitPrice, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.unitPrice), @readonly = "readonly" })
+                                                    @Html.ValidationMessageFor(m => m.unitPrice)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </fieldset>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+            </article>
+
+
+            <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <!-- end widget -->
+
+                <div class="jarviswidget jarviswidget-color-blueDark jarviswidget-sortable" id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+
+                    <!-- widget div-->
+                    <div role="content">
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <footer id="btnSection">
+                                <div class="form-group">
+
+                                    <div class="col-md-2"></div>
+                                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+
+
+
+                                        <button id="save-product" class="btn btn-sm btn-primary" data-value="save" type="button">
+                                            <i class="fa fa-save"></i>
+                                            @(string.IsNullOrEmpty(Model.partNum) ? Html.GetGlobalResource("BTN_SAVE") : Html.GetGlobalResource("BTN_UPDATE"))
+
+                                        </button>
+
+                                        <button class="btn btn-sm btn-primary" type="button" id="Cancel">
+                                            <i class="fa fa-refresh"></i>
+                                            @Html.GetGlobalResource("BTN_CANCEL")
+                                        </button>
+
+                                        @*<button id="back-product" class="btn btn-sm btn-primary" type="button" data-url="Product/Index">
+                                                <i class="fa fa-mail-reply"></i>
+                                                @Html.GetGlobalResource("BTN_BACK")
+                                            </button>*@
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+            </article>
+
+        }
+
+
+
+
+        </div>
+
+        <!-- END ROW -->
+        <!-- NEW ROW -->
+        <!-- END ROW-->
+
+    </section>
+
+
+
+</div>
+
+
+<!-- Protected Script -->
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+$(document).ready(function () {
+  // Load dropdown options dynamically
+    function loadDropdown(url, selectElement, selectedValue) {
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                selectElement.empty().append(new Option('', '', true, true)); // Placeholder option
+                $.each(data.ModuleItems, function (index, item) {
+                    selectElement.append(new Option(item.name, item.id));
+                });
+                // Initialize Select2
+                selectElement.select2({
+                    placeholder: "Select an option",
+                    allowClear: true
+                });
+                // Set the selected value if available
+                if (selectedValue > 0) {
+                    selectElement.val(selectedValue).trigger('change');
+                } else {
+                    selectElement.val('').trigger('change');
+                }
+            }
+        });
+    }
+
+    // Initialize dropdowns
+    var $operationStyleSelect = $('.selectOperationStyle');
+    var $complimentarySelect = $('.selectComplimentary');
+    var $orderTypeSelect = $('.selectOrderType');
+    var $uomSelect = $('.selectOrderUOM');
+
+
+     // Preload values from the model (if any)
+    var preselectedOrderType = @((Model.QtyType_ModuleItem_Id ?? 0)); // OrderType preloaded value
+    var preselectedUOM = @((Model.OrderUOM_Id ?? 0)); // UOM preloaded value
+
+    loadDropdown('@Url.Action("SearchOpertionalStyle", "Product")', $operationStyleSelect, @((Model.operationStyle_ModuleItem_Id ?? 0)));
+    loadDropdown('@Url.Action("SearchComplimentary", "Product")', $complimentarySelect, @((Model.complimentary_ModuleItem_Id ?? 0)));
+    loadDropdown('@Url.Action("SearchOrderType", "Product")', $orderTypeSelect, @((Model.QtyType_ModuleItem_Id ?? 0)));
+// Function to load UOM options based on selected OrderType
+    function loadUOM(orderTypeId, selectedUOM) {
+        if (orderTypeId) {
+            $.ajax({
+                url: '@Url.Action("SearchOrderUOM", "Product")',
+                type: "POST",
+                data: { orderTypeId: orderTypeId },
+                dataType: "json",
+                success: function (data) {
+                    $uomSelect.empty().append(new Option('', '', true, true)); // Placeholder option
+                    $.each(data.OrderUOM, function (index, item) {
+                        $uomSelect.append(new Option(item.code, item.id));
+                    });
+
+                    // Reinitialize Select2 and set the selected UOM if available
+                    $uomSelect.select2({
+                        placeholder: "Select UOM",
+                        allowClear: true
+                    }).val(selectedUOM || '').trigger('change');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading UOMs:', error);
+                }
+            });
+        }
+    }
+
+    // Handle OrderType change and load corresponding UOM
+    $(document).on('change', '.selectOrderType', function () {
+        var orderTypeId = $(this).val();
+        loadUOM(orderTypeId, null); // When user changes OrderType, don't preselect any UOM
+    });
+
+    // If an OrderType is preloaded, load corresponding UOM options
+    if (preselectedOrderType) {
+        loadUOM(preselectedOrderType, preselectedUOM); // Pass preselected UOM value
+    }
+
+});
+
+
+
+</script>
+
+
+
+
+<script>
+    $(document).ready(function () {
+         
+        // Attach change event to Operation Style dropdown
+        $(document).on('change', '.selectOperationStyle', function () {
+            var operationStyleId = $(this).val();
+
+
+            if (operationStyleId) {
+                $.ajax({
+                    url: '@Url.Action("GetOperationStyleRemarks", "Product")',
+                    type: "POST",
+                    data: { operationStyleId: operationStyleId },
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.Remarks) {
+                            // Bind the Remarks to the input textbox
+                            $('input[name="operationCost"]').val(data.Remarks.remarks);
+                        } else {
+                            alert('Error retrieving remarks.');
+                        }
+                    }
+                });
+            }
+        });
+        $(document).on('change', '.selectComplimentary', function () {
+            var complimentaryId = $(this).val();
+
+
+            if (complimentaryId) {
+                $.ajax({
+                    url: '@Url.Action("GetremarksComplimentary", "Product")',
+                    type: "POST",
+                    data: { complimentaryId: complimentaryId },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Remarks) {
+                            // Bind the Remarks to the input textbox
+                            $('input[name="unitPrice"]').val(data.Remarks.remarks);
+                        } else {
+                            alert('Error retrieving remarks.');
+                        }
+                    }
+                });
+            }
+        });
+        $(document).off("change", ".selectOrderType").on("change", ".selectOrderType", function () {
+             
+    var orderTypeId = $(this).val();
+    if (orderTypeId) {
+        $.ajax({
+            url: '@Url.Action("SearchOrderUOM", "Product")',
+            type: "POST",
+            data: { orderTypeId: orderTypeId },
+            dataType: "json",
+            success: function (data) {
+                var $uomSelect = $('.selectOrderUOM');
+                $uomSelect.css('border', '1px solid #ccc');
+                // Destroy existing Select2 instance if it exists
+                if ($uomSelect.data('select2')) {
+                    $uomSelect.select2('destroy');
+                }
+
+                // Clear current options
+                $uomSelect.empty();
+
+                // Add a placeholder option
+                $uomSelect.append(new Option('', '', true, true)); // Placeholder
+
+                // Append new options
+                $.each(data.OrderUOM, function (index, item) {
+                    $uomSelect.append(new Option(item.code, item.id));
+                });
+
+
+                // Reset to placeholder
+                $uomSelect.val(null).trigger('change');
+            },
+            error: function (xhr, status, error) {
+                console.error('Error loading UOMs:', error);
+            }
+        });
+    }
+});
+
+
+    $(document).off("click", "#Cancel").on("click", "#Cancel", function () {
+        var storedOrderData = JSON.parse(localStorage.getItem('orderData'));
+        var orderData = {
+            orderNum: storedOrderData.orderNum,
+            customer_Id: storedOrderData.customer_Id,
+            priceTier: storedOrderData.priceTier,
+            shipToAddress_Id: storedOrderData.shipToAddress_Id,
+            orderDate: storedOrderData.orderDate,
+            orderComment: '', // Add a textarea for comments if needed
+            OrderItems: [],
+            orderStatus: storedOrderData.orderStatus,
+            productSearch: storedOrderData.productSearch
+        };
+         
+        if (storedOrderData.OrderItems.length > 0 && storedOrderData.OrderItems[0].partNum != '') {
+            for (let i = 0; i < storedOrderData.OrderItems.length; i++) {
+
+                var item = {
+                    partNum: storedOrderData.OrderItems[i].partNum,
+                    parCode: storedOrderData.OrderItems[i].parCode,
+                    description: storedOrderData.OrderItems[i].description,
+                    prodGroup: storedOrderData.OrderItems[i].prodGroup,
+                    product_Id: storedOrderData.OrderItems[i].product_Id, // Assuming salesUm is the same as ium
+                    QtyType_ModuleItem_Id: storedOrderData.OrderItems[i].QtyType_ModuleItem_Id,
+                    orderQty: storedOrderData.OrderItems[i].orderQty,
+                    OrderUOM: storedOrderData.OrderItems[i].OrderUOM,
+                    OrderUOM_Id: storedOrderData.OrderItems[i].OrderUOM_Id,// Add a field for discount if needed
+                    operationStyle_ModuleItem_Id: storedOrderData.OrderItems[i].operationStyle_ModuleItem_Id,
+                    operationCost: storedOrderData.OrderItems[i].operationCost,
+                    complimentary_ModuleItem_Id: storedOrderData.OrderItems[i].complimentary_ModuleItem_Id,
+                    unitPrice: parseFloat(storedOrderData.OrderItems[i].unitPrice).toFixed(2),
+                    productSearch: storedOrderData.OrderItems[i].productSearch,// Assuming listPrice is the same as unitPrice
+                };
+                orderData.OrderItems.push(item);
+            }
+        }
+        localStorage.setItem('orderDataAfterAddProd', JSON.stringify(orderData))
+
+        var partName = "Orders/";
+        var readOnly = false;
+        var destInner = $(this).closest('div.page-content').attr("id")
+        var actionUrl = partName + "Create/";
+        var elem = $('.table-congif[value="' + partName + '"]');
+        var destOuter = $(elem).attr('data-edit-dest');
+        var businessId = $(elem).attr("data-filterId")
+
+        if (actionUrl) {
+            if (destInner) {
+                navigate.navigateElementByParameter(actionUrl, orderData, $("#" + destInner));
+            } else if (destOuter) {
+                navigate.navigateElementByParameter(actionUrl, orderData, $(destOuter));
+            }
+            else {
+                navigate.viewByParameter(actionUrl, orderData);
+            }
+        }
+    });
+
+        $('#save-product').on('click', function () {
+             
+            // Perform validation checks
+            var orderType = $('#OrderType').val();
+            var orderQty = $('#orderQty').val();
+            var orderUOM = $('#OrderUOM').val();
+
+            // Check if required fields are selected or filled
+            if (!orderType || orderQty==0 || !orderUOM) {
+                // Show error message if any required field is missing
+                alert('Please fill in all required fields: Order Type, Order Quantity, and Order UOM.');
+                return; // Exit the function if validation fails
+            }
+        var storedOrderData = JSON.parse(localStorage.getItem('orderData'));
+
+
+        if (storedOrderData) {
+
+
+            var orderData = {
+                orderNum: storedOrderData.orderNum,
+                customer_Id: storedOrderData.customer_Id,
+                priceTier: storedOrderData.priceTier,
+                shipToAddress_Id: storedOrderData.shipToAddress_Id,
+                orderDate: storedOrderData.orderDate,
+                orderComment: '', // Add a textarea for comments if needed
+                 OrderItems : [],
+                orderStatus: storedOrderData.orderStatus,
+                productSearch: storedOrderData.productSearch
+            };
+
+             
+            if (storedOrderData.OrderItems.length > 0 && storedOrderData.OrderItems[0].partNum!='') {
+                for (let i = 0; i < storedOrderData.OrderItems.length; i++) {
+
+                    var item = {
+                        partNum: storedOrderData.OrderItems[i].partNum,
+                        parCode: storedOrderData.OrderItems[i].parCode,
+                        description: storedOrderData.OrderItems[i].description,
+                        prodGroup: storedOrderData.OrderItems[i].prodGroup,
+                        product_Id: storedOrderData.OrderItems[i].product_Id, // Assuming salesUm is the same as ium
+                        QtyType_ModuleItem_Id: storedOrderData.OrderItems[i].QtyType_ModuleItem_Id,
+                        orderQty: storedOrderData.OrderItems[i].orderQty,
+                        OrderUOM: storedOrderData.OrderItems[i].OrderUOM,
+                        OrderUOM_Id: storedOrderData.OrderItems[i].OrderUOM_Id,// Add a field for discount if needed
+                        operationStyle_ModuleItem_Id: storedOrderData.OrderItems[i].operationStyle_ModuleItem_Id,
+                        operationCost: storedOrderData.OrderItems[i].operationCost,
+                        complimentary_ModuleItem_Id: storedOrderData.OrderItems[i].complimentary_ModuleItem_Id,
+                        unitPrice: parseFloat(storedOrderData.OrderItems[i].unitPrice).toFixed(2),
+                        productSearch: storedOrderData.OrderItems[i].productSearch,// Assuming listPrice is the same as unitPrice
+                    };
+                    orderData.OrderItems.push(item);
+                }
+                 
+                var param = {
+                    partNum: $('.partNum').val(),
+                    parCode: $('#code').val(),
+                    description: $('#description').val(),
+                    prodGroup: $('#prodGroup').val(),
+                    product_Id: $('#product_Id').val(),
+                    QtyType_ModuleItem_Id: $('#OrderType').val(),
+                    orderQty: $('#orderQty').val(),
+                    OrderUOM_Id: $('#OrderUOM').val(),
+                    OrderUOM: $('#OrderUOM option:selected').text(),
+                    operationStyle_ModuleItem_Id: $('#OperationStyle').val(),
+                    operationCost: $('#operationCost').val(),
+                    complimentary_ModuleItem_Id: $('#Complimentary').val(),
+                    unitPrice: $('#unitPrice').val(),
+                    productSearch: storedOrderData.productSearch
+                };
+                orderData.OrderItems.push(param);
+            }
+            else {
+                 
+                var param = {
+                    partNum: $('.partNum').val(),
+                    parCode: $('#code').val(),
+                    description: $('#description').val(),
+                    prodGroup: $('#prodGroup').val(),
+                    product_Id: $('#product_Id').val(),
+                    QtyType_ModuleItem_Id: $('#OrderType').val(),
+                    orderQty: $('#orderQty').val(),
+                    OrderUOM_Id: $('#OrderUOM').val(),
+                    OrderUOM: $('#OrderUOM option:selected').text(),
+                    operationStyle_ModuleItem_Id: $('#OperationStyle').val(),
+                    operationCost: $('#operationCost').val(),
+                    complimentary_ModuleItem_Id: $('#Complimentary').val(),
+                    unitPrice: $('#unitPrice').val(),
+                    productSearch: storedOrderData.productSearch
+                };
+                orderData.OrderItems.push(param);
+            }
+
+
+        }
+
+        localStorage.setItem('orderDataAfterAddProd', JSON.stringify(orderData))
+
+             
+            var partName = "Orders/";
+            var readOnly = false;
+            var destInner = $(this).closest('div.page-content').attr("id")
+            var actionUrl = partName + "Create/";
+            var elem = $('.table-congif[value="' + partName + '"]');
+            var destOuter = $(elem).attr('data-edit-dest');
+            var businessId = $(elem).attr("data-filterId")
+
+            if (actionUrl) {
+                if (destInner) {
+                    navigate.navigateElementByParameter(actionUrl, orderData, $("#" + destInner));
+                } else if (destOuter) {
+                    navigate.navigateElementByParameter(actionUrl, orderData, $(destOuter));
+                }
+                else {
+                    navigate.viewByParameter(actionUrl, orderData);
+                }
+            }
+        });
+
+});
+
+</script>
+<script src="~/Scripts/OrderFunctions.js"></script>
+

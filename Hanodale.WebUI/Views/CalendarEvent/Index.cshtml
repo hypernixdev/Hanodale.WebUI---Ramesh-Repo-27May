@@ -1,0 +1,96 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<!-- Hidden Variable -->
+<input type="hidden" id="alert-delete" value ="@Resources.MSG_CONFIRM_DELETE">
+<input type="hidden" class="mainPart" value="calendarevent">
+<input type="hidden" class="table-congif" value="calendarevent" data-columncount="7" data-button="true" data-condition="false" data-extended-event-btn="false" data-auto-hide-column="true" data-export-btn="true">
+
+
+<!-- page-header -->
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>@Resources.CALENDAR_EVENT_PAGE_HEADER_MANAGE
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+        <ul id="sparks" class="">
+            <li class="sparks-info">
+                @if (@Model.canAdd)
+                {
+                    <button id="create-calendarevent" data-url="CalendarEvent/Create" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-plus"></i>
+                        @Resources.CALENDAR_EVENT_CREATE
+                    </button>
+                }
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- /.page-header -->
+
+<!-- page-content -->
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0"
+                data-widget-editbutton="false"
+                data-widget-deletebutton="false"
+                data-widget-colorbutton="false"
+                data-widget-sortable="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+                    <h2>@Resources.CALENDAR_EVENT_GRID_TITLE</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table id="dt_calendarevent" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    <th data-class="expand"><i class="fa fa-fw fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.CALENDAR_EVENT_TITLE</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-file-text text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.CALENDAR_EVENT_DESCRIPTION</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-paper-plane text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.CALENDAR_EVENT_ICON</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-paper-plane text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.CALENDAR_EVENT_COLOR</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-paper-plane text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.CALENDAR_EVENT_ALLOW_TO_SELECT</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-paper-plane text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.CALENDAR_EVENT_VISIBILITY</th>
+                                    <th class="table-column-header" style="width: 100px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+<!-- /.page-content -->
+
+<!-- Protected Script -->
+@Scripts.Render(bundles.scripts.common_index)

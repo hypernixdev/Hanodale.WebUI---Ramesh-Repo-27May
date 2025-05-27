@@ -1,0 +1,90 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+@if (Model.canView)
+{
+    <span class="viewuser btn btn-ribbon " data-url="USER_ID" data-rel="tooltip" title="View" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye "></i>
+    </span>
+}
+@if (Model.canEdit && !Model.readOnly)
+{
+    <span class="edituser btn btn-ribbon " data-url="USER_ID" data-placement="bottom" title="Edit" data-rel="tooltip" data-container="body">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}
+@if (Model.canDelete && !Model.readOnly)
+{
+    <span class="delete-user btn btn-ribbon " data-url="USER_ID" data-placement="bottom" title="Delete" data-rel="tooltip" data-container="body">
+        <i class="fa fa-trash-o "></i>
+    </span>
+}
+@if (Model.canEdit && !Model.readOnly)
+{
+    <span class="reset-password btn btn-ribbon " data-url="USER_ID" data-placement="bottom" title="Reset Password" data-rel="tooltip" data-container="body">
+        <i class="fa fa-refresh"></i>
+    </span>
+}
+@*<div  class="visible-md visible-lg hidden-sm hidden-xs action-buttons" style="width:100px;">
+    @if (Model.canEdit)
+    {
+        <a class="tooltip-info blue reset-password" id="reset-password" href="#" data-url="USER_ID" data-placement="bottom" data-rel="tooltip" title="Reset password" data-container="body">
+            <i class="fa-pencil bigger-130"></i>
+        </a>
+    }
+    @if (Model.canEdit)
+    {
+        <a class="tooltip-success green edit-user" href="#" id="edit-user" data-url="USER_ID" data-placement="bottom" data-rel="tooltip" title="Edit" data-container="body" >
+            <i class="icon-pencil bigger-130"></i>
+        </a>}
+    @if (Model.canDelete)
+    {
+        <a class="tooltip-error red delete-user" href="#" id="delete-user" data-url="USER_ID" data-placement="bottom" data-rel="tooltip" title="Delete" data-container="body">
+            <i class="icon-trash bigger-130"></i>
+        </a>
+    }
+</div>
+
+<div class="visible-xs visible-sm hidden-md hidden-lg">
+    <div class="inline position-relative">
+        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-caret-down icon-only bigger-120"></i>
+        </button>
+
+        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+            @if (Model.canEdit)
+            {
+                <li>
+                    <a href="#" class="tooltip-info reset-password" data-url="USER_ID" data-placement="bottom" data-rel="tooltip" title="Reset password">
+                        <span class="blue">
+                            <i class="icon-repeat bigger-120"></i>
+                        </span>
+                    </a>
+                </li>
+            }
+            @if (Model.canEdit)
+            {
+                <li>
+                    <a href="#" class="tooltip-success edit-user" data-url="USER_ID" data-placement="bottom" data-rel="tooltip" title="Edit">
+                        <span class="green">
+                            <i class="icon-edit bigger-120"></i>
+                        </span>
+                    </a>
+                </li>
+            }
+            @if (Model.canDelete)
+            {
+                <li>
+                    <a href="#" class="tooltip-error delete-user" data-url="USER_ID" data-placement="bottom" data-rel="tooltip" title="Delete">
+                        <span class="red">
+                            <i class="icon-trash bigger-120"></i>
+                        </span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>*@

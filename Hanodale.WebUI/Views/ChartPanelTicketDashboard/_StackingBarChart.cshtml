@@ -1,0 +1,84 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelTicketDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+}
+<!-- row -->
+<div class="row">
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+        <div class="jarviswidget jarviswidget-color-darken" id="wid-id-345093"
+            data-widget-editbutton="false"
+            data-widget-colorbutton="false">
+            <div>
+                <!-- widget edit box -->
+                <div class="jarviswidget-editbox">
+                    <!-- This area used as dropdown edit box -->
+                </div>
+                <!-- end widget edit box -->
+
+                <!-- widget content -->
+                <div class="widget-body no-padding ">
+                    <div id="stackingBarCharPanelTicketDashboard" class="widget-body no-padding placeholderChartMainContent">
+                        <div style="padding: 20px; width: 100%;">
+                            <div class="chartPieHeader">@Resources.PAGE_HEADER_CHART_PANEL_TITLE_TICKET</div>
+                            <div class="chartPiePanelStatusMessage">@string.Format(Resources.PAGE_HEADER_CHART_PANEL_LABEL_LAST_LOADED_DATA, Model.loadedDateFromString, Model.loadedDateToString). @string.Format(Resources.PAGE_HEADER_CHART_PANEL_LABEL_LAST_UPDATED_LONG_STRING_DATE, Model.lastUpdatedDateString, Model.lastUpdatedTimeString)</div>
+                            @foreach (var item in Model.lstStackingBarChart)
+                            {
+                                <div class="charPanelDashboard col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="pieChartInnerBox">
+                                        <div class="chartPieTitleLabel">
+                                            <a class="viewDetail" data-id="@item.type" >@item.title</a>
+                                            <a class="viewMoreDetail" data-id="@item.type" data-section="@item.sectionType" title="@Resources.BTN_VIEW_MORE_DETAILS"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i></a>
+                                        </div>
+                                        <div class="placeholderStackingBarChartBody" id="stackingBarCharPanelDashboardPlaceholderBody_@item.chartType"></div>
+                                        <div id="stackingBarChartLegend_@item.chartType"></div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="downloadMainBox">
+                                <a class="download" data-id="stackingBarCharPanelTicketDashboard" data-name="@Resources.PAGE_HEADER_PIE_CHART_PANEL_TITLE_TICKET" title="@Resources.LABEL_DOWNLOAD_AS_PDF"><i class="fa fa-lg fa-fw fa-download"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<script src="~/Scripts/plugin/flot/jquery.flot.tooltip.min.js"></script>
+<script src="~/Scripts/flot/jspdf.min.js"></script>
+<script src="~/Scripts/flot/html2canvas.js"></script>
+<script src="~/Scripts/ProtectedScripts/draw-stacking-bar-chart.js"></script>
+<script>
+    $(document).ready(function () {
+        drawStackingBarChart("ChartPanelTicketDashboard", "GetStackingBarChartInfo", true);
+
+        $('.chartContainer .viewDetail').on("click", function () {
+            var url = "ChartPanelTicketDashboard/DetailDashboard/";
+            var $element = $(this);
+            CallDetailView($element, url);
+        })
+
+        $('.chartContainer .viewMoreDetail').on("click", function () {
+            var url = "ChartPanelTicketDashboard/ViewMoreDetail/";
+            var $element = $(this);
+            CallDetailView($element, url);
+        })
+
+        function CallDetailView($element, urlPath) {
+            var recordId = $element.attr("data-id")
+            var section = $element.attr("data-section")
+            if (recordId && section) {
+                var url = urlPath;
+                var dashboardName = $("#dashboardName").val();
+                var param = { id: recordId, dashboardName: dashboardName, section: section }
+                navigate.viewByParameter(url, param);
+            }
+        }
+
+    })
+</script>

@@ -1,0 +1,226 @@
+﻿@model Hanodale.WebUI.Models.CalendarSettingModelDetails
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    Layout = null;
+}
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Resources.MSG_CONFIRM_SAVE">
+<input type="hidden" id="alert-delete" value ="@Resources.MSG_CONFIRM_DELETE">
+<input type="hidden" class="mainPart" value="calendarsetting">
+<input type="hidden" class="table-congif" value="calendarsetting" data-columncount="0" data-extended-event-btn="false">
+<input type="hidden" id="readOnly" value ="@Model.readOnly" >
+<input type="hidden" id="isEdit" value ="@Model.isEdit" >
+
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>@Resources.CALENDAR_SETTING_PAGE_HEADER_MANAGE
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+        <ul id="sparks" class="">
+            <li class="sparks-info">
+                @if (Model.isEdit)
+                {
+                    if (!Model.readOnly)
+                    {
+                        if (Model.userAccess.canEdit)
+                        {
+                    <button id="saveaCalendarSetting" data-url="CalendarSetting/SaveCalendarSetting" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-save"></i>
+                        @Resources.CALENDAR_SETTING_SAVE_CHANGES
+                    </button>
+                        }
+                    }
+                    <button id="back-calendarsetting" data-url="CalendarSetting/Index" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-mail-reply"></i>
+                        @Resources.BTN_BACK
+                    </button>
+                }
+                else
+                {
+                    if (Model.userAccess.canAdd)
+                    {
+                    <button id="copy-calendarsetting" data-url="CopyCalendar/Create" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-plus"></i>
+                        @Resources.CALENDAR_SETTING_COPY_CALENDAR
+                    </button>
+                    
+                    <button id="create-calendarsetting" data-url="CalendarSetting/Create" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-plus"></i>
+                        @Resources.CALENDAR_SETTING_CREATE
+                    </button>
+                    }
+                }
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+
+
+<div class="row">
+    @if (Model.isEdit)
+    {
+        <div class="col-sm-12 col-md-12 col-lg-3">
+
+            <div class="well well-sm" id="event-container">
+                <div id='external-events'>
+                    <legend>Draggable Events
+                    </legend>
+
+                    <div id='external-events-list'>
+                        @foreach (var item in Model.calendarEventlist)
+                        {
+                            <div>
+                                <span class='fc-event @item.color txt-color-white' data-description="@(item.description != null ? item.description : "No Description")" data-icon="@item.icon" data-eventId="@item.id" >@item.title</span>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="drop-remove" class="checkbox style-0">
+                            <span>@Resources.CALENDAR_REMOVE_AFTER_DROG</span>
+                        </label>
+
+
+                    </div>
+                    <br />
+                    <label>
+                        <span>@Resources.CALENDAR_REMOVE_EVENT</span>
+                    </label>
+                </div>
+                @* <form>
+                    <legend>Draggable Events
+                    </legend>
+                    <ul id='external-events' class="list-unstyled">
+                        @foreach (var item in Model.calendarEventlist)
+                        {
+                            <li>
+                                <span class="@item.color txt-color-white" data-description="@(item.description != null ? item.description : "No Description")" data-icon="@item.icon" data-eventId="@item.id" >@item.title</span>
+                            </li>
+                        }
+
+
+                    </ul>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="drop-remove" class="checkbox style-0">
+                            <span>@Resources.CALENDAR_REMOVE_AFTER_DROG</span>
+                        </label>
+
+
+                    </div>
+                    <br />
+                    <label>
+                        <span>@Resources.CALENDAR_REMOVE_EVENT</span>
+                    </label>
+                </form>*@
+
+            </div>
+        </div>
+    }
+    <div class="col-sm-12 col-md-12 @(Model.isEdit ? "col-lg-9" : "col-lg-12")">
+
+        <!-- new widget -->
+        <div class="jarviswidget jarviswidget-color-blueDark">
+
+            <!-- widget options:
+			usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+			data-widget-colorbutton="false"
+			data-widget-editbutton="false"
+			data-widget-togglebutton="false"
+			data-widget-deletebutton="false"
+			data-widget-fullscreenbutton="false"
+			data-widget-custombutton="false"
+			data-widget-collapsed="true"
+			data-widget-sortable="false"
+
+			-->
+            <header>
+                <span class="widget-icon"><i class="fa fa-calendar"></i></span>
+                <h2 style="width: 150px">My Events </h2>
+                <div class="widget-toolbar">
+                    <!-- add: non-hidden - to disable auto hide -->
+                    @* <div class="btn-group">
+                        <button class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown">
+                            Showing <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu js-status-update pull-right">
+                            <li>
+                                <a href="javascript:void(0);" id="mt">Month</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" id="ag">Agenda</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" id="td">Today</a>
+                            </li>
+                        </ul>
+                    </div>*@
+
+                    <div class="">
+                        <div class="">
+                            @* @Html.LabelFor(model => model.year, new { @class = "", })*@
+                            <div class="clearfix calendar-header" >
+                                <label class="select">
+                                    @Html.EditorFor(model => model.year, new { @class = "form-control multipleSelect calendarYearDropdown", dataValue = Model.yearList, nullable = false, style = "min-width: 90px; color: #999;" })
+                                    @Html.ValidationMessageFor(m => m.year)
+                                    <i></i>
+                                </label>
+                                @if (Model.userAccess.canEdit && !Model.isEdit)
+                                {
+                                    <span class="edit-calendarsetting btn btn-ribbon " data-url="" data-placement="bottom" title="Edit" data-rel="tooltip" data-original-title="Edit">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </span>
+                                }
+                                @if (Model.userAccess.canDelete)
+                                {
+                                    <span class="delete-calendarsetting btn btn-ribbon " data-url="" data-placement="bottom" title="Delete" data-rel="tooltip" data-original-title="Delete">
+                                        <i class="fa fa-trash-o"></i>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- widget div-->
+            <div>
+
+                <div class="widget-body no-padding">
+                    <!-- content goes here -->
+                    @* <div class="widget-body-toolbar">
+
+                        <div id="calendar-buttons">
+
+                            <div class="btn-group">
+                                <a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-prev"><i class="fa fa-chevron-left"></i></a>
+                                <a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-next"><i class="fa fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div id='calendar'></div>
+                    <!-- end content -->
+                </div>
+
+            </div>
+            <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+
+    </div>
+
+</div>
+<script src='~/Scripts/fullcalendar-4.4.0/core/main.js'></script>
+<script src='~/Scripts/fullcalendar-4.4.0/interaction/main.js'></script>
+<script src='~/Scripts/fullcalendar-4.4.0/daygrid/main.js'></script>
+<script src='~/Scripts/fullcalendar-4.4.0/timegrid/main.js'></script>
+<script src='~/Scripts/fullcalendar-4.4.0/list/main.js'></script>
+<script src="~/Scripts/ProtectedScripts/web.calendar.js"></script>
+

@@ -1,0 +1,306 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>My Radar</title>
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.css" />
+
+    <!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="~/Content/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="~/Content/css/ace.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-rtl.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-skins.css" />
+
+    <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="~/Content/css/ace-ie.min.css" />
+		<![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="~/Scripts/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+		<script src="~/Scripts/html5shiv.js"></script>
+		<script src="~/Scripts/respond.min.js"></script>
+		<![endif]-->
+
+    <style>
+        .project {
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="navbar navbar-default" id="navbar">
+        <script type="text/javascript">
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+        </script>
+
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <img height="25" src="~/Content/img/logoLOAC.png" />
+                        <span class="white">MY</span>
+                        <span class="white">RADAR</span>
+                    </small>
+                </a>
+                <!-- /.brand -->
+            </div>
+            <!-- /.navbar-header -->
+        </div>
+        <!-- /.navbar-header -->
+    </div>
+    <!-- /.container -->
+    </div>
+
+		<div class="main-container" id="main-container">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12" style="margin-top: 10px;">
+                        <!-- PAGE CONTENT BEGINS -->
+                        @using (Html.BeginForm("UpdateTerms", "Terms"))
+                        { 
+                            <div class="error-container">
+                                <div class="well">
+                                    <h1 class="grey lighter smaller">Terms & Conditions
+                                    </h1>
+                                    <hr />
+                                    <div class="slim-scroll" data-height="300">
+                                        <div class="content">
+                                            <!-- Terms & Condition content -->
+                                            <h2>Privacy Policy</h2>
+                                            <article>
+                                                At MyRadar, there is no higher priority than the privacy and security of our customers' data. We believe that protecting the privacy of our customers' data is integral to our mission of earning and maintaining the trust of each of our customers. We seek to lead the industry as a trusted repository for customer data through a world-class privacy program and provide a secure infrastructure and flexible tools that help enable our customers to comply with global privacy and data protection regulations.
+                                        <h3>Privacy Statement Effective as of March 05, 2014</h3>
+                                                MyRadar, inc. (“MyRadar” or the “Company”) is committed to protecting the privacy of your information. This Privacy Statement describes MyRadar’s information practices.
+                                            </article>
+                                            <article>
+                                                <h3>1. Web Sites Covered</h3>
+                                                This Privacy Statement covers the information practices of Web sites that link to this Privacy Statement:http://www.myradar.com.my (collectively referred to as “MyRadar’s Web sites” or “the Company’s Web sites”).
+                                            MyRadar’s Web sites may contain links to other Web sites. MyRadar is not responsible for the information practices or the content of such other Web sites. The Company encourages you to review the privacy statements of other Web sites to understand their information practices.
+                                            </article>
+                                            <article>
+                                                <h3>2. Personal Information Collected</h3>
+                                                MyRadar offers a variety of services that are collectively referred to as the “Service.” MyRadar collects information from individuals who visit the Company’s Web sites (“Visitors”) and individuals who register to use the Service (“Customers”).
+                                            When expressing an interest in obtaining additional information about the Service or registering to use the Service, MyRadar requires you to provide the Company with contact information, such as name, company name, address, phone number, and email address (“Required Contact Information”). When purchasing the Service, MyRadar requires you to provide the Company with financial qualification and billing information, such as billing name and address, credit card number, and the number of employees within the organization that will be using the Service (“Billing Information”). MyRadar may also ask you to provide additional information, such as company annual revenues, number of employees, or industry (“Optional Information”). Required Contact Information, Billing Information, and Optional Information are referred to collectively as "Data About MyRadar Customers".
+                                            As you navigate the Company’s Web sites, MyRadar may also collect information through the use of commonly-used information-gathering tools, such as cookies and Web beacons (“Web Site Navigational Information”). Web Site Navigational Information includes standard information from your Web browser (such as browser type and browser language), your Internet Protocol (“IP”) address, and the actions you take on the Company’s Web sites (such as the Web pages viewed and the links clicked).
+                                            </article>
+                                            <article>
+                                                <h3>3. Use of Information Collected</h3>
+                                                The Company uses Data About MyRadar Customers to perform the services requested. For example, if you fill out a “Contact Me” Web form, the Company will use the information provided to contact you about your interest in the Service.
+                                        The Company may also use Data About MyRadar Customers for marketing purposes. For example, the Company may use information you provide to contact you to further discuss your interest in MyRadar, the Service, and to send you information regarding the Company and its partners, such as information about promotions or events.
+                                        MyRadar uses credit card information solely to check the financial qualifications of prospective Customers and to collect payment for the Service.
+                                        MyRadar uses Web Site Navigational Information to operate and improve the Company’s Web sites. The Company may also use Web Site Navigational Information in combination with Data About MyRadar Customers to provide personalized information about the Company.
+                                            </article>
+                                            <article>
+                                                <h3>4. Web Site Navigational Information</h3>
+                                                MyRadar uses commonly-used information-gathering tools, such as cookies and Web beacons, to collect information as you navigate the Company’s Web sites (“Web Site Navigational Information”). This section describes the types of Web Site Navigational Information the Company may collect and how the Company may use this information.
+
+                                            <h4>Cookies</h4>
+                                                <aside>
+                                                    MyRadar uses cookies to make interactions with the Company’s Web sites easy and meaningful. When you visit one of the Company’s Web sites, MyRadar’s servers send a cookie to your computer. Standing alone, cookies do not personally identify you. They merely recognize your Web browser. Unless you choose to identify yourself to MyRadar, either by responding to a promotional offer, opening an account, or filling out a Web form (such as a “Contact Me” or a “Register for a Trial” Web form), you remain anonymous to the Company.
+
+                                            There are two types of cookies: session-based and persistent-based. Session cookies exist only during one session. They disappear from your computer when you close your browser software or turn off your computer. Persistent cookies remain on your computer after you close your browser or turn off your computer.
+
+                                            If you have chosen to identify yourself to MyRadar, the Company uses session cookies containing encrypted information to allow the Company to uniquely identify you. Each time you log into the Service, a session cookie containing an encrypted, unique identifier that is tied to your account is placed in your browser. These session cookies allow the Company to uniquely identify you when you are logged into the Service and to process your online transactions and requests. Session cookies are required to use the Service.
+
+                                            MyRadar uses persistent cookies that only the Company can read and use to identify browsers that have previously visited the Company’s Web sites. When you purchase the Service or provide the Company with personal information, a unique identifier is assigned you. This unique identifier is associated with a persistent cookie that the Company places on your Web browser. The Company is especially careful about the security and confidentiality of the information stored in persistent cookies. For example, the Company does not store account numbers or passwords in persistent cookies. If you disable your Web browser’s ability to accept cookies, you will be able to navigate the Company’s Web sites, but you will not be able to successfully use the Service.
+
+                                            MyRadar may use information from session and persistent cookies in combination with Data About MyRadar Customers to provide you with information about the Company and the Service.
+                                                </aside>
+                                                <h4>Web Beacons</h4>
+                                                <aside>
+                                                    MyRadar uses Web beacons alone or in conjunction with cookies to compile information about Customers and Visitors’ usage of the Company’s Web sites and interaction with emails from the Company. Web beacons are clear electronic images that can recognize certain types of information on your computer, such as cookies, when you viewed a particular Web site tied to the Web beacon, and a description of a Web site tied to the Web beacon. For example, MyRadar may place Web beacons in marketing emails that notify the Company when you click on a link in the email that directs you to one of the Company’s Web sites. MyRadar uses Web beacons to operate and improve the Company’s Web sites and email communications. MyRadar may use information from Web beacons in combination with Data About MyRadar Customers to provide you with information about the Company and the Service.
+                                                </aside>
+                                                <h4>IP Addresses</h4>
+                                                <aside>
+                                                    When you visit MyRadar’s Web sites, the Company collects your Internet Protocol (“IP”) addresses to track and aggregate non-personally identifiable information. For example, MyRadar uses IP addresses to monitor the regions from which Customers and Visitors navigate the Company’s Web sites.
+                                                MyRadar also collects IP addresses from Customers whey they log into the Service as part of the Company’s “Identity Confirmation” and “IP Range Restrictions” security features.
+                                                </aside>
+                                                <h4>Third Party Cookies</h4>
+                                                <aside>
+                                                    From time-to-time, MyRadar engages third parties to track and analyze non-personally identifiable usage and volume statistical information from individuals who visit the Company’s Web sites. MyRadar may also use other third-party cookies to track the performance of Company advertisements. The information provided to third parties does not include personal information, but this information may be re-associated with personal information after the Company receives it. This Privacy Statement does not cover the use of third party cookies.
+                                                </aside>
+                                            </article>
+                                            <h3>5.	Public Forums, Refer a Friend, and Customer Testimonials</h3>
+                                            <article>
+                                                MyRadar may provide bulletin boards, blogs, or chat rooms on the Company’s Web sites. Any personally identifiable information you choose to submit in such a forum may be read, collected, or used by others who visit these forums, and may be used to send you unsolicited messages. MyRadar is not responsible for the personally identifiable information you choose to submit in these forums.
+                                            Customers and Visitors may elect to use the Company’s referral service to inform friends about the Company’s Web sites. When using the referral service, the Company requests the friend’s name and email address. MyRadar will automatically send the friend a one-time email inviting him or her to visit the Company’s Web sites. MyRadar does not store this information. MyRadar posts a list of Customers and testimonials on the Company’s Web sites that contain information such as Customer names and titles. MyRadar obtains the consent of each Customer prior to posting any information on such a list or posting testimonials.
+                                            </article>
+                                            <h3>6. Sharing of Information Collected</h3>
+                                            <article>
+                                                <p>
+                                                    MyRadar may share Data About MyRadar Customers with the Company’s agents so that these agents can contact Customers and Visitors who have provided contact information on our behalf. MyRadar may also share Data About MyRadar Customers with the Company’s agents to ensure the quality of information provided. MyRadar does not share, sell, rent, or trade personally identifiable information with third parties for their promotional purposes.
+                                                </p>
+                                                <p>
+                                                    MyRadar uses a third-party intermediary, PayPal (<a target="_blank" href="http://www.paypal.com">www.paypal.com</a>), to manage credit card processing. The intermediary is not permitted to store, retain, or use Billing Information except for the sole purpose of credit card processing on the Company’s behalf. For more details about PayPal Terms and Conditions, please visit <a target="_blank" href="https://cms.paypal.com/my/cgi-bin/marketingweb?cmd=_render-content&conte">https://cms.paypal.com/my/cgi-bin/marketingweb?cmd=_render-content&conte...</a>
+                                                </p>
+                                                <p>
+                                                    MyRadar reserves the right to disclose personally identifiable information of the Company’s Customers or Visitors if required by law or if the Company reasonably believes that disclosure is necessary to protect the Company’s rights and/or to comply with a judicial proceeding, court order, or legal process.
+                                                </p>
+                                            </article>
+                                            <h3>7.	Communications Preferences</h3>
+                                            <article>
+                                                MyRadar offers Customers and Visitors who provide contact information a means to choose how the Company uses the information provided. You may manage your receipt of marketing and non-transactional communications by updating profile on the Customer Portal or by clicking on the “unsubscribe” link located on the bottom of the Company’s marketing emails. Additionally, you may send a request specifying your communications preferences to support@myradar.com.my. Customers cannot opt out of receiving transactional emails related to their account with MyRadar or the Service.
+                                            </article>
+                                            <h3>8.	Correcting and Updating Your Information</h3>
+                                            <article>
+                                                <p>
+                                                    Customers may update or change their registration information by editing their user or organization record. To update a user profile, please login to <a target="_blank" href="www.myradar.com.my">myradar.com.my</a>  with your MyRadar username and password and click “Personal details” To update an organization’s information, please login to <a target="_blank" href="www.myradar.com.my">myradar.com.my</a> with your MyRadar username and password and select “Account Settings.” 
+                                                </p>
+                                                <p>
+                                                    To update Billing Information or have your registration information deleted, please email <b>support@myradar.com.my</b> or call <b>+(603) 7982 4734</b>. To discontinue your account and to have information you maintained in the Service returned to you, please email <b>support@myradar.com.my</b>  or call <b>+(603) 7982 4734</b>. Requests to access, change, or delete your information will be handled within 30 days.
+                                                </p>
+                                            </article>
+                                            <h3>9.	Customer Data</h3>
+                                            <article>
+                                                MyRadar Customers use the Service to host data and information (“Customer Data”). MyRadar will not review, share, distribute, or reference any such Customer Data except as provided in the MyRadar Master Subscription Agreement, or as may be required by law. Individual records of Customer Data may be viewed or accessed only for the purpose of resolving a problem, support issues, or suspected violation of the MyRadar Master Subscription Agreement, or as may be required by law. Customers are responsible for maintaining the security and confidentiality of their MyRadar usernames and passwords.
+                                            </article>
+                                            <h3>10.	Security</h3>
+                                            <article>
+                                                <p>
+                                                    MyRadar uses robust security measures to protect Customer Data from unauthorized access, maintain data accuracy, and help ensure the appropriate use of Customer Data. When the Service is accessed using Internet Explorer version 7.0 or later, Firefox version 3.0 or later, or Safari version 4.0 or later or Chrome version 4.0 or later, Secure Socket Layer (“SSL”) technology protects Customer Data using both server authentication and data encryption. These technologies help ensure that Customer Data is safe, secure, and only available to the Customer to whom the information belongs and those to whom the Customer has granted access. MyRadar also implements an advanced security method based on dynamic data and encoded session identifications, and the Company hosts its Web sites in a secure server environment that uses firewalls and other advanced technology to prevent interference or access from outside intruders. 
+                                                </p>
+                                                <p>
+                                                    Because the Company uses the Service to maintain Data About MyRadar Customers, this information is secured in the same manner as described above for Customer Data.
+                                                </p>
+                                            </article>
+                                            <h3>11.	Changes to this Privacy Statement</h3>
+                                            <article>
+                                                MyRadar reserves the right to change this Privacy Statement. MyRadar will provide notification of the material changes to this Privacy Statement through the Company’s Web sites at least thirty (30) business days prior to the change taking effect.
+                                            </article>
+                                            <h3>12.	Contacting Us</h3>
+                                            <article>
+                                                Questions regarding this Privacy Statement or the information practices of the Company’s Web sites should be directed to MyRadar Privacy by emailing at
+                                            </article>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <p>
+                                        By providing my personal data herein and clicking "Submit" button below, i acknowledge that i have read, 
+                                    understood and agreed to the Personal Data Protection Statement posted on myradar's website at 
+                                    <a target="_blank" href="http://www.myradar.com.my/personal-data-protection">www.myradar.com.my/personal-data-protection</a>
+                                    </p>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="chkAgree" name="chkAgree" value="True" class="ace terms-chk" type="checkbox">
+                                            <span class="lbl">I Have Read and Understand</span>
+                                        </label>
+                                    </div>
+                                    <hr />
+                                    <div class="space"></div>
+
+                                    <div class="center">
+                                        <a href="#" id="accept-terms">
+                                            <button class="btn btn-success" type="submit">Submit</button></a>
+                                        <a href="Auth/SignOut">
+                                            <button class="btn btn-danger" type="button">Cancel</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.page-content -->
+        </div>
+    <!-- /.main-container-inner -->
+    <div>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="icon-double-angle-up icon-only bigger-110"></i>
+        </a>
+    </div>
+    <!-- /.main-container -->
+
+    <!-- basic scripts -->
+
+    <!--[if !IE]> -->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='Scripts/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='Scripts/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/typeahead-bs2.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!-- ace scripts -->
+
+    <script src="~/Scripts/ace-elements.min.js"></script>
+    <script src="~/Scripts/ace.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+		<script src="~/Scripts/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="~/Scripts/jquery.ui.touch-punch.min.js"></script>
+		<script src="~/Scripts/jquery.slimscroll.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#accept-terms").bind("click", function () {
+
+                if ($('.terms-chk').is(':checked')) {
+                    return true;
+                }
+                else {
+                    alert('Please select terms and conditions');
+                    return false;
+                }
+            });
+
+            $('.slim-scroll').each(function () {
+                var $this = $(this);
+                $this.slimScroll({
+                    height: $this.data('height') || 100,
+                    railVisible: true,
+                    alwaysVisible: true
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
+

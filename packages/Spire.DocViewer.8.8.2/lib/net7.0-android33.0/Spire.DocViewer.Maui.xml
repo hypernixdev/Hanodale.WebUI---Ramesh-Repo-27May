@@ -1,0 +1,573 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spire.DocViewer.Maui</name>
+    </assembly>
+    <members>
+        <member name="T:Spire.DocViewer.Maui.AndroidPathExtensions">
+            <summary>
+            Extensions for <see cref="T:Android.Net.Uri"/>
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.AndroidPathExtensions.ToPhysicalPath(Android.Net.Uri)">
+            <summary>
+            Convert <see cref="T:Android.Net.Uri"/> to an absolute path (<see cref="T:System.String"/>).
+            It returns <see langword="null"/> if the <see cref="T:Android.Net.Uri"/> is not resolvable.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.AndroidPathExtensions.GetExternalDirectory">
+            <summary>
+            Get External Directory Path
+            </summary>
+        </member>
+        <member name="T:Spire.DocViewer.Maui.FileSaveException">
+            <summary>
+            Exception occurred if file is not saved
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.FileSaveException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Spire.DocViewer.Maui.FileSaveException"/>
+            </summary>
+        </member>
+        <member name="T:Spire.DocViewer.Maui.Controls.FileSaver">
+            <inheritdoc cref="T:Spire.DocViewer.Maui.Controls.IFileSaver"/>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.Controls.FileSaver.Default">
+            <summary>
+            Default implementation of <see cref="T:Spire.DocViewer.Maui.Controls.IFileSaver"/>
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.Controls.FileSaver.SaveAsync(System.String,System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Spire.DocViewer.Maui.Controls.IFileSaver.SaveAsync(System.String,System.String,System.IO.Stream,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.Controls.FileSaver.SaveAsync(System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Spire.DocViewer.Maui.Controls.IFileSaver.SaveAsync(System.String,System.IO.Stream,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="T:Spire.DocViewer.Maui.Controls.FileSaverImplementation">
+            <inheritdoc />
+        </member>
+        <member name="M:Spire.DocViewer.Maui.Controls.FileSaverImplementation.SaveAsync(System.String,System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.Controls.FileSaverImplementation.SaveAsync(System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Spire.DocViewer.Maui.Controls.FileSaverResult">
+            <summary>
+            Result of the <see cref="T:Spire.DocViewer.Maui.Controls.IFileSaver"/>
+            </summary>
+            <param name="FilePath">Saved file path</param>
+            <param name="Exception">Exception if operation failed</param>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.Controls.FileSaverResult.IsSuccessful">
+            <summary>
+            Check if operation was successful.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.Controls.FileSaverResult.EnsureSuccess">
+            <summary>
+            Check if operation was successful.
+            </summary>
+        </member>
+        <member name="T:Spire.DocViewer.Maui.Controls.IFileSaver">
+            <summary>
+            Allows the user to save files to the filesystem
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.Controls.IFileSaver.SaveAsync(System.String,System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <summary>
+            Saves a file to a target folder on the file system
+            </summary>
+            <param name="initialPath">Initial path</param>
+            <param name="fileName">File name with extension</param>
+            <param name="stream"><see cref="T:System.IO.Stream"/></param>
+            <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.Controls.IFileSaver.SaveAsync(System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <summary>
+            Saves a file to the default folder on the file system
+            </summary>
+            <param name="fileName">File name with extension</param>
+            <param name="stream"><see cref="T:System.IO.Stream"/></param>
+            <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocDocumentViewer.DocumentLoaded">
+            <summary>
+            Occurs when the document is loaded.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocDocumentViewer.PageNumberChanged">
+            <summary>
+            Occurs when the current page number is changed.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocDocumentViewer.PageCount">
+            <summary>
+            Gets pages count.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocDocumentViewer.UseNewEngine">
+            <summary>
+            Use new engine.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocDocumentViewer.ToPdfParameterList">
+            <summary>
+            Gets or set convertors parameter.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocDocumentViewer.UseHarfBuzzTextShaper">
+            <summary>
+            Gets or sets a value indicating whether use HarfBuzz text shaper.
+            The default value is false.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocDocumentViewer.HorizontalScrollBarVisibility">
+            <summary>
+            Gets or sets a value that controls when the horizontal scroll bar is visible.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocDocumentViewer.VerticalScrollBarVisibility">
+            <summary>
+            Gets or sets a value that controls when the vertical scroll bar is visible.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.LoadFromFile(System.String)">
+            <summary>
+            Loads the specified doc file.
+            </summary>
+            <param name="filename">Name of the file.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.LoadFromFile(System.String,Spire.Doc.FileFormat)">
+            <summary>
+            Loads the specified doc file with the specified word format.
+            </summary>
+            <param name="filename">Name of the file.</param>
+            <param name="format">Type of the format.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.LoadFromFile(System.String,System.String)">
+            <summary>
+            Loads the specified doc file with password.
+            </summary>
+            <param name="filename">Name of the file.</param>
+            <param name="password">The password.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.LoadFromFile(System.String,Spire.Doc.FileFormat,Spire.Doc.Documents.XHTMLValidationType)">
+            <summary>
+            Loads the specified HTML file.
+            </summary>
+            <param name="filename">Name of the file.</param>
+            <param name="format">Type of the format.</param>
+            <param name="validationType">Type of the validation.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.LoadFromStream(System.IO.Stream,Spire.Doc.FileFormat)">
+            <summary>
+            Loads the document stream with specified file format.
+            </summary>
+            <param name="stream">The DOC/DOCX file stream.</param>
+            <param name="format">DOC/DOCX file format.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.LoadFromStream(System.IO.Stream,System.String)">
+            <summary>
+            Loads the document stream with password.
+            </summary>
+            <param name="stream">The DOC/DOCX file stream.</param>
+            <param name="password">Password to open the document.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.GotoPage(System.Int32,System.Boolean)">
+            <summary>
+            Scrolls to the specified page.
+            </summary>
+            <param name="pgNum">The page number starting from 1.</param>
+            <param name="animated">Whether to use scrolling animation.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.SetZoom(Spire.DocViewer.Maui.ZoomMode)">
+            <summary>
+            Sets the zoom mode.
+            </summary>
+            <param name="mode"></param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.SetZoom(System.Single)">
+            <summary>
+            Sets the zoom percentage.
+            </summary>
+            <param name="zoomFactor">The zoom percentage, 1.0 indicates the original size.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.Find(System.String,System.Boolean)">
+            <summary>
+            Finds and highlights the specified text in the document.
+            </summary>
+            <param name="text">The text to find.</param>
+            <param name="ignoreCase">Specifies case sensitivity.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.FindPrevious">
+            <summary>
+            Finds the previous found text.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.FindNext">
+            <summary>
+            Finds the next found text.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.Close">
+            <summary>
+            Closes the document.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.LoadFromStream(System.IO.Stream,Spire.Doc.FileFormat,System.String)">
+            <summary>
+            Loads the document stream with specified file format and password.
+            </summary>
+            <param name="stream">The DOC/DOCX file stream.</param>
+            <param name="format">DOC/DOCX file format.</param>
+            <param name="password">Password to open the document.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.TryOpenWithPassword(System.IO.Stream,Spire.Doc.FileFormat)">
+            <summary>
+            通过弹出密码输入框来加载已加密的文档。
+            </summary>
+            <param name="stream"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocDocumentViewer.OnLoaded(System.Int32)">
+            <summary>
+            加载完成
+            </summary>
+            <param name="pageCount"></param>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.DocumentOpened">
+            <summary>
+            Occurs when a document is selected to open.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.DocumentSaved">
+            <summary>
+            Occurs when save button is clicked.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.DocumentPrinted">
+            <summary>
+            Occurs when print button is clicked.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.PageNumberChanged">
+            <summary>
+            Occurs when current page number is changed.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.ZoomChanged">
+            <summary>
+            Occurs when current zoom percentage is changed.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.ZoomModeChanged">
+            <summary>
+            Occurs when current zoom mode is changed.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.FindText">
+            <summary>
+            Occurs when the the input text is changed, and find button is clicked.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.FindPrevious">
+            <summary>
+            Occurs when the find previous text button is clicked.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocumentToolbar.FindNext">
+            <summary>
+            Occurs when the find next text button is clicked.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocViewer.DocumentLoaded">
+            <summary>
+            Occurs when the document is loaded.
+            </summary>
+        </member>
+        <member name="E:Spire.DocViewer.Maui.DocViewer.PageNumberChanged">
+            <summary>
+            Occurs when the current page number is changed.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocViewer.PageCount">
+            <summary>
+            Gets pages count.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocViewer.UseNewEngine">
+            <summary>
+            Use new engine.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocViewer.ToPdfParameterList">
+            <summary>
+            Gets or set convertors parameter.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocViewer.UseHarfBuzzTextShaper">
+            <summary>
+            Gets or sets a value indicating whether use HarfBuzz text shaper.
+            The default value is false.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocViewer.ShowToolbar">
+            <summary>
+            Gets or sets a value indicates whether show the toolbar.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocViewer.HorizontalScrollBarVisibility">
+            <summary>
+            Gets or sets a value that controls when the horizontal scroll bar is visible.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.DocViewer.VerticalScrollBarVisibility">
+            <summary>
+            Gets or sets a value that controls when the vertical scroll bar is visible.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.LoadFromFile(System.String)">
+            <summary>
+            Loads the specified doc file.
+            </summary>
+            <param name="filename">Name of the file.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.LoadFromFile(System.String,System.String)">
+            <summary>
+            Loads the specified doc file with password.
+            </summary>
+            <param name="filename">Name of the file.</param>
+            <param name="password">The password.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.LoadFromStream(System.IO.Stream)">
+            <summary>
+            Loads the document from stream in Xml or Microsoft Word format.
+            </summary>
+            <param name="stream">The stream.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.GotoPage(System.Int32,System.Boolean)">
+            <summary>
+            Scrolls to the specified page.
+            </summary>
+            <param name="pgNum">The page number starting from 1.</param>
+            <param name="animated">Whether to use scrolling animation.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.Find(System.String,System.Boolean)">
+            <summary>
+            Finds and highlights the specified text in the document.
+            </summary>
+            <param name="text">The text to find.</param>
+            <param name="ignoreCase">Specifies case sensitivity.</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.FindPrevious">
+            <summary>
+            Finds the previous found text.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.FindNext">
+            <summary>
+            Finds the next found text.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocViewer.Close">
+            <summary>
+            Closes the document.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPage.StartRecreateImageTask(SkiaSharp.SKSizeI)">
+            <summary>
+            开启图片生成任务
+            </summary>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPage.GenerateImage(SkiaSharp.SKSizeI,System.Threading.CancellationToken)">
+            <summary>
+            生成图片
+            </summary>
+            <param name="size"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPage.ResetImageAndTask">
+            <summary>
+            释放图片资源并重置任务
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.InitializePages(Spire.Doc.Document,System.Drawing.SizeF[],Spire.Doc.IPageTextList)">
+            <summary>
+            初始化页面数据.
+            </summary>
+            <param name="doc"></param>
+            <param name="pagesSize"></param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.GotoPage(System.Int32,System.Boolean)">
+            <summary>
+            跳转到指定页面。
+            </summary>
+            <param name="pgNum">从1开始的页码</param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.SetZoom(Spire.DocViewer.Maui.ZoomMode)">
+            <summary>
+            设置缩放模式，页宽或者整页。
+            </summary>
+            <param name="mode"></param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.SetZoom(System.Single)">
+            <summary>
+            将页面尺寸缩放到其初始值的 scale 倍数。
+            </summary>
+            <param name="zoomFactor"></param>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.GetScrollSpeed">
+            <summary>
+            获取页面滚动速度(Height/ms).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.UpdateVisiblePages">
+            <summary>
+            更新当前可见的页面
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.UpdatePageNumber">
+            <summary>
+            更新当前所在的页面
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.GetVisiblePages(System.Double)">
+            <summary>
+            获取当前可见的页面索引
+            </summary>
+            <param name="scrollY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.GetCurrentPageIndex(System.Double)">
+            <summary>
+            获取当前页面索引.
+            </summary>
+            <param name="scrollY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.FindTextBounds(System.String,Spire.Doc.ILineText,System.Boolean)">
+            <summary>
+            获取在某一行中查找到的文本的位置和尺寸。
+            </summary>
+            <param name="text"></param>
+            <param name="line"></param>
+            <param name="ignoreCase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.GetCharBounds(Spire.Doc.ILineText)">
+            <summary>
+            获取某一行中所有字符的位置和尺寸。
+            </summary>
+            <param name="line"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.DocViewer.Maui.DocumentPagesView.GotoFoundText(System.Int32)">
+            <summary>
+            滚动到某个查找到的文本所在的位置。
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.PageInfo.Lines">
+            <summary>
+            页面中的行数据.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.PageInfo.FoundTextChanged">
+            <summary>
+            当前页面查找结果是否改变。用于更新画布中的查找结果区域.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.PageInfo.FoundTextBoundsList">
+            <summary>
+            所有查找结果的区域列表.
+            </summary>
+        </member>
+        <member name="P:Spire.DocViewer.Maui.PageInfo.SelectedTextBounds">
+            <summary>
+            当前选中的查找结果.
+            </summary>
+        </member>
+        <member name="T:Spire.DocViewer.License.LicenseProvider">
+            <summary>
+            Class Spire.DocViewer.LicenseProvider.
+            </summary>  
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.SetLicense(System.String)">
+            <summary>
+            Provides a license by a license file path, which will be used for loading license.
+            </summary>
+            <param name="licenseFileFullPath">License file full path.</param>
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.SetLicense(System.IO.Stream)">
+            <summary>
+            Provides a license by a license stream, which will be used for loading license.
+            </summary>
+            <param name="licenseFileStream">License data stream.</param>
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.SetLicenseKey(System.String)">
+            <summary>
+            Provides a license by a license key, which will be used for loading license.
+            </summary>
+            <param name="key">The value of the Key attribute of the element License of you license xml file.</param>
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.SetLicenseKey(System.String,System.Boolean)">
+            <summary>
+            Sets the license key required for license loading, and specifies whether to use a development or test license.
+            </summary>    
+            <param name="key">The value of the Key attribute of the element License of you license xml file.</param>
+            <param name="useDevOrTestLicense">Indicates whether to apply a development or test license.</param>
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.UnbindDevelopmentOrTestingLicenses">
+            <summary>
+            Unbind development or testing licenses. 
+            Only development or testing licenses can be unbound, deployment licenses cannot be unbound.
+            The approach to lifting development or testing licenses does not allow frequent invocation by the same machine code,
+            mandating a two-hour wait period before it can be invoked again.
+            </summary>
+            <returns>Returns true if the unbinding operation was successful; otherwise, false.</returns>
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.SetLicenseFileName(System.String)">
+            <summary>
+             Sets the license file name, which will be used for loading license.
+            </summary>
+            <param name="licenseFileName">License file name.</param>
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.ClearLicense">
+            <summary>
+            Clear all cached license.
+            </summary>
+        </member>
+        <member name="M:Spire.DocViewer.License.LicenseProvider.LoadLicense">
+            <summary>
+            Load the license provided by current setting to the license cache.
+            </summary>
+        </member>
+        <member name="T:Spire.License.Blacklist">
+            <summary> 
+            Authorization Blacklist
+            </summary>
+        </member>
+        <member name="F:Spire.License.Blacklist.BlacklistData">
+            <summary> 
+            The serial number or the MD5 code of the key that is entered into the authorization blacklist. 
+            </summary> 
+        </member>
+        <member name="M:Spire.License.LicenseProvider.UnbindDevelopmentOrTestingLicenses(System.Type,System.String@)">
+            <summary>
+            Unbinds development or testing licenses of the specified type.
+            The approach to lifting development or testing licenses does not allow frequent invocation by the same machine code,
+            mandating a two-hour wait period before it can be invoked again.
+            </summary>
+            <param name="type">The type of the license to unbind.</param>
+            <param name="errorMsg">The error message in case of failure.</param>
+            <returns>True if at least one development or test license was unbound, otherwise false.</returns>
+        </member>
+    </members>
+</doc>

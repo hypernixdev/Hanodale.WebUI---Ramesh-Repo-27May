@@ -1,0 +1,107 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<!-- Hidden Variable -->
+<input type="hidden" id="alert-delete" value ="@Resources.MSG_CONFIRM_DELETE">
+<input type="hidden" class="mainPart" value="helpdesk">
+<input type="hidden" class="table-congif" value="helpdesk" data-columncount="6" data-button="true" data-condition="false" data-extended-event-btn="true" data-hidebtn="true" data-auto-hide-column="true" data-export-btn="true">
+<!-- Hidden Variable -->
+
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>@Resources.PAGE_HEADER_MANAGE_HELPDESK
+        </h1>
+    </div>
+    @if (@Model.canAdd && !Model.readOnly)
+    {
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            <ul id="sparks" class="">
+                <li class="sparks-info">
+                    <button id="create-helpdesk" data-url="HelpDesk/Create" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-plus"></i>
+                        @Resources.BTN_CREATE_HELPDESK
+                    </button>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="">
+        <!-- NEW WIDGET START -->
+         @Html.Action("GetCustomSearchPanel", "HelpDesk")
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-876780"
+                data-widget-editbutton="false"
+                data-widget-deletebutton="false"
+                data-widget-colorbutton="false"
+                data-widget-sortable="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+                    <h2>@Resources.HELPDESK_GRID_TITLE</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table id="dt_helpdesk" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    <th data-class="expand"; ><i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.HELPDESK_CODE</th>
+                                     <th data-hide="phone,tablet"><i class="fa fa-fw  fa-comment-o text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.HELPDESK_FEEDBACK</th>
+                                     <th data-hide="phone,tablet"><i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>Created Date</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw  fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>Received Date</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw  fa-paper-plane-o text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.HELPDESK_WORKFOLLOW_ID</th>
+                                    <th data-hide="phone,tablet" class="table-column-header" style="width: 100px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+
+<script>
+
+    $(document).ready(function () {
+        //$('#dt_helpdesk').dataTable({
+        //    "oSearch": { "sSearch": "Initial search" }
+        //});
+        $('#dt_helpdesk_filter').val("new");
+    })
+
+</script>
+
+@*@Scripts.Render(bundles.scripts.common_index)*@
+@Scripts.Render(bundles.scripts.helpdesk_index)
+<!-- Protected Script -->
+
+

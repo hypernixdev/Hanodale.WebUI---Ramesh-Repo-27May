@@ -1,0 +1,100 @@
+﻿@model Hanodale.WebUI.Models.HelpDeskModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal searchPanelWithSearchBtn", autocomplete = "off" }))
+{
+   
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable nPadding">
+
+        <div class="jarviswidget jarviswidget-sortable" id="wid-id-110" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+            <header role="heading">
+                <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+                <h2>Search Panel </h2>
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+            </header>
+
+            <!-- widget div-->
+            <div role="content">
+
+                <!-- widget edit box -->
+                <div class="jarviswidget-editbox">
+                    <!-- This area used as dropdown edit box -->
+
+                </div>
+                <!-- end widget edit box -->
+
+                <!-- widget content -->
+                <div class="widget-body no-padding">
+
+
+                    <fieldset>
+                        <div class="smart-form">
+
+                            <div class="form-group-holder">
+                                    @Html.LabelFor(model => model.createdDateFrom, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label no-required", })
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                        <div class="clearfix row-flex">
+                                            <div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5 no-margin">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-calendar"></i>
+                                                    @Html.EditorFor(model => model.createdDateFrom, new { @class = "datepicker form-control date-picker no-required" })
+                                                </label>
+                                            </div>
+                                            <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-center-label control-label">@Resources.LABEL_TO</label>
+                                            <div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5 no-margin">
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-calendar"></i>
+                                                    @Html.EditorFor(model => model.createdDateTo, new { @class = "datepicker form-control date-picker no-required" })
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.status_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                    <div class="clearfix">
+                                        <label class="select">
+                                            @Html.EditorFor(model => model.status_Id, new { @class = "form-control multipleSelect no-required", dataValue = Model.lstStatus })
+                                            @*<i></i>*@
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.module_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                    <div class="clearfix">
+                                        <label class="select">
+                                            @Html.EditorFor(model => model.module_Id, new { @class = "form-control multipleSelect no-required", dataValue = Model.lstModule})
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label"></label>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                    <div class="clearfix">
+                                        <button type="button" style="margin-left:0"  class="btn btn-sm btn-primary customFilterDatatableWithSearchBTN">@Resources.DATATABLE_SEARCH</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- end widget content -->
+            </div>
+            <!-- end widget div -->
+        </div>
+    </article>
+}
+@Scripts.Render(bundles.scripts.common_add_edit)

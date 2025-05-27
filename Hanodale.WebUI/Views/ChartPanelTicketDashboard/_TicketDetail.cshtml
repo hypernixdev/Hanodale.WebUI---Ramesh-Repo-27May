@@ -1,0 +1,146 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelTicketDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+<!-- Hidden Variable -->
+<input type="hidden" class="mainPart" value="chartpanelticketdashboard">
+<input type="hidden" class="table-congif" value="chartpanelticketdashboard" data-columncount="6" data-button="true" data-condition="false" data-extended-event-btn="true" data-filterId="@Model.type" data-record-id="@Model.type" data-auto-hide-column="true" data-export-btn="true" >
+<input type="hidden" id="type" value="@Model.type" />
+<input type="hidden" id="section" value="@Model.section" />
+<!-- Hidden Variable -->
+<input type="hidden" id="dashboardName" value="@Model.dashboardBoxName" />
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<div class="row-flex">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:right">
+<button id="back-to-dashboard" class="btn btn-sm btn-primary" style="margin-bottom:10px" type="button" data-url="Dashboard/Dashboard">
+                                                <i class="fa fa-mail-reply"></i>
+                                                @Resources.BTN_BACK
+                                            </button>
+        </article>
+    </div>
+<section id="widget-grid" class="">
+    <!-- row -->
+    @Html.Action("GetCustomSearchPanel", "ChartPanelTicketDashboard")
+    <div id="chartPlaceholderDetail" class="chartContainer">
+    </div>
+
+    <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-sm-12">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-78058"
+                data-widget-editbutton="false"
+                data-widget-colorbutton="false"
+                @*data-widget-deletebutton="false"
+                
+                data-widget-fullscreenbutton="true"
+				data-widget-custombutton="false"
+                data-widget-togglebutton="true"
+				data-widget-collapsed="false"
+                data-widget-sortable="true"*@
+                >
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+                    <h2>@Resources.TICKET_GRID_TITLE</h2>
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding ">
+                        <table id="dt_chartpanelticketdashboard" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    <th data-class="expand"><i class="fa fa-fw  fa-user text-muted tableIcon"></i>@Resources.HELPDESK_CODE</th>
+                                    <th data-hide="phone,tablet">@Resources.USER_USERNAME</th>
+                                    <th data-hide="phone,tablet">@Resources.HELPDESK_FEEDBACK</th>
+                                    <th data-hide="phone,tablet">@Resources.CREATED_DATE</th>
+                                    <th data-hide="phone,tablet">@Resources.USER_STATUS</th>
+                                    <th data-hide="phone,tablet" class="table-column-header"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+@Scripts.Render(bundles.scripts.common_index)
+<!-- Protected Script -->
+
+<script>
+    $('#back-to-dashboard').on("click", function () {
+
+        var url = $(this).attr("data-url")
+        var param = { dashboardBoxName: $("#dashboardName").val() }
+        if (dashboardName) {
+            navigate.viewByParameter(url, param);
+        }
+    })
+    _initActionExtended = function (partName, readOnly) {
+
+        $('.view-chart-dashboard').on("click", function () {
+
+            var recordId = $(this).attr("data-url")
+            if (recordId) {
+                navigateWONewWindow(recordId, true);
+            }
+        })
+
+        $('.maintenance-chart-dashboard').on("click", function () {
+
+            var recordId = $(this).attr("data-url")
+            if (recordId) {
+                navigateWONewWindow(recordId, false)
+            }
+        })
+
+        function navigateWONewWindow(recordId, readOnly) {
+            var url = "ViewTicketDetail?id=" + recordId + "&readOnly=" + readOnly + "&hideBackButton=true";
+            window.open(url)
+        }
+
+    }
+    $("document").ready(function () {
+            ExtendedFilterMethod();
+    })
+
+    $("#chartPlaceholderDetail").on("click", ".download", function (e) {
+        e.preventDefault();
+
+        var downloadBtn = $(this);
+        var canvasName = $(this).attr('data-id');
+        var fileName = $(this).attr('data-name');
+        var elem = $("#" + canvasName);
+
+        html2canvas(elem, {
+            onrendered: function (canvas) {
+                var url = canvas.toDataURL();
+                $("<a>", {
+                    href: url,
+                    download: fileName.replace(/ /g, "_") + '.jpg'
+                })
+                .on("click", function () { $(this).remove() })
+                .appendTo("body")[0].click()
+            }
+        })
+    });
+
+    function ExtendedFilterMethod() {
+        var actionUrl = "ChartPanelTicketDashboard/DrawChartDetail";
+        var param = { startDate: $("#loadedDateFrom").val(), endDate: $("#loadedDateTo").val(), type: $("#type").val(), section: $("#section").val() }
+        navigate.navigateElementByParameter(actionUrl, param, $("#chartPlaceholderDetail"));
+    }
+</script>

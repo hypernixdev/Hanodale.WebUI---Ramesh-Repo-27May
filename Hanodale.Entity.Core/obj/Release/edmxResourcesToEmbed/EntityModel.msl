@@ -1,0 +1,1592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HanodaleEntitiesModelStoreContainer" CdmEntityContainer="HanodaleEntities">
+    <FunctionImportMapping FunctionImportName="GetReportFiles" FunctionName="HanodaleEntitiesModel.Store.GetReportFiles" />
+    <FunctionImportMapping FunctionImportName="DB_Ticket_Datatable_Details" FunctionName="HanodaleEntitiesModel.Store.DB_Ticket_Datatable_Details">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HanodaleEntitiesModel.DB_Ticket_Datatable_Details_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="feedback" ColumnName="feedback" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="actionDate" ColumnName="actionDate" />
+          <ScalarProperty Name="feedbackModule" ColumnName="feedbackModule" />
+          <ScalarProperty Name="workFollowStatus_Id" ColumnName="workFollowStatus_Id" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DB_Ticket_Statistic" FunctionName="HanodaleEntitiesModel.Store.DB_Ticket_Statistic">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HanodaleEntitiesModel.DB_Ticket_Statistic_Result">
+          <ScalarProperty Name="statisticType" ColumnName="statisticType" />
+          <ScalarProperty Name="statisticTypeName" ColumnName="statisticTypeName" />
+          <ScalarProperty Name="statisticCount" ColumnName="statisticCount" />
+          <ScalarProperty Name="statisticPerc" ColumnName="statisticPerc" />
+          <ScalarProperty Name="backColor" ColumnName="backColor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DB_Ticket_Statistic_Bar" FunctionName="HanodaleEntitiesModel.Store.DB_Ticket_Statistic_Bar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HanodaleEntitiesModel.DB_Ticket_Statistic_Bar_Result">
+          <ScalarProperty Name="dataType" ColumnName="dataType" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="count" ColumnName="count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DB_User_Dashboard_Items" FunctionName="HanodaleEntitiesModel.Store.DB_User_Dashboard_Items">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HanodaleEntitiesModel.DB_User_Dashboard_Items_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="parent_Id" ColumnName="parent_Id" />
+          <ScalarProperty Name="menu_Id" ColumnName="menu_Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="backColor" ColumnName="backColor" />
+          <ScalarProperty Name="fontColor" ColumnName="fontColor" />
+          <ScalarProperty Name="ordering" ColumnName="ordering" />
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="newRecordCount" ColumnName="newRecordCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AdhocReports">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.AdhocReport">
+        <MappingFragment StoreEntitySet="AdhocReport">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+          <ScalarProperty Name="isCommon" ColumnName="isCommon" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="reportFileName" ColumnName="reportFileName" />
+          <ScalarProperty Name="reportName" ColumnName="reportName" />
+          <ScalarProperty Name="reportType_Id" ColumnName="reportType_Id" />
+          <ScalarProperty Name="organization_Id" ColumnName="organization_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssignedBusinesses">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.AssignedBusiness">
+        <MappingFragment StoreEntitySet="AssignedBusiness">
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+          <ScalarProperty Name="business_Id" ColumnName="business_Id" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssignedOrganizations">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.AssignedOrganization">
+        <MappingFragment StoreEntitySet="AssignedOrganization">
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+          <ScalarProperty Name="organization_Id" ColumnName="organization_Id" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Budgets">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Budget">
+        <MappingFragment StoreEntitySet="Budget">
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="budgetType_Id" ColumnName="budgetType_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bulletins">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Bulletin">
+        <MappingFragment StoreEntitySet="Bulletin">
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="context" ColumnName="context" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Businesses">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Business">
+        <MappingFragment StoreEntitySet="Business">
+          <ScalarProperty Name="gstNo" ColumnName="gstNo" />
+          <ScalarProperty Name="profileLastUpdated" ColumnName="profileLastUpdated" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="limitation" ColumnName="limitation" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="companyType" ColumnName="companyType" />
+          <ScalarProperty Name="paidUpCapital" ColumnName="paidUpCapital" />
+          <ScalarProperty Name="businessCategory" ColumnName="businessCategory" />
+          <ScalarProperty Name="rocNo" ColumnName="rocNo" />
+          <ScalarProperty Name="referenceId" ColumnName="referenceId" />
+          <ScalarProperty Name="expiryDate" ColumnName="expiryDate" />
+          <ScalarProperty Name="registrationDate" ColumnName="registrationDate" />
+          <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+          <ScalarProperty Name="isMAHBRegistered" ColumnName="isMAHBRegistered" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="primaryCurrency" ColumnName="primaryCurrency" />
+          <ScalarProperty Name="primaryEmail" ColumnName="primaryEmail" />
+          <ScalarProperty Name="primaryContact" ColumnName="primaryContact" />
+          <ScalarProperty Name="webSite" ColumnName="webSite" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="businessType_Id" ColumnName="businessType_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessAddresses">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.BusinessAddress">
+        <MappingFragment StoreEntitySet="BusinessAddress">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="business_Id" ColumnName="business_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessClassifications">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.BusinessClassification">
+        <MappingFragment StoreEntitySet="BusinessClassification">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="classification_Id" ColumnName="classification_Id" />
+          <ScalarProperty Name="business_Id" ColumnName="business_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessFiles">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.BusinessFile">
+        <MappingFragment StoreEntitySet="BusinessFile">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="urlPath" ColumnName="urlPath" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="fileType_Id" ColumnName="fileType_Id" />
+          <ScalarProperty Name="business_Id" ColumnName="business_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessOrganizations">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.BusinessOrganization">
+        <MappingFragment StoreEntitySet="BusinessOrganization">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="organization_Id" ColumnName="organization_Id" />
+          <ScalarProperty Name="business_Id" ColumnName="business_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessOthers">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.BusinessOther">
+        <MappingFragment StoreEntitySet="BusinessOthers">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="jkh" ColumnName="jkh" />
+          <ScalarProperty Name="financeMinistry" ColumnName="financeMinistry" />
+          <ScalarProperty Name="dbkl" ColumnName="dbkl" />
+          <ScalarProperty Name="jkr" ColumnName="jkr" />
+          <ScalarProperty Name="mara" ColumnName="mara" />
+          <ScalarProperty Name="jba" ColumnName="jba" />
+          <ScalarProperty Name="tnb" ColumnName="tnb" />
+          <ScalarProperty Name="pkk" ColumnName="pkk" />
+          <ScalarProperty Name="classF" ColumnName="classF" />
+          <ScalarProperty Name="classEX" ColumnName="classEX" />
+          <ScalarProperty Name="classE" ColumnName="classE" />
+          <ScalarProperty Name="classD" ColumnName="classD" />
+          <ScalarProperty Name="classC" ColumnName="classC" />
+          <ScalarProperty Name="classBX" ColumnName="classBX" />
+          <ScalarProperty Name="classB" ColumnName="classB" />
+          <ScalarProperty Name="classA" ColumnName="classA" />
+          <ScalarProperty Name="bumiCapital" ColumnName="bumiCapital" />
+          <ScalarProperty Name="foreignShare" ColumnName="foreignShare" />
+          <ScalarProperty Name="nonBumiShare" ColumnName="nonBumiShare" />
+          <ScalarProperty Name="bumiShare" ColumnName="bumiShare" />
+          <ScalarProperty Name="business_Id" ColumnName="business_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessWorkCategories">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.BusinessWorkCategory">
+        <MappingFragment StoreEntitySet="BusinessWorkCategory">
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="workCategory_Id" ColumnName="workCategory_Id" />
+          <ScalarProperty Name="business_Id" ColumnName="business_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CalendarEvents">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.CalendarEvent">
+        <MappingFragment StoreEntitySet="CalendarEvent">
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="allowToSelect" ColumnName="allowToSelect" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="eventColor" ColumnName="eventColor" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="organization_Id" ColumnName="organization_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CalendarSettings">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.CalendarSetting">
+        <MappingFragment StoreEntitySet="CalendarSetting">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="calendarEvent_Id" ColumnName="calendarEvent_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyProfiles">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.CompanyProfile">
+        <MappingFragment StoreEntitySet="CompanyProfile">
+          <ScalarProperty Name="totalRevenue" ColumnName="totalRevenue" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="effectiveDate" ColumnName="effectiveDate" />
+          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="service_Id" ColumnName="service_Id" />
+          <ScalarProperty Name="noOfUser" ColumnName="noOfUser" />
+          <ScalarProperty Name="companyType_Id" ColumnName="companyType_Id" />
+          <ScalarProperty Name="totalCapital" ColumnName="totalCapital" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DashboardCategories">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.DashboardCategory">
+        <MappingFragment StoreEntitySet="DashboardCategory">
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="ordering" ColumnName="ordering" />
+          <ScalarProperty Name="fontColor" ColumnName="fontColor" />
+          <ScalarProperty Name="backColor" ColumnName="backColor" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="menu_Id" ColumnName="menu_Id" />
+          <ScalarProperty Name="parent_Id" ColumnName="parent_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailScheduleds">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.EmailScheduled">
+        <MappingFragment StoreEntitySet="EmailScheduled">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="status_Id" ColumnName="status_Id" />
+          <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="filePath" ColumnName="filePath" />
+          <ScalarProperty Name="emailCC" ColumnName="emailCC" />
+          <ScalarProperty Name="emailTo" ColumnName="emailTo" />
+          <ScalarProperty Name="emailContent" ColumnName="emailContent" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileUploadHistories">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.FileUploadHistory">
+        <MappingFragment StoreEntitySet="FileUploadHistory">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="totalRecords" ColumnName="totalRecords" />
+          <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="uploadType" ColumnName="uploadType" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HelpDesks">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.HelpDesk">
+        <MappingFragment StoreEntitySet="HelpDesk">
+          <ScalarProperty Name="actionDate" ColumnName="actionDate" />
+          <ScalarProperty Name="inprogressDate" ColumnName="inprogressDate" />
+          <ScalarProperty Name="receivedDate" ColumnName="receivedDate" />
+          <ScalarProperty Name="receivedBy" ColumnName="receivedBy" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="feedbackModule" ColumnName="feedbackModule" />
+          <ScalarProperty Name="feedbackDate" ColumnName="feedbackDate" />
+          <ScalarProperty Name="feedbackTag" ColumnName="feedbackTag" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cellPhone" ColumnName="cellPhone" />
+          <ScalarProperty Name="officePhone" ColumnName="officePhone" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="feedback" ColumnName="feedback" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="workFollowStatus_Id" ColumnName="workFollowStatus_Id" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="organization_Id" ColumnName="organization_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HelpDeskLogs">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.HelpDeskLog">
+        <MappingFragment StoreEntitySet="HelpDeskLog">
+          <ScalarProperty Name="fileNames" ColumnName="fileNames" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="auditLog" ColumnName="auditLog" />
+          <ScalarProperty Name="helpDesk_Id" ColumnName="helpDesk_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Language_Profile">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Language_Profile">
+        <MappingFragment StoreEntitySet="Language_Profile">
+          <ScalarProperty Name="ModuleItem_Byte_Id" ColumnName="ModuleItem_Byte_Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalizationLanguages">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.LocalizationLanguage">
+        <MappingFragment StoreEntitySet="LocalizationLanguage">
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+          <ScalarProperty Name="flagIconName" ColumnName="flagIconName" />
+          <ScalarProperty Name="shortName" ColumnName="shortName" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="culture" ColumnName="culture" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalizationLanguageResources">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.LocalizationLanguageResource">
+        <MappingFragment StoreEntitySet="LocalizationLanguageResource">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="localizationResource_Id" ColumnName="localizationResource_Id" />
+          <ScalarProperty Name="localizationLanguage_Id" ColumnName="localizationLanguage_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalizationResources">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.LocalizationResource">
+        <MappingFragment StoreEntitySet="LocalizationResource">
+          <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
+          <ScalarProperty Name="keyName" ColumnName="keyName" />
+          <ScalarProperty Name="localizationSection_Id" ColumnName="localizationSection_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalizationSections">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.LocalizationSection">
+        <MappingFragment StoreEntitySet="LocalizationSection">
+          <ScalarProperty Name="sector" ColumnName="sector" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuItems">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.MenuItem">
+        <MappingFragment StoreEntitySet="MenuItem">
+          <ScalarProperty Name="showAsMain" ColumnName="showAsMain" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="reportCategory_Id" ColumnName="reportCategory_Id" />
+          <ScalarProperty Name="menuLevel_Id" ColumnName="menuLevel_Id" />
+          <ScalarProperty Name="menuType_Id" ColumnName="menuType_Id" />
+          <ScalarProperty Name="ordering" ColumnName="ordering" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="pageUrl" ColumnName="pageUrl" />
+          <ScalarProperty Name="pageName" ColumnName="pageName" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="reference_Id" ColumnName="reference_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleCodes">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ModuleCode">
+        <MappingFragment StoreEntitySet="ModuleCode">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="mask" ColumnName="mask" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="menu_Id" ColumnName="menu_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleItems">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ModuleItem">
+        <MappingFragment StoreEntitySet="ModuleItem">
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="modulType_Id" ColumnName="modulType_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleTypes">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ModuleType">
+        <MappingFragment StoreEntitySet="ModuleType">
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="loggedDate" ColumnName="loggedDate" />
+          <ScalarProperty Name="loggedBy" ColumnName="loggedBy" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="module_refId" ColumnName="module_refId" />
+          <ScalarProperty Name="module" ColumnName="module" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organizations">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Organization">
+        <MappingFragment StoreEntitySet="Organization">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="sapcode" ColumnName="sapcode" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="orgCategory_Id" ColumnName="orgCategory_Id" />
+          <ScalarProperty Name="parent_Id" ColumnName="parent_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationCategories">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrganizationCategory">
+        <MappingFragment StoreEntitySet="OrganizationCategory">
+          <ScalarProperty Name="ordring" ColumnName="ordring" />
+          <ScalarProperty Name="forceColor" ColumnName="forceColor" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="backColor" ColumnName="backColor" />
+          <ScalarProperty Name="isChildNodeAllowed" ColumnName="isChildNodeAllowed" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationCategoryConfigs">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrganizationCategoryConfig">
+        <MappingFragment StoreEntitySet="OrganizationCategoryConfig">
+          <ScalarProperty Name="childOrgCategory_Id" ColumnName="childOrgCategory_Id" />
+          <ScalarProperty Name="orgCategory_Id" ColumnName="orgCategory_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationEmails">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrganizationEmail">
+        <MappingFragment StoreEntitySet="OrganizationEmail">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isSSL" ColumnName="isSSL" />
+          <ScalarProperty Name="smptPort" ColumnName="smptPort" />
+          <ScalarProperty Name="smtp" ColumnName="smtp" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="emailFrom" ColumnName="emailFrom" />
+          <ScalarProperty Name="emailTo" ColumnName="emailTo" />
+          <ScalarProperty Name="department_Id" ColumnName="department_Id" />
+          <ScalarProperty Name="organization_Id" ColumnName="organization_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportCategories">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ReportCategory">
+        <MappingFragment StoreEntitySet="ReportCategory">
+          <ScalarProperty Name="tag" ColumnName="tag" />
+          <ScalarProperty Name="rev" ColumnName="rev" />
+          <ScalarProperty Name="issue" ColumnName="issue" />
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="ordering" ColumnName="ordering" />
+          <ScalarProperty Name="backColor" ColumnName="backColor" />
+          <ScalarProperty Name="fontColor" ColumnName="fontColor" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="parent_Id" ColumnName="parent_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportSettings">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ReportSetting">
+        <MappingFragment StoreEntitySet="ReportSetting">
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunningCodes">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.RunningCode">
+        <MappingFragment StoreEntitySet="RunningCode">
+          <ScalarProperty Name="runningId" ColumnName="runningId" />
+          <ScalarProperty Name="module_Id" ColumnName="module_Id" />
+          <ScalarProperty Name="runningNo" ColumnName="runningNo" />
+          <ScalarProperty Name="organization_Id" ColumnName="organization_Id" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="moduleName" ColumnName="moduleName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfiles">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfile">
+        <MappingFragment StoreEntitySet="TableProfile">
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="localizationResource_Id" ColumnName="localizationResource_Id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="parent_Id" ColumnName="parent_Id" />
+          <ScalarProperty Name="menu_Id" ColumnName="menu_Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadatas">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadata">
+        <MappingFragment StoreEntitySet="TableProfileMetadata">
+          <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+          <ScalarProperty Name="validationRule" ColumnName="validationRule" />
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="templateName" ColumnName="templateName" />
+          <ScalarProperty Name="isEditableInEdit" ColumnName="isEditableInEdit" />
+          <ScalarProperty Name="visibilityInEdit" ColumnName="visibilityInEdit" />
+          <ScalarProperty Name="isEditableInCreate" ColumnName="isEditableInCreate" />
+          <ScalarProperty Name="visibilityInCreate" ColumnName="visibilityInCreate" />
+          <ScalarProperty Name="visibilityInGridView" ColumnName="visibilityInGridView" />
+          <ScalarProperty Name="isMandatory" ColumnName="isMandatory" />
+          <ScalarProperty Name="localizationResourceForGrid_Id" ColumnName="localizationResourceForGrid_Id" />
+          <ScalarProperty Name="valueFieldName" ColumnName="valueFieldName" />
+          <ScalarProperty Name="fieldName" ColumnName="fieldName" />
+          <ScalarProperty Name="tableProfile_Id" ColumnName="tableProfile_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataBools">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataBool">
+        <MappingFragment StoreEntitySet="TableProfileMetadataBool">
+          <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
+          <ScalarProperty Name="selectionOption" ColumnName="selectionOption" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataDateTimes">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataDateTime">
+        <MappingFragment StoreEntitySet="TableProfileMetadataDateTime">
+          <ScalarProperty Name="isCurrentDateDefault" ColumnName="isCurrentDateDefault" />
+          <ScalarProperty Name="isFollowCalendarSetting" ColumnName="isFollowCalendarSetting" />
+          <ScalarProperty Name="isAllowPastDate" ColumnName="isAllowPastDate" />
+          <ScalarProperty Name="maxDate" ColumnName="maxDate" />
+          <ScalarProperty Name="minDate" ColumnName="minDate" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataDecimals">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataDecimal">
+        <MappingFragment StoreEntitySet="TableProfileMetadataDecimal">
+          <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
+          <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+          <ScalarProperty Name="minValue" ColumnName="minValue" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataIntegers">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataInteger">
+        <MappingFragment StoreEntitySet="TableProfileMetadataInteger">
+          <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
+          <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+          <ScalarProperty Name="minValue" ColumnName="minValue" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataLists">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataList">
+        <MappingFragment StoreEntitySet="TableProfileMetadataList">
+          <ScalarProperty Name="dataRetrieveURL" ColumnName="dataRetrieveURL" />
+          <ScalarProperty Name="lookDefaultValue" ColumnName="lookDefaultValue" />
+          <ScalarProperty Name="lookUpValue" ColumnName="lookUpValue" />
+          <ScalarProperty Name="isMultiValue" ColumnName="isMultiValue" />
+          <ScalarProperty Name="parent_Id" ColumnName="parent_Id" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataListValues">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataListValue">
+        <MappingFragment StoreEntitySet="TableProfileMetadataListValue">
+          <ScalarProperty Name="visibility" ColumnName="visibility" />
+          <ScalarProperty Name="fieldText" ColumnName="fieldText" />
+          <ScalarProperty Name="tableProfileMetadataList_Id" ColumnName="tableProfileMetadataList_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataMultiFileUploads">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataMultiFileUpload">
+        <MappingFragment StoreEntitySet="TableProfileMetadataMultiFileUpload">
+          <ScalarProperty Name="hasDownloadOption" ColumnName="hasDownloadOption" />
+          <ScalarProperty Name="maxAllowedFileUpload" ColumnName="maxAllowedFileUpload" />
+          <ScalarProperty Name="allowedFileUploadExtension" ColumnName="allowedFileUploadExtension" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataSingleFileUploads">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataSingleFileUpload">
+        <MappingFragment StoreEntitySet="TableProfileMetadataSingleFileUpload">
+          <ScalarProperty Name="hasDownloadOption" ColumnName="hasDownloadOption" />
+          <ScalarProperty Name="hasImageViewer" ColumnName="hasImageViewer" />
+          <ScalarProperty Name="allowedFileUploadExtension" ColumnName="allowedFileUploadExtension" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableProfileMetadataTexts">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.TableProfileMetadataText">
+        <MappingFragment StoreEntitySet="TableProfileMetadataText">
+          <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
+          <ScalarProperty Name="maxLength" ColumnName="maxLength" />
+          <ScalarProperty Name="minLength" ColumnName="minLength" />
+          <ScalarProperty Name="tableProfileMetadata_Id" ColumnName="tableProfileMetadata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="verified" ColumnName="verified" />
+          <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="person_Id" ColumnName="person_Id" />
+          <ScalarProperty Name="userType_Id" ColumnName="userType_Id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRights">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.UserRight">
+        <MappingFragment StoreEntitySet="UserRights">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="canDelete" ColumnName="canDelete" />
+          <ScalarProperty Name="canEdit" ColumnName="canEdit" />
+          <ScalarProperty Name="canAdd" ColumnName="canAdd" />
+          <ScalarProperty Name="canView" ColumnName="canView" />
+          <ScalarProperty Name="menuItem_Id" ColumnName="menuItem_Id" />
+          <ScalarProperty Name="userRole_Id" ColumnName="userRole_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="landingPage" ColumnName="landingPage" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="userTypeId" ColumnName="userTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkCategories">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.WorkCategory">
+        <MappingFragment StoreEntitySet="WorkCategory">
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLocations">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.UserLocation">
+        <MappingFragment StoreEntitySet="UserLocation">
+          <ScalarProperty Name="locationId" ColumnName="locationId" />
+          <ScalarProperty Name="refType" ColumnName="refType" />
+          <ScalarProperty Name="refId" ColumnName="refId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plant">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Plant">
+        <MappingFragment StoreEntitySet="Plant">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address3" ColumnName="address3" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="plant1" ColumnName="plant" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Address_City">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Address_City">
+        <MappingFragment StoreEntitySet="Address_City">
+          <ScalarProperty Name="address_Country_Id" ColumnName="address_Country_Id" />
+          <ScalarProperty Name="address_State_Id" ColumnName="address_State_Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Address_Country">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Address_Country">
+        <MappingFragment StoreEntitySet="Address_Country">
+          <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Address_State">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Address_State">
+        <MappingFragment StoreEntitySet="Address_State">
+          <ScalarProperty Name="address_Country_Id" ColumnName="address_Country_Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipTo">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ShipTo">
+        <MappingFragment StoreEntitySet="ShipTo">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Store">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Store">
+        <MappingFragment StoreEntitySet="Store">
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="address_Country_id" ColumnName="address_Country_id" />
+          <ScalarProperty Name="address_State_id" ColumnName="address_State_id" />
+          <ScalarProperty Name="address_City_id" ColumnName="address_City_id" />
+          <ScalarProperty Name="address3" ColumnName="address3" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="plant" ColumnName="plant" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderUOM">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderUOM">
+        <MappingFragment StoreEntitySet="OrderUOM">
+          <ScalarProperty Name="defaultLooseQty" ColumnName="defaultLooseQty" />
+          <ScalarProperty Name="disableFullQty" ColumnName="disableFullQty" />
+          <ScalarProperty Name="disableLooseQty" ColumnName="disableLooseQty" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leave_Carry_Forward">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Leave_Carry_Forward">
+        <MappingFragment StoreEntitySet="Leave_Carry_Forward">
+          <ScalarProperty Name="Effective_Date" ColumnName="Effective_Date" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Moduleitem_LeaveCarryForwardMethod_Id" ColumnName="Moduleitem_LeaveCarryForwardMethod_Id" />
+          <ScalarProperty Name="Moduleitem_Jobgrade_Id" ColumnName="Moduleitem_Jobgrade_Id" />
+          <ScalarProperty Name="Moduleitem_LeaveType_Id" ColumnName="Moduleitem_LeaveType_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leave_Sequence">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Leave_Sequence">
+        <MappingFragment StoreEntitySet="Leave_Sequence">
+          <ScalarProperty Name="ModuleItem_LeaveTypeApplied_Id" ColumnName="ModuleItem_LeaveTypeApplied_Id" />
+          <ScalarProperty Name="Sequence_No" ColumnName="Sequence_No" />
+          <ScalarProperty Name="Moduleitem_LeaveType_Id" ColumnName="Moduleitem_LeaveType_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leave_View_Apply">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Leave_View_Apply">
+        <MappingFragment StoreEntitySet="Leave_View_Apply">
+          <ScalarProperty Name="Moduleitem_LeaveCancelStatus_Id" ColumnName="Moduleitem_LeaveCancelStatus_Id" />
+          <ScalarProperty Name="Moduleitem_LeaveApplyStatus_Id" ColumnName="Moduleitem_LeaveApplyStatus_Id" />
+          <ScalarProperty Name="Moduleitem_LeaveViewStatus_Id" ColumnName="Moduleitem_LeaveViewStatus_Id" />
+          <ScalarProperty Name="Moduleitem_LeaveType_Id" ColumnName="Moduleitem_LeaveType_Id" />
+          <ScalarProperty Name="UserRole_Id" ColumnName="UserRole_Id" />
+          <ScalarProperty Name="Company_Profile_Id" ColumnName="Company_Profile_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCarton">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ProductCarton">
+        <MappingFragment StoreEntitySet="ProductCarton">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="weightMutiplier" ColumnName="weightMutiplier" />
+          <ScalarProperty Name="weightValue" ColumnName="weightValue" />
+          <ScalarProperty Name="weightToPosition" ColumnName="weightToPosition" />
+          <ScalarProperty Name="weightFromPosition" ColumnName="weightFromPosition" />
+          <ScalarProperty Name="productCodeToPosition" ColumnName="productCodeToPosition" />
+          <ScalarProperty Name="productCodeFromPosition" ColumnName="productCodeFromPosition" />
+          <ScalarProperty Name="productBarcodeLength" ColumnName="productBarcodeLength" />
+          <ScalarProperty Name="vendorProductCode" ColumnName="vendorProductCode" />
+          <ScalarProperty Name="barcode" ColumnName="barcode" />
+          <ScalarProperty Name="epicorPartNo" ColumnName="epicorPartNo" />
+          <ScalarProperty Name="productKey" ColumnName="productKey" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipToAddress">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ShipToAddress">
+        <MappingFragment StoreEntitySet="ShipToAddress">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="plantName" ColumnName="plantName" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="custID" ColumnName="custID" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="address_Country_Id" ColumnName="address_Country_Id" />
+          <ScalarProperty Name="address_State_Id" ColumnName="address_State_Id" />
+          <ScalarProperty Name="address_City_Id" ColumnName="address_City_Id" />
+          <ScalarProperty Name="address3" ColumnName="address3" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="shippingCode" ColumnName="shippingCode" />
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="store_Id" ColumnName="store_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderPayment">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderPayment">
+        <MappingFragment StoreEntitySet="OrderPayment">
+          <ScalarProperty Name="IsRefund" ColumnName="IsRefund" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+          <ScalarProperty Name="refNumber" ColumnName="refNumber" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+          <ScalarProperty Name="order_Id" ColumnName="order_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UomConv">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.UomConv">
+        <MappingFragment StoreEntitySet="UomConv">
+          <ScalarProperty Name="convOperator" ColumnName="convOperator" />
+          <ScalarProperty Name="uniqueField" ColumnName="uniqueField" />
+          <ScalarProperty Name="convFactor" ColumnName="convFactor" />
+          <ScalarProperty Name="uomCode" ColumnName="uomCode" />
+          <ScalarProperty Name="partNum" ColumnName="partNum" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerGroupPriceList">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.CustomerGroupPriceList">
+        <MappingFragment StoreEntitySet="CustomerGroupPriceList">
+          <ScalarProperty Name="listCode" ColumnName="listCode" />
+          <ScalarProperty Name="seqNum" ColumnName="seqNum" />
+          <ScalarProperty Name="groupCode" ColumnName="groupCode" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="sysRowID" ColumnName="sysRowID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerPriceList">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.CustomerPriceList">
+        <MappingFragment StoreEntitySet="CustomerPriceList">
+          <ScalarProperty Name="sysRowID" ColumnName="sysRowID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ListCode" ColumnName="ListCode" />
+          <ScalarProperty Name="SeqNum" ColumnName="SeqNum" />
+          <ScalarProperty Name="ShipToNum" ColumnName="ShipToNum" />
+          <ScalarProperty Name="CustNum" ColumnName="CustNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PriceList">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.PriceList">
+        <MappingFragment StoreEntitySet="PriceList">
+          <ScalarProperty Name="sysRowID" ColumnName="sysRowID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ListDescription" ColumnName="ListDescription" />
+          <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+          <ScalarProperty Name="ListCode" ColumnName="ListCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PriceListPart">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.PriceListPart">
+        <MappingFragment StoreEntitySet="PriceListPart">
+          <ScalarProperty Name="sysRowID" ColumnName="sysRowID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UomCode" ColumnName="UomCode" />
+          <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+          <ScalarProperty Name="PartNum" ColumnName="PartNum" />
+          <ScalarProperty Name="ListCode" ColumnName="ListCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IntegrationLog">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.IntegrationLog">
+        <MappingFragment StoreEntitySet="IntegrationLog">
+          <ScalarProperty Name="responseMessage" ColumnName="responseMessage" />
+          <ScalarProperty Name="responseStatus" ColumnName="responseStatus" />
+          <ScalarProperty Name="responseReturnTime" ColumnName="responseReturnTime" />
+          <ScalarProperty Name="startDateTime" ColumnName="startDateTime" />
+          <ScalarProperty Name="triggerPoint" ColumnName="triggerPoint" />
+          <ScalarProperty Name="apiPoint" ColumnName="apiPoint" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IntegrationLogDetail">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.IntegrationLogDetail">
+        <MappingFragment StoreEntitySet="IntegrationLogDetail">
+          <ScalarProperty Name="jsonInput" ColumnName="jsonInput" />
+          <ScalarProperty Name="integrationLog_Id" ColumnName="integrationLog_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductWeightBarcode">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.ProductWeightBarcode">
+        <MappingFragment StoreEntitySet="ProductWeightBarcode">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="weightValue" ColumnName="weightValue" />
+          <ScalarProperty Name="offSet2" ColumnName="offSet2" />
+          <ScalarProperty Name="offSet1" ColumnName="offSet1" />
+          <ScalarProperty Name="barcodeLength" ColumnName="barcodeLength" />
+          <ScalarProperty Name="weightMultiply" ColumnName="weightMultiply" />
+          <ScalarProperty Name="weightToPos" ColumnName="weightToPos" />
+          <ScalarProperty Name="weightFromPos" ColumnName="weightFromPos" />
+          <ScalarProperty Name="barcodeToPos" ColumnName="barcodeToPos" />
+          <ScalarProperty Name="barcodeFromPos" ColumnName="barcodeFromPos" />
+          <ScalarProperty Name="barcode" ColumnName="barcode" />
+          <ScalarProperty Name="fullBarcode" ColumnName="fullBarcode" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="epicorePartNo" ColumnName="epicorePartNo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockBalance">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.StockBalance">
+        <MappingFragment StoreEntitySet="StockBalance">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Column" ColumnName="Column" />
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="Freezer" ColumnName="Freezer" />
+          <ScalarProperty Name="uniqueField" ColumnName="uniqueField" />
+          <ScalarProperty Name="onHandQty" ColumnName="onHandQty" />
+          <ScalarProperty Name="uom" ColumnName="uom" />
+          <ScalarProperty Name="warehouseCode" ColumnName="warehouseCode" />
+          <ScalarProperty Name="partNum" ColumnName="partNum" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderUpdate">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderUpdate">
+        <MappingFragment StoreEntitySet="OrderUpdate">
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+          <ScalarProperty Name="order_Id" ColumnName="order_Id" />
+          <ScalarProperty Name="actionDate" ColumnName="actionDate" />
+          <ScalarProperty Name="actionName" ColumnName="actionName" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="profileImageName" ColumnName="profileImageName" />
+          <ScalarProperty Name="isAccessAllOrganization" ColumnName="isAccessAllOrganization" />
+          <ScalarProperty Name="yearofservice" ColumnName="yearofservice" />
+          <ScalarProperty Name="expireddate" ColumnName="expireddate" />
+          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+          <ScalarProperty Name="employeegroupId" ColumnName="employeegroupId" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="bankId" ColumnName="bankId" />
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+          <ScalarProperty Name="idNo" ColumnName="idNo" />
+          <ScalarProperty Name="gred" ColumnName="gred" />
+          <ScalarProperty Name="salaryId" ColumnName="salaryId" />
+          <ScalarProperty Name="officeNo" ColumnName="officeNo" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="employeeNo" ColumnName="employeeNo" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="isTermsAccepted" ColumnName="isTermsAccepted" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="verified" ColumnName="verified" />
+          <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="bussinessType_Id" ColumnName="bussinessType_Id" />
+          <ScalarProperty Name="bussiness_Id" ColumnName="bussiness_Id" />
+          <ScalarProperty Name="userRole_Id" ColumnName="userRole_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Brand">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Brand">
+        <MappingFragment StoreEntitySet="Brand">
+          <ScalarProperty Name="sysRowID" ColumnName="sysRowID" />
+          <ScalarProperty Name="brandDescription" ColumnName="brandDescription" />
+          <ScalarProperty Name="brandCode" ColumnName="brandCode" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LooseConversion">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.LooseConversion">
+        <MappingFragment StoreEntitySet="LooseConversion">
+          <ScalarProperty Name="postingStatus" ColumnName="postingStatus" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="productCarton_Id" ColumnName="productCarton_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LooseConversionItem">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.LooseConversionItem">
+        <MappingFragment StoreEntitySet="LooseConversionItem">
+          <ScalarProperty Name="RunningBalance" ColumnName="RunningBalance" />
+          <ScalarProperty Name="LooseQty" ColumnName="LooseQty" />
+          <ScalarProperty Name="barcode" ColumnName="barcode" />
+          <ScalarProperty Name="weighScaleBarcode_Id" ColumnName="weighScaleBarcode_Id" />
+          <ScalarProperty Name="looseConversion_Id" ColumnName="looseConversion_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSOrderNumber">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.POSOrderNumber">
+        <MappingFragment StoreEntitySet="POSOrderNumber">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LastRunningNumber" ColumnName="LastRunningNumber" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LooseBarcodeSetting">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.LooseBarcodeSetting">
+        <MappingFragment StoreEntitySet="LooseBarcodeSetting">
+          <ScalarProperty Name="barcodeLength" ColumnName="barcodeLength" />
+          <ScalarProperty Name="weightMutiply" ColumnName="weightMutiply" />
+          <ScalarProperty Name="weightToPos" ColumnName="weightToPos" />
+          <ScalarProperty Name="weightFromPos" ColumnName="weightFromPos" />
+          <ScalarProperty Name="barcodeToPos" ColumnName="barcodeToPos" />
+          <ScalarProperty Name="barcodeFromPos" ColumnName="barcodeFromPos" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="creditHold" ColumnName="creditHold" />
+          <ScalarProperty Name="tin" ColumnName="tin" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="groupCode" ColumnName="groupCode" />
+          <ScalarProperty Name="address3" ColumnName="address3" />
+          <ScalarProperty Name="custID" ColumnName="custID" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="District">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.District">
+        <MappingFragment StoreEntitySet="District">
+          <ScalarProperty Name="sysRowID" ColumnName="sysRowID" />
+          <ScalarProperty Name="districtDesc" ColumnName="districtDesc" />
+          <ScalarProperty Name="districtID" ColumnName="districtID" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="districtId" ColumnName="districtId" />
+          <ScalarProperty Name="UD16Key1" ColumnName="UD16Key1" />
+          <ScalarProperty Name="epicoreInvNumber" ColumnName="epicoreInvNumber" />
+          <ScalarProperty Name="syncedAt" ColumnName="syncedAt" />
+          <ScalarProperty Name="shipPackNumber" ColumnName="shipPackNumber" />
+          <ScalarProperty Name="epicoreOrderId" ColumnName="epicoreOrderId" />
+          <ScalarProperty Name="orderContactName" ColumnName="orderContactName" />
+          <ScalarProperty Name="orderContactPhone" ColumnName="orderContactPhone" />
+          <ScalarProperty Name="orderContact" ColumnName="orderContact" />
+          <ScalarProperty Name="oneTimeCustomer" ColumnName="oneTimeCustomer" />
+          <ScalarProperty Name="epicoreResponse" ColumnName="epicoreResponse" />
+          <ScalarProperty Name="syncStatus" ColumnName="syncStatus" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="cancelRemarks" ColumnName="cancelRemarks" />
+          <ScalarProperty Name="verifyRemarks" ColumnName="verifyRemarks" />
+          <ScalarProperty Name="verifiedStatus" ColumnName="verifiedStatus" />
+          <ScalarProperty Name="verifiedDate" ColumnName="verifiedDate" />
+          <ScalarProperty Name="verifiedBy" ColumnName="verifiedBy" />
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+          <ScalarProperty Name="docOrderAmt" ColumnName="docOrderAmt" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="orderComment" ColumnName="orderComment" />
+          <ScalarProperty Name="salesRepList" ColumnName="salesRepList" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+          <ScalarProperty Name="shipToAddress_Id" ColumnName="shipToAddress_Id" />
+          <ScalarProperty Name="entryPerson" ColumnName="entryPerson" />
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="orderNum" ColumnName="orderNum" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderApproval">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderApproval">
+        <MappingFragment StoreEntitySet="OrderApproval">
+          <ScalarProperty Name="approvedDate" ColumnName="approvedDate" />
+          <ScalarProperty Name="approvedUser_Id" ColumnName="approvedUser_Id" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="approvalStatus" ColumnName="approvalStatus" />
+          <ScalarProperty Name="submittedDate" ColumnName="submittedDate" />
+          <ScalarProperty Name="submittedUser_Id" ColumnName="submittedUser_Id" />
+          <ScalarProperty Name="order_Id" ColumnName="order_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderItemDeleted">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderItemDeleted">
+        <MappingFragment StoreEntitySet="OrderItemDeleted">
+          <ScalarProperty Name="discountAmt" ColumnName="discountAmt" />
+          <ScalarProperty Name="discountPer" ColumnName="discountPer" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="deletedAt" ColumnName="deletedAt" />
+          <ScalarProperty Name="deletedBy" ColumnName="deletedBy" />
+          <ScalarProperty Name="actualOperationCost" ColumnName="actualOperationCost" />
+          <ScalarProperty Name="realOriginalUnitPrice" ColumnName="realOriginalUnitPrice" />
+          <ScalarProperty Name="scannedLabel" ColumnName="scannedLabel" />
+          <ScalarProperty Name="avlQty" ColumnName="avlQty" />
+          <ScalarProperty Name="IsItemReturned" ColumnName="IsItemReturned" />
+          <ScalarProperty Name="orderItemId" ColumnName="orderItemId" />
+          <ScalarProperty Name="finalQty" ColumnName="finalQty" />
+          <ScalarProperty Name="originalUnitPrice" ColumnName="originalUnitPrice" />
+          <ScalarProperty Name="allowVaryWeight" ColumnName="allowVaryWeight" />
+          <ScalarProperty Name="scannedQty" ColumnName="scannedQty" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="complimentary_ModuleItem_Id" ColumnName="complimentary_ModuleItem_Id" />
+          <ScalarProperty Name="operationCost" ColumnName="operationCost" />
+          <ScalarProperty Name="operationStyle_ModuleItem_Id" ColumnName="operationStyle_ModuleItem_Id" />
+          <ScalarProperty Name="OrderUOM_Id" ColumnName="OrderUOM_Id" />
+          <ScalarProperty Name="QtyType_ModuleItem_Id" ColumnName="QtyType_ModuleItem_Id" />
+          <ScalarProperty Name="product_Id" ColumnName="product_Id" />
+          <ScalarProperty Name="listPrice" ColumnName="listPrice" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="orderQty" ColumnName="orderQty" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="salesUm" ColumnName="salesUm" />
+          <ScalarProperty Name="ium" ColumnName="ium" />
+          <ScalarProperty Name="lineDesc" ColumnName="lineDesc" />
+          <ScalarProperty Name="partNum" ColumnName="partNum" />
+          <ScalarProperty Name="orderLine" ColumnName="orderLine" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderItemDiscountApproval">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderItemDiscountApproval">
+        <MappingFragment StoreEntitySet="OrderItemDiscountApproval">
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="requester_Id" ColumnName="requester_Id" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="approvalDate" ColumnName="approvalDate" />
+          <ScalarProperty Name="approverUser_Id" ColumnName="approverUser_Id" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="orderItem_Id" ColumnName="orderItem_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderItems">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderItems">
+        <MappingFragment StoreEntitySet="OrderItems">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="column" ColumnName="column" />
+          <ScalarProperty Name="row" ColumnName="row" />
+          <ScalarProperty Name="freezer" ColumnName="freezer" />
+          <ScalarProperty Name="returnTotal" ColumnName="returnTotal" />
+          <ScalarProperty Name="discountAmt" ColumnName="discountAmt" />
+          <ScalarProperty Name="discountPer" ColumnName="discountPer" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="actualOperationCost" ColumnName="actualOperationCost" />
+          <ScalarProperty Name="realOriginalUnitPrice" ColumnName="realOriginalUnitPrice" />
+          <ScalarProperty Name="scannedLabel" ColumnName="scannedLabel" />
+          <ScalarProperty Name="avlQty" ColumnName="avlQty" />
+          <ScalarProperty Name="IsItemReturned" ColumnName="IsItemReturned" />
+          <ScalarProperty Name="orderItemId" ColumnName="orderItemId" />
+          <ScalarProperty Name="finalQty" ColumnName="finalQty" />
+          <ScalarProperty Name="originalUnitPrice" ColumnName="originalUnitPrice" />
+          <ScalarProperty Name="allowVaryWeight" ColumnName="allowVaryWeight" />
+          <ScalarProperty Name="scannedQty" ColumnName="scannedQty" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="complimentary_ModuleItem_Id" ColumnName="complimentary_ModuleItem_Id" />
+          <ScalarProperty Name="operationCost" ColumnName="operationCost" />
+          <ScalarProperty Name="operationStyle_ModuleItem_Id" ColumnName="operationStyle_ModuleItem_Id" />
+          <ScalarProperty Name="OrderUOM_Id" ColumnName="OrderUOM_Id" />
+          <ScalarProperty Name="QtyType_ModuleItem_Id" ColumnName="QtyType_ModuleItem_Id" />
+          <ScalarProperty Name="product_Id" ColumnName="product_Id" />
+          <ScalarProperty Name="listPrice" ColumnName="listPrice" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="orderQty" ColumnName="orderQty" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="salesUm" ColumnName="salesUm" />
+          <ScalarProperty Name="ium" ColumnName="ium" />
+          <ScalarProperty Name="lineDesc" ColumnName="lineDesc" />
+          <ScalarProperty Name="partNum" ColumnName="partNum" />
+          <ScalarProperty Name="orderLine" ColumnName="orderLine" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SchedulerLog">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.SchedulerLog">
+        <MappingFragment StoreEntitySet="SchedulerLog">
+          <ScalarProperty Name="errorMessage" ColumnName="errorMessage" />
+          <ScalarProperty Name="totalRecordProcessed" ColumnName="totalRecordProcessed" />
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="endDateTime" ColumnName="endDateTime" />
+          <ScalarProperty Name="startDateTime" ColumnName="startDateTime" />
+          <ScalarProperty Name="schedulerSetting_Id" ColumnName="schedulerSetting_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SchedulerSetting">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.SchedulerSetting">
+        <MappingFragment StoreEntitySet="SchedulerSetting">
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="timeSlot" ColumnName="timeSlot" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="syncModule_Id" ColumnName="syncModule_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentReport">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.PaymentReport">
+        <MappingFragment StoreEntitySet="PaymentReport">
+          <ScalarProperty Name="epiAdvanceEntryTotal" ColumnName="epiAdvanceEntryTotal" />
+          <ScalarProperty Name="totalDiscount" ColumnName="totalDiscount" />
+          <ScalarProperty Name="totalEntries" ColumnName="totalEntries" />
+          <ScalarProperty Name="totalAdvanceCheque" ColumnName="totalAdvanceCheque" />
+          <ScalarProperty Name="totalAdvanceCreditCard" ColumnName="totalAdvanceCreditCard" />
+          <ScalarProperty Name="totalAdvanceCash" ColumnName="totalAdvanceCash" />
+          <ScalarProperty Name="totalCheque" ColumnName="totalCheque" />
+          <ScalarProperty Name="totalCreditCard" ColumnName="totalCreditCard" />
+          <ScalarProperty Name="totalCash" ColumnName="totalCash" />
+          <ScalarProperty Name="epicorCountOfSalesOrders" ColumnName="epicorCountOfSalesOrders" />
+          <ScalarProperty Name="epiCashEntryTotal" ColumnName="epiCashEntryTotal" />
+          <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
+          <ScalarProperty Name="conversionFactor" ColumnName="conversionFactor" />
+          <ScalarProperty Name="inActive" ColumnName="inActive" />
+          <ScalarProperty Name="syncId" ColumnName="syncId" />
+          <ScalarProperty Name="itemBrandCode" ColumnName="itemBrandCode" />
+          <ScalarProperty Name="Part_Number03_Avg_Weight" ColumnName="Part_Number03_Avg_Weight" />
+          <ScalarProperty Name="Part_Character04_Generic_Code" ColumnName="Part_Character04_Generic_Code" />
+          <ScalarProperty Name="Part_CheckBox13_Strip" ColumnName="Part_CheckBox13_Strip" />
+          <ScalarProperty Name="Part_OnHold" ColumnName="Part_OnHold" />
+          <ScalarProperty Name="Part_InActive" ColumnName="Part_InActive" />
+          <ScalarProperty Name="Part_RunOut" ColumnName="Part_RunOut" />
+          <ScalarProperty Name="Part_CheckBox05_Standard_Full_Qty" ColumnName="Part_CheckBox05_Standard_Full_Qty" />
+          <ScalarProperty Name="Part_ShortChar03_LooseUOM" ColumnName="Part_ShortChar03_LooseUOM" />
+          <ScalarProperty Name="Part_CheckBox04_Cube" ColumnName="Part_CheckBox04_Cube" />
+          <ScalarProperty Name="Part_CheckBox03_Slice" ColumnName="Part_CheckBox03_Slice" />
+          <ScalarProperty Name="UOMConv_ConvFactor" ColumnName="UOMConv_ConvFactor" />
+          <ScalarProperty Name="AllowSellingVaryWeight" ColumnName="AllowSellingVaryWeight" />
+          <ScalarProperty Name="Part_CheckBox01_Allow_Selling_Loose" ColumnName="Part_CheckBox01_Allow_Selling_Loose" />
+          <ScalarProperty Name="UD04_Character01_Item_Brand" ColumnName="UD04_Character01_Item_Brand" />
+          <ScalarProperty Name="Part_RefCategory_Item_Brand_Code" ColumnName="Part_RefCategory_Item_Brand_Code" />
+          <ScalarProperty Name="Part_ShortChar01_Temprature_Type_Code" ColumnName="Part_ShortChar01_Temprature_Type_Code" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="UOMClass_Description" ColumnName="UOMClass_Description" />
+          <ScalarProperty Name="UOMClass_ClassType" ColumnName="UOMClass_ClassType" />
+          <ScalarProperty Name="Country_CountryNum" ColumnName="Country_CountryNum" />
+          <ScalarProperty Name="UOMClass_BaseUOMCode" ColumnName="UOMClass_BaseUOMCode" />
+          <ScalarProperty Name="Part_IUM" ColumnName="Part_IUM" />
+          <ScalarProperty Name="Part_SalesUM" ColumnName="Part_SalesUM" />
+          <ScalarProperty Name="UOMClass_DefUomCode" ColumnName="UOMClass_DefUomCode" />
+          <ScalarProperty Name="Country_Description" ColumnName="Country_Description" />
+          <ScalarProperty Name="PartClass_Description" ColumnName="PartClass_Description" />
+          <ScalarProperty Name="Part_ClassID" ColumnName="Part_ClassID" />
+          <ScalarProperty Name="ProdGrup_Description" ColumnName="ProdGrup_Description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="partNumber" ColumnName="partNumber" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockBalanceView">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.StockBalanceView">
+        <MappingFragment StoreEntitySet="StockBalanceView">
+          <ScalarProperty Name="remainingQty" ColumnName="remainingQty" />
+          <ScalarProperty Name="totalQtyAfterPayment" ColumnName="totalQtyAfterPayment" />
+          <ScalarProperty Name="totalQtyBeforePayment" ColumnName="totalQtyBeforePayment" />
+          <ScalarProperty Name="uom" ColumnName="uom" />
+          <ScalarProperty Name="onHandQty" ColumnName="onHandQty" />
+          <ScalarProperty Name="warehouseCode" ColumnName="warehouseCode" />
+          <ScalarProperty Name="partNum" ColumnName="partNum" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderItemScanned">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderItemScanned">
+        <MappingFragment StoreEntitySet="OrderItemScanned">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="column" ColumnName="column" />
+          <ScalarProperty Name="row" ColumnName="row" />
+          <ScalarProperty Name="freezer" ColumnName="freezer" />
+          <ScalarProperty Name="returnQty" ColumnName="returnQty" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="ReturnReason" ColumnName="ReturnReason" />
+          <ScalarProperty Name="IsItemReturned" ColumnName="IsItemReturned" />
+          <ScalarProperty Name="verifyStatus" ColumnName="verifyStatus" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="orderItemId" ColumnName="orderItemId" />
+          <ScalarProperty Name="scannedDate" ColumnName="scannedDate" />
+          <ScalarProperty Name="scannedBy" ColumnName="scannedBy" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="scannedQty" ColumnName="scannedQty" />
+          <ScalarProperty Name="serialNo" ColumnName="serialNo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

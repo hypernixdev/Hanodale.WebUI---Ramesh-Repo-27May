@@ -1,0 +1,17 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+@if (Model.canView)
+{
+    <span class="view-filehistory btn btn-ribbon " data-url="FILEHISTORY_ID" title="View" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye"></i>
+    </span>
+}
+@if (Model.canDelete)
+{
+    <span class="delete-filehistory btn btn-ribbon " data-url="FILEHISTORY_ID" title="Delete" data-rel="tooltip" data-placement="bottom" data-container="body">
+       <i class="fa fa-trash-o "></i>
+    </span>
+}

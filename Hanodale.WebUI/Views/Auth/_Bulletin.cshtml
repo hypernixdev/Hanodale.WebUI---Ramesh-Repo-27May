@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Hanodale.Domain.DTOs.Newss>
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    var counter = 0;
+}
+
+
+<style>
+    .carousel-indicators-numbers li {
+        text-indent: 0;
+        margin: 0 2px;
+        width: 20px;
+        height: 20px;
+        border: none;
+        border-radius: 100%;
+        line-height: 20px;
+        color: #fff;
+        background-color: #201683;
+        transition: all 0.25s ease;
+        font-weight: bold;
+    font-size: 13px;
+    }
+
+        .carousel-indicators-numbers li.active, .carousel-indicators-numbers li:hover {
+            margin: 0 2px;
+            width: 20px;
+            height: 20px;
+            background-color: #337ab7;
+        }
+
+    .customEffect .carousel-indicators {
+        position: absolute;
+        left: inherit;
+        z-index: 15;
+        width: auto;
+        margin-left: inherit;
+        padding-left: inherit;
+        list-style: none;
+        text-align: center;
+        right: 20px;
+    }
+    /*.customEffect .carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+}*/
+    li.indic {
+        background-color: transparent;
+        vertical-align: bottom;
+    }
+
+        li.indic a {
+            font-size: 20px;
+        }
+
+    .carousel-indicators-numbers li.indic:hover {
+        margin: 0 2px;
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+    }
+
+        .carousel-indicators-numbers li.indic:hover a {
+            color: #000;
+        }
+</style>
+
+<div style="padding: 2px 0; margin-top: 5px;">
+<div class="hero" style="background: none;">
+    <div class="bs-docs-example">
+        <div id="myCarousel" class="carousel slide customEffect">
+            @if (Model.Count() > 0)
+            {
+                <ol class="carousel-indicators carousel-indicators-numbers" style="margin-bottom: -50px">
+                    @*<li class=" indic"><a  href="#myCarousel" data-slide="prev">‹</a></li>*@
+                    @if (Model.Count() > 1)
+                    {
+                        <li class="indic"><a class="carousel-control1 " href="#myCarousel" data-slide="prev" style=""><i class="fa fa-arrow-circle-left" style="margin-right: 5px;color: #fff;"></i></a></li>
+                    }
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+			
+                        <li data-target="#myCarousel" data-slide-to="@i" class=" @(i == 0 ? "active" : "")">@(i + 1)</li>
+                    }
+                    @if (Model.Count() > 1)
+                    {
+                        <li class="indic"><a class="carousel-control1 " href="#myCarousel" data-slide="next" style=""><i class="fa fa-arrow-circle-right" style="margin-left: 5px;color: #fff;"></i></a></li>
+                    }
+@*  <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="2" class=""></li>*@
+                </ol>
+            }
+
+            <div class="carousel-inner" style="background-color: #f68a31;color: #fff;font-size: 14px;">
+
+                @foreach (var item in Model)
+                {
+                    if (item.loggedDate.GetValueOrDefault().Date == DateTime.Now.Date)
+                    {
+@*<b class="badge bg-color-red bounceIn animated"> New </b>*@
+                    } 
+
+                    <div class="item @(counter == 0 ? "active" : "")" data-interval="3000">
+                        <p style="padding: 10px; margin-bottom:0;">@item.description</p>
+
+                        <div class="carousel-caption">
+                            @*<h4 style="font-weight: bold; color: #f97e00; margin-bottom: 5px;">@item.createdBy</h4>*@
+                        </div>
+                    </div>  
+                    counter++;
+                }
+
+                @*<div class="item " data-interval="3000">
+                                <img src="/Content/images/CIDB-homepage-banner1.jpg" alt="" style="width: 100%; height: 376px; padding: 20px">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item " data-interval="3000">
+                                <img src="/Content/images/home-back.jpg" alt="" style="width: 100%; height: 376px; padding: 20px">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>*@
+
+            </div>
+
+        </div>
+    </div>
+    @*<div class="pull-left login-desc-box-l">
+                <h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAdmin, everywhere you go!</h4>
+                <div class="login-app-icons">
+                    <a href="javascript:void(0);" class="btn btn-danger btn-sm">Frontend Template</a>
+                    <a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+                </div>
+            </div>
+
+            <img src="~/Content/img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width: 210px">*@
+</div>
+    </div>

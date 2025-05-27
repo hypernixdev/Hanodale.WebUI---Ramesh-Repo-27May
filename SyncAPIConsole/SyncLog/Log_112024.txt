@@ -1,0 +1,19 @@
+07/11/2024 06:41:02 PM - Sync Store
+07/11/2024 06:41:25 PM - Task9:StockBalance | Error at page 9: One or more errors occurred.
+07/11/2024 06:41:44 PM - Task5:UomConv | Error at page 9: One or more errors occurred.
+07/11/2024 06:42:05 PM - Task6:PriceList | Error at page 9: One or more errors occurred.
+07/11/2024 06:42:05 PM - Task1:Plant | Error at page 9: One or more errors occurred.
+07/11/2024 06:49:58 PM - Sync Store
+07/11/2024 06:50:00 PM - Task3:CustomerGroupPriceList | Success synced the data
+07/11/2024 06:50:00 PM - Task2:Customer | Success synced the data
+07/11/2024 06:50:08 PM - Task4:Product | Success synced the data
+07/11/2024 06:50:08 PM - Task6:PriceList | Success synced the data
+07/11/2024 06:50:08 PM - Task1:Plant | Success synced the data
+07/11/2024 06:50:13 PM - Task10:Brand | Success synced the data
+07/11/2024 06:58:59 PM - Task7:CustomerPriceList | Success synced the data
+07/11/2024 07:10:29 PM - Task5:UomConv | Success synced the data
+07/11/2024 09:00:02 PM - Task8:PriceListPart | Error at page 125: One or more errors occurred.
+07/11/2024 09:00:02 PM - Error! One or more errors occurred.
+11-11-2024 06:59:27 PM - Sync Store
+11-11-2024 08:09:03 PM - Sync Store
+11-11-2024 08:11:54 PM - Sync Store

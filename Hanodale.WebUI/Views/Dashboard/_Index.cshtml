@@ -1,0 +1,236 @@
+﻿@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@model Hanodale.WebUI.Models.DashboardModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    var counter = 0;
+}
+
+<style type="text/css">
+    .text-lg {
+        font-size: 42px;
+    }
+
+    .warningPanel {
+        color: #fff;
+        background-color: #9A2EFE;
+        border-color: #cfdbe2;
+    }
+</style>
+<input type="hidden" id="dashboardBoxName" value="@Model.dashboardBoxName" />
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+        <h1 class="page-title txt-color-blueDark" style="margin-bottom:20px">
+            <i class="fa fa-edit fa-fw "></i>
+            Dashboard
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4" style="text-align:right">
+
+    </div>
+</div>
+
+@*<div id="shortcut-div" class="row" style="margin-top:10px">
+        <ul class="dashboard-box-container">
+            @foreach (var item in Model.lst)
+            {
+                <li class="dashboardIconBox col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                    <div>
+                        <div class="dashboard-stat dashboard-sub-item" style="background-color:@item.backColor;">
+                            <div class="visual">
+                                <img src="~/Images/Dashboard/@item.icon" />
+                            </div>
+                            <div class="details">
+                                <div class="number">
+                                    @item.newCount
+
+                                </div>
+                                <div class="desc">@item.name</div>
+                            </div>
+                            <a class="more moreDashboardIcon darken" href="#"  data-name="@item.name" data-url="@item.pageURL">View more <i class="fa fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>*@
+<div class="row" style="justify-content: center;">
+    <!-- Pending for Picking -->
+    <div class="col-md-4 mb-3">
+        <div class="card bg-success text-white compact-card">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="card-title mb-0"><i class="fa fa-folder-open"></i> Total Sales</h6>
+                    <span class="h3 mb-0" id="totalSalesAmount">RM @Model.TotalSales.ToString("N0") </span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card bg-warning text-white compact-card">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="card-title mb-0"><i class="fa fa-folder-open"></i> Total Refund</h6>
+                    <span class="h3 mb-0" id="totalRefundAmount">RM @Model.TotalRefund.ToString("N0")</span>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding: 10px 20px;">
+
+
+    <div id="shortcut" class="shortcut-div" style="display: block; position: relative; text-align: center; background-color: transparent; z-index: 5">
+        @*<ul>
+            @foreach (var item in Model.lst)
+            {*@
+        @*<li class="dashboard-sub-item">
+                <a href="#" class="jarvismetro-tile big-cubes" style="background-color: transparent; color: #000; text-decoration: none;" data-name="@item.name" data-url="@item.pageURL"><span class="iconbox">
+                    <img style="width: 50px" src="~/Images/Dashboard/@item.icon" />
+                    @if (item.newCount > 0)
+                    {
+                        <span class="numberNotify">@item.newCount</span>
+                    }
+                    <span style="text-align: center; font-weight: bold; font-size: 11px">@item.name</span>
+                </span>
+                </a>
+            </li>*@
+
+        @*<li>
+                <a href="#" class="jarvismetro-tile big-cubes" style="background-color:transparent; color:@item.backColor" data-name="@item.name" >
+                    @if (counter == 0 )
+                    {
+                        <span class="label pull-right bg-color-darken">2</span>
+                        counter++;
+                    }
+                    else if ( counter == 3)
+                    {
+                        <span class="label pull-right bg-color-darken">14</span>
+                        counter++;
+                    }
+                    else
+                    {
+                        counter++;
+
+                    }
+
+                    <span class="iconbox"><i class="fa fa-4x @item.icon"></i><span style="text-align: center; font-weight: bold">@item.name </span></span></a>
+            </li>*@
+        @*<li>
+                <a href="#" class="jarvismetro-tile big-cubes"style="background-color:@item.backColor" data-name="@item.name" > <span class="iconbox"> <i class="fa fa-4x @item.icon"></i> <span>@item.name <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+            </li>
+            <li>
+                <a href="#ajax/calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+            </li>
+            <li>
+                <a href="#ajax/gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+            </li>
+            <li>
+                <a href="#ajax/invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
+            </li>
+            <li>
+                <a href="#ajax/gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+            </li>
+            <li>
+                <a href="#ajax/profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+            </li>*@
+        @* }
+            </ul>*@
+    </div>
+
+    @* <div id="shortcut" style="display: block; position: relative; text-align: center; background-color: transparent">
+            <ul>
+
+
+                <li>
+                    <a href="#" class="jarvismetro-tile big-cubes" style="background-color: transparent; color: #000" data-name=""><span class="label pull-right"></span><span class="iconbox">
+                        <img style="width: 90px" src="~/Images/Dashboard/workOrder.png" />
+                        <span style="text-align: center; font-weight: bold; font-size: 14px">Work Order </span> </span></a>
+
+                </li>
+                <li>
+                    <a href="#" class="jarvismetro-tile big-cubes" style="background-color: transparent; color: #000" data-name=""><span class="label pull-right"></span><span class="iconbox">
+                        <img style="width: 90px" src="~/Images/Dashboard/asset.png" />
+                        <span style="text-align: center; font-weight: bold; font-size: 14px">Asset</span> </span></a>
+
+                </li>
+                <li>
+                    <a href="#" class="jarvismetro-tile big-cubes" style="background-color: transparent; color: #000" data-name=""><span class="iconbox">
+                        <img style="width: 90px" src="~/Images/Dashboard/purchase.png" /><span class="numberNotify">14</span> <span style="text-align: center; font-weight: bold; font-size: 14px">Purchase </span></span></a>
+
+                </li>
+
+            </ul>
+        </div>*@
+
+
+    <div id="dashboardContent">
+        @Html.Action(MVC.ChartPanelOrderDashboard.Index())
+    </div>
+
+    @* @foreach (var item in Model.lst)
+        {
+            if (item.name.Trim() == "Work Order")
+            {
+                @Html.Partial(MVC.Dashboard.Views._WorkOrder, Model)
+            }
+        }*@
+
+</div>
+
+
+
+@*<script>
+        $(document).ready(function () {
+            //$(document).ready(function () {
+            //    $('#mdp-demo').multiDatesPicker({
+            //        altField: '#altField'
+            //    });
+            //})
+            $('.jarvismetro-tile, .moreDashboardIcon').on("click", function () {
+                $('.dashboard-sub-item').removeClass('selected');
+                $(this).parent('.dashboard-sub-item').addClass('selected')
+                //var name = $(this).attr('data-name');
+                //var url = name.replace(/\s/g, '') + "dashboard/index";
+                var url = $(this).attr('data-url');
+                var dashboardBoxName = $(this).attr('data-name');
+                var param = { dashboardBoxName: dashboardBoxName }
+                navigate.viewContainerByParameter(url, param, $("#dashboardContent"));
+            })
+
+                //var elem = $('#shortcut ul li:first a:first');
+                var dashboardBoxName = $('#dashboardBoxName').val();
+                var elem = $('#shortcut-div ul li:first a:first');
+
+                if (dashboardBoxName != null && dashboardBoxName != "")
+                    elem = $('#shortcut-div ul li a.moreDashboardIcon[data-name="'+dashboardBoxName+'"]');
+                $('.dashboard-sub-item').removeClass('selected');
+                elem.parent('.dashboard-sub-item').addClass('selected')
+                //var name = $(this).attr('data-name');
+                //var url = name.replace(/\s/g, '') + "dashboard/index";
+                var param = { dashboardBoxName: dashboardBoxName }
+                var url = elem.attr('data-url');
+                navigate.viewContainerByParameter(url,param, $("#dashboardContent"));
+            //$(function () {
+            //    if (!check) {
+            //        $('#popup1').show();
+            //    }
+            //    else {
+            //        $('#popup1').hide();
+            //    }
+            //});
+
+
+            $(document).off('click', '#btnticketDetails').on('click', '#btnticketDetails', function (e) {
+                navigate.view("HelpDesk/Index/");
+            });
+        })
+
+    </script>*@

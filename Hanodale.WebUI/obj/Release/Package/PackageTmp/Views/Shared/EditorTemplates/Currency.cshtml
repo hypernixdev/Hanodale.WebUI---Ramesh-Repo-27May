@@ -1,0 +1,14 @@
+﻿@*@model decimal?
+@Html.TextBox(
+    "", 
+    string.Format("{0:c}", ViewData.Model),
+    new { @class = "text-box single-line", data_type="currency" }
+)*@
+
+@model decimal?
+@{
+    //ViewData.Add("type", "number");
+    //ViewData.Add("value", "1");
+    ViewData.Add("data-type", "currency");
+}
+@Html.TextBoxFor(model => model, ViewData)

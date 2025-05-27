@@ -1,0 +1,789 @@
+﻿@model Hanodale.WebUI.Models.UserModel
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@using Hanodale.Utility.Globalize
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Resources.MSG_CONFIRM_SAVE">
+<input type="hidden" id="form-congif" value="user" data-mtc-btn="true" data-readOnly="@Model.readOnly">
+<input type="hidden" id="isAccessAllOrganization" value="@Model.isAccessAllOrganization">
+
+@*<!-- NEW COL START -->
+<div class="widget-body">
+</div>*@
+
+<div id="content" style="opacity: 1; border: none">
+<div class="row-flex">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-edit fa-fw "></i>
+                <span id="headerTitle" style="font-size: x-large;">
+
+                    @if (Model.isEdit && !Model.readOnly)
+                    {
+                        @Resources.PAGE_HEADER_EDIT_USER
+                    }
+                    else if (!Model.isEdit && !Model.readOnly)
+                    {
+                        @Resources.PAGE_HEADER_CREATE_USER
+                    }
+                    else if (Model.readOnly)
+                    {
+                        @Resources.PAGE_HEADER_VIEW_USER
+                    }
+                </span>
+            </h1>
+        </div>
+    </div>
+
+
+
+    <div class="formSpliter"></div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- START ROW -->
+        <!-- END ROW -->
+
+        <!-- START ROW -->
+
+        <div class="row">
+            <div id="message" class="alert alert-success" style="display: none"></div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal", autocomplete = "off" }))
+            {  @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.id)
+@*<input type="hidden" id="id" name="id" value="@Model.id" />*@
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-456561" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+                        <!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+
+                        <header role="heading">
+                            <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+                            <div class="widget-toolbar" role="menu">
+                                <a data-toggle="dropdown" class="dropdown-toggle1 color-box selector" href="javascript:void(0);"></a>
+                                <ul class="dropdown-menu dropdown-menu-right arrow-box-up-right color-select pull-right">
+                                    <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
+                                    <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
+                                    <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
+                                    <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
+                                    <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
+                                    <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
+                                    <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
+                                    <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
+                                    <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
+                                    <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
+                                    <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
+                                    <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
+                                    <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
+                                    <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
+                                    <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
+                                    <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
+                                    <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
+                                    <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
+                                    <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">Remove</a></li>
+                                </ul>
+                            </div>
+                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                            <h2>@Resources.USER_LOGON_INFO </h2>
+
+                            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+
+                                <fieldset>
+                                    <div class="smart-form">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.firstName, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-user"></i>
+                                                        @Html.EditorFor(model => model.firstName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.firstName) })
+                                                        @Html.ValidationMessageFor(m => m.firstName)
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.lastName, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-user"></i>
+                                                        @Html.EditorFor(model => model.lastName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.lastName) })
+                                                        @Html.ValidationMessageFor(m => m.lastName)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.userName, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label required", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-desktop"></i>
+                                                        @Html.EditorFor(model => model.userName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.userName), autocomplete = "off" })
+                                                        @Html.ValidationMessageFor(m => m.userName)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.email, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-envelope-o"></i>
+                                                        @Html.EditorFor(model => model.email, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.email), autocomplete = "off" })
+                                                        @Html.ValidationMessageFor(m => m.email)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if (!Model.isEdit)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.passwordHash, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i id="passVisibility" class="icon-append fa fa-eye-slash"></i>
+                                                            @*<div id="show">*@
+                                                                @Html.EditorFor(model => model.passwordHash, new { id = "passwordHash", @type = "password", @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.passwordHash) })
+                                                                @Html.ValidationMessageFor(m => m.passwordHash)
+                                                                @*<span id="showPass" class="link-button">Show Password</span>
+                                                                <span id="hidePass" class="link-button">Hide Password</span>*@
+                                                            @*</div>*@
+                                                         @*   <div id="hide">
+                                                                @Html.EditorFor(model => model.passwordHash, new { id = "passwordHash", @type = "text", @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.passwordHash) })
+                                                                @Html.ValidationMessageFor(m => m.passwordHash)
+                                                                <span id="hidePass" class="link-button">Hide Password</span>
+                                                            </div>*@
+                                                        </label>
+                                                        @*   <div id="show">
+                                                        </div>
+                                                        <div id="hide">
+                                                        </div>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            
+                                          
+                                        }
+                                        else
+                                        {
+                                            @Html.HiddenFor(model => model.passwordHash)
+                                        }
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.userRole_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.userRole_Id, new { @class = "form-control multipleSelect", dataValue = Model.UserRoles })
+                                                        @Html.ValidationMessageFor(m => m.userRole_Id)
+                                                        @* <i></i>*@
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="form-group">
+                                            @Html.LabelFor(model => model.businessType_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.businessType_Id, new { @class = "form-control multipleSelect", dataValue = Model.lstBusinessType, @placeholder = @Html.DisplayNameFor(m => m.businessType_Id), @disabled = "disabled" })
+                                                        @Html.ValidationMessageFor(m => m.businessType_Id)-->
+                                                        @*<i></i>*@
+                                                    <!--</label>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+                                    </div>
+                                </fieldset>
+
+
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+                
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+                        <!-- widget options:usage: <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+
+
+                    </div>
+                </article>
+                
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+                        <!-- widget options:usage: <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+
+                        <header role="heading">
+                            <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+                            <div class="widget-toolbar" role="menu">
+                                <a data-toggle="dropdown" class="dropdown-toggle1 color-box selector" href="javascript:void(0);"></a>
+                                <ul class="dropdown-menu dropdown-menu-right arrow-box-up-right color-select pull-right">
+                                    <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
+                                    <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
+                                    <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
+                                    <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
+                                    <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
+                                    <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
+                                    <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
+                                    <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
+                                    <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
+                                    <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
+                                    <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
+                                    <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
+                                    <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
+                                    <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
+                                    <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
+                                    <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
+                                    <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
+                                    <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
+                                    <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">Remove</a></li>
+                                </ul>
+                            </div>
+                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                            <h2>@Resources.USER_COMPANY_INFO </h2>
+
+                            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+
+                                <fieldset>
+                                    <div class="smart-form">
+
+
+
+                                        @*<div class="form-group">
+                                            @Html.LabelFor(model => model.business_Ids, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.business_Ids, null, new { @class = "form-control multipleSelect", @multiple = "multiple", dataValue = @Model.lstBusinessItem })
+                                                        @Html.ValidationMessageFor(m => m.business_Ids)
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                        <!--<div class="form-group">
+                                            @Html.LabelFor(model => model.defaultbusiness_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.defaultbusiness_Id, new { @class = "form-control multipleSelect", dataValue = Model.UserBusinesses, @placeholder = @Html.DisplayNameFor(m => m.defaultbusiness_Id) })
+                                                        @Html.ValidationMessageFor(m => m.defaultbusiness_Id)-->
+                                                        @*<i></i>*@
+                                                    <!--</label>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+                                        @* <div class="form-group">
+                                            @Html.LabelFor(model => model.isVisible, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    @Html.EditorFor(model => model.isVisible, new { id = "isVisible", name = "checkbox-toggle", @class = "make-add-col" })
+                                                    @Html.ValidationMessageFor(m => m.isVisible)
+                                                </div>
+                                            </div>
+                                        </div>*@
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.organization_Ids, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.organization_Ids, null, new { @class = "form-control multipleSelect", @multiple = "multiple", dataValue = @Model.lstOrganizationItem, setAll = true })
+                                                        @Html.ValidationMessageFor(m => m.organization_Ids)
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.defaultOrganization_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                @*@Html.LabelFor(model => model.userRole_Id, new { @class = "", })*@
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @*@ViewData["value"]=@Model.UserRoles;*@
+                                                        @Html.EditorFor(model => model.defaultOrganization_Id, new { @class = "form-control multipleSelect", dataValue = Model.lstOrganization })
+                                                        @Html.ValidationMessageFor(m => m.defaultOrganization_Id)
+                                                        @*<i></i>*@
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.status, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                @*@Html.LabelFor(model => model.status, new { @class = "", })*@
+                                                <div class="clearfix">
+
+                                                    @Html.EditorFor(model => model.status, new { id = "status", name = "checkbox-toggle", @class = "make-add-col" })
+                                                    @Html.ValidationMessageFor(m => m.status)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+                
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-color-blueDark jarviswidget-sortable" id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <footer id="btnSection">
+                                    <div class="form-group">
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-sm-7">
+
+                                            @if (!@Model.readOnly)
+                                            {
+                                                <button id="update-user" class="btn btn-sm btn-primary" data-value="update" type="button" style="@(Model.isEdit ? "" : "display: none")">
+                                                    <i class="fa fa-pencil"></i>
+                                                    @Resources.BTN_UPDATE
+                                                </button>
+                                                if (!Model.isEdit)
+                                                {
+                                                <button id="save-user" class="btn btn-sm btn-primary" data-value="save" type="button">
+                                                    <i class="fa fa-save"></i>
+                                                    @Resources.BTN_SAVE
+                                                </button>
+                                                }
+                                                <button class="btn btn-sm btn-primary" type="reset" id="reset-user" data-type="new">
+                                                    <i class="fa fa-refresh"></i>
+                                                    @Resources.BTN_RESET
+                                                </button>
+                                                
+                                                <button id="inactive-user" class="btn btn-sm btn-primary" data-value="inactive" type="button" checked="checked" style="@(Model.isActive ? "" : "display: none")">
+                                                    <i class="fa fa-save"></i>
+                                                    @Resources.BTN_DEACTIVATE
+                                                </button>
+                                                
+                                                if (!@Model.isActive)
+                                                {
+                                                <button id="active-user" class="btn btn-sm btn-primary" data-value="active" type="button" checked="checked">
+                                                    <i class="fa fa-save"></i>
+                                                    @Resources.BTN_ACTIVATE
+                                                </button>
+                                                }
+                                            }
+
+@*@if (@Model.isBack)
+                                            {
+                                                <button id="backTo-user" class="btn btn-sm btn-primary" type="button" data-url="BusinessUser/Index" data-back="@Model.businessId" data-dest="#d-usr-bus">
+                                                    <i class="fa fa-mail-reply"></i>
+                                                    @Resources.BTN_BACK
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                *@
+                                            <button id="back-user" class="btn btn-sm btn-primary" type="button" data-url="User/UserDetails">
+                                                <i class="fa fa-mail-reply"></i>
+                                                @Resources.BTN_BACK
+                                            </button>
+                                            @*}*@
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+                   
+            }
+        </div>
+
+        <!-- END ROW -->
+
+        <!-- NEW ROW -->
+
+
+
+        <!-- END ROW-->
+
+    </section>
+
+
+
+</div>
+<!-- Protected Script -->
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+<!-- /.page-content -->
+
+<script>
+    $(document).ready(function () {
+        $("#status").click(function () {
+            return false;
+        })
+        $("#active-user").click(function () {
+            if ($("#status").is(":checked")) {
+                //$("#status").
+                $("#status").prop("checked", false);
+                $("#active-user").html("Deactivate");
+            }
+            else {
+                $("#status").prop("checked", true);
+                $("#active-user").html("Activate");
+            }
+
+        });
+
+    });
+
+    if ($('#isAccessAllOrganization').val()) {
+        $("#organization_Ids").find("option[value='']").prop("selected", "selected").trigger("change");
+    }
+    //$("#organization_Ids").multiselect('refresh');
+
+    $('#organization_Ids').change(function () {
+        var ids = $('#organization_Ids').val();
+        var isAll = $("#organization_Ids option:selected").val();
+        if (isAll == '') {
+            $("#s2id_organization_Ids ul li.select2-search-choice div").each(function () {
+                if ($(this).text() != 'All') {
+                    $(this).closest('li').remove();
+                }
+            });
+            $("#organization_Ids").each(function () {
+                $(this).val(['']);
+            });
+            //$("#organization_Ids").find("option[value='']").prop("selected", "selected")//.trigger("change");
+            //$("#organization_Ids ").each(function () { //added a each loop here
+            //    $(this).select2('val', '')
+            //});
+            //$('#s2id_organization_Ids ul li.select2-search-choice').remove();
+            //alert('ok')
+            //$('#organization_Ids option').prop('selected', false); //true to select all, and false to deselect.
+            //$('#organization_Ids').trigger('chosen:updated');
+            //$('#organization_Ids option').prop('selected', false).trigger("change");
+            //$("#organization_Ids option:selected").removeAttr("selected").trigger("change");
+            //$("#organization_Ids").find("option[value='']").prop("selected", "").trigger("change");
+        }
+        console.log(ids)
+        $('#defaultOrganization_Id option[value!=""]').remove();
+        if (ids != null && ids != '' && ids != [] && ids.length > 0) {
+            for (var i = 0; i < ids.length; i++) {
+                if ($('#defaultOrganization_Id option[value="' + ids[i] + '"]').length <= 0) {
+                    var text = $('#organization_Ids option[value="' + ids[i] + '"]').text();
+                    $('#defaultOrganization_Id').append('<option value="' + ids[i] + '">' + text + '</option>');
+                }
+            }
+        }
+        $('#defaultOrganization_Id').select2();
+
+        if (ids == "") {
+            if ($('#isRestBtnCalled').length > 0)
+                return false;
+
+            $.ajax({
+                type: "POST",
+                datatype: 'json',
+                url: "User/LoadOrganization/",
+                data: JSON.stringify({}),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    var items = "<option value=''>-- Select --</option>";
+                    $.each(result, function (i, state) {
+                        items = items + "<option value=" + state.Value + ">" + state.Text + "</option>";
+                    });
+                    $("#defaultOrganization_Id").html(items);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //log error
+                    //_showErrorMessage();
+                }
+            });
+        }
+    })
+
+    $('#business_Ids').change(function () {
+        var ids = $('#business_Ids').val();
+        $('#defaultbusiness_Id option[value!=""]').remove();
+        if (ids != null) {
+            for (var i = 0; i < ids.length; i++) {
+                if ($('#defaultbusiness_Id option[value="' + ids[i] + '"]').length <= 0) {
+                    var text = $('#business_Ids option[value="' + ids[i] + '"]').text();
+                    $('#defaultbusiness_Id').append('<option value="' + ids[i] + '">' + text + '</option>');
+                }
+            }
+            $('#defaultbusiness_Id').select2();
+
+        }
+    })
+
+
+    $("#passVisibility").on('click', function () {
+        var type = $('#passwordHash').attr('type');
+        if (type == 'text') {
+            $('#passwordHash').prop('type', 'password');
+            $(this).addClass('fa-eye-slash').removeClass('fa-eye');
+        } else {
+            $('#passwordHash').prop('type', 'text');
+            $(this).addClass('fa-eye').removeClass('fa-eye-slash');
+        }
+
+    });
+
+    //$('#showPass').on('click', function () {
+    //    $('#password').type('text')
+    //})
+    //$('#hide').hide();
+    //$("#showPass").on('click', function () {
+    //    var password = $('#passwordHash').val();
+    //    $("#passwordHash").after($("<input id='passwordHash' type='text'>"));
+    //    $("#passwordHash").remove();
+    //    $("#passwordHash").val(password)
+    //    $('#show').hide();
+    //    $('#hide').show();
+    //});
+    //$("#hidePass").on('click', function () {
+    //    var password = $('#passwordHash').val();
+    //    $("#passwordHash").after($("<input id='passwordHash' type='password'>"));
+    //    $("#passwordHash").remove();
+    //    $("#passwordHash").val(password)
+    //    $('#show').show();
+    //    $('#hide').hide();
+    //});
+
+    $('#firstName').change(function () {
+        var firstName = $('#firstName').val();
+        $('#userName').val(firstName);
+        if (firstName != '') {
+            $("#userName").attr("aria-invalid", "false").attr("class", "input-validation-valid");
+            $('#userName-error').hide();
+        }
+        else {
+            $("#userName").attr("aria-invalid", "true").attr("class", "input-validation-error");
+        }
+
+    })
+    $('#lastName').change(function () {
+        var firstName = $('#firstName').val();
+        var lastName = $('#lastName').val();
+        //  var name = firstName.split("");
+        var userName = firstName + " " + lastName;
+        $('#userName').val(userName)
+        $("#userName").removeAttr("data-val-required")
+    })
+
+    function Calcutator() {
+
+        var ds1 = $('#birthDate').val().split(/\//g);
+        if (ds1 != '') {
+            var day = ds1[1];
+            var month = ds1[0];
+            var year = ds1[2];
+            var currdate = new Date();
+            var currday = currdate.getDate();
+            var currmonth = currdate.getMonth() + 1;
+            var curryear = currdate.getFullYear();
+            var datediffer = curryear - year;
+            $('#age').val(datediffer);
+        }
+        else {
+            $('#age').val('');
+        }
+    }
+
+    function YearofService() {
+        var ds = $('#entryDate').val();
+        if (ds != '') {
+            var ds1 = ds.split(/\//g);
+            var day = ds1[1];
+            var month = ds1[0];
+            var year = ds1[2];
+            var ds2 = new Date();
+            var day1 = ds2.getDate();;
+            var month1 = ds2.getMonth() + 1;
+            var year1 = ds2.getFullYear();
+            var diffyear = year1 - year;
+            var diffmonth = month1 - month;
+            //if (!isNaN) {
+            $('#yearofservice').val(diffyear);
+            // }
+        }
+        else {
+            $('#yearofservice').val('');
+        }
+    }
+
+    function ExtendedDatePickerMethod() {
+        Calcutator();
+        YearofService();
+    }
+    $('#businessType_Id').change(function () {
+
+        if ($('#isRestBtnCalled').length > 0)
+            return false;
+
+        var businessType_Id = $('#businessType_Id').val();
+        $('#business_Ids').each(function () {
+            $(this).select2('val', '')
+        });
+        $('#defaultbusiness_Id option[value!=""]').remove();
+        $.ajax({
+            type: "POST",
+            datatype: 'json',
+            url: "User/LoadBusiness/",
+            data: JSON.stringify({ businessType_Id: businessType_Id }),
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                var items = "<option value=''>-- Select --</option>";
+                $.each(result, function (i, state) {
+                    items = items + "<option value=" + state.Value + ">" + state.Text + "</option>";
+                });
+                $("#business_Ids").html(items);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //log error
+                //_showErrorMessage();
+            }
+        });
+    })
+
+</script>

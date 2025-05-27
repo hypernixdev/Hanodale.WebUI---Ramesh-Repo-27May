@@ -1,0 +1,194 @@
+﻿@model Hanodale.WebUI.Models.UserInfoModel
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@using Hanodale.Utility.Globalize
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<div id="content" style="opacity: 1; border: none">
+
+    <div class="formSpliter"></div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- START ROW -->
+        <!-- END ROW -->
+
+        <!-- START ROW -->
+
+        <div class="row">
+            @using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new { id = "validation-form55", @class = "form-horizontal", autocomplete = "off" }))
+            {  @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(p=>p.ImgRemoved)
+                 <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+                    <div class="jarviswidget jarviswidget-color-darken" id="wid-id-22223" data-widget-editbutton="false"
+                data-widget-deletebutton="false"
+                data-widget-colorbutton="false"
+                data-widget-sortable="false"
+                data-widget-fullscreenbutton="false" 
+                         @*data-widget-collapsed="true"*@
+                         >
+
+                        <header>
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                            </div>
+                            <div class="widget-body no-padding">
+                                <fieldset>
+                                    <div class="smart-form row-flex">
+                                         
+                                       <div class="form-group col-xs-12 col-sm-9 col-md-8 col-lg-7 row-flex" id="filenameBox" style="margin-bottom: 5px ; @(Model.HasFile ? "" : "display:none")">
+                                            @Html.LabelFor(model => model.URLPath, new { @class = "col-md-3 control-label no-padding-right", })
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <section>
+                                                    <label for="file" class="input input-file">
+                                                        @Html.EditorFor(model => model.URLPath, new { @class = "form-control readOnly", @readonly = "readonly", data_id = "URLPath" })
+                                                        @Html.ValidationMessageFor(m => m.URLPath)
+                                                       
+                                                    </label>
+                                                </section>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group col-xs-12 col-sm-9 col-md-8 col-lg-7 row-flex" id="fileBox" style="@(Model.HasFile ? "display:none" : "")">
+                                            @Html.LabelFor(model => model.file, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label", })
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <section>
+                                                    <label for="file" class="input input-file">
+                                                        @Html.EditorFor(model => model.file, new { @class = "form-control" , hasCancel=@Model.URLPath })
+                                                        @Html.ValidationMessageFor(m => m.file)
+                                                         </label>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-5">
+                                         <button id="save-profileImage" class="btn btn-sm btn-primary" data-value="save" type="submit">
+                                                    <i class="fa fa-save"></i>
+                                                    @Resources.BTN_SAVE_UPLOAD
+                                                </button>
+                                             </div>
+                                        <div class="form-group col-xs-12 col-sm-9 col-md-8 col-lg-7">
+                                            <label class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label"></label>
+                                            <div class="form-group col-xs-8 col-sm-8">
+                                            <img id="imagePreview"  src="@Model.URLPathPreview" style="height:200px;width:170px;" />
+                                                </div>
+                                        </div>
+                                        
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    </section>
+    
+</div>
+
+<script>
+   
+
+    var tempImage = '/Images/empty.png'
+    $('[data-role="changeFile"]').click(function () {
+        $('#filenameBox').toggle();
+        $('#fileBox').toggle();
+        $('#cancelFile').toggle();
+        $("#imagePreview").attr('data-temp', $("#imagePreview").attr('src'))
+        $("#imagePreview").attr('src', '/Images/empty.png')
+        $('#ImgRemoved').val(true);
+        //if ($(this).text() == "Cancel")
+        //    $(this).text("Change File")
+        //else
+        //    $(this).text("Cancel")
+    });
+
+    $('[data-role="removeFile"]').click(function () {
+        $('#filenameBox').toggle();
+        $('#fileBox').toggle();
+        $('#ImgRemoved').val(true);
+        $('span[data-role="cancelFile"]').remove();
+        $("#imagePreview").attr('src', tempImage)
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file").change(function () {
+        if (this.files[0].size > 41942304) {
+            var num = parseFloat(this.files[0].size / 1048576, 10);
+            userMessage.show("Error", "The selected file size is " + num.toFixed(2) + " MB. The size should be under 4 MB. Please select another file");
+            var control = $('input[type="file"]')
+            control.replaceWith(control = control.clone(true));
+            $('input[name="File"]').val("");
+            return false;
+        }
+        var ext = $('input[name="file"]').val().split('.').pop().toLowerCase();
+        if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+            userMessage.show("Error", "Please select just image");
+            var control = $('input[type="file"]')
+            control.replaceWith(control = control.clone(true));
+            $('input[name="file"]').val("");
+            return false;
+        }
+
+        readURL(this);
+    });
+
+    $('[data-role="cancelFile"]').click(function () {
+        $('#filenameBox').toggle();
+        $('#fileBox').toggle();
+        $('#cancelFile').toggle();
+        if ($("#imagePreview").attr('data-temp')) {
+            $("#imagePreview").attr('src', $("#imagePreview").attr('data-temp'))
+        } else {
+            $("#imagePreview").attr('src', tempImage)
+        }
+        var control = $('input[type="file"]')
+        control.replaceWith(control = control.clone(true));
+        $('input[name="file"]').val("");
+    });
+
+
+    $("#validation-form55").submit(function (e) {
+        if ($("#validation-form55").valid()) {
+
+            
+            var message = $("#MSG_CONFIRM_SAVE").val();
+            var formObj = $(this);
+            var formURL = formObj.attr("action");
+            var formData = new FormData(this);
+            var param = formData;
+            navigate.submitFormWithCallBack1(e, formURL, formData, formObj, message, false, null);
+
+            e.preventDefault(); //Prevent Default action. 
+            //e.unbind();
+        } else {
+            setTimeout(function () { var input = $('.input-validation-error:first'); if (input) { input.focus(); scrollToElement(input); } }, 100); $('.field-validation-error').each(function (e) {
+                var id = $(this).closest('.jarviswidget').attr('id');
+                $('#' + id).removeClass('jarviswidget-collapsed');
+                $('#' + id + " .jarviswidget-ctrls a.jarviswidget-toggle-btn i:first-child").removeClass("fa-plus").addClass("fa-minus");
+                $('#' + id + " div[role='content']").css({ "display": "block" });
+            })
+        }
+    });
+</script>

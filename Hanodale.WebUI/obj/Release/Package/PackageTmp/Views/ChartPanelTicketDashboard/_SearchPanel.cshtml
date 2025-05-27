@@ -1,0 +1,190 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelTicketDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal searchPanelWithSearchBtn", autocomplete = "off" }))
+{
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="">
+            <article id="chartDashboardSearchPanel" class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable nPadding">
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-363295"
+                    data-widget-editbutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-colorbutton="false"
+                    data-widget-sortable="false">
+                    <header>
+                        <h2></h2>
+
+                    </header>
+                    <!-- widget div-->
+                    <div role="content">
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+ <fieldset style="padding: 20px 40px">
+                                <div class="smart-form">
+
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 row-flex">
+                                            @Html.LabelFor(model => model.filterTypeId, new { @class = "col-xs-12 col-sm-12 col-md-11 col-lg-11", })
+
+                                            <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.filterTypeId, new { @class = "form-control multipleSelect no-required1", dataValue = Model.lstFilterType })
+                                                        @Html.ValidationMessageFor(m => m.filterTypeId)
+                                                        @*<i></i>*@
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="form-group-box">
+                                        <div class="form-group col-xs-12 col-sm-12 col-md-5 col-lg-5 row-flex">
+                                            @Html.LabelFor(model => model.loadedDateFrom, new { @class = "required col-xs-12 col-sm-12 col-md-11 col-lg-11" })
+                                            <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        @* <i class="icon-append fa fa-calendar"></i>*@
+                                                        @Html.EditorFor(model => model.loadedDateFrom, new { @class = "datepicker form-control date-picker no-required1" , style="margin-bottom: 10px;" })
+                                                        @Html.ValidationMessageFor(m => m.loadedDateFrom)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-xs-12 col-sm-12 col-md-5 col-lg-5 row-flex">
+                                            @Html.LabelFor(model => model.loadedDateTo, new { @class = "required col-xs-12 col-sm-12 col-md-11 col-lg-11"})
+                                            <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        @* <i class="icon-append fa fa-calendar"></i>*@
+                                                        @Html.EditorFor(model => model.loadedDateTo, new { @class = "datepicker form-control date-picker no-required", style="margin-bottom: 10px;" })
+                                                        @Html.ValidationMessageFor(m => m.loadedDateTo)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="color:transparent">0</label>
+                                            <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11">
+                                                <div class="clearfix">
+                                                    <button type="button" class="btn btn-sm btn-primary customFilterDatatableWithSearchBTNWithValidate">@Resources.DATATABLE_SEARCH</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="sameYearMessage" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 field-validation-error" style="font-weight:bold; display:none">
+                                            @Resources.PAGE_HEADER_CHART_PANEL_ALERT_MESSAGE_SAME_YEAR
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+}
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $('#filterTypeId').change(function () {
+        var _filterTypeId = $('#filterTypeId').val();
+        if (_filterTypeId > 0) {
+            
+            $("#loadedDateFrom , #loadedDateTo").prop("disabled", true);
+            var CurrentDate = new Date();
+            var currentYear = CurrentDate.getFullYear();
+            var currentMonth = CurrentDate.getMonth();
+            var currentDay = CurrentDate.getDate();
+
+
+            var y = 0; //year
+            var m = 0; //month
+            var d = 0; //day
+            
+            if (_filterTypeId == 1) {
+                m = 1;
+                if (m > currentMonth)
+                    y = 1;
+                
+            } else if (_filterTypeId == 2) {
+                m = 3;
+                if (m > currentMonth)
+                    y = 1;
+            }
+            else if (_filterTypeId == 3) {
+                m = 6;
+                if (m > currentMonth)
+                    y = 1;
+            }
+            else if (_filterTypeId == 4) {
+                y = 1;
+            }
+            else if (_filterTypeId == 5) {
+                d = currentDay - 1;
+            }
+            else if (_filterTypeId == 6) {
+                m = currentMonth;
+                d = currentDay -1;
+            }
+            CurrentDate.setDate(currentDay - d);
+            CurrentDate.setMonth(currentMonth - m);
+            CurrentDate.setYear(currentYear - y);
+
+
+            var toDate = ((currentDay < 10 ? "0" + currentDay : currentDay) + "/" + ((currentMonth + 1) < 10 ? "0" + (currentMonth + 1) : currentMonth + 1) + "/" + currentYear)
+            $("#loadedDateTo").val(toDate)
+
+            var calcYear = CurrentDate.getFullYear();
+            var calcMonth = CurrentDate.getMonth();
+            var calcDay = CurrentDate.getDate();
+
+            var fromDate = ((calcDay < 10 ? "0" + calcDay : calcDay) + "/" + ((calcMonth + 1) < 10 ? "0" + (calcMonth + 1) : calcMonth + 1) + "/" + calcYear)
+
+            $("#loadedDateFrom").val(fromDate)
+            $("#loadedDateFrom , #loadedDateTo").valid();
+
+        }
+        else {
+            $("#loadedDateFrom , #loadedDateTo").prop("disabled", false);
+            $("#loadedDateFrom , #loadedDateTo").val("")
+            //if ($("#loadedDateFrom , #loadedDateTo").valid()) {
+            //    var a = $("#loadedDateFrom").val().split('/')
+            //    var b = $("#loadedDateTo").val().split('/')
+            //    console.log(a[2])
+            //    console.log(b[2])
+            //    if (a[2] != b[2]) {
+            //        console.log(21134)
+            //        return false;
+            //    }
+            //}
+        }
+    })
+    $('#filterTypeId').trigger('change');
+
+    $('#loadedDateFrom , #loadedDateTo').datepicker('option', 'onClose', function (e) {
+        $('#sameYearMessage').hide()
+        if ($("#loadedDateFrom , #loadedDateTo").valid()) {
+            var a = $("#loadedDateFrom").val().split('/')
+            var b = $("#loadedDateTo").val().split('/')
+            if (a[2] != b[2]) {
+                $('#sameYearMessage').show()
+                $("#loadedDateTo").val('')
+            }
+        }
+    })
+</script>

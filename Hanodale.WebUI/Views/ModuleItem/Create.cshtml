@@ -1,0 +1,308 @@
+﻿@model Hanodale.WebUI.Models.ModuleItemModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="required" value ="@Resources.MSG_REQUIRED">
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Resources.MSG_CONFIRM_SAVE">
+<input type="hidden" id="MSG_CONFIRM_UPDATE" value ="@Resources.MSG_CONFIRM_UPDATE">
+<input type="hidden" id="form-congif" value="moduleitem" data-readOnly="@Model.readOnly">
+<!-- Hidden Variable -->
+
+<div class="widget-body">
+</div>
+
+<div id="content" style="opacity: 1; border: none">
+<div class="row-flex">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-edit fa-fw "></i>
+
+                @if (Model.isEdit && !Model.readOnly)
+                {
+                    @Resources.PAGE_HEADER_EDIT_MODULEITEM
+                }
+                else if (!Model.isEdit && !Model.readOnly)
+                {
+                    @Resources.PAGE_HEADER_CREATE_MODULEITEM
+                }
+                else if (Model.readOnly)
+                {
+                    @Resources.PAGE_HEADER_VIEW_MODULEITEM
+                }
+@*<span>&gt; 
+				Form Elements
+            </span>*@
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="formSpliter"></div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <div class="row">
+            <div id="message" class="alert alert-success" style="display: none"></div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal" }))
+            {  @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.id)
+
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+                        <!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+
+                        <header role="heading">
+                            <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+                            <div class="widget-toolbar" role="menu">
+                                <a data-toggle="dropdown" class="dropdown-toggle1 color-box selector" href="javascript:void(0);"></a>
+                                <ul class="dropdown-menu dropdown-menu-right arrow-box-up-right color-select pull-right">
+                                    <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
+                                    <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
+                                    <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
+                                    <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
+                                    <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
+                                    <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
+                                    <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
+                                    <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
+                                    <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
+                                    <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
+                                    <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
+                                    <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
+                                    <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
+                                    <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
+                                    <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
+                                    <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
+                                    <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
+                                    <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
+                                    <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">Remove</a></li>
+                                </ul>
+                            </div>
+                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                            <h2>@Resources.MODULEITEM_INFO </h2>
+
+                            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+
+                                <fieldset>
+                                    <div class="smart-form">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.modulType_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.modulType_Id, new { @class = "form-control multipleSelect", dataValue = Model.ModuleTypeItems, @placeholder = @Html.DisplayNameFor(m => m.modulType_Id) })
+                                                        @Html.ValidationMessageFor(m => m.modulType_Id)
+                                                        @*<i></i>*@
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.name, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-pencil"></i>
+                                                        @Html.EditorFor(model => model.name, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.name) })
+                                                        @Html.ValidationMessageFor(m => m.name)
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.sortOrder, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-reorder"></i>
+                                                        @Html.EditorFor(model => model.sortOrder, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.sortOrder) })
+                                                        @Html.ValidationMessageFor(m => m.sortOrder)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.description, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="textarea">
+                                                        <i class="icon-append fa fa-comment"></i>
+                                                        @Html.EditorFor(model => model.description, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.description) })
+                                                        @Html.ValidationMessageFor(m => m.description)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         <div class="form-group">
+                                            @Html.LabelFor(model => model.remarks, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="textarea">
+                                                        <i class="icon-append fa fa-comment"></i>
+                                                        @Html.EditorFor(model => model.remarks, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.remarks) })
+                                                        @Html.ValidationMessageFor(m => m.remarks)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.visibility, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    @Html.EditorFor(model => model.visibility, new { id = "visibility", name = "checkbox-toggle", @class = "make-add-col" })
+                                                    @Html.ValidationMessageFor(m => m.visibility)
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+                
+                
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-color-blueDark jarviswidget-sortable" id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <footer id="btnSection">
+                                    <div class="form-group">
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+
+                                            @if (!@Model.readOnly)
+                                            {
+                                                <button id="update-moduleitem" class="btn btn-sm btn-primary" data-value="update" type="button" style="@(Model.isEdit ? "" : "display: none")">
+                                                    <i class="fa fa-pencil"></i>
+                                                    @Resources.BTN_UPDATE
+                                                </button>
+                                                if (!Model.isEdit)
+                                                {
+                                                <button id="save-moduleitem" class="btn btn-sm btn-primary" data-value="save" type="button">
+                                                    <i class="fa fa-save"></i>
+                                                    @Resources.BTN_SAVE
+                                                </button>
+                                                }
+                                                <button class="btn btn-sm btn-primary" type="reset">
+                                                    <i class="fa fa-refresh"></i>
+                                                    @Resources.BTN_RESET
+                                                </button>
+                                            }
+                                            <button id="back-moduleitem" class="btn btn-sm btn-primary" type="button" data-url="ModuleItem/Index">
+                                                <i class="fa fa-mail-reply"></i>
+                                                @Resources.BTN_BACK
+                                            </button>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+                
+            }
+
+
+
+
+        </div>
+
+        <!-- END ROW -->
+
+        <!-- NEW ROW -->
+
+
+
+        <!-- END ROW-->
+
+    </section>
+
+
+
+</div>
+
+
+<!-- Protected Script -->
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+<!-- /.page-content -->
+
+

@@ -1,0 +1,31 @@
+﻿@model object
+@{
+    var nullable = ViewBag.nullable;
+    var SetAll = ViewBag.setAll;
+
+    IEnumerable<SelectListItem> items;
+    
+    var dataValue = ViewBag.dataValue;
+    if (dataValue == null)
+    {
+        items = new List<SelectListItem>();
+    }else
+    {
+        items = (IEnumerable<SelectListItem>)dataValue;
+    }
+}
+
+@if (nullable != null && nullable)
+{
+    @Html.DropDownListFor(m => m, items, ViewData);
+}
+else
+{
+    if (SetAll != null && SetAll) 
+{
+    @Html.DropDownListFor(m => m, items, "All", ViewData);
+    }
+    else{
+        @Html.DropDownListFor(m => m, items, "-- Select --", ViewData);
+    }
+}

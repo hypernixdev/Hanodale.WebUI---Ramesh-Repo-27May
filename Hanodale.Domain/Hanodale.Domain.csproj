@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9933FE1C-7A1F-445A-8A00-924F29E8B554}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hanodale.Domain</RootNamespace>
+    <AssemblyName>Hanodale.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Spire.Barcode, Version=7.3.3.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Barcode.7.3.3\lib\net40\Spire.Barcode.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.Doc, Version=12.10.13.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.DocViewer.8.8.2\lib\net40\Spire.Doc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.DocViewer.Forms, Version=8.8.2.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.DocViewer.8.8.2\lib\net40\Spire.DocViewer.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.Email, Version=6.5.9.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Email.6.6.0\lib\net40\Spire.Email.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.OfficeViewer.Forms, Version=8.7.15.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.OfficeViewer.8.7.15\lib\net40\Spire.OfficeViewer.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=10.10.5.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.PDF.10.10.5\lib\net40\Spire.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.PdfViewer.Asp, Version=7.12.23.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.PDFViewer.7.12.23\lib\net40\Spire.PdfViewer.Asp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.PdfViewer.Forms, Version=7.12.23.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.PDFViewer.7.12.23\lib\net40\Spire.PdfViewer.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.Presentation, Version=9.10.2.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Presentation.9.10.2\lib\net40\Spire.Presentation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.XLS, Version=14.10.2.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.14.10.2\lib\net40\Spire.XLS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="Contracts\BusinessServicesException.cs" />
+    <Compile Include="DTOs\AdhocReports\AdhocReports.cs" />
+    <Compile Include="DTOs\Asset\AssetLegend.cs" />
+    <Compile Include="DTOs\Asset\Assets.cs" />
+    <Compile Include="DTOs\Business\BusinessCategories.cs" />
+    <Compile Include="DTOs\Business\BusinessFiles.cs" />
+    <Compile Include="DTOs\Business\Businesses.cs" />
+    <Compile Include="DTOs\Business\BusinessAddresses.cs" />
+    <Compile Include="DTOs\Business\BusinessClassifications.cs" />
+    <Compile Include="DTOs\Business\BusinessOrganizations.cs" />
+    <Compile Include="DTOs\Business\BusinessOtherss.cs" />
+    <Compile Include="DTOs\Business\AssignedBusinesss.cs" />
+    <Compile Include="DTOs\Calendar\CalendarEvents.cs" />
+    <Compile Include="DTOs\Calendar\CalendarSettings.cs" />
+    <Compile Include="DTOs\Calendar\CopyCalendars.cs" />
+    <Compile Include="DTOs\ChartPanelDashboard\ChartPanelInfo.cs" />
+    <Compile Include="DTOs\ChartPanelPurchaseDashboard\StackingBarChartPanelSubItem.cs" />
+    <Compile Include="DTOs\ChartPanelPurchaseDashboard\StackingBarChartPanelInfo.cs" />
+    <Compile Include="DTOs\ChartPanelRFQDashboard\RFQNumberOfQuotesToRecelveDetail.cs" />
+    <Compile Include="DTOs\ChartPanelOderDashboard\ChartPanelOrderDetail.cs" />
+    <Compile Include="DTOs\ChartPanelOderDashboard\BarChartPanelOrderInfo.cs" />
+    <Compile Include="DTOs\ChartPanelOderDashboard\BarChartPanelOrderSubItem.cs" />
+    <Compile Include="DTOs\ChartPanelTicketDashboard\StackingBarChartPanelTicketInfo.cs" />
+    <Compile Include="DTOs\ChartPanelTicketDashboard\StackingBarChartPanelTicketSubItem.cs" />
+    <Compile Include="DTOs\ChartPanelWODashboard\ChartPanelWorkOrderDetail.cs" />
+    <Compile Include="DTOs\ChartPanelWODashboard\ChartWODashboard.cs" />
+    <Compile Include="DTOs\ChartPanelWODashboard\ChartWOInfo.cs" />
+    <Compile Include="DTOs\ChartPanelWODashboard\PieChartPanelWOSubItem.cs" />
+    <Compile Include="DTOs\ChartPanelWODashboard\PieChartWODashboard.cs" />
+    <Compile Include="DTOs\ChartPanelWODashboard\PieChartPanelWorkOrderInfo.cs" />
+    <Compile Include="DTOs\Common\AddressCities.cs" />
+    <Compile Include="DTOs\Common\AddressStates.cs" />
+    <Compile Include="DTOs\Common\AddressCountries.cs" />
+    <Compile Include="DTOs\Common\AddressRegions.cs" />
+    <Compile Include="DTOs\Common\Cultures.cs" />
+    <Compile Include="DTOs\Common\Localizations.cs" />
+    <Compile Include="DTOs\Common\DatatableFilters.cs" />
+    <Compile Include="DTOs\Common\Defects.cs" />
+    <Compile Include="DTOs\Common\MenuTypes.cs" />
+    <Compile Include="DTOs\Common\ModuleTypes.cs" />
+    <Compile Include="DTOs\Common\ModuleItems.cs" />
+    <Compile Include="DTOs\Common\RecordDetails.cs" />
+    <Compile Include="DTOs\Common\MainMenus.cs" />
+    <Compile Include="DTOs\ChartPanelPurchaseDashboard\ChartPanelPurchaseDetail.cs" />
+    <Compile Include="DTOs\ChartPanelDashboard\ChartDashboard.cs" />
+    <Compile Include="DTOs\ChartPanelDashboard\ChartInfo.cs" />
+    <Compile Include="DTOs\ChartPanelDashboard\PieChartPanelInfo.cs" />
+    <Compile Include="DTOs\ChartPanelDashboard\PieChartPanelSubItem.cs" />
+    <Compile Include="DTOs\ChartPanelDashboard\PieChartDashboard.cs" />
+    <Compile Include="DTOs\ChartPanelRFQDashboard\ChartPanelRFQDetail.cs" />
+    <Compile Include="DTOs\ChartPanelInspectionDashboard\ChartPanelInspectionDetail.cs" />
+    <Compile Include="DTOs\ChartPanelInspectionDashboard\StackingBarChartPanelInspectionInfo.cs" />
+    <Compile Include="DTOs\ChartPanelInspectionDashboard\StackingBarChartPanelInspectionSubItem.cs" />
+    <Compile Include="DTOs\ChartPanelTicketDashboard\ChartPanelTicketDetail.cs" />
+    <Compile Include="DTOs\CompanyProfile\CompanyProfiles.cs" />
+    <Compile Include="DTOs\Customer\Districts.cs" />
+    <Compile Include="DTOs\Dashboard\SalesSummary.cs" />
+    <Compile Include="DTOs\Order\OrderApprovals.cs" />
+    <Compile Include="DTOs\Order\OrderUpdates.cs" />
+    <Compile Include="DTOs\LooseConversion\LooseConversions.cs" />
+    <Compile Include="DTOs\Product\Customerpricing.cs" />
+    <Compile Include="DTOs\Order\Orders.cs" />
+    <Compile Include="DTOs\Customer\ShipToAddresses.cs" />
+    <Compile Include="DTOs\Dashboard\Dashboards.cs" />
+    <Compile Include="DTOs\FileUploadHistory\AttendanceStaffs.cs" />
+    <Compile Include="DTOs\FileUploadHistory\FileUploadHistorys.cs" />
+    <Compile Include="DTOs\FileUploadHistory\TrainingStaffs.cs" />
+    <Compile Include="DTOs\HelpDesk\HelpDesks.cs" />
+    <Compile Include="DTOs\Localization\LocalizationLanguages.cs" />
+    <Compile Include="DTOs\ModuleCode\ModuleCodes.cs" />
+    <Compile Include="DTOs\News\Email.cs" />
+    <Compile Include="DTOs\News\Newss.cs" />
+    <Compile Include="DTOs\Order\PostOrderToApi.cs" />
+    <Compile Include="DTOs\Order\ProductSearch.cs" />
+    <Compile Include="DTOs\Product\StockBalances.cs" />
+    <Compile Include="DTOs\Product\UomConv.cs" />
+    <Compile Include="DTOs\Organization\OrganizationEmails.cs" />
+    <Compile Include="DTOs\Organization\OrganizationCategories.cs" />
+    <Compile Include="DTOs\Organization\OrganizationCategoryConfigs.cs" />
+    <Compile Include="DTOs\Organization\Organizations.cs" />
+    <Compile Include="DTOs\Customer\Customers.cs" />
+    <Compile Include="DTOs\PriceList\CustomerPriceLists.cs" />
+    <Compile Include="DTOs\PriceList\PriceListParts.cs" />
+    <Compile Include="DTOs\PriceList\PriceList.cs" />
+    <Compile Include="DTOs\Product\UomConversions.cs" />
+    <Compile Include="DTOs\Product\ProductWeightBarcodes.cs" />
+    <Compile Include="DTOs\Product\ProductCartons.cs" />
+    <Compile Include="DTOs\SchedulerSetup\SchedulerLogs.cs" />
+    <Compile Include="DTOs\SchedulerSetup\SchedulerSetups.cs" />
+    <Compile Include="DTOs\Store\Stores.cs" />
+    <Compile Include="DTOs\Plant\Plants.cs" />
+    <Compile Include="DTOs\Reports\Reports.cs" />
+    <Compile Include="DTOs\Staff\Staffs.cs" />
+    <Compile Include="DTOs\Sync\SyncService.cs" />
+    <Compile Include="DTOs\TableProfile\TableProfileMetadatas.cs" />
+    <Compile Include="DTOs\TableProfile\TableProfiles.cs" />
+    <Compile Include="DTOs\UserManagement\AuthenticateUser.cs" />
+    <Compile Include="DTOs\UserManagement\AssignedOrganizations.cs" />
+    <Compile Include="DTOs\UserManagement\Menu.cs" />
+    <Compile Include="DTOs\UserManagement\UserRights.cs" />
+    <Compile Include="DTOs\UserManagement\UserRoles.cs" />
+    <Compile Include="DTOs\UserManagement\Users.cs" />
+    <Compile Include="DTOs\UserProfile\UserProfiles.cs" />
+    <Compile Include="DTOs\ChartPanelWODashboard\ChartPanelWorkOrderInfo.cs" />
+    <Compile Include="DTOs\Product\Products.cs" />
+    <Compile Include="DTOs\WorkCategory\BusinessWorkCategorys.cs" />
+    <Compile Include="DTOs\WorkCategory\WorkCategorys.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

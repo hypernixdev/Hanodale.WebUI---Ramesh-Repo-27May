@@ -1,0 +1,22 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelTicketDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<input type="hidden" id="type" value="@Model.type" />
+<div id="mainDashboardPlaceholder">
+</div>
+
+<script>
+    window.onload = function WindowLoad(event) {
+        var url = "ChartPanelTicketDashboard/DetailDashboard/";
+        var recordId = $('#type').val();
+        var param = { id: recordId }
+        navigate.viewContainerByParameter(url, param, $("#mainDashboardPlaceholder"));
+    }
+    
+</script>
+

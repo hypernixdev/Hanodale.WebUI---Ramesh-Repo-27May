@@ -1,0 +1,16 @@
+﻿@model int[]
+
+@*@Html.DropDownListFor(m => m,Model, new { @class = "form-control multipleSelect", @multiple = "multiple" })*@
+@{
+    var SetAll = ViewBag.setAll;
+    ViewBag.placeholder = "-- Multi Select --";
+}
+@if (SetAll != null && SetAll)
+{
+    @Html.DropDownListFor(m => m, (IEnumerable<SelectListItem>)ViewBag.dataValue, "All", ViewData)
+}
+else
+{
+    @Html.DropDownListFor(m => m, (IEnumerable<SelectListItem>)ViewBag.dataValue, ViewData)
+}
+

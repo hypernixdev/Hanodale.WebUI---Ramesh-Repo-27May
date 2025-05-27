@@ -1,0 +1,48 @@
+﻿@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@model Hanodale.WebUI.Models.DashboardModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<input hidden="hidden" id="check" name="check" value="@Model.check" />
+
+
+<div id="page-view">
+
+    @*<input type="checkbox" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modaltest" />*@
+
+    <div class="modal fade modal-dialog-vertical" id="modaltest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title" id="myModalLabel">Alert !</h2>
+                </div>
+                <div class="alert alert-info fade in">
+                    <h3><i class="fa-fw fa fa-warning"></i>&nbsp;&nbsp;&nbsp;Please Update your Business Profile</h3>
+                </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-modal-cancel" data-dismiss="modal" id="btnClose">Close</button>
+                @*<button type="button" class="btn btn-modal-ok" id="btmOk">Ok</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial(MVC.Dashboard.Views._Index, Model)
+</div>
+
+<script>
+    $(function () {
+
+        if ($('#check').val()) {
+            $('#modaltest').modal()
+        }
+        //else {
+        //    $('#popup1').hide();
+        //}
+    });
+</script>

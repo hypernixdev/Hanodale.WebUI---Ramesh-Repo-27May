@@ -1,0 +1,388 @@
+﻿@model Hanodale.WebUI.Models.CompanyProfileModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Html.GetGlobalResource("MSG_CONFIRM_SAVE")">
+<input type="hidden" id="MSG_CONFIRM_UPDATE" value ="@Html.GetGlobalResource("MSG_CONFIRM_UPDATE")">
+<input type="hidden" id="form-congif" value="companyprofile" data-readOnly="@Model.readOnly">
+<!-- Hidden Variable -->
+
+<div class="widget-body">
+</div>
+
+<div id="content" style="opacity: 1; border: none">
+    <div class="row-flex">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-edit fa-fw "></i>
+
+                @if (Model.isEdit && !Model.readOnly)
+                {
+                    @Html.GetGlobalResource("PAGE_HEADER_EDIT_COMPANYPROFILE")
+                }
+                else if (!Model.isEdit && !Model.readOnly)
+                {
+                    @Html.GetGlobalResource("PAGE_HEADER_CREATE_COMPANYPROFILE")
+                }
+                else if (Model.readOnly)
+                {
+                    @Html.GetGlobalResource("PAGE_HEADER_VIEW_COMPANYPROFILE")
+                }
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="formSpliter"></div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <div class="row">
+            <div id="message" class="alert alert-success" style="display: none"></div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal" }))
+            {  @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.id)
+
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+                        <header role="heading">
+                            <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+
+                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                            <h2>@Html.GetGlobalResource("COMPANYPROFILE_INFO")</h2>
+                            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+
+                                <fieldset>
+                                    <div class="smart-form">
+
+                                        @if (Model.code_Metadata.visibilityInCreate)
+                                        {
+                                        
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.code, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" })
+                                                @*<label class="col-xs-12 col-sm-6 col-md-3 col-lg-3 control-label required" for="@Model.code_Metadata.fieldName" aria-required="true">@Resources.ADHOCREPORT_INFO</label>*@
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.code, new { @class = "form-control" + Model.code_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.code) })
+                                                            @Html.ValidationMessageFor(m => m.code)
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.name_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.name, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.name, new { @class = "form-control" + Model.name_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.name) })
+                                                            @Html.ValidationMessageFor(m => m.name)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.description_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.description, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="textarea">
+                                                            <i class="icon-append fa fa-comment"></i>
+                                                            @Html.EditorFor(model => model.description, new { @class = "form-control" + Model.description_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.description) })
+                                                            @Html.ValidationMessageFor(m => m.description)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.totalCapital_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.totalCapital, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.totalCapital, new { @class = "form-control" + Model.totalCapital_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.totalCapital) })
+                                                            @Html.ValidationMessageFor(m => m.totalCapital)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.companyType_Id_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.companyType_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="select">
+                                                            @Html.EditorFor(model => model.companyType_Id, new { @class = "form-control multipleSelect" + Model.companyType_Id_Metadata.mandatoryClass, dataValue = Model.lstCompanyType })
+                                                            @Html.ValidationMessageFor(m => m.companyType_Id)
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.noOfUser_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.noOfUser, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.noOfUser, new { @class = "form-control" + Model.noOfUser_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.noOfUser) })
+                                                            @Html.ValidationMessageFor(m => m.noOfUser)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.service_Id_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.service_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="select">
+                                                            @Html.EditorFor(model => model.service_Id, new { @class = "form-control multipleSelect" + Model.service_Id_Metadata.mandatoryClass, dataValue = Model.lstService })
+                                                            @Html.ValidationMessageFor(m => m.service_Id)
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.phoneNo_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.phoneNo, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.phoneNo, new { @class = "form-control" + Model.phoneNo_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.phoneNo) })
+                                                            @Html.ValidationMessageFor(m => m.phoneNo)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+
+                                        @if (Model.emailAddress_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.emailAddress, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.emailAddress, new { @class = "form-control" + Model.emailAddress_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.emailAddress) })
+                                                            @Html.ValidationMessageFor(m => m.emailAddress)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.effectiveDate_Metadata.visibilityInCreate)
+                                        {
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.effectiveDate, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            @Html.EditorFor(model => model.effectiveDate, new { @class = "datepicker form-control date-picker" + Model.effectiveDate_Metadata.mandatoryClass })
+                                                            @Html.ValidationMessageFor(m => m.effectiveDate)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.totalRevenue_Metadata.visibilityInCreate)
+                                        {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.totalRevenue, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-pencil"></i>
+                                                            @Html.EditorFor(model => model.totalRevenue, new { @class = "form-control" + Model.totalRevenue_Metadata.mandatoryClass, @placeholder = @Html.DisplayNameFor(m => m.totalRevenue) })
+                                                            @Html.ValidationMessageFor(m => m.totalRevenue)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (Model.isActive_Metadata.visibilityInCreate)
+                                        {
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.isActive, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                    <div class="clearfix">
+                                                        @Html.EditorFor(model => model.isActive, new { name = "checkbox-toggle", @class = "make-add-col" + Model.isActive_Metadata.mandatoryClass })
+                                                        @Html.ValidationMessageFor(m => m.isActive)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+                
+                
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-color-blueDark jarviswidget-sortable" id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <footer id="btnSection">
+                                    <div class="form-group">
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+
+                                            @if (!@Model.readOnly)
+                                            {
+                                                <button id="update-companyprofile" class="btn btn-sm btn-primary" data-value="update" type="button" style="@(Model.isEdit ? "" : "display: none")">
+                                                    <i class="fa fa-pencil"></i>
+                                                    @Html.GetGlobalResource("BTN_UPDATE")
+                                                </button>
+                                                if (!Model.isEdit)
+                                                {
+                                                <button id="save-companyprofile" class="btn btn-sm btn-primary" data-value="save" type="button">
+                                                    <i class="fa fa-save"></i>
+                                                    @Html.GetGlobalResource("BTN_SAVE")
+                                                </button>
+                                                }
+                                                <button class="btn btn-sm btn-primary" type="reset">
+                                                    <i class="fa fa-refresh"></i>
+                                                    @Html.GetGlobalResource("BTN_RESET")
+                                                </button>
+                                            }
+                                            <button id="back-companyprofile" class="btn btn-sm btn-primary" type="button" data-url="CompanyProfile/Index">
+                                                <i class="fa fa-mail-reply"></i>
+                                                @Html.GetGlobalResource("BTN_BACK")
+                                            </button>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+                
+            }
+
+
+
+
+        </div>
+
+        <!-- END ROW -->
+
+        <!-- NEW ROW -->
+
+
+
+        <!-- END ROW-->
+
+    </section>
+
+
+
+</div>
+
+
+<!-- Protected Script -->
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+<!-- /.page-content -->
+
+

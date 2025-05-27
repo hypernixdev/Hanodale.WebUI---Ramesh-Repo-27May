@@ -1,0 +1,33 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+@if (Model.canView)
+{
+    <span class="view-helpdesk btn btn-ribbon " data-url="HELPDESK_ID" title="View" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye "></i>
+    </span>
+}
+@if (Model.canEdit)
+{
+     <span class="phone check-helpdesk btn btn-ribbon " data-url="HELPDESK_ID" title="Receive" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-check"></i>
+    </span>
+    
+    <span class="pencil edit-helpdesk btn btn-ribbon " data-url="HELPDESK_ID" title="Update Status" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-edit"></i>
+    </span>
+    
+      <span class="followup-helpdesk btn btn-ribbon " data-url="HELPDESK_ID" title="Create WorkOrder" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-wordpress"></i>
+    </span>
+
+}
+
+@*@if (Model.canDelete)
+{
+    <span class="pencil delete-helpdesk btn btn-ribbon " data-url="HELPDESK_ID" title="Delete" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-trash-o "></i>
+    </span>
+}*@

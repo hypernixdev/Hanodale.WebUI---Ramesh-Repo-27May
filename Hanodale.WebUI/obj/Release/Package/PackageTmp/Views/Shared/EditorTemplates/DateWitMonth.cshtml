@@ -1,0 +1,17 @@
+﻿@model DateTime?
+<div class="input">
+    <i class="icon-append fa fa-calendar"></i>
+    @{
+        ViewData.Add("placeholder", "mm/yyyy");
+        ViewData.Add("data-date-format", "mm/yyyy");
+        ViewData.Add("data-date-viewmode", "years");
+        ViewData.Add("data-date-minviewmode", "months");
+    }
+    @Html.TextBox("", (Model.HasValue ? Model.Value.Date.ToString("MM yy"): string.Empty),ViewData)
+</div>
+
+@*<script>
+    $('.datepicker').datepicker()
+</script>*@
+
+

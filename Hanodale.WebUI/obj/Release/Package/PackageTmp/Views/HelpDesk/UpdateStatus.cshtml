@@ -1,0 +1,445 @@
+﻿@model Hanodale.WebUI.Models.HelpDeskModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Create";
+    if (!Request.IsAjaxRequest())
+    {
+        Layout = "~/Views/Shared/_ResultNewScreenLayout.cshtml";
+    }
+    else
+    {
+        Layout = null;
+    }
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="required" value ="@Resources.MSG_REQUIRED">
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Resources.MSG_CONFIRM_SAVE">
+<input type="hidden" id="MSG_CONFIRM_UPDATE" value ="@Resources.MSG_CONFIRM_UPDATE">
+<input type="hidden" id="form-congif" value="helpdesk" data-readOnly="@Model.readOnly" data-red-url="HelpDesk/Edit/">
+<!-- Hidden Variable -->
+
+<div id="content" style="opacity: 1; border: none">
+<div class="row-flex">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-edit fa-fw "></i>
+                @if (@Model.isEdit && !@Model.readOnly)
+                {
+                    @Resources.PAGE_HEADER_EDIT_HELPDESK
+                }
+                else if (!@Model.isEdit && !@Model.readOnly)
+                {
+                    @Resources.PAGE_HEADER_CREATE_HELPDESK
+                }
+                else
+                {
+                    @Resources.PAGE_HEADER_VIEW_HELPDESK
+                }
+            </h1>
+        </div>
+    </div>
+
+    <div class="formSpliter"></div>
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- START ROW -->
+
+        <div class="row">
+            <div id="message" class="alert alert-success" style="display: none"></div>
+            @using (Html.BeginForm("SaveHelpDesk", "HelpDesk", FormMethod.Post, new { id = "validation-form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {  @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.id)
+
+                
+              
+                
+                
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable" id="art1">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-100" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+                        <!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+
+                        <header role="heading">
+                            <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+                            <div class="widget-toolbar" role="menu">
+                                <a data-toggle="dropdown" class="dropdown-toggle1 color-box selector" href="javascript:void(0);"></a>
+                                <ul class="dropdown-menu dropdown-menu-right arrow-box-up-right color-select pull-right">
+                                    <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
+                                    <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
+                                    <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
+                                    <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
+                                    <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
+                                    <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
+                                    <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
+                                    <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
+                                    <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
+                                    <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
+                                    <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
+                                    <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
+                                    <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
+                                    <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
+                                    <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
+                                    <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
+                                    <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
+                                    <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
+                                    <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">Remove</a></li>
+                                </ul>
+                            </div>
+                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                            <h2>@Resources.HELPDESK_ISSUE_INFO </h2>
+
+                            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+
+                                <fieldset>
+                                    <div class="smart-form">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.code, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-pencil"></i>
+                                                        @Html.TextBoxFor(model => model.code, new { @id = "code", @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.code), @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(m => m.code)
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.feedback, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="textarea">
+                                                        <i class="icon-append fa fa-comment-o"></i>
+                                                        @Html.EditorFor(model => model.feedback, new { @id = "feedback", @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.feedback), @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(m => m.feedback)
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.workFollowStatus_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="select">
+                                                        @Html.EditorFor(model => model.workFollowStatus_Id, new { @class = "form-control multipleSelect", dataValue = Model.lsthelpdeskworkfollow, @placeholder = @Html.DisplayNameFor(m => m.workFollowStatus_Id) })
+                                                        @Html.ValidationMessageFor(m => m.workFollowStatus_Id)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.remarks, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                <div class="clearfix">
+                                                    <label class="textarea">
+                                                        <i class="icon-append fa fa-comment"></i>
+                                                        @Html.EditorFor(model => model.remarks, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.remarks) })
+                                                        @Html.ValidationMessageFor(m => m.remarks)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if (!Model.readOnly){
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(model => model.fileUpload, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" })
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                                                @Html.HiddenFor(i => i.FilesToBeUploaded)
+
+                                                <div id="uploaders" style="margin-top: 5px">
+                                                    @Html.TextBoxFor(model => model.fileUpload, new { @class = "", type = "file", id = "fileToUpload", multiple = "multiple", style = "float: left; width:95px", dataValue = "fileToUpload" })
+                                                    @Html.ValidationMessageFor(m => m.fileUpload)
+                                                </div>
+                                                <br />
+                                                <span id="spnFile" style="float: left; color: #FF0000"></span>
+                                                <br />
+                                                <div class="control-section">
+                                                    <div id="selectedFiles">
+                                                        @*@if (Model.selectedFileNames != null)
+                                                        {
+                                                            foreach (var item in Model.selectedFileNames)
+                                                            {
+                                                            <div>
+                                                                <span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x "></i></span><span style="color: #3276B1;">@item.Value</span>
+                                                                @if (!Model.readOnly)
+                                                                {
+                                                                    <i class="fa fa-times-circle fa-lg closeBtn" onclick="removeAtt(this)" title="Remove" style="margin-left: 4px;"></i>
+                                                                }
+                                                                <a  href="HelpDesk/GetFile/@item.Key" target="_blank" title="Download" style="margin-left: 4px;"><i class="fa fa-download fa-lg downloadBtn"></i></a>
+                                                            </div>
+                                                            }
+                                                        }*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+
+                                    </div>
+
+
+
+                                </fieldset>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+
+
+                </article>
+                                                       
+                <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable" id="art2">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+
+                    <!-- end widget -->
+
+                    <div class="jarviswidget jarviswidget-color-blueDark jarviswidget-sortable" id="wid-id-101" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <footer id="btnSection">
+                                    <div class="form-group">
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6">
+
+                                            @if (!Model.readOnly)
+                                            {
+                                                <button id="update-helpdesk1" class="btn btn-sm btn-primary" data-value="update" type="submit" style="@(Model.isEdit ? "" : "display: none")">
+                                                    <i class="fa fa-pencil"></i>
+                                                    @Resources.BTN_UPDATE
+                                                </button>
+                                                
+                                                if (!Model.isEdit)
+                                                {
+                                                <button id="save-helpdesk1" class="btn btn-sm btn-primary" data-value="save" type="submit">
+                                                    <i class="fa fa-save"></i>
+                                                    @Resources.BTN_SAVE
+                                                </button>
+                                                }
+
+                                            }
+
+                                            @if (!Model.hideBackButton)
+                                            {
+                                                if (!@Model.isBack)
+                                                {
+                                                <button id="back-helpdesk" class="btn btn-sm btn-primary" type="button" data-url="HelpDesk/Index">
+                                                    <i class="fa fa-mail-reply"></i>
+                                                    @Resources.BTN_BACK
+                                                </button>
+                                                }
+                                                else
+                                                {
+                                                <button id="back-helpdesk" class="btn btn-sm btn-primary" type="button" data-url="HelpDeskApproval/Index">
+                                                    <i class="fa fa-mail-reply"></i>
+                                                    @Resources.BTN_BACK
+                                                </button>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
+            }
+
+
+
+
+        </div>
+
+        <!-- END ROW -->
+    </section>
+</div>
+
+
+
+<!-- Protected Script -->
+@*@Scripts.Render(bundles.scripts.helpdesk_add_edit)*@
+<script src="~/Scripts/ProtectedScripts/web.common-add-edit.js"></script>
+@*<script src="~/Scripts/ProtectedScripts/web.helpdeskticket-add-edit.js"></script>*@
+@*@Scripts.Render(bundles.scripts.common_add_edit)*@
+@Scripts.Render("~/bundles/jqueryval")
+<!-- /.page-content -->
+
+<script>
+    var nowTemp = new Date();
+    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+    var files;
+    var storedFiles = [];
+    var upc = 0;
+
+    $(function () {
+
+        $(":file").attr('title', '  ');
+        var $loading = $('#loadingDiv').hide();
+
+        $("input[id^='fileToUpload']").change(function (e) {
+
+            doReCreate(e);
+        });
+
+        selDiv = $("#selectedFiles");
+
+        var selecteditem = $('#FilesToBeUploaded').val();
+
+        var aaa = (selecteditem == undefined ? '' : selecteditem.split(','))
+        for (var i = 0; i < aaa.length; i++) {
+            if (aaa[i] != '') {
+                storedFiles.push(aaa[i]);
+            }
+        }
+
+    });
+
+    function doReCreate(e) {
+        var fileID = ("fileToUpload" + upc).toString();
+        if (upc == 0)
+            fileID = "fileToUpload";
+
+        if (!handleFileSelect(e, fileID)) {
+
+            upc = upc + 1;
+
+            $("input[id^='fileToUpload']").hide();
+
+            $('<input>').attr({
+                type: 'file',
+                multiple: 'multiple',
+                id: 'fileToUpload' + upc,
+                class: 'fUpload',
+                name: 'fileUpload',
+                style: 'float: left;width:95px',
+                title: '  ',
+                onchange: "doReCreate(event)"
+            }).appendTo('#uploaders');
+        } else {
+            $('#' + fileID).wrap('<form>').closest('form').get(0).reset();
+            $('#' + fileID).unwrap();
+            //$('#'+fileID).remove();
+            //$('#uploaders').prepend('<input type="file" id="' + fileID + '" name="fileUpload" multiple="multiple" style="float: left;" dataValue="fileToUpload" title="  ">')
+            userMessage.show("Warning", "This file is already selected.");
+            return false;
+        }
+    }
+
+    function handleFileSelect(e, fileId) {
+        //selDiv.innerHTML = ""; storedFiles = []; 
+        selDiv = document.querySelector("#selectedFiles");
+
+        if (!e.target.files) return false;
+
+        //selDiv.innerHTML = "";
+        files = e.target.files;
+        for (var i = 0; i < files.length; i++) {
+            //if (i == 0) { selDiv.innerHTML = ""; storedFiles = []; }
+            var f = files[i];
+            if (!IsExist(f.name)) {
+                selDiv.innerHTML += "<div>" + '<span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x "></i></span><span style="color: #3276B1;">' + f.name.replace(/,/g, "") +
+                //"<a dataValue='" + fileId + "' onclick='removeAtt(this)'> X </a></div>";
+                '</span><i dataValue="' + fileId + '" class="fa fa-times-circle fa-lg closeBtn" onclick="removeAtt(this)" title="remove" style="margin-left: 4px;"></i></div>'
+                storedFiles.push(f.name.replace(/,/g, ""));
+            } else {
+                return true;
+            }
+        }
+
+        $('#@Html.IdFor(i => i.FilesToBeUploaded)').val(storedFiles);
+    }
+
+    function IsExist(fileName) {
+        for (var i = 0; i < storedFiles.length; i++) {
+            if (storedFiles[i] == fileName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    function removeAtt(t) {
+        var id = $(t).attr('dataValue');
+        if (id != '' && id != 'undefined')
+            $('input[type="file"]#' + id).remove();
+
+        var serEle = $(t).parent().text().trim()//.slice(0, -3);
+        var index = storedFiles.indexOf(serEle);
+        if (index !== -1) {
+            storedFiles.splice(index, 1);
+        }
+        $(t).parent().remove();
+        $('#@Html.IdFor(i => i.FilesToBeUploaded)').val(storedFiles);
+    }
+</script>
+

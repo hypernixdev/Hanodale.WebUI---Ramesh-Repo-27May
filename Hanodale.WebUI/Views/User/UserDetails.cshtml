@@ -1,0 +1,109 @@
+﻿@model Hanodale.WebUI.Models.UserInfoModel
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@using Hanodale.Utility.Globalize
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Resources.MSG_CONFIRM_SAVE">
+<input type="hidden" id="MSG_CONFIRM_UPDATE" value ="@Resources.MSG_CONFIRM_UPDATE">
+<input type="hidden" id="alert-delete" value ="@Resources.MSG_CONFIRM_DELETE">
+
+
+@*<!-- NEW COL START -->
+<div class="widget-body">
+</div>*@
+
+<div id="content" style="opacity: 1; border: none">
+<div class="row-flex">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-edit fa-fw "></i>
+                <span id="headerTitle" style="font-size: x-large;">
+                    @Resources.PAGE_HEADER_VIEW_PROFILE
+                </span>
+            </h1>
+        </div>
+    </div>
+
+
+
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- START ROW -->
+        <!-- END ROW -->
+
+        <!-- START ROW -->
+
+              <div id="passwordPanel">
+    @Html.Partial(MVC.User.Views._ProfileImageUpload, Model)
+@*    @Html.Action(MVC.ChangePassword.ChangePassword(false))*@
+        </div>
+
+     
+        <!-- END ROW -->
+
+        <!-- NEW ROW -->
+
+
+
+        <!-- END ROW-->
+
+    </section>
+
+
+    <script src="../Scripts/ProtectedScripts/web.common-set-component.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    
+
+<!-- Protected Script -->
+@*@Scripts.Render(bundles.scripts.common_add_edit)*@
+@**@
+<!-- /.page-content -->
+<style>
+    #back-changepassword {
+        display:none;
+    }
+    #passwordPanel #content {
+        padding:0!important;
+    }
+</style>
+
+<script>
+    $("#updateUserInfo").bind("click", function () {
+        var validator = $("#validation-form11").data('validator');
+        validator.settings.ignore = "";
+        if ($("#validation-form11").valid()) {
+            setTimeout(function () {
+                var message = $("#MSG_CONFIRM_UPDATE").val();
+                var actionUrl = "../User/SaveUserInfo";
+
+                var param = $('#validation-form11').serialize();
+                //param = addDatetime(param);
+                navigate.saveCallBack(actionUrl, param, message, false, null);
+            }, 100);
+        } else {
+            setTimeout(function () { var input = $('.input-validation-error:first'); if (input) { input.focus(); scrollToElement(input); } }, 100); $('.field-validation-error').each(function (e) {
+                var id = $(this).closest('.jarviswidget').attr('id');
+                $('#' + id).removeClass('jarviswidget-collapsed');
+                $('#' + id + " .jarviswidget-ctrls a.jarviswidget-toggle-btn i:first-child").removeClass("fa-plus").addClass("fa-minus");
+                $('#' + id + " div[role='content']").css({ "display": "block" });
+
+            })
+        }
+
+    });
+    //$('#validation-form11 input, #validation-form11 select, #validation-form11 checkbox, #validation-form11 textarea').attr("disabled", "disabled");
+    //$('#validation-form11 label[for]').parent().removeClass('required');
+    //$('#validation-form11 .smart-form .select i').css('box-shadow', 'none');
+
+    //setTimeout(function () {
+    //    $("#validation-form11 .bootstrap-duallistbox-container").find("*").prop("disabled", true);
+    //    $('.select2-container-disabled a span').attr("disabled", "disabled");
+    //    pageSetUp()
+    //}, 110);
+</script>

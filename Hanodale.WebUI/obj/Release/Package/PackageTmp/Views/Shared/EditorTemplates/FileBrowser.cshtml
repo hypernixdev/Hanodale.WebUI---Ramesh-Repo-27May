@@ -1,0 +1,12 @@
+﻿@model string
+@{
+    var domainObjectId = ViewBag.dataValue;
+    //if (domainObjectId == null || domainObjectId=="undefined"){
+    //    domainObjectId = new List<SelectListItem>();
+    //}
+    
+}
+
+<div class="button">
+    @*<input type="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">*@
+    @Html.TextBoxFor(model=>model, Model, new { type="file" ,  @onchange="this.parentNode.nextSibling.value = this.value"})Browse</div>@*<input type="text" placeholder="Include some files" readonly="">*@@Html.TextBox("", "Select File", new { id=domainObjectId, @placeholder="Include some files" , @readonly="",})

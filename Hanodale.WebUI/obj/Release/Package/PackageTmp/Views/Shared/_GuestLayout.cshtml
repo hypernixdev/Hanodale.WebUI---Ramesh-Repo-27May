@@ -1,0 +1,278 @@
+﻿@using System.Web.Optimization;
+@using Hanodale.WebUI
+@using Hanodale.Utility.Globalize
+@{
+    ViewBag.Title = "_Layout";
+}
+
+<!DOCTYPE html>
+<html lang="en-BG">
+    
+<head>
+    <meta charset="utf-8">
+
+    <title>HRMS</title>
+    @* @Html.MetaAcceptLanguage()*@
+    <meta name="accept-language" content="en-GB" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Basic Styles -->
+     <link href="~/Content/bootstrap-4.4.1/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/font-awesome.min.css">
+
+    <!-- basic styles & page specific plugin styles-->
+    @Styles.Render(bundles.styles.layout)
+
+    <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production.min.css">
+    @*<link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production-plugins.min.css" />*@
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-skins.min.css">
+
+
+    <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/demo.min.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="~/Content/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Content/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <link rel="apple-touch-icon" href="~/Content/img/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/img/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/img/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/img/splash/touch-icon-ipad-retina.png">
+
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href="~/Content/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="~/Content/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="~/Content/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+    <link href="~/Content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <!-- Add all of css related for the project -->
+
+    <link href="~/Content/dataTables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/Content/dataTables/responsive.bootstrap4.css" rel="stylesheet" />
+    <link href="~/Content/dataTables/buttons.bootstrap4.css" rel="stylesheet" />
+
+    <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+    <!-- Add all of css related for the project -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/your_style.css">
+
+        <link href='~/Scripts/fullcalendar-4.4.0/core/main.css' rel='stylesheet' />
+<link href='~/Scripts/fullcalendar-4.4.0/daygrid/main.css' rel='stylesheet' />
+<link href='~/Scripts/fullcalendar-4.4.0/timegrid/main.css' rel='stylesheet' />
+<link href='~/Scripts/fullcalendar-4.4.0/list/main.css' rel='stylesheet' />
+
+    
+
+    <script src="~/Scripts/jquery-3.5.1/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/bootstrap-4.4.1/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap-4.4.1/bootstrap.min.js"></script>
+    <script src="~/Scripts/globalize/globalize.js"></script>
+
+    @Scripts.Render("~/bundles/modernizr")
+
+     <script src="~/Scripts/datatable/jquery.dataTables.js"></script>
+    <script src="~/Scripts/datatable/dataTables.bootstrap4.js"></script>
+    <script src="~/Scripts/datatable/dataTables.responsive.js"></script>
+    <script src="~/Scripts/datatable/responsive.bootstrap4.js"></script>
+    <script src="~/Scripts/datatable/dataTables.buttons.js"></script>
+    <script src="~/Scripts/datatable/buttons.bootstrap4.js"></script>
+    <script src="~/Scripts/datatable/buttons.colVis.js"></script>
+    <script src="~/Scripts/datatable/buttons.flash.js"></script>
+    <script src="~/Scripts/datatable/buttons.html5.js"></script>
+    <script src="~/Scripts/datatable/buttons.print.js"></script>
+    <script src="~/Scripts/datatable/jszip.js"></script>
+    <script src="~/Scripts/datatable/pdfmake.js"></script>
+    <script src="~/Scripts/datatable/vfs_fonts.js"></script>
+
+</head>
+     <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/Scripts/app.config.js"></script>
+
+    <!-- Demo purpose only -->
+    <script src="~/Scripts/demo.min.js"></script>
+
+    <!-- MAIN APP JS FILE -->
+    <script src="~/Scripts/app.min.js"></script>
+
+    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+    <!-- Voice command : plugin -->
+    <script src="~/Scripts/speech/voicecommand.min.js"></script>
+<body class="">
+    <input type="hidden" id="isGuest" value="true" />
+    <!--Grid lable -->
+    <input type="hidden" id="DATATABLE_MENU" value ="@Resources.DATATABLE_MENU">
+    <input type="hidden" id="DATATABLE_INFO" value ="@Resources.DATATABLE_INFO">
+    <input type="hidden" id="DATATABLE_INFO_EMPTY" value ="@Resources.DATATABLE_INFO_EMPTY">
+    <input type="hidden" id="DATATABLE_ZERO_RECORD" value ="@Resources.DATATABLE_ZERO_RECORD">
+    <input type="hidden" id="DATATABLE_SEARCH" value ="@Resources.DATATABLE_SEARCH">
+    <input type="hidden" id="DATATABLE_INFO_FILTERED" value ="@Resources.DATATABLE_INFO_FILTERED">
+    <input type="hidden" id="DATATABLE_EMPTY_TABLE" value ="@Resources.DATATABLE_EMPTY_TABLE">
+
+    <!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <!-- MAIN PANEL -->
+    <div id="main" role="main" class="main" style="margin-left:0">
+
+        <!-- MAIN CONTENT -->
+        <div id="content" class="container">
+
+            @RenderBody()
+
+        </div>
+
+    </div>
+
+
+    @Scripts.Render(Html.JsCultureBundle())
+
+    @RenderSection("scripts", required: false)
+
+    @* ///////////////////////////////////////// here \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*@
+
+
+   
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/Scripts/plugin/pace/pace.min.js"></script>
+
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script>
+        if (!window.jQuery) {
+            document.write('<script src="Scripts/libs/jquery-2.0.2.min.js"><\/script>');
+        }
+    </script>
+
+    <script>
+        if (!window.jQuery.ui) {
+            document.write('<script src="Scripts/libs/jquery-ui-1.10.3.min.js"><\/script>');
+        }
+    </script>
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/Scripts/app.config.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+    <script src="~/Scripts/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- CUSTOM NOTIFICATION -->
+    <script src="~/Scripts/notification/SmartNotification.min.js"></script>
+
+    <!-- JARVIS WIDGETS -->
+    <script src="~/Scripts/smartwidgets/jarvis.widget.min.js"></script>
+
+    <!-- EASY PIE CHARTS -->
+    <script src="~/Scripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+    <!-- SPARKLINES -->
+    <script src="~/Scripts/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+    @*<!-- JQUERY VALIDATE -->
+    <script src="~/Scripts/plugin/jquery-validate/jquery.validate.min.js"></script>*@
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="~/Scripts/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+    <!-- JQUERY SELECT2 INPUT -->
+    <script src="~/Scripts/plugin/select2/select2.min.js"></script>
+
+    <!-- JQUERY UI + Bootstrap Slider -->
+    <script src="~/Scripts/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+    <!-- browser msie issue fix -->
+    <script src="~/Scripts/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+    <!-- FastClick: For mobile devices -->
+    <script src="~/Scripts/plugin/fastclick/fastclick.min.js"></script>
+
+     <script src="~/Scripts/plugin/flot-new/jquery.flot.js"></script>
+    <script src="~/Scripts/plugin/flot-new/jquery.flot.pie.js"></script>
+
+    <!-- Demo purpose only -->
+    <script src="~/Scripts/demo.min.js"></script>
+
+    <!-- MAIN APP JS FILE -->
+    <script src="~/Scripts/app.min.js"></script>
+
+    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+    <!-- Voice command : plugin -->
+    <script src="~/Scripts/speech/voicecommand.min.js"></script>
+
+    <!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+    <script src="~/Scripts/ProtectedScripts/web.util.js"></script>
+    <script src="~/Scripts/ProtectedScripts/web.navigate.js"></script>
+
+    <script src="~/Scripts/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript">
+
+        $('a#show-shortcut').click(function () {
+            var container = $("#main > #content");
+            var _businessType = $(this).attr("data-businessType");
+            if (_businessType == 65) {
+                $.ajax({
+                    type: "POST",
+                    datatype: 'json',
+                    url: "User/UserInfo/",
+                    data: {},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        container.html("");
+                        container.html(data.viewMarkup);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        //log error
+                        //_showErrorMessage();
+                    }
+                });
+            }
+
+        });
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        $(document).ready(function () {
+
+            pageSetUp();
+            $('.multipleSelect1').select2();
+            $('#nav-search').show();
+
+        })
+
+        $('#organization_Id').data('lastSelected', $('#organization_Id').find("option:selected"));
+        $('#mainCostCenter_Id').data('lastSelected', $('#mainCostCenter_Id').find("option:selected"));
+
+    </script>
+
+
+    <!-- Your GOOGLE ANALYTICS CODE Below -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+19/10/2024 09:53:43 AM - Sync Started
+19/10/2024 09:53:46 AM - Task1:Plant | Success synced the data
+19/10/2024 09:53:46 AM - All sync operations completed.
+19/10/2024 09:53:46 AM - -------------------------------------------------------------------------
+19/10/2024 10:01:36 AM - Sync Started
+19/10/2024 10:01:38 AM - Task1:Plant | Success synced the data
+19/10/2024 10:01:38 AM - All sync operations completed.
+19/10/2024 10:01:38 AM - -------------------------------------------------------------------------
+19/10/2024 10:15:19 AM - Sync Started
+19/10/2024 10:15:21 AM - Task1:Plant | Success synced the data
+19/10/2024 10:15:44 AM - Sync Started
+19/10/2024 11:47:45 AM - Task5:UomConv | An error occurred while updating the entries. See the inner exception for details.
+19/10/2024 11:47:45 AM - All sync operations completed.
+19/10/2024 11:47:45 AM - -------------------------------------------------------------------------
+19/10/2024 11:48:14 AM - Sync Started
+19/10/2024 01:12:09 PM - Task5:UomConv | One or more errors occurred.
+19/10/2024 01:12:09 PM - All sync operations completed.
+19/10/2024 01:12:09 PM - -------------------------------------------------------------------------
+19/10/2024 01:20:16 PM - Sync Started
+19/10/2024 05:01:11 PM - Sync Started
+19/10/2024 05:29:47 PM - Sync Started
+19/10/2024 05:40:55 PM - Sync Started
+19/10/2024 06:52:18 PM - Task5:UomConv | The underlying provider failed on Open.
+19/10/2024 06:52:18 PM - All sync operations completed.
+19/10/2024 06:52:18 PM - -------------------------------------------------------------------------
+19/10/2024 07:13:00 PM - Sync Started
+19/10/2024 10:33:46 PM - Task5:UomConv | HTTP request failed with status code: ServiceUnavailable
+19/10/2024 10:33:46 PM - All sync operations completed.
+19/10/2024 10:33:46 PM - -------------------------------------------------------------------------
+20/10/2024 06:20:28 AM - Sync Started
+20/10/2024 06:20:49 AM - Task5:UomConv | One or more errors occurred.
+20/10/2024 06:20:49 AM - All sync operations completed.
+20/10/2024 06:20:49 AM - -------------------------------------------------------------------------
+21/10/2024 05:42:36 AM - Sync Started
+21/10/2024 05:45:12 AM - Sync Started
+21/10/2024 05:58:25 AM - Task5:UomConv | Success synced the data
+21/10/2024 05:58:25 AM - All sync operations completed.
+21/10/2024 05:58:25 AM - -------------------------------------------------------------------------
+21/10/2024 11:57:19 AM - Sync Started
+21/10/2024 12:04:49 PM - Sync Started
+29-10-2024 08:33:44 AM - Sync Started
+29-10-2024 08:40:16 AM - Task4:Product | Success synced the data
+29-10-2024 08:40:16 AM - All sync operations completed.
+29-10-2024 08:40:16 AM - -------------------------------------------------------------------------

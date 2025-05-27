@@ -1,0 +1,31 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+@if (Model.canEdit)
+{
+    <span class="edit-orders btn btn-ribbon " data-url="ORDERS_ID" data-status4="ORDERS_ID" title="@Html.GetGlobalResource("LABEL_EDIT")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}
+@if (Model.canView)
+{
+    <span class="view-orders btn btn-ribbon " data-url="ORDERS_ID" data-status4="ORDERS_ID" title="@Html.GetGlobalResource("LABEL_VIEW")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye"></i>
+    </span>
+}
+@if (Model.canEdit)
+{
+    <span class="duplicate-order btn btn-ribbon" data-url="ORDERS_ID" title="@Html.GetGlobalResource("LABEL_DUPLICATE_ORDER")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-copy"></i>
+    </span>
+    <span class="return-order btn btn-ribbon" data-url="ORDERS_ID" title="Return" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-undo"></i>
+    </span>
+}
+@*
+    <span class="pick-orders btn btn-ribbon " data-url="ORDERS_ID" title="@Html.GetGlobalResource("LABEL_PICK")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-shopping-cart"></i>
+    </span>
+*@

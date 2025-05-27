@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.WebUI", "Hanodale.WebUI\Hanodale.WebUI.csproj", "{BEA0BA85-13B9-4E9E-97ED-580BF826584D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.Entity.Core", "Hanodale.Entity.Core\Hanodale.Entity.Core.csproj", "{6932F9EA-038A-423D-90FB-2B8080147C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.Domain", "Hanodale.Domain\Hanodale.Domain.csproj", "{9933FE1C-7A1F-445A-8A00-924F29E8B554}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.Utility", "Hanodale.Utility\Hanodale.Utility.csproj", "{C8AA3DD4-3DEE-4FB0-8028-80662D422504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.Services", "Hanodale.Service\Hanodale.Services.csproj", "{FC8B51E8-186C-4A51-8223-8ED3F9600D4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{4EE4A07D-8E2F-4A47-B41D-F5AC425ABD59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.DataAccess", "Hanodale.DataAccessLayer\Hanodale.DataAccess.csproj", "{FA49F3DE-E24E-48B0-A339-E3200657D796}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{60AAE338-3819-4F74-8F69-724619F1758B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{12E43369-C621-480A-B9B4-0E69C9EF4559}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{AD10B1E4-F915-41AE-AD97-C79EFF81FF32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.BusinessLogic", "Hanodale.BusinessLogic\Hanodale.BusinessLogic.csproj", "{BA359F87-8627-467F-BA9D-E95C1B5B0DC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationSvc", "NotificationSvc\NotificationSvc.csproj", "{C512B9AF-F8F3-46F7-B054-364CC4808F90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanodale.SyncService", "Hanodale.SyncService\Hanodale.SyncService.csproj", "{329CB635-D974-4101-82B4-DB71F230218D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncAPIConsole", "SyncAPIConsole\SyncAPIConsole.csproj", "{C2C44CF5-E3D1-4CAA-A625-ED1150BD0E73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEA0BA85-13B9-4E9E-97ED-580BF826584D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA0BA85-13B9-4E9E-97ED-580BF826584D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA0BA85-13B9-4E9E-97ED-580BF826584D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA0BA85-13B9-4E9E-97ED-580BF826584D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6932F9EA-038A-423D-90FB-2B8080147C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6932F9EA-038A-423D-90FB-2B8080147C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6932F9EA-038A-423D-90FB-2B8080147C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6932F9EA-038A-423D-90FB-2B8080147C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9933FE1C-7A1F-445A-8A00-924F29E8B554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9933FE1C-7A1F-445A-8A00-924F29E8B554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9933FE1C-7A1F-445A-8A00-924F29E8B554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9933FE1C-7A1F-445A-8A00-924F29E8B554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8AA3DD4-3DEE-4FB0-8028-80662D422504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8AA3DD4-3DEE-4FB0-8028-80662D422504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8AA3DD4-3DEE-4FB0-8028-80662D422504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8AA3DD4-3DEE-4FB0-8028-80662D422504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC8B51E8-186C-4A51-8223-8ED3F9600D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC8B51E8-186C-4A51-8223-8ED3F9600D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC8B51E8-186C-4A51-8223-8ED3F9600D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC8B51E8-186C-4A51-8223-8ED3F9600D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA49F3DE-E24E-48B0-A339-E3200657D796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA49F3DE-E24E-48B0-A339-E3200657D796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA49F3DE-E24E-48B0-A339-E3200657D796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA49F3DE-E24E-48B0-A339-E3200657D796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA359F87-8627-467F-BA9D-E95C1B5B0DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA359F87-8627-467F-BA9D-E95C1B5B0DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA359F87-8627-467F-BA9D-E95C1B5B0DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA359F87-8627-467F-BA9D-E95C1B5B0DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C512B9AF-F8F3-46F7-B054-364CC4808F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C512B9AF-F8F3-46F7-B054-364CC4808F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C512B9AF-F8F3-46F7-B054-364CC4808F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C512B9AF-F8F3-46F7-B054-364CC4808F90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{329CB635-D974-4101-82B4-DB71F230218D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329CB635-D974-4101-82B4-DB71F230218D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329CB635-D974-4101-82B4-DB71F230218D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329CB635-D974-4101-82B4-DB71F230218D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2C44CF5-E3D1-4CAA-A625-ED1150BD0E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2C44CF5-E3D1-4CAA-A625-ED1150BD0E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2C44CF5-E3D1-4CAA-A625-ED1150BD0E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2C44CF5-E3D1-4CAA-A625-ED1150BD0E73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEA0BA85-13B9-4E9E-97ED-580BF826584D} = {60AAE338-3819-4F74-8F69-724619F1758B}
+		{6932F9EA-038A-423D-90FB-2B8080147C30} = {12E43369-C621-480A-B9B4-0E69C9EF4559}
+		{9933FE1C-7A1F-445A-8A00-924F29E8B554} = {AD10B1E4-F915-41AE-AD97-C79EFF81FF32}
+		{C8AA3DD4-3DEE-4FB0-8028-80662D422504} = {AD10B1E4-F915-41AE-AD97-C79EFF81FF32}
+		{FC8B51E8-186C-4A51-8223-8ED3F9600D4F} = {60AAE338-3819-4F74-8F69-724619F1758B}
+		{FA49F3DE-E24E-48B0-A339-E3200657D796} = {12E43369-C621-480A-B9B4-0E69C9EF4559}
+		{BA359F87-8627-467F-BA9D-E95C1B5B0DC4} = {4EE4A07D-8E2F-4A47-B41D-F5AC425ABD59}
+		{329CB635-D974-4101-82B4-DB71F230218D} = {12E43369-C621-480A-B9B4-0E69C9EF4559}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF0DD00B-0A5B-4CA5-AF62-2B72814E6836}
+	EndGlobalSection
+EndGlobal

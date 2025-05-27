@@ -1,0 +1,25 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+@if (Model.canView)
+{
+    <span class="view-orderapproval btn btn-ribbon " data-url="ORDERAPPROVAL_ID" title="@Html.GetGlobalResource("LABEL_VIEW")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye"></i>
+    </span>
+}
+@if (Model.canEdit)
+{
+    <span class="edit-orderapproval btn btn-ribbon " data-url="ORDERAPPROVAL_ID" title="@Html.GetGlobalResource("LABEL_EDIT")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}
+@*
+@if (Model.canDelete)
+{
+    <span class="delete-orderapproval btn btn-ribbon " data-url="ORDERAPPROVAL_ID" title="@Html.GetGlobalResource("LABEL_DELETE")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-trash-o "></i>
+    </span>
+}*@

@@ -1,0 +1,26 @@
+﻿@using Hanodale.Utility.Globalize
+@model  List<Hanodale.WebUI.Models.UserNotificationModel>
+<ul class="notification-body">
+    @foreach (var item in Model)
+    {
+        <li>
+		<span class="unread">
+				@*<span class="from">John Doe <i class="icon-paperclip"></i></span>*@
+				<time>@item.date</time>
+				@*<span class="subject">Msed quia non numquam eius modi tempora</span>*@
+				<span class="msg-body">@item.message</span>
+		</span>
+	</li>
+    }
+	
+	
+</ul>
+<style>
+    .unread time {
+        margin-right:10px;
+    }
+    .unread .msg-body {
+        padding-top: 8px;
+    display: inline-block;
+    }
+</style>

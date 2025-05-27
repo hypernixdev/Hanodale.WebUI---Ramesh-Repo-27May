@@ -1,0 +1,132 @@
+﻿@model Hanodale.WebUI.Models.OrderApprovalMaintenanceModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+    bool isReadOnly = ViewBag.IsReadOnly;
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="tab-info" value="@Model.record_Id" data-readOnly="@Model.readOnly">
+<input type="hidden" id="tab-info" value="@Model.record_Id" data-readOnly="@Model.orderApproval.readOnly">
+
+<!-- Hidden Variable -->
+
+
+<div role="content">
+    @if (Model.tableProfile != null)
+    {
+        <div class="widget-body">
+            <ul id="myTab1" class="nav nav-tabs bordered">
+                <li class="">
+                    <a class="active" data-toggle="tab" href="#cp-Order" data-url="Orders/Edit?id=@Model.orderApproval.order_Id" data-container-name="@Model.tableProfile.name"><i class="fa fa-lg @Model.tableProfile.icon" style="color:@Model.tableProfile.icon" title="@Html.GetGlobalResource(Model.tableProfile.resourceNameKey)"></i><span class="hidden-mobile hidden-tablet">@Html.GetGlobalResource(Model.tableProfile.resourceNameKey)</span></a>
+                </li>
+
+                @if (Model.tableProfile.lstTableProfileTab != null)
+                {
+                    foreach (var item in Model.tableProfile.lstTableProfileTab)
+                    {
+                        if (item.name.Contains("Order"))
+                        {
+                            <li class="">
+                                <a data-toggle="tab" href="#cp-@item.name" data-url="@item.url?id=@Model.orderApproval.order_Id"
+                                   data-container-name="@item.name" data-id="@Model.orderApproval.order_Id">
+                                    <i class="fa fa-lg @item.icon" style="color:@item.icon" title="@Html.GetGlobalResource(item.resourceNameKey)"></i>
+                                    <span class="hidden-mobile hidden-tablet">@Html.GetGlobalResource(item.resourceNameKey) </span>
+                                </a>
+                            </li>
+                        }
+                        if (item.name.Contains("Customer"))
+                        {
+                            <li class="">
+                                <a data-toggle="tab" href="#cp-@item.name" data-url="@item.url?id=@Model.orderApproval.CustomerId" data-container-name="@item.name"
+                                   data-id="@Model.orderApproval.CustomerId"><i class="fa fa-lg @item.icon" style="color:@item.icon" title="@Html.GetGlobalResource(item.resourceNameKey)"></i><span class="hidden-mobile hidden-tablet">@Html.GetGlobalResource(item.resourceNameKey) </span></a>
+                            </li>
+                        }
+                        if (item.name.Contains("Approval"))
+                        {
+                            <li class="">
+                                <a data-toggle="tab" href="#cp-@item.name" data-url="@item.url" data-container-name="@item.name"
+                                  ><i class="fa fa-lg @item.icon" style="color:@item.icon" title="@Html.GetGlobalResource(item.resourceNameKey)"></i><span class="hidden-mobile hidden-tablet">@Html.GetGlobalResource(item.resourceNameKey) </span></a>
+                            </li>
+                        }
+                    }
+                }
+                @*<li class="">
+            <a data-toggle="tab" href="#cp-bank" data-url="ApplicationBank/Index"><i class="fa fa-lg fa-location-arrow" title="Location"></i><span class="hidden-mobile hidden-tablet">Location(s)</span></a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#cp-currency-exchange" data-url="ApplicationCurrencyExchange/Index"><i class="fa fa-lg fa-cloud-upload" title="Files"></i><span class="hidden-mobile hidden-tablet">File(s)</span> </a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#cp-statutory" data-url="ApplicationStatutory/Index"><i class="fa fa-lg fa-user" title="Users"></i><span class="hidden-mobile hidden-tablet">User(s)</span> </a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#cp-announcement" data-url="ApplicationAnnouncement/Index"><i class="fa fa-lg fa-user" title="Users"></i><span class="hidden-mobile hidden-tablet">User(s)</span> </a>
+        </li>*@
+            </ul>
+
+            <div id="myTabContent1" class="tab-content padding-10 whiteBackColor">
+
+                <div class="tab-pane active" id="cp-@Model.tableProfile.name" hidden>
+                    <div id="d-cp-@Model.tableProfile.name" class="tab-pane-content">
+                        @Html.Partial(MVC.OrderApproval.Views.Create, Model.orderApproval)
+                    </div>
+                </div>
+                @if (Model.tableProfile.lstTableProfileTab != null)
+                {
+                    foreach (var item in Model.tableProfile.lstTableProfileTab)
+                    {
+                        <div class="tab-pane " id="cp-@item.name">
+                            <div id="d-cp-@item.name" class="tab-pane-content"></div>
+                        </div>
+                    }
+                }
+
+                @*<div class="tab-pane " id="cp-bank">
+                        <div id="d-cp-bank" class="tab-pane-content"></div>
+                    </div>
+                    <div class="tab-pane" id="cp-currency-exchange">
+                        <div id="d-cp-currency-exchange" class="tab-pane-content"></div>
+                    </div>
+                    <div class="tab-pane" id="cp-statutory">
+                        <div id="d-cp-statutory" class="tab-pane-content"></div>
+                    </div>
+                     <div class="tab-pane" id="cp-announcement">
+                        <div id="d-cp-announcement" class="tab-pane-content"></div>
+                    </div>*@
+                <div class="clear"></div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- NEW WIDGET START -->
+<!-- Protected Script -->
+<script src="~/Scripts/ProtectedScripts/web.common-func.js"></script>
+<script>
+    document.querySelectorAll('a[data-container-name]').forEach(function (link) {
+        if (link.getAttribute('data-container-name') === 'OrderApproval') {
+            link.style.display = 'none'; // Hides the element
+
+            // Ensure we wait for the DOM or event handlers to be ready
+            setTimeout(function () {
+                const orderLink = document.querySelector('a[data-container-name="Order"]');
+                if (orderLink) {
+                    orderLink.click(); // Programmatically trigger the click
+                } else {
+                    console.error('No element found with data-container-name="Order"');
+                }
+            }, 100); // Delay to ensure all event handlers are bound
+        }
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+       var readOnly = '@ViewBag.IsReadOnly';
+        localStorage.setItem('readOnly', readOnly);
+    });
+</script>
+<!-- /.page-content -->

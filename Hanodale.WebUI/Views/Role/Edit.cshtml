@@ -1,0 +1,98 @@
+﻿@model Hanodale.WebUI.Models.RoleModel
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@using Hanodale.Utility.Globalize
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="role-id" value ="@Model.id">
+<input type="hidden" id="required" value ="@Resources.MSG_REQUIRED">
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Resources.MSG_CONFIRM_SAVE">
+
+<div class="page-header">
+    <h1>@Resources.PAGE_HEADER_EDIT_ROLE</h1>
+</div>
+<!-- /.page-header -->
+
+<!-- page-content -->
+<div class="row">
+    <div class="col-xs-12">
+        <div id="message" class="alert alert-success" style="display: none"></div>
+        <!-- PAGE CONTENT BEGINS -->
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form", @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.roleName, new { @class = "col-sm-3 control-label no-padding-right required", @for = "roleName" })
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        @Html.EditorFor(model => model.roleName, new { @class = "col-xs-10 col-sm-5", @placeholder = @Resources.ROLE_NAME, maxlength = 29 })
+                    </div>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.description, new { @class = "col-sm-3 control-label no-padding-right", @for = "roleDescription" })
+
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.description, new { id = "roleDescription", @class = "col-xs-10 col-sm-5", @placeholder = @Resources.ROLE_DESCRIPTION, maxlength = 99 })
+                </div>
+            </div>
+            <div class="space-4"></div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.landingPage, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label", })
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                    <div class="clearfix">
+                        <label class="select">
+                            @Html.EditorFor(model => model.landingPage, new { @class = "form-control multipleSelect", dataValue = Model.LandingPages })
+                            @Html.ValidationMessageFor(m => m.landingPage)
+                        </label>
+                    </div>
+                     
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.isAdmin, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.isAdmin, new { id = "isAdmin" })
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.status, new { @class = "col-sm-3 control-label no-padding-right required", @for = "roleStatus" })
+
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.status, new { id = "roleStatus" })
+                </div>
+            </div>
+
+            <div class="clearfix">
+                <div class="col-md-offset-3 col-md-9">
+                    <a id="save-role" href="#" data-url="Role/SaveRole">
+                        <button class="btn btn-sm btn-primary" type="button">@Resources.BTN_UPDATE</button>
+                    </a>&nbsp; &nbsp;
+                    <a id="reset-role" href="#">
+                        <button class="btn btn-sm btn-primary" type="reset">@Resources.BTN_RESET</button>
+                    </a>&nbsp; &nbsp;
+                    <a id="back-role" href="#" data-url="Role/UserRole">
+                        <button class="btn btn-sm btn-primary" type="button">@Resources.BTN_BACK</button>
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- /.col -->
+    <!-- Protected Script -->
+    @Scripts.Render(bundles.scripts.user_role)
+</div>
+<!-- /.page-content -->
+

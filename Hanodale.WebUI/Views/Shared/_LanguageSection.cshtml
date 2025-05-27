@@ -1,0 +1,38 @@
+﻿@model Hanodale.WebUI.Models.LanguageModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+
+<div class="dropdown">
+    <button type="button" class="btn btn-sm btn-light dropdown-toggle-btn" data-toggle="dropdown">
+        @if (Model != null && Model.defaultLanguage != null)
+        {
+            <img src="@Url.Content("Content/images/flags/blank.gif")" class="flag flag-@Model.defaultLanguage.flagSymbol">
+            @*<span id="langName">@Model.defaultLanguage.languageName</span>*@
+        }
+    </button>
+    @if (Model != null && Model.lstLanguage != null)
+    {
+        <div class="dropdown-menu dropdown-menu-right">
+            @foreach (var item in Model.lstLanguage)
+            {
+                if (item.visibility)
+                {
+                <a class="dropdown-item" href="@Url.Content("SiteLanguage/ChangeLanguage/" + item.cultureName)">
+                    <img src="@Url.Content("Content/images/flags/blank.gif")" class="flag flag-@item.flagSymbol" >
+                    @item.languageName
+                </a>
+                }
+            }
+        </div>
+    }
+</div>
+
+
+
+
+<script>
+    $('body').attr('data-lang', '@(Model.defaultLanguage == null ? "" : Model.defaultLanguage.cultureName)')
+</script>

@@ -1,0 +1,86 @@
+﻿@model Hanodale.WebUI.Models.CompanyProfileMaintenanceModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="tab-info" value="@Model.record_Id"  data-readOnly="@Model.readOnly">
+
+<!-- Hidden Variable -->
+
+
+<div role="content">
+    @if (Model.tableProfile != null)
+    {
+        <div class="widget-body">
+            <ul id="myTab1" class="nav nav-tabs bordered">
+                <li class="">
+                    <a class="active" data-toggle="tab" href="#cp-@Model.tableProfile.name" data-url="@Model.tableProfile.url" data-container-name="@Model.tableProfile.name"><i class="fa fa-lg @Model.tableProfile.icon" title="@Html.GetGlobalResource(Model.tableProfile.resourceNameKey)"></i><span class="hidden-mobile hidden-tablet">@Html.GetGlobalResource(Model.tableProfile.resourceNameKey)</span></a>
+                </li>
+
+                @if (Model.tableProfile.lstTableProfileTab != null)
+                {
+                    foreach (var item in Model.tableProfile.lstTableProfileTab)
+                    {
+                    <li class="">
+                        <a data-toggle="tab" href="#cp-@item.name" data-url="@item.url" data-container-name="@item.name"><i class="fa fa-lg @item.icon" title="@Html.GetGlobalResource(item.resourceNameKey)"></i><span class="hidden-mobile hidden-tablet">@Html.GetGlobalResource(item.resourceNameKey) </span></a>
+                    </li>
+                    }
+                }
+@*<li class="">
+                <a data-toggle="tab" href="#cp-bank" data-url="CompanyProfileBank/Index"><i class="fa fa-lg fa-location-arrow" title="Location"></i><span class="hidden-mobile hidden-tablet">Location(s)</span></a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#cp-currency-exchange" data-url="CompanyProfileCurrencyExchange/Index"><i class="fa fa-lg fa-cloud-upload" title="Files"></i><span class="hidden-mobile hidden-tablet">File(s)</span> </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#cp-statutory" data-url="CompanyProfileStatutory/Index"><i class="fa fa-lg fa-user" title="Users"></i><span class="hidden-mobile hidden-tablet">User(s)</span> </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#cp-announcement" data-url="CompanyProfileAnnouncement/Index"><i class="fa fa-lg fa-user" title="Users"></i><span class="hidden-mobile hidden-tablet">User(s)</span> </a>
+            </li>*@
+            </ul>
+
+            <div id="myTabContent1" class="tab-content padding-10 whiteBackColor">
+
+                <div class="tab-pane active" id="cp-@Model.tableProfile.name">
+                    <div id="d-cp-@Model.tableProfile.name" class="tab-pane-content">
+                        @Html.Partial(MVC.CompanyProfile.Views.Create, Model.companyProfile)
+                    </div>
+                </div>
+                @if (Model.tableProfile.lstTableProfileTab != null)
+                {
+                    foreach (var item in Model.tableProfile.lstTableProfileTab)
+                    {
+                        <div class="tab-pane " id="cp-@item.name">
+                            <div id="d-cp-@item.name" class="tab-pane-content"></div>
+                        </div>
+                    }
+                }
+                
+@*<div class="tab-pane " id="cp-bank">
+                <div id="d-cp-bank" class="tab-pane-content"></div>
+            </div>
+            <div class="tab-pane" id="cp-currency-exchange">
+                <div id="d-cp-currency-exchange" class="tab-pane-content"></div>
+            </div>
+            <div class="tab-pane" id="cp-statutory">
+                <div id="d-cp-statutory" class="tab-pane-content"></div>
+            </div>
+             <div class="tab-pane" id="cp-announcement">
+                <div id="d-cp-announcement" class="tab-pane-content"></div>
+            </div>*@
+                <div class="clear"></div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- NEW WIDGET START -->
+
+<!-- Protected Script -->
+<script src="~/Scripts/ProtectedScripts/web.common-func.js"></script>
+<!-- /.page-content -->

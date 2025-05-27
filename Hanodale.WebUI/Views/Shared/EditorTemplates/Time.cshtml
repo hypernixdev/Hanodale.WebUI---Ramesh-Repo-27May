@@ -1,0 +1,16 @@
+﻿@model DateTime?
+@{ var nullable = ViewBag.nullable;
+    var isNullable = false;
+    if (nullable != null && nullable == true)
+    {
+        isNullable = true;
+    }
+}
+<div class="input">
+
+    @Html.TextBox("", (Model.HasValue ? Model.Value.ToString("hh:mm:ss tt") : string.Empty), new { @class = "form-control timepicker", placeholder = "Select", data_val = "true", isNullable = isNullable })
+
+    <i class="icon-append fa fa-clock-o"></i>
+</div>
+
+

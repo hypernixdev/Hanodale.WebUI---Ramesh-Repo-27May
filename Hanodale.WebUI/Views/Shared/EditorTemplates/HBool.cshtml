@@ -1,0 +1,10 @@
+﻿@model bool
+
+@*<div data-on="success" data-off="warning" class="make-switch" data-on-label="Yes" data-off-label="No">
+    @Html.CheckBoxFor(model => model, ViewData)
+</div>*@
+
+<label class="toggle">
+    @Html.CheckBoxFor(model => model, ViewData)
+    <i data-swchon-text="YES" data-swchoff-text="NO" style="margin-top:2px"></i>
+</label>

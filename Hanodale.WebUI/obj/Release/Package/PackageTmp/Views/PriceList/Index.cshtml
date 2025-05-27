@@ -1,0 +1,198 @@
+﻿@model Hanodale.WebUI.Models.GridViewIndexModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+
+<!-- Hidden Variable -->
+<input type="hidden" id="alert-delete" value="@Html.GetGlobalResource("MSG_CONFIRM_DELETE")">
+<input type="hidden" class="mainPart" value="pricelist">
+<input type="hidden" class="table-congif" value="pricelist" data-columncount="@Model.columnCount" data-button="true" data-condition="false" data-extended-event-btn="false" data-disall="true" data-auto-hide-column="true" data-export-btn="true">
+<!-- Hidden Variable -->
+
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>
+            @Html.GetGlobalResource("PAGE_HEADER_MANAGE_PRICELIST")
+        </h1>
+    </div>
+
+    @if (Model.accessRight.canAdd && !Model.readOnly)
+    {
+        <!-- Sync PriceLists Button -->
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
+            <button id="syncPriceListsBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync Price List
+            </button>
+            <button id="syncCustomerPriceListsBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync Customer Price
+            </button>
+            <button id="syncPartPriceListBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync Part Price
+            </button>
+        </div>
+    }
+
+
+    </div>
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="">
+
+
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0"
+                 data-widget-editbutton="false"
+                 data-widget-deletebutton="false"
+                 data-widget-colorbutton="false"
+                 data-widget-sortable="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+                    <h2>@Html.GetGlobalResource("PRICELIST_GRID_TITLE")</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table id="dt_pricelist" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    @if (Model.lstColumn != null)
+                                    {
+                                        foreach (var item in Model.lstColumn)
+                                        {
+                                            <th data-class="@(item.isExpandable? "expand":"")" data-hide="@(item.isExpandable? "":"phone,tablet")">@Html.GetGlobalResource(item.resourceKeyName)</th>
+                                        }
+                                    }
+                                    <th class="table-column-header" style="width: @(Model.gridViewButtonColumnWidth)px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+@Scripts.Render(bundles.scripts.common_index)
+<script>
+    $(document).ready(function() {
+            $('#syncPriceListsBtn').on('click', function() {
+                // Disable button to prevent multiple clicks
+                $(this).prop('disabled', true);
+
+                // API call to sync pricelists
+                var apiUrl = '@Url.Action("SyncPriceLists", "PriceList")'; // Adjust the API endpoint as needed
+
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    success: function(response) {
+                       if (response.success) {
+                            userMessage.show("Success", 'Price List synced successfully!');
+                            // Enable the button again after successful sync
+                            $('#syncPriceListsBtn').prop('disabled', false);
+                        } else {
+                            userMessage.show("Error", response.message);
+                            // Enable the button again after successful sync
+                            $('#syncPriceListsBtn').prop('disabled', false);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        userMessage.show("Error", 'An error occurred while syncing pricelists: ' + error);
+                        // Enable the button again even if there is an error
+                        $('#syncPriceListsBtn').prop('disabled', false);
+                    }
+                });
+            });
+
+      $('#syncCustomerPriceListsBtn').on('click', function() {
+      // Disable button to prevent multiple clicks
+      $(this).prop('disabled', true);
+
+      // API call to sync pricelists
+      var apiUrl = '@Url.Action("SyncCustomerPriceLists", "PriceList")'; // Adjust the API endpoint as needed
+
+      $.ajax({
+          url: apiUrl,
+          type: 'POST',
+          success: function(response) {
+             if (response.success) {
+                  userMessage.show("Success", 'Customer Price synced successfully!');
+                  // Enable the button again after successful sync
+                 $('#syncCustomerPriceListsBtn').prop('disabled', false);
+              } else {
+                  userMessage.show("Error", response.message);
+                  // Enable the button again after successful sync
+                 $('#syncCustomerPriceListsBtn').prop('disabled', false);
+              }
+          },
+          error: function(xhr, status, error) {
+              userMessage.show("Error", 'An error occurred while syncing pricelists: ' + error);
+              // Enable the button again even if there is an error
+              $('#syncCustomerPriceListsBtn').prop('disabled', false);
+          }
+      });
+      });
+
+     $('#syncPartPriceListBtn').on('click', function() {
+    // Disable button to prevent multiple clicks
+    $(this).prop('disabled', true);
+
+    // API call to sync pricelists
+    var apiUrl = '@Url.Action("SyncPartPriceLists", "PriceList")'; // Adjust the API endpoint as needed
+
+    $.ajax({
+        url: apiUrl,
+        type: 'POST',
+        success: function(response) {
+           if (response.success) {
+                userMessage.show("Success", 'Product Price synced successfully!');
+                // Enable the button again after successful sync
+               $('#syncPartPriceListBtn').prop('disabled', false);
+            } else {
+                userMessage.show("Error", response.message);
+                // Enable the button again after successful sync
+               $('#syncPartPriceListBtn').prop('disabled', false);
+            }
+        },
+        error: function(xhr, status, error) {
+            userMessage.show("Error", 'An error occurred while syncing pricelists: ' + error);
+            // Enable the button again even if there is an error
+            $('#syncPartPriceListBtn').prop('disabled', false);
+        }
+    });
+});
+        });
+</script>
+<!-- Protected Script -->

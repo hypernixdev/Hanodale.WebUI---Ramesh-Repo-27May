@@ -1,0 +1,9 @@
+<FileList>
+    <File Reference = "Spire.DocViewer.Forms.dll">
+        <ToolboxItems UIFramework="WinForms" VSCategory="Spire.DocViewer for Forms">
+            <Item Type="Spire.DocViewer.Forms.DocViewer" />
+            <Item Type="Spire.DocViewer.Forms.DocumentToolbar" />
+            <Item Type="Spire.DocViewer.Forms.DocDocumentViewer" />
+        </ToolboxItems>
+    </File>
+</FileList>

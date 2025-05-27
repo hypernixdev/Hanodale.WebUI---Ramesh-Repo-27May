@@ -1,0 +1,98 @@
+﻿@model Hanodale.WebUI.Models.BusinessModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="alert-delete" value ="@Resources.MSG_CONFIRM_DELETE">
+<input type="hidden" id="alert-reset" value ="@Resources.MSG_RESET_PASSWORD_CONFIRM">
+<input type="hidden" id="tab-info" value="@Model.id"  data-readOnly="@Model.readOnly">
+<input type="hidden" id="issupplier" value="@Model.issupplier">
+
+<!-- Hidden Variable -->
+
+
+<div role="content">
+
+    <!-- widget edit box -->
+    <div class="jarviswidget-editbox">
+        <!-- This area used as dropdown edit box -->
+
+    </div>
+    <!-- end widget edit box -->
+
+    <!-- widget content -->
+    <div class="widget-body">
+        <ul id="myTab1" class="nav nav-tabs bordered">
+            <li class="active1">
+                <a class="active" data-toggle="tab" href="#edt-bus" data-url="Business/Edit"><i class="fa fa-lg fa-info" title="Business Info "></i><span class="hidden-mobile hidden-tablet">Business(s)</span></a>
+            </li>
+            @if (@Model.isbusinessType_Id)
+            {
+                <li class="">
+                    <a data-toggle="tab" href="#bus-oth" data-url="BusinessOthers/Index"><i class="fa fa-lg fa-desktop" title="Others"></i><span class="hidden-mobile hidden-tablet">Other(s) </span></a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#add-bus" data-url="BusinessAddress/Index"><i class="fa fa-lg fa-location-arrow" title="Location"></i><span class="hidden-mobile hidden-tablet">Location(s)</span></a>
+                </li>
+          
+                <li class="">
+                    <a data-toggle="tab" href="#file-bus" data-url="BusinessFile/Index"><i class="fa fa-lg fa-cloud-upload" title="Files"></i><span class="hidden-mobile hidden-tablet">File(s)</span> </a>
+                </li>
+            }
+            else
+            {
+                <li class="">
+                    <a data-toggle="tab" href="#file-bus" data-url="BusinessFile/Index"><i class="fa fa-lg fa-cloud-upload" title="Files"></i><span class="hidden-mobile hidden-tablet">File(s)</span> </a>
+                </li>
+            }
+            <li class="">
+                <a data-toggle="tab" href="#usr-bus" data-url="BusinessUser/Index"><i class="fa fa-lg fa-user" title="Users"></i><span class="hidden-mobile hidden-tablet">User(s)</span> </a>
+            </li>
+        </ul>
+
+        <div id="myTabContent1" class="tab-content padding-10 whiteBackColor">
+
+            <div class="tab-pane active" id="edt-bus">
+                <div id="d-edt-bus" class="tab-pane-content">
+                    @Html.Partial(MVC.Business.Views.Create, Model)
+                </div>
+            </div>
+
+            @if (@Model.isbusinessType_Id)
+            {
+                <div class="tab-pane " id="bus-oth">
+                    <div id="d-bus-oth" class="tab-pane-content"></div>
+                </div>
+                <div class="tab-pane " id="add-bus">
+                    <div id="d-add-bus" class="tab-pane-content"></div>
+                </div>
+
+                <div class="tab-pane" id="file-bus">
+                    <div id="d-file-bus" class="tab-pane-content"></div>
+                </div>
+            }
+            else
+            {
+                <div class="tab-pane" id="file-bus">
+                    <div id="d-file-bus" class="tab-pane-content"></div>
+                </div>
+            }
+            <div class="tab-pane" id="usr-bus">
+                <div id="d-usr-bus" class="tab-pane-content"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!-- end widget content -->
+
+</div>
+
+<!-- NEW WIDGET START -->
+
+<!-- Protected Script -->
+<script src="~/Scripts/ProtectedScripts/web.common-func.js"></script>
+<!-- /.page-content -->

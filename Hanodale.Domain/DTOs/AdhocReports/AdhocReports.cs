@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Hanodale.Domain.DTOs
+{
+    [DataContract]
+    public class AdhocReports
+    {
+
+        [DataMember]
+        public int id { get; set; }
+        [DataMember]
+        public int organization_Id { get; set; }
+        [DataMember]
+        public int reportType_Id { get; set; }
+        [DataMember]
+        public string reportName { get; set; }
+        [DataMember]
+        public string reportFileName { get; set; }
+        [DataMember]
+        public string remarks { get; set; }
+        [DataMember]
+        public bool isCommon { get; set; }
+        [DataMember]
+        public bool isVisible { get; set; }
+        [DataMember]
+        public string createdBy { get; set; }
+        [DataMember]
+        public DateTime createdDate { get; set; }
+        [DataMember]
+        public string modifiedBy { get; set; }
+        [DataMember]
+        public Nullable<System.DateTime> modifiedDate { get; set; }
+
+    }
+
+    public class AdhocReportDetails
+    {
+        [DataMember]
+        public RecordDetails recordDetails { get; set; }
+
+        [DataMember]
+        public List<AdhocReports> lstAdhocReport { get; set; }
+    }
+}

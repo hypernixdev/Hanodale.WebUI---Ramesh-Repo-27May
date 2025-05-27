@@ -1,0 +1,30 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+@if (Model.canView)
+{
+    <span class="viewbusinessuser btn btn-ribbon " data-url="BUSINESSUSER_ID" data-rel="tooltip" title="View" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye "></i>
+    </span>
+}
+@if (Model.canEdit && !Model.readOnly)
+{
+    <span class="edituser btn btn-ribbon " data-url="BUSINESSUSER_ID" data-placement="bottom" title="Edit" data-rel="tooltip" data-container="body">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}
+@if (Model.canDelete && !Model.readOnly)
+{
+    <span class="delete-businessuser btn btn-ribbon " data-url="BUSINESSUSER_ID" data-placement="bottom" title="Delete" data-rel="tooltip" data-container="body">
+        <i class="fa fa-trash-o "></i>
+    </span>
+}
+@if (Model.canEdit && !Model.readOnly)
+{
+    <span class="reset-password btn btn-ribbon " data-url="BUSINESSUSER_ID" data-placement="bottom" title="Reset Password" data-rel="tooltip" data-container="body">
+        <i class="fa fa-refresh"></i>
+    </span>
+}

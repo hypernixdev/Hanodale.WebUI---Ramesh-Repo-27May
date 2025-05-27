@@ -1,0 +1,1890 @@
+﻿@model Hanodale.WebUI.Models.ViewOrderModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<style>
+    .table thead tr th, tbody tr td {
+        word-break: normal;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>
+            Pick Order
+        </h1>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="orderNo">Order No</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="orderNo" value="@Html.Raw(Model.orderNum)" disabled>
+            </div>
+        </div>
+        @{
+            var customers = ViewBag.Customers as List<Hanodale.Domain.DTOs.Customers>;
+        }
+        <div class="col-md-4">
+            <label for="customer">Customer</label>
+            <div class="input-group">
+                <select class="form-control selectCustomer2" id="customer" disabled>
+                    <option value="@Model.customer_Id">@Model.customerName</option>
+                </select>
+                @*<span class="input-group-append">
+                        <button style="margin:0px; padding: 0px 12px;" class="btn btn-success" id="btnCustomerPicker" type="button">Browse</button>
+                    </span>*@
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-md-4">
+            <label for="shipTo">Ship To</label>
+            <select class="form-control" id="shipTo" disabled>
+                <option>Select Ship To</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="orderDate">Order Date</label>
+            <input type="text" class="form-control" id="orderDate2" placeholder="dd/MM/yyyy" value="@Model.orderDate" disabled>
+        </div>
+    </div>
+
+    <!-- New row for Submitted by and Submitted Date -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="submittedBy">Submitted By</label>
+            <span class="form-control" id="submittedBy" disabled>System Admin</span>
+        </div>
+        <div class="col-md-4">
+            <label for="submittedDate">Submitted Date</label>
+            <span class="form-control" id="submittedDate" disabled>@Model.orderDate</span>
+        </div>
+        <div class="col-md-4">
+            <label for="submittedDate">Current Status</label>
+            <span class="form-control" id="submittedDate" disabled>@Model.orderStatus</span>
+        </div>
+    </div>
+
+    <div class="row mb-3 align-items-end">
+        <div class="col-md-6">
+            <h4>Ordered Items</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Scan</span>
+                </div>
+                <input type="text" class="form-control" id="partNo" name="partNo">
+                <div class="input-group-append2">
+                    <button class="btn btn-primary btnScanProduct" type="button" data-id="@Model.id">Scan</button>
+                    <button class="btn btn-danger resetBtn" type="button" data-id="@Model.id">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product search starts -->
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable nPadding productPicker" style="display:none;">
+
+        <div class="jarviswidget jarviswidget-sortable" id="wid-id-110" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+            <header role="heading">
+                <div class="jarviswidget-ctrls" role="menu">
+                    <a href="javascript:void(0);" class="button-icon closeProductPicker" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-times "></i></a>
+                </div>
+                <h2>Search Panel </h2>
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+            </header>
+
+            <!-- widget div-->
+            <div role="content">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="searchPartNo">Part No</label>
+                                <input type="text" class="form-control" id="searchPartNo" placeholder="Enter Part No">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchCode">Code</label>
+                                <input type="text" class="form-control" id="searchCode" placeholder="Enter Code">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchDesc">Description</label>
+                                <input type="text" class="form-control" id="searchDesc" placeholder="Enter Description">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <button class="btn btn-primary" id="btnSearch">Search</button>
+                                <button class="btn btn-secondary" id="btnReset">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="dt_product_picker" class="table table-striped table-bordered" style="width: 100%">
+                        <thead class="bg-light">
+                            <tr>
+                                <th><input type="checkbox" id="selectAll"></th> <!-- Header Checkbox -->
+                                <th>Part No</th>
+                                <th>Part Name</th>
+                                <th>Group</th>
+                                <th>UOM</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- More rows as needed -->
+                        </tbody>
+                    </table>
+                    <div class="row mt-2 mb-2 ml-2">
+                        <div class="col-12">
+                            <button class="btn btn-primary" id="btnAddToOrders">Add to order</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- content end -->
+        </div>
+    </article>
+
+    <!-- end product search -->
+
+    <div class="table-responsive">
+        <table id="dt2_product" class="table table-striped table-bordered">
+            <thead class="bg-light">
+                <tr>
+                    <th>Action</th>
+                    <th>Part No</th>
+                    <th>Part Name</th>
+                    <th>Group</th>
+                    <th>Comment</th>
+                    <th>Order UOM</th>
+                    <th>Allow Vary Weight</th>
+                    <th>Order Type</th>
+                    <th>Cutting Type</th>
+                    <th>Complimentary</th>
+                    <th>Order Qty</th>
+                    <th>Scanned Qty</th>
+                    <th hidden>OrderId</th>
+                    <th hidden>OrderItemId</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    var total = item.orderQty * item.unitPrice;
+                    <tr>
+                        <td>
+                            <button class="btn btn-success btn-sm" id="scanbtn"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-sm btn-danger" id="resetOrderbtn" data-id="@item.orderItemId"><i class="fa fa-refresh"></i></button>
+                        </td>
+                        <td><span data-dbid="@item.itemDbId" data-id="@item.product_Id" data-itemId="@item.orderItemId" data-productid="@item.product_Id" class="product-id-field">@item.partNum</span></td>
+                        <td><span class="product-lineDesc">@item.lineDesc</span></td>
+                        <td><span class="product-prodGroup">@item.prodGroup</span></td>
+                        <td><span class="product-comments">@item.comments</span></td>
+                        <td><span class="product-orderUOM">@item.salesUm</span></td>
+                        <td><span class="product-AllowSellingVaryWeight">@item.AllowSellingVaryWeight</span></td>
+                        <td><span class="product-orderType">@item.orderType</span></td>
+                        <td><span class="product-cuttingType">@item.operationName</span></td>
+                        <td><span class="product-complementary">@item.complementary</span></td>
+                        <td><span class="product-orderQty">@item.orderQty</span></td>
+                        <td><span class="product-scannedQty" id="scannedQuantity">@item.scannedQty</span></td>
+                        <td hidden><span class="product-orderId">@item.orderItemId</span></td>
+                        <td hidden><span class="product-orderItemId">@item.orderItemId</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @*<div class="table-responsive d-block d-md-none">
+            <table id="dt2_product_mobile" class="table table-striped table-bordered">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Action</th>
+                        <th>Part No</th>
+                        <th>Part Name</th>
+                        <th>Group</th>
+                        <th>Comment</th>
+                        <th>Order UOM</th>
+                        <th>Allow Vary Weight</th>
+                        <th>Order Type</th>
+                        <th>Complimentary</th>
+                        <th>Order Qty</th>
+                        <th>Scanned Qty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderItems)
+                    {
+                        var total = item.orderQty * item.unitPrice;
+                        <tr>
+                            <td>
+                                <button class="btn btn-success btn-sm" id="scanbtn"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-sm btn-danger" id="resetOrderbtn" data-id="@item.orderId"><i class="fa fa-refresh"></i></button>
+                            </td>
+                            <td><span data-id="@item.product_Id" class="product-id-field">@item.partNum</span></td>
+                            <td><span>@item.lineDesc</span></td>
+                            <td><span data-field="group">@item.prodGroup</span></td>
+                            <td><span>@item.comments</span></td>
+                            <td><span>@item.orderUOM</span></td>
+                            <td><span>@item.AllowSellingVaryWeight</span></td>
+                            <td><span>@item.orderType</span></td>
+                            <td><span>@item.complementary</span></td>
+                            <td><input type="number" class="form-control" data-field="orderQty" value="@item.orderQty" disabled /></td>
+                            <td><input type="number" class="form-control scannedQty" data-field="scannedQty" value="@item.scannedQty" /></td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>*@
+
+    <div class="row mb-3 align-items-end">
+        <div class="col-md-6">
+            <h4>Scanned Items</h4>
+        </div>
+
+    </div>
+    <div class="table-responsive">
+        <table id="dt2_productScan" class="table table-striped table-bordered">
+            <thead class="bg-light">
+                <tr>
+                    <th>Serial No</th>
+                    <th>Part No</th>
+                    <th>Part Name</th>
+                    <th>Group</th>
+                    <th>Order UOM</th>
+                    <th>Scanned Qty</th>
+                    <th>Status</th>
+                    <th>Location</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.OrderScanned != null)
+                {
+                    foreach (var item in Model.OrderScanned)
+                    {
+                        <tr>
+                            <td><span class="product-barcode">@item.serialNo</span></td>
+                            <td><span class="product-id-field" data-id="@item.orderItem_Id" data-orderItemId="@item.orderItem_Id">@item.partNo</span></td>
+                            <td><span class="product-partName">@item.partName</span></td>
+                            <td><span class="product-prodGroup">@item.Group</span></td>
+                            <td><span class="product-orderUOM">@item.orderUOM</span></td>
+                            @*<td><span class="product-scannedQty">@item.scannedQty.ToString("F2")</span></td>*@
+                            <td>
+                                @if (item.allowVaryWeight)
+                                {
+                                    <span class="product-scannedQty">@item.scannedQty.ToString("F2")</span>
+                                }
+                                else
+                                {
+                                    <input type="number" class="form-control scannedQtyInput" data-id="@item.orderItem_Id" step="1" value="@item.scannedQty.ToString("F0")" />
+                                    <span class="product-scannedQty" style="display:none;">@item.scannedQty.ToString("F2")</span>
+                                }
+                            </td>
+                            <td><span class="product-status">@item.status</span></td>
+
+                            
+
+                            <td><span class="productLocation text-primary font-weight-bold">@item.productLocation</span></td>
+
+
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @*<div class="table-responsive d-block d-md-none">
+            <table id="dt2_productScan_mobile" class="table table-striped table-bordered">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Part No</th>
+                        <th>Part Name</th>
+                        <th>Group</th>
+                        <th>Order UOM</th>
+                        <th>Scanned Qty</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.OrderScanned != null)
+                    {
+                        foreach (var item in Model.OrderScanned)
+                        {
+
+                            <tr>
+
+                                <td><span class="product-serialNo">@item.serialNo</span></td>
+                                <td><span data-id="@item.Id" class="product-id-field">@item.partNo</span></td>
+                                <td><span class="product-lineDesc">@item.partName</span></td>
+                                <td><span class="product-prodGroup">@item.Group</span></td>
+                                <td><span class="product-orderUOM">@item.orderUOM</span></td>
+                                <td><span class="product-scannedQty">@item.scannedQty.ToString("0")</span></td>
+                                <td><span class="product-orderId">@item.status</span></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>*@
+
+
+
+    @*<div class="row mt-3">
+            <div class="col-md-6 offset-md-6 text-right">
+                <h4>Order Total: <span id="orderTotal">@Model.docOrderAmt</span></h4>
+            </div>
+        </div>*@
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <button id="btnReceipt" type="button" onclick="loadTableData('receipt',modelData)">Thermal Print</button>
+            <button id="btnInvoice" style="visibility:hidden" type="button" onclick="openPdfInModal('invoice')">Print</button>
+        </div>
+        <input type="hidden" id="form-congif" value="pickup" data-mtc-btn="true" data-readonly="False">
+        <div class="col-md-8 text-right">
+            <select class="form-control d-inline-block w-auto order-action" style="display:none !important;">
+                <option value="Picked" selected>Action</option>
+            </select>
+            <button type="button" class="btn btn-info submit-action" data-id="@Model.id" data-action="partial-save">Update</button>
+            <button type="button" class="btn btn-success submit-action" data-id="@Model.id">Submit</button>
+            <button id="back-pickup" class="btn btn-sm btn-primary" type="button" data-url="Pickup/Index">
+                <i class="fa fa-mail-reply"></i>
+                Back
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal for Product Picker -->
+<div class="modal fade" id="scanProductModal" tabindex="-1" role="dialog" aria-labelledby="scanProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scanProductModalLabel">Scan Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <input type="text" class="form-control" id="orderid" hidden>
+                    <input type="text" class="form-control" id="orderItemId" hidden>
+                    <!-- Row for Serial No -->
+                    <div class="form-group row">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <label for="serialNo">Bar code</label>
+                            <input type="text" class="form-control" id="serialNo" name="serialNo" placeholder="Enter serial number">
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-primary" id="scanButtonInline" style="width: 100%;">Scan</button>
+                        </div>
+                    </div>
+
+                    <div style="display:none;">
+                        <!-- Row for Part No -->
+                        <div class="row mb-3">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label for="partNum">Part No</label>
+                                <input type="text" class="form-control" id="partNum">
+                            </div>
+                        </div>
+
+                        <!-- Row for Order UOM -->
+                        <div class="row mb-3">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label for="orderUOM">Order UOM</label>
+                                <input type="text" class="form-control" id="orderUOM">
+                            </div>
+                        </div>
+
+                        <!-- Row for Order Qty -->
+                        <div class="row mb-3">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label for="orderQty">Order Qty</label>
+                                <input type="text" class="form-control" id="orderQty">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row for Order Qty -->
+                    <div class="row mb-3">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="scannedQty">Scanned Qty</label>
+                            <input type="text" class="form-control" id="scannedQty">
+                            <input type="hidden" class="form-control" id="allowvaryweight-field">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="scanBtnSubmit" disabled>Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end modal for product -->
+<!-- Modal for Customer Picker -->
+<div class="modal fade" id="customerPickerModal" tabindex="-1" role="dialog" aria-labelledby="customerPickerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerPickerModalLabel">Select Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table id="dt_customer_picker" class="table table-striped table-bordered" style="width: 100%">
+                        <thead class="bg-light">
+                            <tr>
+                                <th><input type="checkbox" id="selectAllCustomers"></th> <!-- Header Checkbox -->
+                                <th>Customer ID</th>
+                                <th>Customer Name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search ID"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Name"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Contact"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Email"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Address"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="customer-checkbox"></td>
+                                <td>CUST001</td>
+                                <td>Customer 1</td>
+                                <td>123-456-7890</td>
+                                <td>customer1@example.com</td>
+                                <td>123 Main St</td>
+                            </tr>
+                            <!-- More rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Select Customer</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" value="@Url.Action("UpdateOrderStatus", "Orders")" id="UpdateOrderStatusUrl" />
+    <input type="hidden" value="@Url.Action("SubmitOrder", "Orders")" id="SubmitOrderUrl" />
+    <input type="hidden" value="@Url.Action("UpdateOrderPayments", "Orders")" id="UpdateOrderPaymentsUrl" />
+    <input type="hidden" value="@Url.Action("GetProductByPartNum", "Product")" id="GetProductByPartNumUrl" />
+    <input type="hidden" value="@Url.Action("SearchCustomers", "Customer")" id="SearchCustomersUrl" />
+    <input type="hidden" value="@Url.Action("SearchProducts", "Product")" id="SearchProductsUrl" />
+
+</div>
+
+
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="width:100mm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 0; margin: 0;">
+                <div id="labelPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
+                        <div class="qrCodePrint"></div>
+                        <table id="data-table" style="text-align:center;">
+                            <!--<thead>
+                                <tr>
+                                    <th colspan="3" style="width: 98%; text-align: center">Lucky Frozen Sdn Bhd</th>-->
+                            <!-- Merging 3 columns into one -->
+                            <!--</tr>
+                                <tr>
+                                    <th style="width: 59%; text-align: left;">Product</th>
+                                    <th style="width: 20%; text-align: center">Qty</th>
+                                    <th style="width:20%; text-align:right">Price</th>
+                                </tr>
+                            </thead>-->
+                            <tbody>
+                                <!-- Dynamic data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary" onclick="printReceipt('@Model.id', '@Model.orderStatus')">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal for customer -->
+
+<style>
+    .form-control, .input-group-text, .btn {
+        border-radius: 0;
+    }
+
+    .table thead th {
+        background-color: #e9ecef;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .fade {
+        opacity: 1;
+    }
+
+    .modal-open #header1 {
+        z-index: 1;
+    }
+
+    /* Ensures table takes full width inside the modal */
+    .modal .table-responsive {
+        width: 100%;
+    }
+
+    /* Ensures table stretches to fill the available space */
+    .modal .table {
+        width: 100%;
+    }
+
+    .dataTables_filter [type='search'] {
+        width: auto !important;
+    }
+
+    .product-checkbox {
+        margin-left: 7px;
+    }
+
+    .selectCustomer {
+        margin: 0px;
+        padding: 0px;
+        border: none;
+    }
+
+    #resetOrderbtn {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+
+<style>
+    @@media print {
+        #labelPrint {
+            transform: scale(8.0);
+            transform-origin: top left;
+            margin: 0;
+            padding: 0;
+            zoom: 80%;
+        }
+
+        body {
+            background: none;
+        }
+        /* If you have any specific classes or IDs you want to hide, add them here */
+        header, footer, .no-print {
+            display: none;
+        }
+    }
+</style>
+
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    var minTolerance = "@Model.minTolerance";
+    var maxTolerance = "@Model.maxTolerance";
+    var disableStockValidation = "@Model.DisableScannedQtyValidation";
+    $(document).ready(function () {
+        /*
+        var total = 0;
+         
+        // Loop through each row in the #dt2_productScan table
+        $('#dt2_productScan tbody tr').each(function () {
+            var scannedPartNo = $(this).find('.product-id-field').text().trim();   // Extract part number from this row
+            var scannedPartName = $(this).find('.product-lineDesc').text().trim();
+            var scannedPartGroup = $(this).find('.product-prodGroup').text().trim(); // Extract part name from this row
+            var scannedUOM = $(this).find('.product-orderUOM').text().trim();          // Extract UOM from this row
+            var scannedQty = parseInt($(this).find('.product-scannedQty').text().replace(/,/g, '')) || 0; // Extract scanned quantity and remove thousand separators
+
+            // Find matching row in #dt2_product table
+            $('#dt2_product tbody tr').each(function () {
+                var productPartNo = $(this).find('.product-id-field').text().trim();   // Extract part number from product row
+                var productPartName = $(this).find('.product-lineDesc').text().trim(); // Extract part name from product row
+                var productPartGroup = $(this).find('.product-prodGroup').text().trim(); // Extract part group from product row
+                var productUOM = $(this).find('.product-orderUOM').text().trim();          // Extract UOM from product row
+
+                console.log('Product Values:', productPartNo, productPartName, productPartGroup, productUOM);
+
+                // Check if the part number, part name, part group, and UOM match
+                if (scannedPartNo === productPartNo && scannedPartName === productPartName && scannedPartGroup === productPartGroup && scannedUOM === productUOM) {
+                    // Add to the total
+                    total += scannedQty;
+                }
+            });
+
+        });
+
+        // Update the total scanned quantity display
+        $('#scannedQuantity').text(total); */
+
+        $(document).off('click', '#scanbtn').on('click', '#scanbtn', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            //localStorage.setItem('OrderQty', '');
+            //  
+            var row = $(this).closest('tr');
+            var item = {
+                orderId: row.find('.product-orderId').text(),
+                orderItemId: row.find(".product-orderItemId").text(),
+                partNum: row.find('.product-id-field').text(),
+                orderUOM: row.find('.product-orderUOM').text(),
+                lineDesc: row.find('.product-lineDesc').text(),
+                prodGroup: row.find('.product-prodGroup').text(),
+                allowvaryWeight: row.find('.product-AllowSellingVaryWeight').text(),
+                orderQty: row.find('.product-orderQty').text(),
+                scannedQty: row.find('.product-scannedQty').text(),
+                orderType: row.find('.product-orderType').text()
+        }
+
+            // localStorage.setItem('OrderQty', JSON.stringify(item));
+            console.log(item);
+            $('#serialNo').val('');
+            $('#partNum').val(item.partNum);
+            $('#orderUOM').val(item.orderUOM);
+            $('#orderQty').val(item.orderQty);
+            $('#orderid').val(item.orderId);
+            $("#orderItemId").val(item.orderItemId);
+            $('#scanProductModal').modal('show');
+
+        });
+
+        $(document).off('click', '#scanBtnSubmit').on('click', '#scanBtnSubmit', function (e) {
+            var serialNo = $('#serialNo').val();
+            var orderId = $('#orderid').val();
+            var orderItemId = $("#orderItemId").val();
+            var partNo = $('#partNum').val();
+            var orderQty = parseFloat($('#scannedQty').val()) || 0;
+            var orderUOM = $('#orderUOM').val();
+
+            // Check if required fields are selected or filled
+            if (!serialNo || !partNo || !orderUOM) {
+                userMessage.show("Error", 'Please fill in all required fields: SerialNo, PartNo, Order Quantity, and Order UOM.');
+                return;
+            }
+
+            // Insert the scanned item and update the scannedQty in #dt2_productScan table
+            var tbody = $('#dt2_productScan tbody');
+
+            // Update the scannedQty in the main #dt2_product table
+            $('#dt2_product tbody tr').each(function () {
+                var productRow = $(this);
+                var productPartNo = productRow.find('.product-id-field').text().trim();
+                var productOrderId = productRow.find('.product-orderId').text().trim();
+
+                // Check if the orderId matches
+                if (productOrderId === orderId) {
+                    var scannedQtyElement = productRow.find('.product-scannedQty');
+                    var currentScannedQty = parseFloat(scannedQtyElement.text()) || 0;
+                    var orderQtyElement = parseFloat(productRow.find('.product-orderQty').text()) || 0; // Get order quantity
+
+                    // Get additional product details from the current row
+                    var lineDesc = productRow.find('.product-lineDesc').text().trim();
+                    var prodGroup = productRow.find('.product-prodGroup').text().trim();
+                    var orderUOM = productRow.find('.product-orderUOM').text().trim();
+
+                    // Check if the new scannedQty is equal to or less than the orderQty
+                    //if (currentScannedQty + orderQty <= orderQtyElement) {
+                    // Update the scanned quantity by adding the new scanned value
+                    var newScannedQty = currentScannedQty + orderQty;
+                    scannedQtyElement.text(newScannedQty.toFixed(2));
+                    var scanedInput = "";
+                    if ($("#allowvaryweight-field").val() == "true") {
+                        scanedInput = `<span class="product-scannedQty">${orderQty.toFixed(2)}</span>`;
+                    } else {
+                        scanedInput = `<input type="number" class="form-control scannedQtyInput" data-id="${orderItemId}" value="${orderQty}" />
+                        <span class="product-scannedQty" style="display: none;">${orderQty.toFixed(2)}</span>`;
+                    }
+
+                    // Insert the new row in #dt2_productScan
+                    var row = `
+                        <tr>
+                            <td><span class="product-barcode">${serialNo}</span></td>
+                            <td><span class="product-id-field" data-id="${orderId}" data-orderItemId="${orderItemId}">${partNo}</span></td>
+                            <td><span class="product-partName">${lineDesc}</span></td>
+                            <td><span class="product-prodGroup">${prodGroup}</span></td>
+                            <td><span class="product-orderUOM">${orderUOM}</span></td>
+                            <td>
+                            ${scanedInput}
+                            </td>
+                            <td><span class="product-status">Matched</span></td>
+                        </tr>
+                    `;
+                    tbody.append(row);
+                    $('#scanProductModal').modal('hide');
+                    //} else {
+                    //    userMessage.show("Error", 'Scanned quantity exceeds the order quantity.');
+                    //}
+                }
+            });
+        });
+
+
+
+        $(document).off('click', '#resetOrderbtn').on('click', '#resetOrderbtn', function (e) {
+            var orderId = $(this).attr("data-id"); // Assuming the orderId is being tracked to match products
+
+            if (!orderId) {
+                userMessage.show("Error", 'Please select an order to reset.');
+                return;
+            }
+
+            // Reset the scanned quantity in the main product table
+            $('#dt2_product tbody tr').each(function () {
+                var productRow = $(this);
+                var productOrderId = productRow.find('.product-orderId').text().trim();
+
+                // Check if the orderId matches
+                if (productOrderId === orderId) {
+                    console.log("Reset")
+                    // Reset the scanned quantity to 0
+                    productRow.find('.product-scannedQty').text('0.00');
+                }
+            });
+
+            // Remove the scanned item log for the corresponding order from the scanned items table
+            $('#dt2_productScan tbody tr').each(function () {
+                var scannedRow = $(this);
+                var scannedOrderId = scannedRow.find('.product-id-field').attr("data-id"); // Assuming this field relates to orderId
+
+                // Check if the orderId matches
+                if (scannedOrderId === orderId) {
+                    console.log("remove")
+                    // Remove the scanned log row
+                    scannedRow.remove();
+                }
+            });
+
+            // userMessage.show("Success", 'Scanned quantity reset and scanned log removed for the selected product.');
+        });
+        });
+
+    function addOrUpdateProductRow(product, desktop_table, mobile_table) {
+        // Check if a row with the same product ID already exists
+        var existingRow = $('#dt2_product tbody tr td').find('span[data-id="' + product.id + '"]');
+        var orderQty = product.orderQty ? parseInt(product.orderQty) : 1;
+        var orderQtyExists = product.orderQty ? true : false;
+        if (existingRow.length > 0) {
+            var existingTr = existingRow.parents("tr")
+            // If the product already exists, increase the order quantity
+            var qtyInput = existingTr.find('input[data-field="orderQty"]');
+            var currentQty = parseFloat(qtyInput.val());
+            if (orderQtyExists) {
+                qtyInput.val(orderQty);
+            } else {
+                qtyInput.val(currentQty + 1); // Increment the quantity by 1
+            }
+            updateTotal(existingTr); // Update the total for this row
+        } else {
+
+            var rows = [
+                `<span data-id="${product.id}" class="product-id-field">${product.partNumber}</span>`,
+                `<span>${product.description}</span>`,
+                `<span data-field="price">${product.unitPrice || ''}</span>`,
+                `<span>${product.prodGrup_Description}</span>`,
+                `<span>${product.part_IUM}</span>`,
+                `<input type="number" class="form-control" data-field="orderQty" value="${orderQty}">`,
+                `<span data-field="total">${product.unitPrice || ''}</span>`,
+                `<button class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>`
+            ];
+
+            desktop_table.row.add(rows).draw();
+            mobile_table.row.add(rows).draw();
+            updateOrderTotal()
+        }
+    }
+
+    function updateOrderTotal() {
+        var total = 0;
+        $('#dt2_product tbody tr').each(function () {
+            total += parseFloat($(this).find('span[data-field="total"]').text() || 0);
+        });
+        $('#orderTotal').text(total.toFixed(2));
+    }
+
+    function updateTotal(row) {
+        var qty = parseFloat(row.find('input[data-field="orderQty"]').val());
+        var price = parseFloat(row.find('span[data-field="price"]').text());
+        var total = qty * price;
+        row.find('span[data-field="total"]').text(total.toFixed(2)); // Update the total field
+        updateOrderTotal()
+    }
+
+    var priority1 = [0, 1, 5, 9, 10];
+    var priority2 = [0, 1, 3, 9, 10];
+    var priority3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    var hidden = [12, 13];
+
+    var desktop_table = $('#dt2_product').DataTable({
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "searching": false,
+        "responsive": {
+            details: {
+                // Define which elements should NOT trigger the responsive details
+                selector: function (td, tr, idx) {
+                    // Don't trigger on buttons with specific classes
+                    return !td.querySelector('#scanbtn, .other-button-class');
+                }
+            }
+        },
+        columnDefs: [
+            { responsivePriority: 1, targets: priority1 },
+            { responsivePriority: 2, targets: priority2 },
+            { responsivePriority: 3, targets: priority3 },
+            { visible: true, targets: hidden, className: "hidden" }
+        ],
+        "autoWidth": false
+    });
+
+    var mobile_table = $('#dt2_product_mobile').DataTable({
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "searching": false,
+        "responsive": true
+    });
+
+    function formatDate(date) {
+        var day = String(date.getDate()).padStart(2, '0');
+        var month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        var year = date.getFullYear();
+
+        return day + '/' + month + '/' + year;
+    }
+
+    // Get today's date
+    var today = new Date();
+
+    // Set the formatted date as the value of the input field
+    $('#orderDate').val(formatDate(today));
+
+    // Cart functions begins
+    //$(document).on('click', '#dt2_product .btn-danger, #dt2_product_mobile .btn-danger', function () {
+    //    var row = $(this).closest('tr');
+    //    desktop_table.row(row).remove().draw();
+    //    mobile_table.row(row.index()).remove().draw();
+    //    updateOrderTotal();
+    //});
+    $(document).on('change', 'input[data-field="orderQty"]', function () {
+        updateTotal($(this).closest('tr'));
+    });
+    // Variable to store previous quantity
+    var previousScQty = 0;
+
+    // Bind change event to input fields
+    $(document).off('focus', '.scannedQtyInput').on('focus', '.scannedQtyInput', function () {
+        // Store the current value when the input gains focus
+        previousScQty = parseFloat($(this).val()) || 0;
+    });
+    $(document).off('change', '.scannedQtyInput').on('change', '.scannedQtyInput', function () {
+        var orderItemId = $(this).data("id");
+        var thisInput = $(this);
+        var value = parseFloat($(this).val()) || 0;
+        // Check if the value contains a decimal
+        if (parseFloat(value) !== Math.floor(parseFloat(value))) {
+            alert("Decimal input is not allowed. Please enter a whole number.");
+            $(this).val(Math.floor(previousScQty)).trigger("change"); // Clear the invalid input
+            return;
+        } 
+        var parTr = $(this).closest("tr");
+        parTr.find(".product-scannedQty").text(value);
+        var consolidatedValue = 0;
+        $('.scannedQtyInput[data-id="' + orderItemId + '"]').each(function () {
+            consolidatedValue += parseFloat($(this).val()) || 0;
+        });        
+        $('#dt2_product tbody tr').each(function () {
+            var productRow = $(this);
+            var productPartNo = productRow.find('.product-id-field').text().trim();
+            var productOrderId = productRow.find('.product-orderItemId').text().trim();
+            //debugger
+            // Check if both part number and order ID match
+            if (productOrderId === "" + orderItemId) {
+                // **Validation: Skip rows where scanned quantity would exceed order quantity**
+                var existingQty = parseFloat(productRow.find('.product-orderQty').text()) || 0;
+                if (consolidatedValue > existingQty && disableStockValidation == "False") {
+                    console.log(`Skipping row: Scanned quantity (${consolidatedValue}) exceeds order quantity (${existingQty}).`);
+                    thisInput.val(previousScQty);
+                    alert(`Scanned quantity (${consolidatedValue}) exceeds order quantity (${existingQty})`);
+                    return true; // Continue to the next row
+                }
+                // Update the scanned quantity
+                productRow.find('.product-scannedQty').text(consolidatedValue.toFixed(2));
+            }
+        });
+        console.log("Consolidated Value for OrderItemId " + orderItemId + ": " + consolidatedValue);
+    });
+
+    $('button.submitOrder').on('click', function () {
+        var orderData = {
+            customer_Id: $('#customer').val(),
+            shipToAddress_Id: $('#shipTo').val(),
+            orderDate: $('#orderDate').val(),
+            orderComment: '', // Add a textarea for comments if needed
+            OrderItems: []
+        };
+
+        $('#dt2_product tbody tr').each(function () {
+            var row = $(this);
+            var item = {
+                partNum: row.find('.product-id-field').text(),
+                product_Id: row.find(".product-id-field").attr("data-id"),
+                lineDesc: row.find('td:eq(1)').text(),
+                ium: row.find('td:eq(4)').text(),
+                salesUm: row.find('td:eq(4)').text(), // Assuming salesUm is the same as ium
+                unitPrice: parseFloat(row.find('span[data-field="price"]').text()),
+                orderQty: parseFloat(row.find('input[data-field="orderQty"]').val()),
+                discount: 0, // Add a field for discount if needed
+                listPrice: parseFloat(row.find('span[data-field="price"]').text()) // Assuming listPrice is the same as unitPrice
+            };
+            orderData.OrderItems.push(item);
+        });
+
+        // Send the data to the server
+        $.ajax({
+            url: $("#SubmitOrderUrl").val(), // Update with your controller and action names
+            type: 'POST',
+            data: JSON.stringify(orderData),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.success) {
+                    // alert('Order submitted successfully!');
+                    userMessage.show("Success", "The order submitted successfully!");
+                    $("#back-pickup").trigger("click");
+                    // Optionally, redirect or clear the form
+                } else {
+                    alert('Error submitting order: ' + response.message);
+                }
+            },
+            error: function () {
+                alert('An error occurred while submitting the order.');
+            }
+        });
+    });
+
+    $(".submit-action").on("click", function () {
+        var scannedData = constructOrderScanModel($(this));
+        if (scannedData == null) {
+            return;
+        }
+        console.log(scannedData);
+    });
+
+    function constructOrderScanModel(submitBtn) {
+        var orderId = submitBtn.attr("data-id");// Assuming all items have the same orderId
+        var action = submitBtn.attr("data-action") ? submitBtn.attr("data-action") : "submit"
+        console.log("Action : " + action + " & OrderId : " + orderId);
+        var orderScanModel = {
+            orderId: parseInt(orderId),
+            scannedItems: [],
+            orderItems: [],
+            IsVerification: false,
+            action: action
+        };
+        var scannedItemMap = new Map();
+
+        // Construct scannedItems
+        $('#dt2_productScan tbody tr').each(function() {
+            var row = $(this);
+            //var selectedLocation = row.find('.product-location-dropdown').length
+            //    ? row.find('.product-location-dropdown').val()
+            //    : row.find('.productLocation').text();
+
+            var scannedItem = {
+                orderId: parseInt(orderId),
+                orderItemId: row.find('.product-id-field').data('orderitemid'),
+                partNum: row.find('.product-id-field').text(),
+                orderUOM: row.find('.product-orderUOM').text(),
+                lineDesc: row.find('.product-partName').text(),
+                prodGroup: row.find('.product-prodGroup').text(),
+                scannedQty: row.find('.product-scannedQty').text(),
+                location: row.find('.productLocation select').val(),
+                Status: "Matched",
+                orderType: 'Full Quantity',
+                SerialNumber: row.find('.product-barcode').text()
+            };
+
+            orderScanModel.scannedItems.push(scannedItem);
+            scannedItemMap.set(row.find('.product-id-field').data('orderitemid'), scannedItem);
+        });
+        console.log(scannedItemMap)
+        var unmatchedProducts = [];
+        var zeroQtyProducts = []; // List to store products with orderQty > 0 and scannedQty == 0
+        var outOfToleranceProducts = []; // List to store products where scannedQty is out of tolerance
+
+        // Construct orderItems
+        $('#dt2_product tbody tr').each(function() {
+            var row = $(this);
+            var orderQty = parseFloat(row.find('.product-orderQty').text());
+            var scannedQty = parseFloat(row.find('.product-scannedQty').text());
+            var allowVaryWeight = row.find('.product-AllowSellingVaryWeight').text().trim() === "Yes";
+
+            var orderItem = {
+                orderItemId: parseInt(row.find('.product-orderItemId').text()),
+                itemId: row.find('.product-id-field').data('dbid'),
+                scannedQty: scannedQty
+            };
+            orderScanModel.orderItems.push(orderItem);
+            console.log(Object.keys(scannedItemMap))
+            console.log(row.find('.product-orderItemId').text())
+
+            // Check if `AllowVaryWeight` is "No" and `scannedQty` doesn't match `orderQty`
+            if (!allowVaryWeight && orderQty !== scannedQty) {
+                unmatchedProducts.push(row.find('.product-id-field').text() + " (ScannedQty must match OrderQty)");
+            }
+
+            // debugger
+            // Check if this order item has a matching scanned item
+            if (!scannedItemMap.has(parseInt(row.find('.product-orderItemId').text()))) {
+                unmatchedProducts.push(row.find('.product-id-field').text());
+            } else {
+                // Validate scanned quantity
+                //var scannedItem = scannedItemMap.get(orderItemId);
+                //if (scannedItem.scannedQty !== orderItem.scannedQty) {
+                //    unmatchedProducts.push(row.find('.product-id-field').text() + " (Quantity mismatch)");
+                //}
+            }
+
+            // 2.1 Validate if orderQty > 0 and scannedQty == 0
+            if (orderQty > 0 && scannedQty === 0) {
+                zeroQtyProducts.push(row.find('.product-id-field').text());
+            }
+
+            var minQty = orderQty * minTolerance;
+            var maxQty = orderQty * maxTolerance;
+            console.log(minQty + " " + maxQty)
+            if (scannedQty < minQty || scannedQty > maxQty) {
+                outOfToleranceProducts.push(row.find('.product-id-field').text());
+            }
+        });
+        // Check for unmatched products and show error if any
+        if (unmatchedProducts.length > 0 && action == "submit" && disableStockValidation == "False") {
+            var errorMessage = "The following products are not matched :\n" + unmatchedProducts.join("\n");
+            userMessage.show("Error", errorMessage);
+            return null; // Return null to indicate validation failure
+        }
+
+        // 2.1 Check for zero quantity items and show error message
+        if (zeroQtyProducts.length > 0 && action == "submit") {
+            var errorMessage = "The following products have orderQty > 0 but scannedQty is 0:\n" + zeroQtyProducts.join("\n");
+            userMessage.show("Error", errorMessage);
+            return null; // Validation failure
+        }
+
+        // 2.2 Check for items out of tolerance range and show confirmation message
+        if (outOfToleranceProducts.length > 0 && action == "submit") {
+            var confirmMessage = "The following products have scanned quantities outside the tolerance range:\n" + outOfToleranceProducts.join("\n") + "\nDo you want to proceed?";
+            $.SmartMessageBox({
+                title: "Alert!",
+                content: confirmMessage,
+                buttons: '[No][Yes]'
+            }, function (ButtonPressed) {
+                if (ButtonPressed === "Yes") {
+                    // Proceed with submission
+                    postScannedDataToApi(orderScanModel); // Continue with the process
+                } else {
+                    return null; // Stop the process
+                }
+            });
+        } else {
+            postScannedDataToApi(orderScanModel);
+        }
+    }
+
+    function postScannedDataToApi(scannedData) {
+        $.ajax({
+            url: "@Url.Action("SubmitScannedItems", "Orders")", // Update with your controller and action names
+            type: 'POST',
+            data: JSON.stringify(scannedData),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.success) {
+                    // alert('Order submitted successfully!');
+                    userMessage.show("Success", "The scanned order items submitted successfully!");
+                    $("#back-pickup").trigger("click");
+                    // Optionally, redirect or clear the form
+                } else {
+                    userMessage.show("Error", 'Error submitting order: ' + response.message);
+                }
+            },
+            error: function () {
+                userMessage.show("Error", 'An error occurred while submitting the order.');
+            }
+        });
+    }
+    // Cart functions end
+
+    // Payment functions begins
+
+    $('#addPaymentBtn').on('click', function () {
+        var newRow = `
+            <tr>
+                <td>
+                <select class="form-control paymentType">
+                    <option value="Cash" selected>Cash</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="Online Banking">Online Banking</option>
+                    <option value="Online Banking">Others</option>
+                  </select>
+                <input type="hidden" name="OrderId" value="@Model.id" class="orderId" /></td>
+                <td><input type="text" class="form-control bank"></td>
+                <td><input type="text" class="form-control referenceNo"></td>
+                <td><input type="number" class="form-control amount" step="0.01"></td>
+                <td><button class="btn btn-danger btn-sm removePayment"><i class="fa fa-times"></i></button></td>
+            </tr>
+        `;
+        $('#paymentTable tbody').append(newRow);
+        updatePaymentTotal();
+    });
+
+    $(document).on('click', '.removePayment', function () {
+        $(this).closest('tr').remove();
+        updatePaymentTotal();
+    });
+
+    $(document).on('input', '.amount', function () {
+        updatePaymentTotal();
+    });
+
+    function updatePaymentTotal() {
+        var total = 0;
+        $('.amount').each(function () {
+            total += parseFloat($(this).val()) || 0;
+        });
+        $('#paymentTotal').text(total.toFixed(2));
+    }
+
+    $('#completePaymentBtn').on('click', function () {
+        var paymentData = gatherPaymentData();
+        if (paymentData.length > 0) {
+            sendPaymentDataToApi(paymentData);
+        } else {
+            alert('Please add at least one payment before completing.');
+        }
+    });
+
+    function gatherPaymentData() {
+        var payments = [];
+        $('#paymentTable tbody tr').each(function () {
+            var row = $(this);
+            var payment = {
+                OrderId: row.find('.orderId').val(),
+                PaymentType: row.find('.paymentType').val(),
+                Bank: row.find('.bank').val(),
+                RefNumber: row.find('.referenceNo').val(),
+                Amount: parseFloat(row.find('.amount').val()) || 0,
+                PaymentDate: new Date().toISOString(),
+                PaymentStatus: 'Pending' // You can change this as needed
+            };
+            if (payment.Amount > 0) {
+                payments.push(payment);
+            }
+        });
+        return payments;
+    }
+
+    function sendPaymentDataToApi(paymentData) {
+        $.ajax({
+            url: $("#UpdateOrderPaymentsUrl").val(), // Update with your actual API endpoint
+            type: 'POST',
+            data: JSON.stringify({ OrderPayments: paymentData }),
+            contentType: 'application/json',
+            success: function (response) {
+                if (response.success) {
+                    alert('Payment completed successfully!');
+                    // You can add more actions here, like refreshing the page or updating the UI
+                } else {
+                    alert('Error completing payment: ' + response.message);
+                }
+            },
+            error: function () {
+                alert('An error occurred while processing the payment.');
+            }
+        });
+    }
+
+    // Payment functions end
+
+    $('#orderDate').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+
+    // Initialize DataTable for the product picker modal
+    var table = $('#dt_product_picker').DataTable({
+        "paging": true,
+        "ordering": false,
+        "info": false,
+        "searching": false,
+        "responsive": true,
+        "columns": [
+            { "data": null, "defaultContent": "<input type='checkbox' class='product-checkbox'>" },
+            { "data": "partNumber" },
+            { "data": "description" },
+            { "data": "prodGrup_Description" },
+            { "data": "part_IUM" },
+            { "data": "unitPrice" },
+            { "data": null, "defaultContent": "<input type='number' class='default-qty' value='1'>" },
+        ]
+    });
+
+    // Add selected products to table
+
+    $('#btnAddToOrders').on('click', function () {
+        // Find all checked checkboxes in the products table
+        var selectedProducts = [];
+
+        table.$('input[type="checkbox"]:checked').each(function () {
+            var row = $(this).closest('tr');
+            var data = table.row(row).data();
+            var orderQty = row.find("input.default-qty").val();
+            data['orderQty'] = orderQty;
+            selectedProducts.push({
+                data: data,
+                row: row
+            });
+        });
+
+        // Do something with the selected products data
+        console.log('Selected products:', selectedProducts);
+        selectedProducts.forEach(function (product) {
+            addOrUpdateProductRow(product.data, desktop_table, mobile_table);
+            // Remove the product from the original products table
+            table.row(product.row).remove().draw(false);
+        });
+    });
+
+    // Apply the search filter on input change
+    $('.filter-input').on('keyup', function () {
+        table.column($(this).parent().index()).search(this.value).draw();
+    });
+
+    // Show the modal on Add button click
+    $('#btnAdd').on('click', function () {
+        // $('#productPickerModal').modal('show');
+        $(".productPicker").show();
+        setTimeout(function () {
+            $('#dt_product_picker').DataTable().columns.adjust().responsive.recalc();
+        }, 600);
+    });
+
+    $(".closeProductPicker").on("click", function () {
+        $(".productPicker").hide();
+    })
+
+    // Initialize DataTable for the customer picker modal
+    var customerTable = $('#dt_customer_picker').DataTable({
+        "paging": true,
+        "ordering": true,
+        "info": true,
+        "searching": true,
+        "responsive": true
+    });
+
+    // Apply the search filter on input change
+    $('.filter-input').on('keyup', function () {
+        var column = $(this).parent().index();
+        if (table === productTable) {
+            productTable.column(column).search(this.value).draw();
+        } else if (table === customerTable) {
+            customerTable.column(column).search(this.value).draw();
+        }
+    });
+
+    // Handle the select/deselect all checkboxes for customers
+    $('#selectAllCustomers').on('click', function () {
+        var isChecked = $(this).prop('checked');
+        $('.customer-checkbox').prop('checked', isChecked);
+    });
+
+    // Show the modal for customer picker
+    $('#btnCustomerPicker').on('click', function () {
+        $('#customerPickerModal').modal('show');
+
+        setTimeout(function () {
+            $('#dt_customer_picker').DataTable().columns.adjust().responsive.recalc();
+        }, 500);
+    });
+
+    // Product search begins
+    $('#productSearch').on('focus', function () {
+        $(this).select();
+    });
+    // Trigger AJAX call when search input is filled
+    $('#productSearch').on('change', function () {
+        var searchTerm = $(this).val();
+
+        if (searchTerm.length >= 2) { // Start searching after at least 2 characters
+            $.ajax({
+                url: $("#GetProductByPartNumUrl").val(), // Replace with your API endpoint
+                type: 'POST',
+                data: { partNum: searchTerm },
+                success: function (response) {
+                    if (response.success && response.product && response.product.id) {
+                        // Clear the existing table rows
+                        // $('#dt2_product tbody').empty();
+
+                        // Assuming response.product is an array of product objects
+                        let product = response.product;
+                        // Create a new row for each product
+                        addOrUpdateProductRow(product, desktop_table, mobile_table);
+                    } else {
+                        alert('No products found or an error occurred.');
+                    }
+                },
+                error: function () {
+                    alert('Failed to fetch products.');
+                }
+            });
+        }
+    });
+
+    // Customer search
+    // $('.selectCustomer').select2();
+
+    $.ajax({
+        url: $("#SearchCustomersUrl").val(),
+        type: "POST",
+        data: { 'searchParam': "" },
+        dataType: "json",
+        success: function (data) {
+            var $select = $('.selectCustomer');
+            $.each(data.customers, function (index, item) {
+                $select.append(new Option(item.name, item.id));
+                // $select.select2('data', { id: item.id, text: item.name });
+            });
+
+            // Initialize Select2 after options are added
+            $select.select2();
+            $select.val(1).trigger('change.select2');
+            // Set default value
+            $select.val('cash').trigger('change');
+        }
+    });
+
+    $('#btnSearch').on('click', function () {
+        var partNo = $('#searchPartNo').val();
+        var code = $('#searchCode').val();
+        var desc = $('#searchDesc').val();
+
+        $.ajax({
+            url: $("#SearchProductsUrl").val(), // Replace with your actual API endpoint
+            type: 'POST',
+            data: { partNum: partNo, code: code, description: desc },
+            dataType: 'json',
+            success: function (response) {
+                if (response.success && response.products) {
+                    // Clear existing table data
+                    table.clear();
+
+                    // Add new data to the table
+                    table.rows.add(response.products).draw();
+
+                    // Reset the "select all" checkbox
+                    $('#selectAll').prop('checked', false);
+                } else {
+                    alert('No products found or an error occurred.');
+                }
+            },
+            error: function () {
+                alert('Failed to fetch products.');
+            }
+        });
+    });
+
+    $('#btnReset').on('click', function () {
+        $('#searchPartNo, #searchCode, #searchDesc').val('');
+        table.clear().draw();
+    });
+
+    // Handle "select all" checkbox
+    $('#selectAll').on('click', function () {
+        $('.product-checkbox').prop('checked', this.checked);
+    });
+
+    // Start new scan function
+    $(document).ready(function () {
+        $('#partNo').on('focus', function () {
+            $(this).select();
+        });
+        // Bind keypress event for #partNo input
+        $('#partNo').on('keypress', function (e) {
+            if (e.which === 13) { // Check if Enter key is pressed
+                captureAndCallScan($(this).val());
+            }
+        });
+
+        // Bind keydown event for #partNo input
+        $('#partNo').on('keydown', function (e) {
+            const allowedKeys = [13, 17, 86]; // Enter, Ctrl, and V
+
+            if (
+                // Allow Ctrl+V
+                (e.ctrlKey && e.which === 86) ||
+                // Allow Enter
+                e.which === 13 ||
+                // Allow input from a scanning device
+                e.which === 0 || e.which === 229
+            ) {
+                return true; // Allow the action
+            }
+
+            // Prevent manual typing
+            return false;
+        });
+
+        // Bind click event for #btnScanProduct
+        $('.btnScanProduct').on('click', function () {
+            captureAndCallScan($('#partNo').val());
+        });
+
+
+        function updateOrderScanWithOptimalMatch(scannedItem, weightValue) {
+            // Iterate and check the table if barcode already exists
+            var isBarcodeExists = false;
+            var allowVaryWeightLc = scannedItem.allowvaryWeight;
+            debugger
+            // Iterate over each row in the table
+            $('#dt2_productScan tbody tr').each(function () {
+                // Get the barcode value from the current row
+                var barcode = $(this).find('.product-barcode').text().trim();
+
+                // Check if the scanned barcode matches the barcode in the row
+                if (barcode === scannedItem.barcode && scannedItem.allowVaryWeight == true) {
+                    isBarcodeExists = true;
+                    return false; // Break out of the loop as we found a match
+                }
+            });
+
+            if (isBarcodeExists) {
+                console.log("Barcode already exists in the table.");
+                userMessage.show("Error", "Barcode already exists in the table.");
+                return true;
+            } else {
+                console.log("Barcode does not exist. Proceed with adding.");
+                // Logic to add the new scanned item to the table
+                // You can add here based on the structure you want
+            }
+
+            let bestMatch = null;
+            let smallestDifference = Infinity;
+            let productId = scannedItem.productId;
+            let exceedsQty = false;
+            let exceedsMessage = "";
+
+            // First pass: find the best matching row
+            $('#dt2_product tr').each(function () {
+                let row = $(this);
+                let productElement = row.find('.product-id-field');
+
+                if (productElement.data('productid') == productId) {
+                    let scannedQtyElement = row.find('#scannedQuantity');
+                    let scannedQty = parseFloat(scannedQtyElement.text()) || 0;
+                    let orderQty = parseFloat(row.find('.product-orderQty').text()) || 0;
+
+                    // Skip if already scanned
+                    // if (scannedQty > 0) return true; // Continue to next iteration
+
+                    let newScannedQty = scannedQty + weightValue;
+
+                    // **Validation: Skip rows where scanned quantity would exceed order quantity**
+                    if (newScannedQty > orderQty && disableStockValidation == "False") {
+                        console.log(`Skipping row: Scanned quantity (${newScannedQty}) exceeds order quantity (${orderQty}).`);
+                        exceedsMessage = `Scanned quantity (${newScannedQty}) exceeds order quantity (${orderQty})`;
+                        exceedsQty = true;
+                        return true; // Continue to the next row
+                    }
+
+                    let difference = Math.abs(orderQty - newScannedQty);
+
+                    // Update best match if this is closer to the order quantity
+                    if (difference < smallestDifference) {
+                        smallestDifference = difference;
+                        bestMatch = {
+                            row: row,
+                            scannedQtyElement: scannedQtyElement,
+                            orderQty: orderQty,
+                            newScannedQty: newScannedQty,
+                            previousQty: scannedQty,
+                            originalScannedQty: weightValue
+                        };
+                    }
+                }
+            });
+
+            // If a match was found, update that row
+            if (bestMatch) {
+                let row = bestMatch.row;
+                let newScannedQty = bestMatch.newScannedQty;
+                let previousQty = bestMatch.previousQty;
+                let originalScannedQty = bestMatch.originalScannedQty;
+
+                const displayText = previousQty > 0
+                    ? `${newScannedQty.toFixed(2)}`
+                    : newScannedQty.toFixed(2);
+
+                // Update the scanned quantity in the UI
+                bestMatch.scannedQtyElement.text(displayText);
+
+                // Capture product details
+                let productElement = row.find('.product-id-field');
+                let partNo = productElement.text();
+                let partName = row.find('.product-lineDesc').text();
+                let prodGroup = row.find('.product-prodGroup').text();
+                let orderUOM = row.find('.product-orderUOM').text();
+                let orderId = row.find('.product-orderId').text();
+                let orderItemId = row.find('.product-orderItemId').text();
+                
+                // Append to the scanned items table
+                var scanedInput = "";
+                if (allowVaryWeightLc) {
+                    scanedInput = `<span class="product-scannedQty">${originalScannedQty.toFixed(2)}</span>`;
+                } else {
+                    scanedInput = `<input type="number" class="form-control scannedQtyInput" data-id="${orderItemId}" value="${originalScannedQty}" />
+                                    <span class="product-scannedQty" style="display: none;">${originalScannedQty.toFixed(2)}</span>`;
+                }
+
+                let locationCell = `<span class="productLocation">${scannedItem.productLocation || ''}</span>`;
+                var selectedLocation = scannedItem.productLocation;
+                // Build the dropdown HTML
+                let locationDropdown = `<select class="form-control productLocationSelect">`;
+                scannedItem.LocationList.forEach(option => {
+                    let selected = option === selectedLocation ? 'selected' : '';
+                    locationDropdown += `<option value="${option}" ${selected}>${option}</option>`;
+                });
+                locationDropdown += `</select>`;
+
+                $('#dt2_productScan tbody').append(`
+                    <tr>
+                        <td><span class="product-barcode">${scannedItem.barcode || ''}</span></td>
+                        <td><span class="product-id-field" data-id="${orderId}" data-orderItemId="${orderItemId}">${partNo}</span></td>
+                        <td><span class="product-partName">${partName}</span></td>
+                        <td><span class="product-prodGroup">${prodGroup}</span></td>
+                        <td><span class="product-orderUOM">${orderUOM}</span></td>
+                        <td>
+                        ${scanedInput}
+                        </td>
+                        <td><span class="product-status">${newScannedQty === bestMatch.orderQty ? 'Matched' : 'Matched'}</span></td>
+                        <td><span class="productLocation">${locationDropdown}</td>
+                    </tr>
+                `);
+
+                return true; // Indicates a successful match and update
+            } else {
+                debugger
+                if (exceedsQty) {
+                    userMessage.show("Error", exceedsMessage);
+                    return false;
+                } else {
+                    userMessage.show("Warning", "No matching product found!");
+                }
+            }
+            return false; // Indicates no match was found
+        }
+
+        // Function to capture the part number and call the PickupController's Scan method
+        function captureAndCallScan(partNumber) {
+            if (!partNumber) {
+                alert('Please enter a part number');
+                return;
+            }
+            var orderId = $('.btnScanProduct').attr("data-id");
+            $.ajax({
+                url: '@Url.Action("Scan", "Pickup")', // Replace with your actual Scan method URL
+                type: 'POST',
+                data: {
+                    serial: partNumber,
+                    orderId: orderId
+                },
+                success: function (response) {
+                    if (response.scannedItem) {
+                        let scannedItem = response.scannedItem;
+                        let productId = scannedItem.productId;
+                        let weightValue = parseFloat(scannedItem.weightValue) || 0;
+                        var barcode = scannedItem.barcode;
+
+                        // Track if a valid product match was found
+                        let matched = false;
+                        let exceeds = false;
+                        matched = updateOrderScanWithOptimalMatch(scannedItem, weightValue);
+                        /*
+                        // Iterate through the table rows to find matching productId
+                        $('#dt2_product tr').each(function () {
+                            let row = $(this);
+                            let productElement = row.find('.product-id-field');
+
+                            // Check if the data-id matches the scanned item's productId
+                            if (productElement.data('id') == productId) {
+                                // Get the scanned quantity from the table
+                                let scannedQtyElement = row.find('#scannedQuantity');
+                                let scannedQty = parseFloat(scannedQtyElement.text()) || 0;
+                                let orderQty = parseFloat(row.find('.product-orderQty').text()) || 0;
+
+                                // Skip the product if the scannedQty is already greater than 0
+                                if (scannedQty > 0) {
+                                    return; // Continue to the next product
+                                }
+
+                                // Check if adding the weightValue will not exceed the orderQty
+                                // if (scannedQty + weightValue <= orderQty) { Exceeds checking disabled for now.
+                                    // Update the scanned quantity in the UI
+                                    let newScannedQty = scannedQty + weightValue;
+                                    scannedQtyElement.text(newScannedQty.toFixed(2));
+
+                                    // Capture product details
+                                    let partNo = productElement.text();
+                                    let partName = row.find('.product-lineDesc').text();
+                                    let prodGroup = row.find('.product-prodGroup').text();
+                                    let orderUOM = row.find('.product-orderUOM').text();
+                                    let orderId = row.find('.product-orderId').text();
+                                    let orderItemId = row.find('.product-orderItemId').text();
+
+                                    // Append to the scanned items table
+                                    // var row = ;
+
+                                $('#dt2_productScan tbody').append(`
+                                        <tr>
+                                            <td><span class="product-barcode">${scannedItem.barcode || ''}</span></td>
+                                            <td><span class="product-id-field" data-id="${orderId}" data-orderItemId="${orderItemId}">${partNo}</span></td>
+                                            <td><span class="product-partName">${partName}</span></td>
+                                            <td><span class="product-prodGroup">${prodGroup}</span></td>
+                                            <td><span class="product-orderUOM">${orderUOM}</span></td>
+                                            <td><span class="product-scannedQty">${newScannedQty.toFixed(2)}</span></td>
+                                            <td><span class="product-status">${newScannedQty === orderQty ? 'Matched' : 'Matched'}</span></td>
+                                        </tr>
+                                    `);
+
+
+                                    // Mark as matched and stop checking other rows
+                                    matched = true;
+                                    //exceeds = false;
+                                    return false;
+                                //} else {
+                                //    exceeds = true;
+                                //}
+                            }
+                        });
+                        */
+                    } else {
+                        userMessage.show("Error", 'No matching product found!');
+                    }
+                    $("#partNo").val("")
+                },
+                error: function () {
+                    $("#partNo").val("")
+                    alert('Failed to fetch products.');
+                }
+            });
+        }
+
+
+        // Handle the reset button click
+        $('.resetBtn').click(function () {
+            // Reset scan quantities to 0
+            $('#dt2_product tr').each(function () {
+                $(this).find('#scannedQuantity').text('0.00');
+            });
+
+            // Clear the scanned items log
+            $('#dt2_productScan tbody').empty();
+        });
+
+        // Handle the individual scanning popup
+        $(document).off('keypress', '#serialNo').on('keypress', '#serialNo', function(event) {
+            if (event.which === 13) {
+                var serialNo = $(this).val();
+                var orderId = $('button.btnScanProduct').data('id'); // Assuming order ID is filled elsewhere or modify this to fetch accordingly.
+                scanInline(serialNo, orderId);
+            }
+        });
+        // Listen for changes in the serial number input field
+        $(document).off('click', '#scanButtonInline').on('click', '#scanButtonInline', function() {
+            var serialNo = $('#serialNo').val();
+            var orderId = $('button.btnScanProduct').data('id'); // Assuming order ID is filled elsewhere or modify this to fetch accordingly.
+            scanInline(serialNo, orderId);
+        });
+
+        function scanInline(serialNo, orderId) {
+            // Check if serial number is not empty
+            if (!serialNo) {
+                userMessage.show("Error", 'Please enter a serial number');
+                return;
+            }
+            $('#scanBtnSubmit').prop('disabled', true);
+            // API call to fetch product details based on serial number
+            $.ajax({
+                url: '@Url.Action("Scan", "Pickup")', // Replace with actual Scan method URL
+                type: 'POST',
+                data: {
+                    serial: serialNo,
+                    orderId: orderId
+                },
+                success: function(response) {
+                    if (response.scannedItem) {
+                        let scannedItem = response.scannedItem;
+                        var curQty = parseFloat($('#orderQty').val()) || 0;
+                        let productId = scannedItem.productId;
+                        let weightValue = parseFloat(scannedItem.weightValue) || 0;
+                        var barcode = scannedItem.barcode;
+                        var epicorePartNo = scannedItem.epicorePartNo;
+                        var existingpartNum = $("#partNum").val();
+                        // Verify if same product
+                        if (existingpartNum == epicorePartNo) {
+                            // Verify if scanned qty is not exceeds the limit
+                            //if (weightValue <= curQty) {
+                                $("#scannedQty").val(weightValue)
+                            $('#scanBtnSubmit').prop('disabled', false);
+                            $("#allowvaryweight-field").val(scannedItem.allowVaryWeight);
+                            debugger
+                            if (scannedItem.allowVaryWeight) {
+                                $("#scannedQty").prop("readonly", true);
+                            } else {
+                                $("#scannedQty").prop("readonly", false);
+                            }
+                            //} else {
+                            //    userMessage.show("Warning", "Quantity exceeds the order quantity");
+                            //}
+                        } else {
+                            userMessage.show("Warning", "No matching product found!");
+                        }
+                    } else {
+                        $('#scanBtnSubmit').prop('disabled', true);
+                        userMessage.show("Error", 'No matching product found!');
+                    }
+                },
+                error: function() {
+                    userMessage.show("Error", 'Failed to fetch products.');
+                }
+            });
+        }
+        // End popup
+
+    });
+    // End new scan function
+    // Product search ends
+
+
+ function openPdfInModal(letterName) {
+     var url = '@Url.Action("PrintDocument", "Orders")' + '?id=' + encodeURIComponent('@Model.id') + '&letterName=' + encodeURIComponent(letterName);
+ // Open the modal
+ $('#pdfModal').modal('show');
+
+ // Set the iframe src to the PDF URL
+ $('#pdfFrame').attr('src', url);
+    }
+
+    function printLabel() {
+    var printContents = document.getElementById('labelPrint').outerHTML;
+
+    // Create a new window for printing
+    var printWindow = window.open('', '_blank', 'width=100mm');
+    printWindow.document.write(`
+    <html>
+        <head>
+            <title>Print Label</title>
+            <style>
+
+                /* Add any other styles you need for the print layout here */
+            </style>
+        </head>
+        <body>
+            ${printContents}
+        </body>
+    </html>
+`);
+
+    printWindow.document.close(); // Close the document to render the content
+    printWindow.focus(); // Focus on the new window
+
+    // Print the contents and close the window afterward
+    printWindow.print();
+    printWindow.close();
+}
+
+
+</script>
+
+<script type="text/javascript">
+    var modelData = @Html.Raw(Json.Encode(Model));
+    var checkItemReturnStatusUrl = '@Url.Content(Url.Action("CheckItemReturnStatus", "Orders"))';
+    var checkPrintRefundStatusUrl = '@Url.Content(Url.Action("CheckPrintRefundStatus", "Orders"))';
+
+
+
+</script>
+<script src="~/Scripts/OrderPrintFunctions.js"></script>

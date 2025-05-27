@@ -1,0 +1,215 @@
+﻿@model Hanodale.WebUI.Models.GridViewIndexModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+
+<!-- Hidden Variable -->
+<input type="hidden" id="alert-delete" value="@Html.GetGlobalResource("MSG_CONFIRM_DELETE")">
+<input type="hidden" class="mainPart" value="customer">
+<input type="hidden" class="table-congif" value="customer" data-columncount="@Model.columnCount" data-button="true" data-condition="false" data-extended-event-btn="false" data-disall="true" data-auto-hide-column="true" data-export-btn="true">
+<!-- Hidden Variable -->
+
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>
+            @Html.GetGlobalResource("PAGE_HEADER_MANAGE_CUSTOMER")
+        </h1>
+    </div>
+
+    <!-- Sync Customers Button -->
+    @if (Model.accessRight.canAdd && !Model.readOnly)
+    {
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
+            <button id="syncCustomersBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync Customers
+            </button>
+            <button id="syncCustomersPriceBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync Price List
+            </button>
+            <button id="syncDistrictsBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync Districts
+            </button>
+        </div>
+    }
+
+    @*@if (Model.accessRight.canAdd && !Model.readOnly)
+        {
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+                <ul id="sparks" class="">
+                    <li class="sparks-info">
+                        <button id="create-customer" data-url="Customer/Create" class="btn btn-sm btn-primary" type="button">
+                            <i class="fa fa-plus"></i>
+                            @Html.GetGlobalResource("BTN_CREATE_CUSTOMER")
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        }*@
+</div>
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="">
+        @Html.Action("GetCustomSearchPanel", "Customer")
+
+
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0"
+                 data-widget-editbutton="false"
+                 data-widget-deletebutton="false"
+                 data-widget-colorbutton="false"
+                 data-widget-sortable="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+                    <h2>@Html.GetGlobalResource("CUSTOMER_GRID_TITLE")</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table id="dt_customer" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    @if (Model.lstColumn != null)
+                                    {
+                                        foreach (var item in Model.lstColumn)
+                                        {
+                                            <th data-class="@(item.isExpandable? "expand":"")" data-hide="@(item.isExpandable? "":"phone,tablet")">@Html.GetGlobalResource(item.resourceKeyName)</th>
+                                        }
+                                    }
+                                    <th class="table-column-header" style="width: @(Model.gridViewButtonColumnWidth)px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+@Scripts.Render(bundles.scripts.common_index)
+<script>
+    $(document).ready(function() {
+            $('#syncCustomersBtn').on('click', function() {
+                // Disable button to prevent multiple clicks
+                $(this).prop('disabled', true);
+
+                // API call to sync customers
+                var apiUrl = '@Url.Action("SyncCustomers", "Customer")'; // Adjust the API endpoint as needed
+
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.success) {
+                            userMessage.show("Success", 'Customers synced successfully!');
+                            // Enable the button again after successful sync
+                            $('#syncCustomersBtn').prop('disabled', false);
+                        } else {
+                            userMessage.show("Error", response.message);
+                            // Enable the button again after successful sync
+                            $('#syncCustomersBtn').prop('disabled', false);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        userMessage.show("Error", 'An error occurred while syncing customers: ' + error);
+                        // Enable the button again even if there is an error
+                        $('#syncCustomersBtn').prop('disabled', false);
+                    }
+                });
+            });
+
+      $('#syncCustomersPriceBtn').on('click', function() {
+      // Disable button to prevent multiple clicks
+      $(this).prop('disabled', true);
+
+      // API call to sync customers
+      var apiUrl = '@Url.Action("SyncCustomersPriceList", "Customer")'; // Adjust the API endpoint as needed
+
+      $.ajax({
+          url: apiUrl,
+          type: 'POST',
+          success: function (response) {
+              if (response.success) {
+                  userMessage.show("Success", 'Customers price list synced successfully!');
+                  // Enable the button again after successful sync
+                  $('#syncCustomersPriceBtn').prop('disabled', false);
+              } else {
+                  userMessage.show("Error", response.message);
+                  // Enable the button again after successful sync
+                  $('#syncCustomersPriceBtn').prop('disabled', false);
+              }
+          },
+          error: function(xhr, status, error) {
+              userMessage.show("Error", 'An error occurred while syncing customers price list: ' + error);
+              // Enable the button again even if there is an error
+              $('#syncCustomersPriceBtn').prop('disabled', false);
+          }
+      });
+      });
+
+
+    $('#syncDistrictsBtn').on('click', function () {
+    // Disable button to prevent multiple clicks
+    $(this).prop('disabled', true);
+
+    // API call to sync customers
+    var apiUrl = '@Url.Action("SyncDistrictsList", "Customer")'; // Adjust the API endpoint as needed
+
+    $.ajax({
+        url: apiUrl,
+        type: 'POST',
+        success: function (response) {
+            if (response.success) {
+                userMessage.show("Success", 'Districts synced successfully!');
+                // Enable the button again after successful sync
+                $('#syncDistrictsBtn').prop('disabled', false);
+            } else {
+                userMessage.show("Error", response.message);
+                // Enable the button again after successful sync
+                $('#syncDistrictsBtn').prop('disabled', false);
+            }
+        },
+        error: function(xhr, status, error) {
+            userMessage.show("Error", 'An error occurred while syncing customers price list: ' + error);
+            // Enable the button again even if there is an error
+            $('#syncDistrictsBtn').prop('disabled', false);
+        }
+    });
+          });
+
+    });
+
+</script>
+
+
+<!-- Protected Script -->

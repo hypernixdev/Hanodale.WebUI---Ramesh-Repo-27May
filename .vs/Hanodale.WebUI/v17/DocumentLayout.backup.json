@@ -1,0 +1,179 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FA49F3DE-E24E-48B0-A339-E3200657D796}|Hanodale.DataAccessLayer\\Hanodale.DataAccess.csproj|C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\hanodale.dataaccesslayer\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA49F3DE-E24E-48B0-A339-E3200657D796}|Hanodale.DataAccessLayer\\Hanodale.DataAccess.csproj|solutionrelative:hanodale.dataaccesslayer\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\hanodale.webui\\controllers\\pickupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|solutionrelative:hanodale.webui\\controllers\\pickupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|c:\\users\\asus\\documents\\codewithmukesh\\hanodale.webui\\hanodale.webui\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|solutionrelative:hanodale.webui\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\hanodale.webui\\views\\orders\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|solutionrelative:hanodale.webui\\views\\orders\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\hanodale.webui\\views\\pickup\\orderpicking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|solutionrelative:hanodale.webui\\views\\pickup\\orderpicking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\hanodale.webui\\views\\pickup\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BEA0BA85-13B9-4E9E-97ED-580BF826584D}|Hanodale.WebUI\\Hanodale.WebUI.csproj|solutionrelative:hanodale.webui\\views\\pickup\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA359F87-8627-467F-BA9D-E95C1B5B0DC4}|Hanodale.BusinessLogic\\Hanodale.BusinessLogic.csproj|C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\hanodale.businesslogic\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA359F87-8627-467F-BA9D-E95C1B5B0DC4}|Hanodale.BusinessLogic\\Hanodale.BusinessLogic.csproj|solutionrelative:hanodale.businesslogic\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.DataAccessLayer\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "Hanodale.DataAccessLayer\\Services\\OrderService.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.DataAccessLayer\\Services\\OrderService.cs",
+              "RelativeToolTip": "Hanodale.DataAccessLayer\\Services\\OrderService.cs",
+              "ViewState": "AgIAAB4JAAAAAAAAAAAswCYJAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T03:40:37.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "Hanodale.WebUI\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "Hanodale.WebUI\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAACMGAAAAAAAAAAAvwDAGAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T04:10:53.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.BusinessLogic\\Interfaces\\IProductService.cs",
+              "RelativeDocumentMoniker": "Hanodale.BusinessLogic\\Interfaces\\IProductService.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.BusinessLogic\\Interfaces\\IProductService.cs",
+              "RelativeToolTip": "Hanodale.BusinessLogic\\Interfaces\\IProductService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwBQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T08:17:54.413Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PickupController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Controllers\\PickupController.cs",
+              "RelativeDocumentMoniker": "Hanodale.WebUI\\Controllers\\PickupController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Controllers\\PickupController.cs",
+              "RelativeToolTip": "Hanodale.WebUI\\Controllers\\PickupController.cs",
+              "ViewState": "AgIAACUEAAAAAAAAAADwvysEAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T04:10:53.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Views\\Orders\\Create.cshtml",
+              "RelativeDocumentMoniker": "Hanodale.WebUI\\Views\\Orders\\Create.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Views\\Orders\\Create.cshtml",
+              "RelativeToolTip": "Hanodale.WebUI\\Views\\Orders\\Create.cshtml",
+              "ViewState": "AgIAAOcPAAAAAAAAAAAAAPIPAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-25T03:38:45.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Views\\Pickup\\Index.cshtml",
+              "RelativeDocumentMoniker": "Hanodale.WebUI\\Views\\Pickup\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Views\\Pickup\\Index.cshtml",
+              "RelativeToolTip": "Hanodale.WebUI\\Views\\Pickup\\Index.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAADkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-25T03:06:03.879Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderPicking.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Views\\Pickup\\OrderPicking.cshtml",
+              "RelativeDocumentMoniker": "Hanodale.WebUI\\Views\\Pickup\\OrderPicking.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\CodeWithMukesh\\Hanodale.WebUI\\Hanodale.WebUI\\Views\\Pickup\\OrderPicking.cshtml",
+              "RelativeToolTip": "Hanodale.WebUI\\Views\\Pickup\\OrderPicking.cshtml",
+              "ViewState": "AgIAAIkDAAAAAAAAAAAAAJQDAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-25T00:37:19.377Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 121,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

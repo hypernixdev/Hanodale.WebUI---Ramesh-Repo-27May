@@ -1,0 +1,82 @@
+﻿@model DateTime?
+<div class="input">
+    @{
+        
+        ViewData.Add("placeholder", "dd/MM/yyyy");
+        var idStr = ViewBag.id;
+        var nameStr = ViewBag.name;
+        var idIsfill = false;
+        if (!string.IsNullOrEmpty(nameStr))
+        {
+            idIsfill = true;
+        }
+
+        var displayFormat="hh:mm tt";
+        string classes = ViewBag.Class;
+        var className = "";
+        var dateClassName = "";
+        if (classes != null && classes != "")
+        {
+            if (classes.Contains("timepicker24Format"))
+            {
+                dateClassName = " datepicker24Format ";
+                className = " timepicker24Format ";
+                displayFormat = "H:mm";
+            }
+        }
+    }
+    @if (idIsfill)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <i class="icon-append fa fa-calendar"></i>
+
+            @* 
+
+    @Html.TextBox("", value, new { @class = "form-control datepicker", type = "text",  data_date_format =System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower().Replace("yyyy","yy"),
+    data_date_language = System.Globalization.CultureInfo.CurrentCulture.Name})*@
+
+            @*      @Html.TextBox("", (Model.HasValue ? Model.Value.ToString("dd/MM/yyyy") : string.Empty), new
+{
+    @class = "form-control datepicker",
+    data_date_format = "dd/mm/yy",//System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower(),
+    data_date_language = "en-GB", //System.Globalization.CultureInfo.CurrentCulture.Name,
+    placeholder = "dd/mm/yyyy",//System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower()
+})*@
+
+            @*@Html.TextBoxFor(model => model,(Model.HasValue ? Model.Value.Date.ToString("dd/MM/yyyy") : string.Empty), ViewData)*@
+            @Html.TextBox("", (Model.HasValue ? Model.Value.Date.ToString("dd/MM/yyyy") : string.Empty), new { @class = "datepicker form-control date-picker "+dateClassName, @Name = nameStr, id = idStr, placeholder = "dd/MM/yyyy", data_val = "true", data_val_date = "Please enter date & time", })
+        </div>
+        <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div> <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            @Html.TextBox("Time", (Model.HasValue ? Model.Value.ToString(displayFormat) : string.Empty), new {   @class = "timepicker form-control "+className, @Name = nameStr + ".Time", id = idStr + ".Time", placeholder = displayFormat, data_val = "true"})
+            <i class="icon-append fa fa-clock-o"></i>
+        </div>
+    }
+    else
+    {
+        
+
+            @* 
+
+    @Html.TextBox("", value, new { @class = "form-control datepicker", type = "text",  data_date_format =System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower().Replace("yyyy","yy"),
+    data_date_language = System.Globalization.CultureInfo.CurrentCulture.Name})*@
+
+            @*      @Html.TextBox("", (Model.HasValue ? Model.Value.ToString("dd/MM/yyyy") : string.Empty), new
+{
+    @class = "form-control datepicker",
+    data_date_format = "dd/mm/yy",//System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower(),
+    data_date_language = "en-GB", //System.Globalization.CultureInfo.CurrentCulture.Name,
+    placeholder = "dd/mm/yyyy",//System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower()
+})*@
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <i class="icon-append fa fa-calendar"></i>
+            @Html.TextBox("", (Model.HasValue ? Model.Value.Date.ToString("dd/MM/yyyy") : string.Empty), new { @class = "datepicker form-control date-picker "+dateClassName, placeholder = "dd/MM/yyyy", data_val = "true", data_val_date = "Please enter date & time", })
+        </div>
+        <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div> 
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+             <i class="icon-append fa fa-clock-o"></i>
+            @Html.TextBox("Time", (Model.HasValue ? Model.Value.ToString(displayFormat) : string.Empty), new {  @class = "timepicker form-control "+className, placeholder = displayFormat, data_val = "true",})
+        </div>
+    }
+
+</div>
+

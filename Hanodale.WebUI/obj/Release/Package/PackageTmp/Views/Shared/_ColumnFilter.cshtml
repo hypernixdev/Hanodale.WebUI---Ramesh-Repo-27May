@@ -1,0 +1,101 @@
+﻿@model List<string>
+@{
+    Layout = null;
+    int itemIndex = 0;
+}
+<div class="btn-toolbar" style="padding: 5px;">
+    <div class="btn-group">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+            Column Filter
+						<span class="icon-caret-down icon-on-right"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+
+            @foreach (var item in @Model)
+            {
+                <li>
+                    <label class="toggle-vis" data-column='@Model.IndexOf(item)'>
+                        <input name="form-field-checkbox" class="ace" checked="checked" type="checkbox">
+                        <span class="lbl">@item</span>
+                    </label>
+                </li>
+            }
+
+        </ul>
+    </div>
+    <!-- /btn-group -->
+
+   @* <div class="btn-group">
+        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+            <span class="show-daterange">August 29, 2014 - August 29, 2014</span>
+            <span class="icon-caret-down icon-on-right"></span>
+        </button>
+
+
+        <ul class="dropdown-menu date-range" style="width: 100%">
+            <li>
+                <a href="#" data-id="0">All</a>
+            </li>
+            <li>
+                <a href="#" data-id="1">Today</a>
+            </li>
+            <li>
+                <a href="#" data-id="2">Yesterday</a>
+            </li>
+            <li>
+                <a href="#" data-id="3">Last 7 Days</a>
+            </li>
+            <li>
+                <a href="#" data-id="4">Last 30 Days</a>
+            </li>
+            <li>
+                <a href="#" data-id="5">This Month</a>
+            </li>
+            <li>
+                <a href="#" data-id="6">Last Month</a>
+            </li>
+            <li>
+                <a href="#" data-id="7">This Year</a>
+            </li>
+            <li>
+                <a href="#" data-id="8">Last Year</a>
+            </li>
+            <li>
+                <a href="#" onclick="javascript:dateRange.showDateRange();" data-id="9">Custom Range</a>
+            </li>
+            <li class="divider"></li>
+
+            <li>
+                <a href="#">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5">
+                            <span>From</span>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-5">
+                            <span>To</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5">
+                            <input id="date-from" class="input-sm" disabled="disabled" placeholder="dd/mm/yyyy" type="text">
+                        </div>
+
+                        <div class="col-xs-6 col-sm-5">
+                            <input id="date-to" class="input-sm" disabled="disabled" placeholder="dd/mm/yyyy" type="text">
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>*@
+
+    <div class="btn-group col-xs-6 col-sm-4 show-custom-date" style="display:none;" >
+        <div class="input-group ">
+            <span class="input-group-addon">
+                <i class="icon-calendar bigger-110"></i></span>
+            <input class="form-control" name="date-range-picker" placeholder="Select date range" id="date-range-picker" type="text">
+        </div>
+    </div>
+</div>

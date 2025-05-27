@@ -1,0 +1,128 @@
+13/12/2024 10:17:05 PM - The ConnectionString property has not been initialized. | 
+13/12/2024 10:17:05 PM - Error! The ConnectionString property has not been initialized.
+13/12/2024 10:18:33 PM - The ConnectionString property has not been initialized. | 
+13/12/2024 10:18:33 PM - Error! The ConnectionString property has not been initialized.
+13/12/2024 10:19:23 PM - The ConnectionString property has not been initialized. | 
+13/12/2024 10:21:56 PM - The ConnectionString property has not been initialized. | 
+13/12/2024 10:23:15 PM - The ConnectionString property has not been initialized. | 
+13/12/2024 10:23:15 PM - Error! The ConnectionString property has not been initialized.
+13/12/2024 10:26:59 PM - Error! Cannot find column [Customer].
+13/12/2024 10:52:33 PM - Sync EpiCorePosting
+13/12/2024 10:52:40 PM - All sync operations completed.
+13/12/2024 10:52:40 PM - -------------------------------------------------------------------------
+14/12/2024 06:20:44 AM - Sync EpiCorePosting
+14/12/2024 06:20:53 AM - All sync operations completed.
+14/12/2024 06:20:53 AM - -------------------------------------------------------------------------
+14/12/2024 06:21:18 AM - Sync EpiCorePosting
+14/12/2024 06:21:22 AM - All sync operations completed.
+14/12/2024 06:21:22 AM - -------------------------------------------------------------------------
+14/12/2024 06:28:15 AM - Sync EpiCorePosting
+14/12/2024 06:28:23 AM - All sync operations completed.
+14/12/2024 06:28:23 AM - -------------------------------------------------------------------------
+14/12/2024 06:32:52 AM - Error! String reference not set to an instance of a String.
+Parameter name: s
+14/12/2024 06:34:40 AM - Sync EpiCorePosting
+14/12/2024 06:34:47 AM - All sync operations completed.
+14/12/2024 06:34:47 AM - -------------------------------------------------------------------------
+14/12/2024 06:35:30 AM - Sync EpiCorePosting
+14/12/2024 06:35:41 AM - Sync Customer Started
+14/12/2024 06:36:07 AM - Task11:District | Successfully synced all data
+14/12/2024 06:36:11 AM - Task10:Brand | Successfully synced all data
+14/12/2024 06:36:32 AM - Task13:Plant | Successfully synced all data
+14/12/2024 06:37:53 AM - Sync EpiCorePosting
+14/12/2024 06:38:01 AM - Sync Customer Started
+14/12/2024 06:39:47 AM - Task2:Customer | Successfully synced all data
+14/12/2024 06:39:47 AM - All sync operations completed.
+14/12/2024 06:39:47 AM - -------------------------------------------------------------------------
+14/12/2024 06:41:00 AM - Sync EpiCorePosting
+14/12/2024 06:41:00 AM - Sync Customer Started
+14/12/2024 06:50:32 AM - Sync Customer Started
+14/12/2024 06:52:19 AM - Sync Customer completed. Successfully synced all data
+14/12/2024 06:52:19 AM - All tasks completed.
+14/12/2024 06:56:21 AM - Sync Customer Started
+14/12/2024 06:56:21 AM - Sync District Started
+14/12/2024 06:57:04 AM - Sync District completed. Successfully synced all data
+14/12/2024 06:58:28 AM - Sync Customer completed. Successfully synced all data
+14/12/2024 06:58:28 AM - All tasks completed.
+14/12/2024 07:00:02 AM - All tasks completed.
+14/12/2024 07:00:35 AM - Sync Customer Started
+14/12/2024 07:02:21 AM - Sync Customer completed. Successfully synced all data
+14/12/2024 07:02:21 AM - Sync District Started
+14/12/2024 07:02:42 AM - Sync District completed. Successfully synced all data
+14/12/2024 07:02:42 AM - All tasks completed.
+17/12/2024 06:31:26 AM - Sync EpiCorePosting
+17/12/2024 06:31:26 AM - Sync Customer Started
+19/12/2024 08:52:16 PM - 19/12/2024 8:52:16 PM: Sync Program scanning Started
+19/12/2024 08:52:16 PM - Could not find stored procedure 'Scheduler_GetSettings'. | 
+19/12/2024 08:52:17 PM - Error! Could not find stored procedure 'Scheduler_GetSettings'.
+19/12/2024 08:53:05 PM - 19/12/2024 8:53:05 PM: Sync Program scanning Started
+19/12/2024 08:53:05 PM - Could not find stored procedure 'Scheduler_GetSettings'. | 
+19/12/2024 08:53:05 PM - Error! Could not find stored procedure 'Scheduler_GetSettings'.
+19/12/2024 08:53:54 PM - 19/12/2024 8:53:54 PM: Sync Program scanning Started
+19/12/2024 08:54:03 PM - Sync Customer Started
+19/12/2024 09:02:50 PM - Sync Customer completed. Successfully synced all data
+19/12/2024 09:02:50 PM - Sync District Started
+19/12/2024 09:02:53 PM - Sync District completed. Successfully synced all data
+19/12/2024 09:02:53 PM - All tasks completed.
+19/12/2024 09:07:16 PM - 19/12/2024 9:07:16 PM: Sync Program scanning Started
+19/12/2024 09:07:20 PM - Sync District Started
+19/12/2024 09:07:27 PM - Sync District completed. Successfully synced all data
+19/12/2024 09:07:40 PM - All tasks completed.
+27/12/2024 06:42:27 AM - 27/12/2024 6:42:27 AM: Sync Program scanning Started
+27/12/2024 06:42:27 AM - All tasks completed.
+29/12/2024 07:26:29 AM - 29/12/2024 7:26:29 AM: Sync Program scanning Started
+29/12/2024 07:26:40 AM - Sync District Started
+29/12/2024 07:27:51 AM - 29/12/2024 7:27:51 AM: Sync Program scanning Started
+29/12/2024 07:27:54 AM - Sync District Started
+29/12/2024 07:31:36 AM - 29/12/2024 7:31:36 AM: Sync Program scanning Started
+29/12/2024 07:31:39 AM - Sync District Started
+29/12/2024 07:36:32 AM - 29/12/2024 7:36:32 AM: Sync Program scanning Started
+29/12/2024 07:36:34 AM - Sync District Started
+29/12/2024 07:36:38 AM - Sync Order Started
+29/12/2024 07:37:02 AM - Sync District completed. Successfully synced all data
+29/12/2024 07:37:02 AM - All tasks completed.
+29/12/2024 11:03:37 AM - 29/12/2024 11:03:37 AM: Sync Program scanning Started
+29/12/2024 11:03:37 AM - All tasks completed.
+29/12/2024 11:04:08 AM - 29/12/2024 11:04:07 AM: Sync Program scanning Started
+29/12/2024 11:04:08 AM - All tasks completed.
+29/12/2024 11:04:10 AM - 29/12/2024 11:04:10 AM: Sync Program scanning Started
+29/12/2024 11:04:11 AM - All tasks completed.
+29/12/2024 11:04:53 AM - 29/12/2024 11:04:53 AM: Sync Program scanning Started
+29/12/2024 11:06:06 AM - All tasks completed.
+29/12/2024 11:06:12 AM - 29/12/2024 11:06:12 AM: Sync Program scanning Started
+29/12/2024 11:06:19 AM - Sync District Started
+29/12/2024 11:06:20 AM - Sync Order Started
+29/12/2024 11:06:44 AM - Sync Order completed. Successfully synced all data
+29/12/2024 11:06:46 AM - Sync District completed. Successfully synced all data
+29/12/2024 11:06:46 AM - All tasks completed.
+29/12/2024 11:08:35 AM - 29/12/2024 11:08:35 AM: Sync Program scanning Started
+29/12/2024 11:08:39 AM - Sync District Started
+29/12/2024 11:08:39 AM - Sync Order Started
+29/12/2024 11:09:03 AM - Sync District completed. Successfully synced all data
+29/12/2024 11:09:03 AM - Sync Order completed. Successfully synced all data
+29/12/2024 11:09:03 AM - All tasks completed.
+29/12/2024 11:16:22 AM - 29/12/2024 11:16:22 AM: Sync Program scanning Started
+29/12/2024 11:16:22 AM - Sync District Started
+29/12/2024 11:16:22 AM - Sync Order Started
+29/12/2024 11:16:46 AM - Sync Order completed. Successfully synced all data
+29/12/2024 11:16:46 AM - Sync District completed. Successfully synced all data
+29/12/2024 11:16:46 AM - All tasks completed.
+29/12/2024 11:24:02 AM - 29/12/2024 11:24:02 AM: Sync Program scanning Started
+29/12/2024 11:24:02 AM - All tasks completed.
+31/12/2024 08:49:44 AM - 31/12/2024 8:49:44 AM: Sync Program scanning Started
+31/12/2024 08:49:44 AM - All tasks completed.
+31/12/2024 08:49:51 AM - 31/12/2024 8:49:51 AM: Sync Program scanning Started
+31/12/2024 08:49:51 AM - All tasks completed.
+31/12/2024 08:50:29 AM - 31/12/2024 8:50:29 AM: Sync Program scanning Started
+31/12/2024 08:59:04 AM - Sync Order Started
+31/12/2024 08:59:04 AM - Sync Order completed. Successfully synced all data
+31/12/2024 03:14:00 PM - 31/12/2024 3:14:00 PM: Sync Program scanning Started
+31/12/2024 03:19:00 PM - Sync Order Started
+31/12/2024 03:19:22 PM - Sync Order completed. Successfully synced all data
+31/12/2024 03:19:22 PM - All tasks completed.
+31/12/2024 03:39:49 PM - 31/12/2024 3:39:49 PM: Sync Program scanning Started
+31/12/2024 03:43:51 PM - 31/12/2024 3:43:51 PM: Sync Program scanning Started
+31/12/2024 04:19:18 PM - Sync Order Started
+31/12/2024 04:19:20 PM - Sync Order completed. Successfully synced all data
+31/12/2024 04:58:46 PM - Sync Order Started
+31/12/2024 04:59:00 PM - Sync Order completed. Successfully synced all data

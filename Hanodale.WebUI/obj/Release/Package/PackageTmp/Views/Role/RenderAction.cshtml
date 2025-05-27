@@ -1,0 +1,23 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+@if (Model.canView)
+{
+    <span class="view-role btn btn-ribbon " data-url="ROLE_ID" title="View" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye "></i>
+    </span>
+}
+@if (Model.canEdit)
+{
+    <span id="pencil" class="btn btn-ribbon edit-role" data-url="ROLE_ID" data-placement="bottom" title="Edit" data-rel="tooltip" data-container="body">
+        <i class="fa fa-pencil-square-o"></i>
+    </span>
+}
+@if (Model.canDelete)
+{
+    <span id="trash" class="btn btn-ribbon delete-role" data-url="ROLE_ID" data-placement="bottom" title="Delete" data-rel="tooltip" data-container="body">
+        <i class="fa fa-trash-o "></i>
+    </span>
+}

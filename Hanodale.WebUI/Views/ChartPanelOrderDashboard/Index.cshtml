@@ -1,0 +1,86 @@
+﻿@model Hanodale.WebUI.Models.ChartPanelOrderDashboardModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+}
+<section id="widget-grid" class="">
+    @Html.HiddenFor(m => m.chartType_Id)
+    <div class="row">
+        <div id="message" class="alert alert-success" style="display: none"></div>
+        <!--<article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">-->
+        <!-- Widget ID (each widget will need unique ID)-->
+        <!-- end widget -->
+        <!--<div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+
+            <header role="heading">
+                <div class="jarviswidget-ctrls" role="menu"><a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a></div>
+
+                <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                <h2>@Resources.DASHBOARD_CHART </h2>
+
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+            </header>-->
+        <!-- widget div-->
+        <!--<div role="content">-->
+        <!-- widget edit box -->
+        <!--<div class="jarviswidget-editbox">-->
+        <!-- This area used as dropdown edit box -->
+        <!--</div>-->
+        <!-- end widget edit box -->
+        <!-- widget content -->
+        <!--<div class="widget-body no-padding">
+
+
+            <fieldset>
+                <div class="smart-form">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.chartType_Id, new { @class = "col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label no-required", })
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                            <div class="clearfix">
+                                <label class="select">
+                                    @Html.EditorFor(model => model.chartType_Id, new { @class = "form-control multipleSelect", dataValue = Model.lstChartType, nullable = true })
+                                    @Html.ValidationMessageFor(m => m.chartType_Id)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>-->
+        <!-- end widget content -->
+        <!--</div>-->
+        <!-- end widget div -->
+        <!--</div>
+        </article>-->
+
+
+    </div>
+
+
+</section>
+
+<div id="mainDashboardPlaceholder">
+</div>
+@Scripts.Render(bundles.scripts.common_add_edit)
+<script>
+    $(document).ready(function () {
+        //window.onload = function WindowLoad(event) {
+        LoadChartContent();
+        //}
+    })
+
+    $('#chartType_Id').on('change', function () {
+        LoadChartContent();
+    })
+
+    function LoadChartContent() {
+        var url = "@Url.Action("DrawChartDetail", "ChartPanelOrderDashboard")";
+        var chartType_Id = $('#chartType_Id').val();
+        var param = { startDate: "", endDate: "", chartType_Id: chartType_Id, section: "" }
+        navigate.viewContainerByParameter(url, param, $("#mainDashboardPlaceholder"));
+    }
+</script>
+

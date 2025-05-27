@@ -1,0 +1,1079 @@
+@model Hanodale.WebUI.Models.ViewOrderModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<style>
+    .table thead tr th, tbody tr td {
+        word-break: normal;
+    }
+</style>
+<div class="container-fluid">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>
+            View Order
+        </h1>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="orderNo">Order No</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="orderNo" value="@Html.Raw(Model.orderNum)" disabled>
+            </div>
+        </div>
+        @{
+            var customers = ViewBag.Customers as List<Hanodale.Domain.DTOs.Customers>;
+        }
+        <div class="col-md-4">
+            <label for="customer">Customer</label>
+            <div class="input-group">
+                <select class="form-control selectCustomer2" id="customer" disabled>
+                    <option value="@Model.customer_Id">@Model.customerName</option>
+                </select>
+                @*<span class="input-group-append">
+                        <button style="margin:0px; padding: 0px 12px;" class="btn btn-success" id="btnCustomerPicker" type="button">Browse</button>
+                    </span>*@
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="priceTier">Price Tier</label>
+            <select class="form-control" id="priceTier" disabled>
+                <option>Select Price Tier</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="shipTo">Ship To</label>
+            <select class="form-control" id="shipTo" disabled>
+                <option>Select Ship To</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="orderDate">Order Date</label>
+            <input type="text" class="form-control" id="orderDate2" placeholder="dd/MM/yyyy" value="@Model.orderDate" disabled>
+        </div>
+    </div>
+
+    <!-- New row for Submitted by and Submitted Date -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="submittedBy">Submitted By</label>
+            <span class="form-control" id="submittedBy" disabled>System Admin</span>
+        </div>
+        <div class="col-md-4">
+            <label for="submittedDate">Submitted Date</label>
+            <span class="form-control" id="submittedDate" disabled>@Model.orderDate</span>
+        </div>
+        <div class="col-md-4">
+            <label for="submittedDate">Current Status</label>
+            <span class="form-control" id="submittedDate" disabled>@Model.orderStatus</span>
+        </div>
+    </div>
+
+    <div class="row mb-3 align-items-end">
+        <div class="col-md-6">
+            <h4>Product List</h4>
+        </div>
+        @*<div class="col-md-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Scan</span>
+                    </div>
+                    <input type="text" class="form-control" id="productSearch">
+                    <div class="input-group-append2">
+                        <button class="btn btn-success" type="button">Add</button>
+                        <button class="btn btn-primary" type="button" id="btnAdd">Browse</button>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+
+    <!-- Product search starts -->
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable nPadding productPicker" style="display:none;">
+
+        <div class="jarviswidget jarviswidget-sortable" id="wid-id-110" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+            <header role="heading">
+                <div class="jarviswidget-ctrls" role="menu">
+                    <a href="javascript:void(0);" class="button-icon closeProductPicker" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-times "></i></a>
+                </div>
+                <h2>Search Panel </h2>
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+            </header>
+
+            <!-- widget div-->
+            <div role="content">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="searchPartNo">Part No</label>
+                                <input type="text" class="form-control" id="searchPartNo" placeholder="Enter Part No">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchCode">Code</label>
+                                <input type="text" class="form-control" id="searchCode" placeholder="Enter Code">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchDesc">Description</label>
+                                <input type="text" class="form-control" id="searchDesc" placeholder="Enter Description">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <button class="btn btn-primary" id="btnSearch">Search</button>
+                                <button class="btn btn-secondary" id="btnReset">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="dt_product_picker" class="table table-striped table-bordered" style="width: 100%">
+                        <thead class="bg-light">
+                            <tr>
+                                <th><input type="checkbox" id="selectAll"></th> <!-- Header Checkbox -->
+                                <th>Part No</th>
+                                <th>Part Name</th>
+                                <th>Group</th>
+                                <th>UOM</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- More rows as needed -->
+                        </tbody>
+                    </table>
+                    <div class="row mt-2 mb-2 ml-2">
+                        <div class="col-12">
+                            <button class="btn btn-primary" id="btnAddToOrders">Add to order</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- content end -->
+        </div>
+    </article>
+
+    <!-- end product search -->
+
+    <div class="table-responsive d-none d-md-block">
+        <table id="dt2_product" class="table table-striped table-bordered">
+            <thead class="bg-light">
+                <tr>
+                    <th>Part No</th>
+                    <th>Part Name</th>
+                    <th>Unit Price</th>
+                    <th>Group</th>
+                    <th>UOM</th>
+                    <th>Order Qty</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    var total = item.orderQty * item.unitPrice;
+                    <tr>
+                        <td><span data-id="@item.product_Id" class="product-id-field">@item.partNum</span></td>
+                        <td><span>@item.lineDesc</span></td>
+                        <td><span data-field="price">@item.unitPrice</span></td>
+                        <td><span>@item.prodGroup</span></td>
+                        <td><span>@item.ium</span></td>
+                        <td><input type="number" class="form-control" data-field="orderQty" value="@item.orderQty" disabled /></td>
+                        <td><span data-field="total">@total.ToString("F2")</span></td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive d-block d-md-none">
+        <table id="dt2_product_mobile" class="table table-striped table-bordered">
+            <thead class="bg-light">
+                <tr>
+                    <th class="all">Part No</th>
+                    <th class="none">Part Name</th>
+                    <th class="none">Unit Price</th>
+                    <th class="none">Group</th>
+                    <th class="none">UOM</th>
+                    <th class="all">Order Qty</th>
+                    <th class="all">Total</th>
+                    <th class="none">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    var total = item.orderQty * item.unitPrice;
+                    <tr>
+                        <td><span data-id="@item.product_Id" class="product-id-field">@item.partNum</span></td>
+                        <td><span>@item.lineDesc</span></td>
+                        <td><span data-field="price">@item.unitPrice</span></td>
+                        <td><span>@item.prodGroup</span></td>
+                        <td><span>@item.ium</span></td>
+                        <td><input type="number" class="form-control" data-field="orderQty" value="@item.orderQty" disabled /></td>
+                        <td><span data-field="total">@total.ToString("F2")</span></td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6 offset-md-6 text-right">
+            <h4>Order Total: <span id="orderTotal">@Model.docOrderAmt</span></h4>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <button id="btnReceipt" type="button" onclick="loadTableData('receipt',modelData)">Thermal Print</button>
+            <button id="btnInvoice" style="visibility:hidden" type="button" onclick="openPdfInModal('invoice')">Print</button>
+        </div>
+        <input type="hidden" id="form-congif" value="pickup" data-mtc-btn="true" data-readonly="False">
+        <div class="col-md-8 text-right">
+            <button id="back-pickup" class="btn btn-sm btn-primary" type="button" data-url="Pickup/Index">
+                <i class="fa fa-mail-reply"></i>
+                Back
+            </button>
+        </div>
+    </div>
+
+    @*
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4>Payment</h4>
+                    <button id="addPaymentBtn" class="btn btn-primary btn-sm">Add Payment Type</button>
+                </div>
+                <table id="paymentTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Payment Type</th>
+                            <th>Bank</th>
+                            <th>Reference No</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Payment rows will be added here dynamically -->
+                        <tr>
+                            <td>
+                                <select class="form-control paymentType">
+                                    <option value="Cash" selected>Cash</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Debit Card">Debit Card</option>
+                                    <option value="Online Banking">Online Banking</option>
+                                    <option value="Online Banking">Others</option>
+                                </select>
+                                <input type="hidden" name="OrderId" value="@Model.id" class="orderId" />
+                            </td>
+                            <td><input type="text" class="form-control bank"></td>
+                            <td><input type="text" class="form-control referenceNo"></td>
+                            <td><input type="number" class="form-control amount" step="0.01"></td>
+                            <td><button class="btn btn-danger btn-sm removePayment"><i class="fa fa-times"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-right mb-2">
+                    <strong>Total (RM): <span id="paymentTotal">0.00</span></strong>
+                </div>
+                <div class="text-right">
+                    <button id="completePaymentBtn" class="btn btn-success">Complete Payment</button>
+                </div>
+            </div>
+        </div>
+    *@
+
+</div>
+
+@*
+    <!-- Modal for Product Picker -->
+    <div class="modal fade" id="productPickerModal" tabindex="-1" role="dialog" aria-labelledby="productPickerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productPickerModalLabel">Select Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table id="dt_product_picker" class="table table-striped table-bordered" style="width: 100%">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th><input type="checkbox" id="selectAll"></th> <!-- Header Checkbox -->
+                                    <th>Part No</th>
+                                    <th>Part Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Available Qty</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th><input type="text" class="form-control filter-input" placeholder="Search Part No"></th>
+                                    <th><input type="text" class="form-control filter-input" placeholder="Search Part Name"></th>
+                                    <th><input type="text" class="form-control filter-input" placeholder="Search Category"></th>
+                                    <th><input type="text" class="form-control filter-input" placeholder="Search Price"></th>
+                                    <th><input type="text" class="form-control filter-input" placeholder="Search Qty"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" class="product-checkbox"></td>
+                                    <td>PN001</td>
+                                    <td>Product 1</td>
+                                    <td>Category A</td>
+                                    <td>50.00</td>
+                                    <td>100</td>
+                                </tr>
+                                <!-- More rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Select Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal for product -->
+*@
+<!-- Modal for Customer Picker -->
+<div class="modal fade" id="customerPickerModal" tabindex="-1" role="dialog" aria-labelledby="customerPickerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerPickerModalLabel">Select Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table id="dt_customer_picker" class="table table-striped table-bordered" style="width: 100%">
+                        <thead class="bg-light">
+                            <tr>
+                                <th><input type="checkbox" id="selectAllCustomers"></th> <!-- Header Checkbox -->
+                                <th>Customer ID</th>
+                                <th>Customer Name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search ID"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Name"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Contact"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Email"></th>
+                                <th><input type="text" class="form-control filter-input" placeholder="Search Address"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="customer-checkbox"></td>
+                                <td>CUST001</td>
+                                <td>Customer 1</td>
+                                <td>123-456-7890</td>
+                                <td>customer1@example.com</td>
+                                <td>123 Main St</td>
+                            </tr>
+                            <!-- More rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Select Customer</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" value="@Url.Action("UpdateOrderStatus", "Orders")" id="UpdateOrderStatusUrl" />
+    <input type="hidden" value="@Url.Action("SubmitOrder", "Orders")" id="SubmitOrderUrl" />
+    <input type="hidden" value="@Url.Action("UpdateOrderPayments", "Orders")" id="UpdateOrderPaymentsUrl" />
+    <input type="hidden" value="@Url.Action("GetProductByPartNum", "Product")" id="GetProductByPartNumUrl" />
+    <input type="hidden" value="@Url.Action("SearchCustomers", "Customer")" id="SearchCustomersUrl" />
+    <input type="hidden" value="@Url.Action("SearchProducts", "Product")" id="SearchProductsUrl" />
+
+</div>
+
+
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="width:100mm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 0; margin: 0;">
+                <div id="labelPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
+                        <div class="qrCodePrint"></div>
+                        <table id="data-table" style="text-align:center;">
+                            <!--<thead>
+                                <tr>
+                                    <th colspan="3" style="width: 98%; text-align: center">Lucky Frozen Sdn Bhd</th>-->
+                            <!-- Merging 3 columns into one -->
+                            <!--</tr>
+                                <tr>
+                                    <th style="width: 59%; text-align: left;">Product</th>
+                                    <th style="width: 20%; text-align: center">Qty</th>
+                                    <th style="width:20%; text-align:right">Price</th>
+                                </tr>
+                            </thead>-->
+                            <tbody>
+                                <!-- Dynamic data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary" onclick="printReceipt('@Model.id', '@Model.orderStatus')">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- end modal for customer -->
+
+<style>
+    .form-control, .input-group-text, .btn {
+        border-radius: 0;
+    }
+
+    .table thead th {
+        background-color: #e9ecef;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .fade {
+        opacity: 1;
+    }
+
+    .modal-open #header1 {
+        z-index: 1;
+    }
+
+    /* Ensures table takes full width inside the modal */
+    .modal .table-responsive {
+        width: 100%;
+    }
+
+    /* Ensures table stretches to fill the available space */
+    .modal .table {
+        width: 100%;
+    }
+
+    .dataTables_filter [type='search'] {
+        width: auto !important;
+    }
+
+    .product-checkbox {
+        margin-left: 7px;
+    }
+
+    .selectCustomer {
+        margin: 0px;
+        padding: 0px;
+        border: none;
+    }
+</style>
+
+
+<style>
+    @@media print {
+        #labelPrint {
+            transform: scale(8.0);
+            transform-origin: top left;
+            margin: 0;
+            padding: 0;
+            zoom: 80%;
+        }
+
+        body {
+            background: none;
+        }
+        /* If you have any specific classes or IDs you want to hide, add them here */
+        header, footer, .no-print {
+            display: none;
+        }
+    }
+</style>
+
+
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<script>
+    $(document).ready(function () {
+
+    function addOrUpdateProductRow(product, desktop_table, mobile_table) {
+        // Check if a row with the same product ID already exists
+        var existingRow = $('#dt2_product tbody tr td').find('span[data-id="' + product.id + '"]');
+        var orderQty = product.orderQty ? parseInt(product.orderQty) : 1;
+        var orderQtyExists = product.orderQty ? true : false;
+        if (existingRow.length > 0) {
+            var existingTr = existingRow.parents("tr")
+            // If the product already exists, increase the order quantity
+            var qtyInput = existingTr.find('input[data-field="orderQty"]');
+            var currentQty = parseFloat(qtyInput.val());
+            if (orderQtyExists) {
+                qtyInput.val(orderQty);
+            } else {
+                qtyInput.val(currentQty + 1); // Increment the quantity by 1
+            }
+            updateTotal(existingTr); // Update the total for this row
+        } else {
+
+            var rows = [
+                `<span data-id="${product.id}" class="product-id-field">${product.partNumber}</span>`,
+                `<span>${product.description}</span>`,
+                `<span data-field="price">${product.unitPrice || ''}</span>`,
+                `<span>${product.prodGrup_Description}</span>`,
+                `<span>${product.part_IUM}</span>`,
+                `<input type="number" class="form-control" data-field="orderQty" value="${orderQty}">`,
+                `<span data-field="total">${product.unitPrice || ''}</span>`,
+                `<button class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>`
+            ];
+
+            desktop_table.row.add(rows).draw();
+            mobile_table.row.add(rows).draw();
+            updateOrderTotal()
+        }
+    }
+
+    function updateOrderTotal() {
+        var total = 0;
+        $('#dt2_product tbody tr').each(function () {
+            total += parseFloat($(this).find('span[data-field="total"]').text() || 0);
+        });
+        $('#orderTotal').text(total.toFixed(2));
+    }
+
+    function updateTotal(row) {
+        var qty = parseFloat(row.find('input[data-field="orderQty"]').val());
+        var price = parseFloat(row.find('span[data-field="price"]').text());
+        var total = qty * price;
+        row.find('span[data-field="total"]').text(total.toFixed(2)); // Update the total field
+        updateOrderTotal()
+    }
+
+    var desktop_table = $('#dt2_product').DataTable({
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "searching": false,
+        "responsive": true
+    });
+
+    var mobile_table = $('#dt2_product_mobile').DataTable({
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "searching": false,
+        "responsive": true
+    });
+
+    function formatDate(date) {
+        var day = String(date.getDate()).padStart(2, '0');
+        var month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        var year = date.getFullYear();
+
+        return day + '/' + month + '/' + year;
+    }
+
+    // Get today's date
+    var today = new Date();
+
+    // Set the formatted date as the value of the input field
+    $('#orderDate').val(formatDate(today));
+
+    // Cart functions begins
+    $(document).on('click', '#dt2_product .btn-danger, #dt2_product_mobile .btn-danger', function () {
+        var row = $(this).closest('tr');
+        console.log("Calling this....")
+        desktop_table.row(row).remove().draw();
+        mobile_table.row(row.index()).remove().draw();
+        updateOrderTotal();
+    });
+    $(document).on('change', 'input[data-field="orderQty"]', function () {
+        updateTotal($(this).closest('tr'));
+    });
+
+    $('button.submitOrder').on('click', function () {
+        var orderData = {
+            customer_Id: $('#customer').val(),
+            shipToAddress_Id: $('#shipTo').val(),
+            orderDate: $('#orderDate').val(),
+            orderComment: '', // Add a textarea for comments if needed
+            OrderItems: []
+        };
+
+        $('#dt2_product tbody tr').each(function () {
+            var row = $(this);
+            var item = {
+                partNum: row.find('.product-id-field').text(),
+                product_Id: row.find(".product-id-field").attr("data-id"),
+                lineDesc: row.find('td:eq(1)').text(),
+                ium: row.find('td:eq(4)').text(),
+                salesUm: row.find('td:eq(4)').text(), // Assuming salesUm is the same as ium
+                unitPrice: parseFloat(row.find('span[data-field="price"]').text()),
+                orderQty: parseFloat(row.find('input[data-field="orderQty"]').val()),
+                discount: 0, // Add a field for discount if needed
+                listPrice: parseFloat(row.find('span[data-field="price"]').text()) // Assuming listPrice is the same as unitPrice
+            };
+            orderData.OrderItems.push(item);
+        });
+
+        // Send the data to the server
+        $.ajax({
+            url: $("#SubmitOrderUrl").val(), // Update with your controller and action names
+            type: 'POST',
+            data: JSON.stringify(orderData),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.success) {
+                    // alert('Order submitted successfully!');
+                    userMessage.show("Success", "The order submitted successfully!");
+                    $("#back-orders").trigger("click");
+                    // Optionally, redirect or clear the form
+                } else {
+                    alert('Error submitting order: ' + response.message);
+                }
+            },
+            error: function () {
+                alert('An error occurred while submitting the order.');
+            }
+        });
+    });
+
+    $(".submit-action").on("click", function () {
+        if (!$('.order-action').val()) {
+            alert("Please select action to submit");
+            return false;
+        }
+        var orderId = $(this).attr("data-id");
+        $.ajax({
+            url: $("#UpdateOrderStatusUrl").val(), // Update with your controller and action names
+            type: 'POST',
+            data: JSON.stringify({
+                orderId: orderId,
+                newStatus: $('.order-action').val(),
+                actionName: $('.order-action').val()
+            }),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.success) {
+                    // alert('Order submitted successfully!');
+                    userMessage.show("Success", "The order submitted successfully!");
+                    $("#back-orders").trigger("click");
+                    // Optionally, redirect or clear the form
+                } else {
+                    alert('Error submitting order: ' + response.message);
+                }
+            },
+            error: function () {
+                alert('An error occurred while submitting the order.');
+            }
+        });
+    })
+    // Cart functions end
+
+    // Payment functions begins
+
+    $('#addPaymentBtn').on('click', function () {
+        var newRow = `
+            <tr>
+                <td>
+                <select class="form-control paymentType">
+                    <option value="Cash" selected>Cash</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="Online Banking">Online Banking</option>
+                    <option value="Online Banking">Others</option>
+                  </select>
+                <input type="hidden" name="OrderId" value="@Model.id" class="orderId" /></td>
+                <td><input type="text" class="form-control bank"></td>
+                <td><input type="text" class="form-control referenceNo"></td>
+                <td><input type="number" class="form-control amount" step="0.01"></td>
+                <td><button class="btn btn-danger btn-sm removePayment"><i class="fa fa-times"></i></button></td>
+            </tr>
+        `;
+        $('#paymentTable tbody').append(newRow);
+        updatePaymentTotal();
+    });
+
+    $(document).on('click', '.removePayment', function () {
+        $(this).closest('tr').remove();
+        updatePaymentTotal();
+    });
+
+    $(document).on('input', '.amount', function () {
+        updatePaymentTotal();
+    });
+
+    function updatePaymentTotal() {
+        var total = 0;
+        $('.amount').each(function () {
+            total += parseFloat($(this).val()) || 0;
+        });
+        $('#paymentTotal').text(total.toFixed(2));
+    }
+
+    $('#completePaymentBtn').on('click', function () {
+        var paymentData = gatherPaymentData();
+        if (paymentData.length > 0) {
+            sendPaymentDataToApi(paymentData);
+        } else {
+            alert('Please add at least one payment before completing.');
+        }
+    });
+
+    function gatherPaymentData() {
+        var payments = [];
+        $('#paymentTable tbody tr').each(function () {
+            var row = $(this);
+            var payment = {
+                OrderId: row.find('.orderId').val(),
+                PaymentType: row.find('.paymentType').val(),
+                Bank: row.find('.bank').val(),
+                RefNumber: row.find('.referenceNo').val(),
+                Amount: parseFloat(row.find('.amount').val()) || 0,
+                PaymentDate: new Date().toISOString(),
+                PaymentStatus: 'Pending' // You can change this as needed
+            };
+            if (payment.Amount > 0) {
+                payments.push(payment);
+            }
+        });
+        return payments;
+    }
+
+    function sendPaymentDataToApi(paymentData) {
+        $.ajax({
+            url: $("#UpdateOrderPaymentsUrl").val(), // Update with your actual API endpoint
+            type: 'POST',
+            data: JSON.stringify({ OrderPayments: paymentData }),
+            contentType: 'application/json',
+            success: function (response) {
+                if (response.success) {
+                    alert('Payment completed successfully!');
+                    // You can add more actions here, like refreshing the page or updating the UI
+                } else {
+                    alert('Error completing payment: ' + response.message);
+                }
+            },
+            error: function () {
+                alert('An error occurred while processing the payment.');
+            }
+        });
+    }
+
+    // Payment functions end
+
+    $('#orderDate').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+
+    // Initialize DataTable for the product picker modal
+    var table = $('#dt_product_picker').DataTable({
+        "paging": true,
+        "ordering": false,
+        "info": false,
+        "searching": false,
+        "responsive": true,
+        "columns": [
+            { "data": null, "defaultContent": "<input type='checkbox' class='product-checkbox'>" },
+            { "data": "partNumber" },
+            { "data": "description" },
+            { "data": "prodGrup_Description" },
+            { "data": "part_IUM" },
+            { "data": "unitPrice" },
+            { "data": null, "defaultContent": "<input type='number' class='default-qty' value='1'>" },
+        ]
+    });
+
+    // Add selected products to table
+
+    $('#btnAddToOrders').on('click', function () {
+        // Find all checked checkboxes in the products table
+        var selectedProducts = [];
+
+        table.$('input[type="checkbox"]:checked').each(function () {
+            var row = $(this).closest('tr');
+            var data = table.row(row).data();
+            var orderQty = row.find("input.default-qty").val();
+            data['orderQty'] = orderQty;
+            selectedProducts.push({
+                data: data,
+                row: row
+            });
+        });
+
+        // Do something with the selected products data
+        console.log('Selected products:', selectedProducts);
+        selectedProducts.forEach(function (product) {
+            addOrUpdateProductRow(product.data, desktop_table, mobile_table);
+            // Remove the product from the original products table
+            table.row(product.row).remove().draw(false);
+        });
+    });
+
+    // Apply the search filter on input change
+    $('.filter-input').on('keyup', function () {
+        table.column($(this).parent().index()).search(this.value).draw();
+    });
+
+    // Show the modal on Add button click
+    $('#btnAdd').on('click', function () {
+        // $('#productPickerModal').modal('show');
+        $(".productPicker").show();
+        setTimeout(function () {
+            $('#dt_product_picker').DataTable().columns.adjust().responsive.recalc();
+        }, 600);
+    });
+
+    $(".closeProductPicker").on("click", function () {
+        $(".productPicker").hide();
+    })
+
+    // Initialize DataTable for the customer picker modal
+    var customerTable = $('#dt_customer_picker').DataTable({
+        "paging": true,
+        "ordering": true,
+        "info": true,
+        "searching": true,
+        "responsive": true
+    });
+
+    // Apply the search filter on input change
+    $('.filter-input').on('keyup', function () {
+        var column = $(this).parent().index();
+        if (table === productTable) {
+            productTable.column(column).search(this.value).draw();
+        } else if (table === customerTable) {
+            customerTable.column(column).search(this.value).draw();
+        }
+    });
+
+    // Handle the select/deselect all checkboxes for customers
+    $('#selectAllCustomers').on('click', function () {
+        var isChecked = $(this).prop('checked');
+        $('.customer-checkbox').prop('checked', isChecked);
+    });
+
+    // Show the modal for customer picker
+    $('#btnCustomerPicker').on('click', function () {
+        $('#customerPickerModal').modal('show');
+
+        setTimeout(function () {
+            $('#dt_customer_picker').DataTable().columns.adjust().responsive.recalc();
+        }, 500);
+    });
+
+    // Product search begins
+    $('#productSearch').on('focus', function () {
+        $(this).select();
+    });
+    // Trigger AJAX call when search input is filled
+    $('#productSearch').on('change', function () {
+        var searchTerm = $(this).val();
+
+        if (searchTerm.length >= 2) { // Start searching after at least 2 characters
+            $.ajax({
+                url: $("#GetProductByPartNumUrl").val(), // Replace with your API endpoint
+                type: 'POST',
+                data: { partNum: searchTerm },
+                success: function (response) {
+                    if (response.success && response.product && response.product.id) {
+                        // Clear the existing table rows
+                        // $('#dt2_product tbody').empty();
+
+                        // Assuming response.product is an array of product objects
+                        let product = response.product;
+                        // Create a new row for each product
+                        addOrUpdateProductRow(product, desktop_table, mobile_table);
+                    } else {
+                        alert('No products found or an error occurred.');
+                    }
+                },
+                error: function () {
+                    alert('Failed to fetch products.');
+                }
+            });
+        }
+    });
+
+    // Customer search
+    // $('.selectCustomer').select2();
+
+    $.ajax({
+        url: $("#SearchCustomersUrl").val(),
+        type: "POST",
+        data: { 'searchParam': "" },
+        dataType: "json",
+        success: function (data) {
+            var $select = $('.selectCustomer');
+            $.each(data.customers, function (index, item) {
+                $select.append(new Option(item.name, item.id));
+                // $select.select2('data', { id: item.id, text: item.name });
+            });
+
+            // Initialize Select2 after options are added
+            $select.select2();
+            $select.val(1).trigger('change.select2');
+            // Set default value
+            $select.val('cash').trigger('change');
+        }
+    });
+
+    $('#btnSearch').on('click', function () {
+        var partNo = $('#searchPartNo').val();
+        var code = $('#searchCode').val();
+        var desc = $('#searchDesc').val();
+
+        $.ajax({
+            url: $("#SearchProductsUrl").val(), // Replace with your actual API endpoint
+            type: 'POST',
+            data: { partNum: partNo, code: code, description: desc },
+            dataType: 'json',
+            success: function (response) {
+                if (response.success && response.products) {
+                    // Clear existing table data
+                    table.clear();
+
+                    // Add new data to the table
+                    table.rows.add(response.products).draw();
+
+                    // Reset the "select all" checkbox
+                    $('#selectAll').prop('checked', false);
+                } else {
+                    alert('No products found or an error occurred.');
+                }
+            },
+            error: function () {
+                alert('Failed to fetch products.');
+            }
+        });
+    });
+
+    $('#btnReset').on('click', function () {
+        $('#searchPartNo, #searchCode, #searchDesc').val('');
+        table.clear().draw();
+    });
+
+    // Handle "select all" checkbox
+    $('#selectAll').on('click', function () {
+        $('.product-checkbox').prop('checked', this.checked);
+    });
+
+
+    // Product search ends
+
+    });
+
+
+ function openPdfInModal(letterName) {
+          var url = '@Url.Action("PrintDocument", "Orders")' + '?id=' + encodeURIComponent('@Model.id') + '&letterName=' + encodeURIComponent(letterName);
+     // Open the modal
+     $('#pdfModal').modal('show');
+
+     // Set the iframe src to the PDF URL
+     $('#pdfFrame').attr('src', url);
+    }
+
+    function printLabel() {
+    var printContents = document.getElementById('labelPrint').outerHTML;
+
+    // Create a new window for printing
+    var printWindow = window.open('', '_blank', 'width=100mm');
+    printWindow.document.write(`
+    <html>
+        <head>
+            <title>Print Label</title>
+            <style>
+
+                /* Add any other styles you need for the print layout here */
+            </style>
+        </head>
+        <body>
+            ${printContents}
+        </body>
+    </html>
+`);
+
+    printWindow.document.close(); // Close the document to render the content
+    printWindow.focus(); // Focus on the new window
+
+    // Print the contents and close the window afterward
+    printWindow.print();
+    printWindow.close();
+}
+
+</script>
+
+<script type="text/javascript">
+    var modelData = @Html.Raw(Json.Encode(Model));
+    var checkItemReturnStatusUrl = '@Url.Content(Url.Action("CheckItemReturnStatus", "Orders"))';
+    var checkPrintRefundStatusUrl = '@Url.Content(Url.Action("CheckPrintRefundStatus", "Orders"))';
+
+
+
+</script>
+<script src="~/Scripts/OrderPrintFunctions.js"></script>

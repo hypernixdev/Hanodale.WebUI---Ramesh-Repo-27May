@@ -1,0 +1,155 @@
+@model Hanodale.WebUI.Models.GridViewIndexModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="MSG_CONFIRM_SAVE" value ="@Html.GetGlobalResource("MSG_CONFIRM_UPLOAD")">
+<input type="hidden" id="alert-delete" value="@Html.GetGlobalResource("MSG_CONFIRM_DELETE")">
+<input type="hidden" class="mainPart" value="stockbalance">
+<input type="hidden" id="form-congif" class="table-congif" value="stockbalance" data-columncount="@Model.columnCount" data-button="true" data-condition="false" data-extended-event-btn="false" data-disall="true" data-auto-hide-column="true" data-export-btn="true">
+<!-- Hidden Variable -->
+
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>
+            @Html.GetGlobalResource("PAGE_HEADER_MANAGE_STOCKBALANCE")
+        </h1>
+    </div>
+    <!-- Sync Customers Button -->
+    @if (Model.accessRight.canAdd && !Model.readOnly)
+    {
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
+            <button id="syncStockBalanceBtn" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Sync  Stock Balance
+            </button>
+
+        </div>
+    }
+
+    @*@if (Model.accessRight.canAdd && !Model.readOnly)
+    {
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            <ul id="sparks" class="">
+                <li class="sparks-info">
+                    <button id="create-stockbalance" data-url="StockBalance/Create" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-plus"></i>
+                        @Html.GetGlobalResource("BTN_CREATE_STOCKBALANCE")
+                    </button>
+                </li>
+            </ul>
+        </div>
+    }*@
+</div>
+<div class="formSpliter"></div>
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="">
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+
+            
+        </article>
+
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0"
+                 data-widget-editbutton="false"
+                 data-widget-deletebutton="false"
+                 data-widget-colorbutton="false"
+                 data-widget-sortable="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+                    <h2>@Html.GetGlobalResource("STOCKBALANCE_GRID_TITLE")</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table id="dt_stockbalance" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    @if (Model.lstColumn != null)
+                                    {
+                                        foreach (var item in Model.lstColumn)
+                                        {
+                                            <th data-class="@(item.isExpandable? "expand":"")" data-hide="@(item.isExpandable? "":"phone,tablet")">@Html.GetGlobalResource(item.resourceKeyName)</th>
+                                        }
+                                    }
+                                    <th class="table-column-header" style="width: @(Model.gridViewButtonColumnWidth)px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+
+<script>
+    $(document).ready(function () {
+            $('#syncStockBalanceBtn').on('click', function() {
+            // Disable button to prevent multiple clicks
+            $(this).prop('disabled', true);
+
+            // API call to sync Products
+            var apiUrl = '@Url.Action("SyncStockBalances", "Product")'; // Adjust the API endpoint as needed
+
+            $.ajax({
+                url: apiUrl,
+                type: 'POST',
+                success: function(response) {
+                    if (response.success) {
+                        userMessage.show("Success", 'Stock Balance synced successfully!');
+                        // Enable the button again after successful sync
+                        $('#syncProductsBtn').prop('disabled', false);
+                    } else {
+                        userMessage.show("Error", response.message);
+                        // Enable the button again after successful sync
+                        $('#syncProductsBtn').prop('disabled', false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    userMessage.show("Error", 'An error occurred while syncing Products: ' + error);
+                    // Enable the button again even if there is an error
+                    $('#syncStockBalanceBtn').prop('disabled', false);
+                }
+            });
+        });
+
+    }); // end of main doc
+
+</script>
+@Scripts.Render(bundles.scripts.common_index)
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+
+<!-- Protected Script -->

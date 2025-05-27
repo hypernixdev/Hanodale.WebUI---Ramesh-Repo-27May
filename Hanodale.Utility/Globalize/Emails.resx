@@ -1,0 +1,1093 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActiveBusinessMasterBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 10pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 13pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+			&lt;p&gt;
+			Dear $BUSINESSNAME$   $SUPPLIERUSEREMAIL$,&lt;br /&gt;&lt;br /&gt;
+			
+			Username : $USERNAME$&lt;br /&gt;
+			Password  : $PASSWORD$&lt;br /&gt;
+			Welcome to E-Quotation web based system.&lt;br /&gt;
+			Your new account has been setup and you can now login to our system using the details below.&lt;br /&gt;&lt;br /&gt;
+			To login, visit ($URL$)
+			&lt;/p&gt;
+                               &lt;br /&gt;
+                        &lt;p&gt;
+			URUSAN TEKNOLOGI WAWASAN SDN BHD&lt;br /&gt;
+			1st Floor Civil Engineering Building&lt;br /&gt;
+			Engineering Complex&lt;br /&gt;
+			KL International Airport, 68000&lt;br /&gt;
+			KLIA Selangor Darul Ehsan&lt;br /&gt;&lt;br /&gt;
+			Tel No (DL): 03-8776 7022&lt;br /&gt;
+			Fax No (GL): 03-8787 2455&lt;br /&gt;
+			Hp No : 019-6632381&lt;br /&gt;
+			&lt;/p&gt;
+
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ActiveBusinessMasterSubject" xml:space="preserve">
+    <value>Welcome to UTW HRMS Management Solution</value>
+  </data>
+  <data name="ApprovalBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 10pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 11pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear Sir/Madam,&lt;br&gt;
+			&lt;br /&gt;
+			The below record has been $APPROVALRESULT$&lt;br&gt;		
+			&lt;br /&gt;
+			&lt;b&gt;Code&lt;/b&gt;                :$CODE$&lt;br&gt;
+
+			&lt;b&gt;Description&lt;/b&gt;         :$DESCRIPTION$&lt;br&gt;
+
+			&lt;b&gt;Approval Result&lt;/b&gt;     :$APPROVALRESULT$&lt;br&gt;
+			
+			&lt;b&gt;Approval Remark&lt;/b&gt;     :$APPROVALREMARKS$&lt;br&gt;
+
+			&lt;b&gt;Approval By&lt;/b&gt;         :$APPROVALBY$&lt;br&gt;
+
+		        &lt;b&gt;Approval Date&lt;/b&gt;       :$APPROVALDATE$&lt;br&gt;	
+						
+		&lt;/p&gt;
+ 		&lt;p&gt;
+			Please login to the system using the following url:&lt;br&gt;
+                        $URL$&lt;br&gt;
+		&lt;/p&gt;
+		&lt;br /&gt;
+		&lt;p&gt;
+			Rgds,
+		&lt;/p&gt;
+		&lt;p&gt;
+			System Admin
+		&lt;/p&gt;
+			&lt;p class="fine-print"&gt;
+				
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ChangedPasswordBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 11pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 13pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear $USERNAME$,
+		&lt;/p&gt;
+
+		&lt;p&gt;
+			We have detected that you have changed your password to access HRMS Solution. If this change was not authorised, please contact your local administrator.
+		&lt;/p&gt;
+		
+ 
+		&lt;p&gt;
+			Thank you.
+		&lt;/p&gt;
+
+
+		&lt;br /&gt;
+		&lt;p&gt;
+			Best regards,
+		&lt;/p&gt;
+		&lt;p&gt;
+			HRMS Administrator
+		&lt;/p&gt;
+		
+			&lt;p class="fine-print"&gt;
+				The information contained in this email is intended for the recipient’s’ only. It may contain privileged or confidential and sensitive information. If you are not the intended recipient of this email, you must not copy, distribute or take any action that relies on it. If you have received this email in error, please notify the sender immediately, and then delete the message. Thank you. 
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ChangedPasswordFrom" xml:space="preserve">
+    <value>smartasset@malaysiaairports.com.my</value>
+  </data>
+  <data name="ChangedPasswordSubject" xml:space="preserve">
+    <value>Your password has been changed!</value>
+  </data>
+  <data name="ForgotPasswordBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body {
+				font-family: Arial;
+				font-size: 11pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 13pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+				background-image: url(data:image/png;base64,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);
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear $USERNAME$,
+		&lt;/p&gt;
+
+		&lt;p&gt;
+			As per your request, we have reset your password to access HRMS Solution;. Please sign in immediately and change your password. If this action was not authorised, please contact your local administrator..
+		&lt;/p&gt;
+ 
+		&lt;p&gt;
+			Your new password is: $PASSWORD_HASH$
+		&lt;/p&gt;
+
+		&lt;p&gt;
+			It is strongly advised to change your password upon successfully signing in.
+		&lt;/p&gt;
+
+		&lt;p&gt;
+			Thank you.
+		&lt;/p&gt;
+
+
+		&lt;br /&gt;
+		&lt;p&gt;
+			Best regards,
+		&lt;/p&gt;
+
+
+		&lt;br /&gt;&lt;br /&gt;
+		&lt;p&gt;
+			System Admin
+		&lt;/p&gt;
+			
+			&lt;div class="consider-environment"&gt;&lt;/div&gt;
+
+			&lt;p class="fine-print"&gt;
+				The information contained in this email is intended for the recipient’s’ only. It may contain privileged or confidential and sensitive information. If you are not the intended recipient of this email, you must not copy, distribute or take any action that relies on it. If you have received this email in error, please notify the sender immediately, and then delete the message. Thank you.
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ForgotPasswordFrom" xml:space="preserve">
+    <value>smartasset@malaysiaairports.com.my</value>
+  </data>
+  <data name="ForgotPasswordSubject" xml:space="preserve">
+    <value>Forgot Password Request</value>
+  </data>
+  <data name="InActiveBusinessMasterBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 10pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 11pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+			&lt;p&gt;
+			Dear $BUSINESSNAME$  $SUPPLIERUSEREMAIL$,&lt;br /&gt;
+			&lt;br /&gt;
+			Your account has been disabled. Please contact HRMS Admin for futher queries.&lt;br /&gt;			
+			&lt;/p&gt;
+                               &lt;br /&gt;
+                        &lt;p&gt;
+			URUSAN TEKNOLOGI WAWASAN SDN BHD&lt;br /&gt;
+			1st Floor Civil Engineering Building&lt;br /&gt;
+			Engineering Complex&lt;br /&gt;
+			KL International Airport, 68000&lt;br /&gt;
+			KLIA Selangor Darul Ehsan&lt;br /&gt;&lt;br /&gt;
+			Tel No (DL): 03-8776 7022&lt;br /&gt;
+			Fax No (GL): 03-8787 2455&lt;br /&gt;
+			Hp No : 019-6632381&lt;br /&gt;
+			&lt;/p&gt;
+
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="InActiveBusinessMasterSubject" xml:space="preserve">
+    <value>Account Inactive</value>
+  </data>
+  <data name="RFQAdjustmentBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 10pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 11pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear {$BUSINESSNAME$}({$SUPPLIERUSEREMAIL$}),&lt;br&gt;
+			&lt;br /&gt;
+			With reference of the above matter we are pleased to notify updates on above RFQ.&lt;br/&gt;
+                             Kindly visit to our website ($URL$) for details information of quotation.&lt;br/&gt;
+                             Your reply to the RFQ must be before or on the dateline given ($RFQCLOSINGDATE$)&lt;br/&gt;
+                             Should you fail to reply within the stipulated time the quotation will not be considered.&lt;br/&gt;
+                        &lt;br /&gt;&lt;br/&gt;
+			Important notice :&lt;br/&gt;&lt;br/&gt;
+			    Registration with Malaysia Airport Holding Berhad is MANDATORY for the participation to the Quotation.&lt;br/&gt;
+                                  Kindly visit http://vms.malaysiaairports.com.my for new and renewal vendor registration with Malaysia Airports.&lt;br/&gt;&lt;br/&gt;
+				  All instruction, guideline and process flow is provided in the website.&lt;br/&gt;&lt;br/&gt;
+				  Any further information please directly contact :&lt;br/&gt;&lt;br/&gt;
+					1) Procurement Department: Any RFQ, Purchasing &amp; User ID / Password Issues.&lt;br/&gt;
+							  Tel No : 1. En. Wan Mohd Shofian - Head of Procurement (03-8776 7011/019-663 2195)&lt;br/&gt;
+								   2. Pn. Rohaizah (03-8776 7011)&lt;br/&gt;
+								   3. Pn. Wan Nurul Izzatie (03-8776 7013)&lt;br/&gt;
+								      Fax No : 03-8787 2455&lt;br/&gt;
+								      Email : utw_procurement@malaysiaairports.com.my&lt;br/&gt;&lt;br/&gt;
+					2) Technical Support Department: Any ID, Password and System Issues.&lt;br/&gt;
+                                                          Tel No : Cik Diana (03-8776 7005)&lt;br/&gt;
+                                                          Fax No : 03-87872455&lt;br/&gt;
+                                                          Email : nurdiana@malaysiaairports.com.my&lt;br/&gt;
+                               &lt;/p&gt;
+                               &lt;br /&gt;
+                                &lt;p&gt;
+                                                          Our Address:&lt;br/&gt;
+                                                               URUSAN TEKNOLOGI WAWASAN SDN BHD&lt;br/&gt;
+                                                               1st Floor Civil Engineering Building&lt;br/&gt;
+                                                               Engineering Complex, KL International Airport&lt;br/&gt;
+                                                               68000 KLIA, Sepang,&lt;br/&gt;
+                                                               Selangor Darul Ehsan.&lt;br/&gt;
+						
+		&lt;/p&gt;
+ 		&lt;br /&gt;
+		&lt;p&gt;
+			Rgds,
+		&lt;/p&gt;
+		&lt;p&gt;
+			System Admin
+		&lt;/p&gt;
+			&lt;p class="fine-print"&gt;
+				This e-mail and any attachments may contain confidential and privileged information. If you are not the intended recipient, please notify the sender immediately by return e-mail, delete this e-mail and destroy any copies. Any dissemination or use of this information by a person other than the intended recipient is unauthorized and may be illegal.
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="RFQAdjustmentSubject" xml:space="preserve">
+    <value>RFQ Updated ($CODE$)</value>
+  </data>
+  <data name="RFQReleaseBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 10pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 11pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear {$BUSINESSNAME$}({$SUPPLIERUSEREMAIL$}),&lt;br&gt;
+			&lt;br /&gt;
+			I would like to introduce our company, Urusan Teknologi Wawasan Sdn. Bhd.(UTW) a 100% Malaysia Airports Holding Berhad (MAHB)                                        subsidiaries.
+                               Our business nature is Facility Management Operation &amp; Maintenance.&lt;br/&gt;
+                               With reference of the above matter we are pleased to invite you to quote for said works/goods.&lt;br/&gt;
+                               Kindly visit to our website ($URL$) for details information of quotation.&lt;br/&gt;
+                               Your reply to the RFQ must be before or on the dateline given ($RFQCLOSINGDATE$)&lt;br/&gt;
+                               Should you fail to reply within the stipulated time the quotation will not be considered.&lt;br/&gt;
+			  Thank you!
+                        &lt;br /&gt;
+			Important notice :&lt;br/&gt;&lt;br/&gt;
+			    Registration with Malaysia Airport Holding Berhad is MANDATORY for the participation to the Quotation.&lt;br/&gt;
+                                  Kindly visit http://vms.malaysiaairports.com.my for new and renewal vendor registration with Malaysia Airports.&lt;br/&gt;
+				  All instruction, guideline and process flow is provided in the website.&lt;br/&gt;
+				  Any further information please directly contact :&lt;br/&gt;&lt;br/&gt;
+					1) Procurement Department: Any RFQ, Purchasing &amp; User ID / Password Issues.&lt;br/&gt;
+							  Tel No : 1. En. Wan Mohd Shofian - Head of Procurement (03-8776 7011/019-663 2195)&lt;br/&gt;
+								   2. Pn. Rohaizah (03-8776 7011)&lt;br/&gt;
+								   3. Pn. Wan Nurul Izzatie (03-8776 7013)&lt;br/&gt;
+								      Fax No : 03-8787 2455&lt;br/&gt;
+								      Email : utw_procurement@malaysiaairports.com.my&lt;br/&gt;&lt;br/&gt;
+					2) Technical Support Department: Any ID, Password and System Issues.&lt;br/&gt;
+                                                          Tel No : Cik Diana (03-8776 7005)&lt;br/&gt;
+                                                          Fax No : 03-87872455&lt;br/&gt;
+                                                          Email : nurdiana@malaysiaairports.com.my&lt;br/&gt;
+                               &lt;/p&gt;
+                               &lt;br /&gt;
+                                &lt;p&gt;
+                                                          Our Address:&lt;br/&gt;
+                                                               URUSAN TEKNOLOGI WAWASAN SDN BHD&lt;br/&gt;
+                                                               1st Floor Civil Engineering Building&lt;br/&gt;
+                                                               Engineering Complex, KL International Airport&lt;br/&gt;
+                                                               68000 KLIA, Sepang,&lt;br/&gt;
+                                                               Selangor Darul Ehsan.&lt;br/&gt;
+						
+		&lt;/p&gt;
+ 		&lt;br /&gt;
+		&lt;p&gt;
+			Rgds,
+		&lt;/p&gt;
+		&lt;p&gt;
+			System Admin
+		&lt;/p&gt;
+			&lt;p class="fine-print"&gt;
+				This e-mail and any attachments may contain confidential and privileged information. If you are not the intended recipient, please notify the sender immediately by return e-mail, delete this e-mail and destroy any copies. Any dissemination or use of this information by a person other than the intended recipient is unauthorized and may be illegal.
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="RFQReleaseSubject" xml:space="preserve">
+    <value>RFQ Release ($CODE$)</value>
+  </data>
+  <data name="SubmitForApprovalSubject" xml:space="preserve">
+    <value>$SUBMENU$ " $CODE$ ($APPROVALRESULT$)</value>
+  </data>
+  <data name="SubmittedForApprovalBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 10pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 11pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear Sir/Madam,&lt;br&gt;
+			&lt;br /&gt;
+			The below record submitted for your approval&lt;br&gt;		
+			&lt;br /&gt;
+			&lt;b&gt;Code&lt;/b&gt;             :$CODE$&lt;br&gt;
+
+			&lt;b&gt;Description&lt;/b&gt;      :$DESCRIPTION$&lt;br&gt;
+
+			&lt;b&gt;Submitted By&lt;/b&gt;     :$SUBMITTED BY$&lt;br&gt;
+
+		        &lt;b&gt;Submitted Date&lt;/b&gt;   :$SUBMITTED DATE$&lt;br&gt;	
+						
+		&lt;/p&gt;
+ 		&lt;p&gt;
+			Please login to the system using the following url:&lt;br&gt;
+                        $URL$&lt;br&gt;
+		&lt;/p&gt;
+		&lt;br /&gt;
+		&lt;p&gt;
+			Rgds,
+		&lt;/p&gt;
+		&lt;p&gt;
+			System Admin
+		&lt;/p&gt;
+			&lt;p class="fine-print"&gt;
+				
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="TermConditions" xml:space="preserve">
+    <value>&lt;html&gt;
+&lt;head&gt;
+       &lt;title&gt;&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="well" style="padding: 40px 20px;"&gt;
+        &lt;h1 class="grey lighter smaller" style="padding-bottom: 10px;"&gt;Terms &amp; Conditions
+        &lt;/h1&gt;
+        &lt;hr /&gt;
+        &lt;div class="slim-scroll" data-height="300"&gt;
+            &lt;div class="content" style="margin-left: 14px;margin-right: 20px;"&gt;
+		&lt;br/&gt;
+                &lt;!-- Terms &amp; Condition content --&gt;
+                &lt;h2&gt;Privacy Policy&lt;/h2&gt;
+		&lt;br/&gt;
+                &lt;h3&gt;1. Sharing of Information Collected&lt;/h3&gt;
+                &lt;article style="margin-left: 10px;"&gt;
+                    &lt;p &gt;
+                        Person may share Data About Customers with the Company’s agents so that these agents can contact Customers and Visitors who have provided contact information on our behalf. MyRadar may also share Data About MyRadar Customers with the Company’s agents to ensure the quality of information provided. MyRadar does not share, sell, rent, or trade personally identifiable information with third parties for their promotional purposes.
+                    &lt;/p&gt;
+                    &lt;p &gt;
+                        Customer reserves the right to disclose personally identifiable information of the Company’s Customers or Visitors if required by law or if the Company reasonably believes that disclosure is necessary to protect the Company’s rights and/or to comply with a judicial proceeding, court order, or legal process.
+                    &lt;/p&gt;
+                &lt;/article&gt;
+                &lt;br /&gt;
+                &lt;h3&gt;2.	Communications Preferences&lt;/h3&gt;
+                &lt;article style="margin-left: 10px;" &gt;
+                    MyRadar offers Customers and Visitors who provide contact information a means to choose how the Company uses the information provided. You may manage your receipt of marketing and non-transactional communications by updating profile on the Customer Portal or by clicking on the “unsubscribe” link located on the bottom of the Company’s marketing emails. Additionally, you may send a request specifying your communications preferences to support@Customer.com.my. Customers cannot opt out of receiving transactional emails related to their account with Customer or the Service.
+                &lt;/article&gt;
+                &lt;br /&gt;
+                &lt;h3&gt;3.	Customer Data&lt;/h3&gt;
+                &lt;article style="margin-left: 10px;"&gt;
+                    Customers use the Service to host data and information (“Customer Data”). Customer will not review, share, distribute, or reference any such Customer Data except as provided in the Customer Master Subscription Agreement, or as may be required by law. Individual records of Customer Data may be viewed or accessed only for the purpose of resolving a problem, support issues, or suspected violation of the MyRadar Master Subscription Agreement, or as may be required by law. Customers are responsible for maintaining the security and confidentiality of their Customer usernames and passwords.
+                &lt;/article&gt;
+                &lt;br /&gt;
+                &lt;h3&gt;4.	Changes to this Privacy Statement&lt;/h3&gt;
+                &lt;article style="margin-left: 10px;"&gt;
+                    MyRadar reserves the right to change this Privacy Statement. MyRadar will provide notification of the material changes to this Privacy Statement through the Company’s Web sites at least thirty (30) business days prior to the change taking effect.
+                &lt;/article&gt;
+                &lt;br /&gt;
+                &lt;h3&gt;5.	Contacting Us&lt;/h3&gt;
+                &lt;article style="margin-left: 10px;padding-bottom: 10px;" &gt;
+                    Questions regarding this Privacy Statement or the information practices of the Company’s Web sites should be directed to Customer Privacy by emailing at Customer@support.com
+                &lt;/article&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+           
+ 	&lt;hr /&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="UserCreatedBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 13pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 13pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear $USER_FULL_NAME$,
+		&lt;/p&gt;
+
+		&lt;p&gt;
+			Welcome to HRMS, Your access has just been provisioned with the following credentials:
+		&lt;/p&gt;
+		
+		&lt;p&gt;
+			To begin, please navigate to &lt;a href="$URL$"&gt;$URL$&lt;/a&gt; and enter your credentials below. You will be prompted to change your password immediately upon successful authentication.
+		&lt;/p&gt;
+		
+		&lt;table&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Username:&lt;/td&gt;
+				&lt;td&gt;$USER_EMAIL$&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Password:&lt;/td&gt;
+				&lt;td&gt;$PASSWORD_HASH$&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+		
+		&lt;p&gt;
+			We hope that you enjoy your experience with HRMS System.
+		&lt;/p&gt;
+ 
+		&lt;br /&gt;
+		&lt;p&gt;
+			Best regards,
+		&lt;/p&gt;
+		&lt;p&gt;
+			System Admin
+		&lt;/p&gt;
+			&lt;p class="fine-print"&gt;
+				The information contained in this email is intended for the recipient’s’ only. It may contain privileged or confidential and sensitive information. If you are not the intended recipient of this email, you must not copy, distribute or take any action that relies on it. If you have received this email in error, please notify the sender immediately, and then delete the message. Thank you. .
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="UserCreatedFrom" xml:space="preserve">
+    <value>smartasset@malaysiaairports.com.my</value>
+  </data>
+  <data name="UserCreatedSubject" xml:space="preserve">
+    <value>Welcome to UTW HRMS Management Solution</value>
+  </data>
+  <data name="UserPasswordResetBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 13pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 13pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Dear $USERNAME$,
+		&lt;/p&gt;
+
+		&lt;p&gt;
+			You had request to reset the password. Below is your new password to access the HRMS :
+		&lt;/p&gt;
+		
+		&lt;p&gt;
+			To begin, please navigate to &lt;a href="$URL$"&gt;$URL$&lt;/a&gt; and enter your credentials below. You will be prompted to change your password immediately upon successful authentication.
+		&lt;/p&gt;
+		
+		&lt;table&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;b&gt;Username:&lt;/b&gt;&lt;/td&gt;
+				&lt;td&gt;&lt;b&gt;$USERNAME$&lt;b&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;b&gt;Password:&lt;/b&gt;&lt;/td&gt;
+				&lt;td&gt;&lt;b&gt;$PASSWORD_HASH$&lt;/b&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+		
+		&lt;p&gt;
+			We hope that you enjoy your experience with HRMS System.
+		&lt;/p&gt;
+ 
+		&lt;br /&gt;
+		&lt;p&gt;
+			Best regards,
+		&lt;/p&gt;
+		&lt;p&gt;
+			System Admin
+		&lt;/p&gt;
+			&lt;p class="fine-print"&gt;
+				The information contained in this email is intended for the recipient’s’ only. It may contain privileged or confidential and sensitive information. If you are not the intended recipient of this email, you must not copy, distribute or take any action that relies on it. If you have received this email in error, please notify the sender immediately, and then delete the message. Thank you.
+			&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="UserPasswordResetSubject" xml:space="preserve">
+    <value>Password Reset</value>
+  </data>
+  <data name="WorkOrderBody" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+			body, td {
+				font-family: Arial;
+				font-size: 10pt;
+			}
+			
+			a, a:hover {
+				color: #3B99B6;
+			}
+			
+			.signature, .signature td {
+				font-family: Helvetica, Tahoma, Verdana, San-Serif;
+				font-size: 11pt;
+				font-weight: bold;
+				padding: 0;
+				border-spacing: 0;
+				margin: 0;
+			}
+			
+			.dk {
+				font-size: 21pt;
+				color: #919191;
+			}
+			
+			.company-name {
+				font-size: 9pt;
+				color: #3B99B6;
+			}
+			
+			.fine-print {
+				font-size: 8pt;
+				font-weight: normal;
+			}
+			
+			.consider-environment {
+				width: 271px;
+				height: 32px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+		 &lt;table border=0 width=100%  cellpadding=2 cellspacing=2 align=center;&gt;
+                &lt;tr&gt;&lt;td&gt;
+                &lt;table border=0 align=center;&gt;
+                &lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+ 
+ 
+                &lt;tr&gt;&lt;td&gt;&lt;strong&gt;Dear "$STAFFNAME$",&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+ 
+                &lt;tr&gt;&lt;td&gt;Following are the Work Order Information:&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+ 
+                &lt;tr&gt;&lt;td&gt;Code: $WOCODE$&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Description: $DESCRIPTION$ &lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Requester: $REQUESTER$&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Status: $STATUS$ &lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Start Date: $STARTDATE$&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Completion Date: $ENDDATE$ &lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Best Regards,&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;System Admin&lt;/td&gt;&lt;/tr&gt;
+ 
+                &lt;/table&gt;
+                &lt;/td&gt;&lt;/tr&gt;
+                &lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="WorkOrderSubject" xml:space="preserve">
+    <value>Work Order $CODE$ ($STATUS$)</value>
+  </data>
+</root>

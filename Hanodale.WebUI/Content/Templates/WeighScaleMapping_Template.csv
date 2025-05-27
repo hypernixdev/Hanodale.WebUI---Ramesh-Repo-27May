@@ -1,0 +1,7 @@
+item_number,description,full_barcode,barcode,barcode_from_pos,barcode_to_pos,weight_from_pos,weight_to_pos,weight_multiply,bc_length,off_set1,off_set2,above_weight
+B-BLD-IND-ALN-20KG-FZ,Buffalo Blade 20kg,2000010000100001,100001,1,6,7,10,0.01,16,0,0,0
+B-BLD-IND-FZ,Buffalo Blade,2000010000100001,100002,1,6,7,10,0.01,16,0,0,0
+B-BLD-MY-AHFI-SLC-FZ-20KG,Slice Buffalo Meat - Blade Nt Wt,2000010000100001,100003,1,6,7,10,0.01,16,0,0,0
+B-BOBBYVEAL-IND-FZ-18KG,Buffalo Bobby Veal @18kg,2000010000100001,100004,1,6,7,10,0.01,16,0,0,0
+B-CHX-IND-FZ-1,Buffalo Chuck,2000010000100001,100006,1,6,7,10,0.01,16,0,0,0
+B-CHX-IND-FZ-2,Buffalo Chuck,2000010000100001,100007,1,6,7,10,0.01,16,0,0,0

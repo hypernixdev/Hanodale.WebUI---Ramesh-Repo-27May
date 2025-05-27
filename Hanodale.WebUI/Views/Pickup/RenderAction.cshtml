@@ -1,0 +1,29 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+@if (Model.canView)
+{
+    <span class="view-pickup btn btn-ribbon " data-url="PICKUP_ID" data-status4="ORDERS_ID" title="@Html.GetGlobalResource("LABEL_VIEW")" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-eye "></i>
+    </span>
+}
+
+@if (Model.canEdit)
+{
+    <span class="acc-order-control btn btn-ribbon" data-url="PICKUP_ID" title="Accept" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-check-square-o"></i>
+    </span>
+
+
+    <span class="order-picking btn btn-ribbon" data-url="PICKUP_ID" title="Picking" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-shopping-cart"></i>
+    </span>
+
+    <span class="verify-pickup btn btn-ribbon" data-url="PICKUP_ID" title="Verify order" data-rel="tooltip" data-placement="bottom" data-container="body">
+        <i class="fa fa-check-square-o"></i>
+    </span>
+}
+
+

@@ -1,0 +1,81 @@
+﻿@model Hanodale.WebUI.Models.MainCostCenterModel
+@using Hanodale.Utility.Globalize
+@{
+    Layout = null;
+}
+
+<style>
+    .costCenter .select2-container a.select2-choice {
+        height:auto;
+        border: none; 
+        background-color:transparent;
+        font:#000;
+        font-weight:bold;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+    .costCenter .select2-container .select2-choice span.select2-arrow {
+        border-left: none;
+        background: none;
+    }
+</style>
+<div class="nav-search publicFontSize" id="nav-search" style="margin: 0px; color: #000;display:none;">
+    @* <div class="form-search row-flex" style="display:none;">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 row-flex">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+                    <span class=" project-context" style="padding: 0;">
+                        <span class="label" style="color: #000; font-size: 11px; font-weight: 500;">@Resources.ORGANIZATION_MAIN_COST_CENTER :</span>
+                    </span>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding" >
+                    <span class="input-icon costCenter">
+                        @Html.EditorFor(model => model.mainCostCenter_Id, new { @class = "multipleSelect1 width-250", dataValue = Model.MainCostCenter, nullable = true, @placeholder = @Html.DisplayNameFor(m => m.mainCostCenter_Id), name = "mainCostCenter_Id", href = "Auth/SetMainCostCenter/", style = "background-color: inherit;border: none; min-width:100%", data_action = "resetWidgets", data_title = "refresh", rel = "tooltip", data_message = "Would you like to switch main cost center?", data_placement = "bottom", data_original_title = "<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings.", data_html = "true" })
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 row-flex">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding">
+                    <span class=" project-context" style="padding: 0;">
+                        <span class="label" style="color: #000; font-size: 11px; font-weight: 500;">@Resources.SUB_COST_CENTRE :</span>
+                    </span>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nPadding" >
+                    <span class="input-icon costCenter">
+
+                        @Html.EditorFor(model => model.organization_Id, new { dataValue = Model.SubCostCenter, nullable = true, @class = "multipleSelect1 width-250", href = "Auth/SetSubCostCenter/", style = "background-color: inherit;border: none; min-width:100%", data_action = "resetWidgets", data_title = "refresh", rel = "tooltip", data_placement = "bottom", data_original_title = "<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings.", data_message = "Would you like to switch sub cost center?", data_html = "true" })
+
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-search">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-flex">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 nPadding">
+                    <span class=" project-context" style="padding: 0;">
+                        <span class="label" style="color: #000; font-size: 11px; font-weight: 500;">@Resources.ORGANIZATION_MAIN_COST_CENTER :</span>
+                    </span>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 nPadding" >
+                    <span class="input-icon costCenter">
+                        @Html.EditorFor(model => model.mainCostCenter_Id, new { @class = "multipleSelect1 width-250", dataValue = Model.MainCostCenter, nullable = true, @placeholder = @Html.DisplayNameFor(m => m.mainCostCenter_Id), name = "mainCostCenter_Id", href = "Auth/SetMainCostCenter/", style = "background-color: inherit;border: none; min-width:100%", data_action = "resetWidgets", data_title = "refresh", rel = "tooltip", data_message = "Would you like to switch main cost center?", data_placement = "bottom", data_original_title = "<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings.", data_html = "true" })
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-flex">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 nPadding">
+                    <span class=" project-context" style="padding: 0;">
+                        <span class="label" style="color: #000; font-size: 11px; font-weight: 500;">@Resources.SUB_COST_CENTRE :</span>
+                    </span>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 nPadding" >
+                    <span class="input-icon costCenter">
+
+                        @Html.EditorFor(model => model.organization_Id, new { dataValue = Model.SubCostCenter, nullable = true, @class = "multipleSelect1 width-250", href = "Auth/SetSubCostCenter/", style = "background-color: inherit;border: none; min-width:100%", data_action = "resetWidgets", data_title = "refresh", rel = "tooltip", data_placement = "bottom", data_original_title = "<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings.", data_message = "Would you like to switch sub cost center?", data_html = "true" })
+
+                    </span>
+                </div>
+            </div>
+        </div>*@
+</div>

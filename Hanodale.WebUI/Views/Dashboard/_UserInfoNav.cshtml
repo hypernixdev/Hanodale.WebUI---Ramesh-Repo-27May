@@ -1,0 +1,12 @@
+﻿@model Hanodale.WebUI.Models.UserModel
+<div class="login-info">
+    <span>
+        <!-- User image size is adjusted inside CSS, it should stay as it -->
+        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut" data-businessType ="@Model.businessType_Id">
+            <img src="@Model.avatarUrl" alt="me" class="online">
+            <span>@Model.firstName.ToUpper()
+            </span>
+            <i class="fa fa-angle-down"></i>
+        </a>
+    </span>
+</div>

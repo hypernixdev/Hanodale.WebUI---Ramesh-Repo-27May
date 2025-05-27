@@ -1,0 +1,2232 @@
+﻿@model Hanodale.WebUI.Models.EditOrderModel
+@using Hanodale.Utility.Globalize
+@using Newtonsoft.Json
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    bool showDiscountButton = Model.OrderItems.Any() == true && Model.OrderItems.Sum(item => item.discountAmt) > 0;
+}
+<style>
+    .button-common {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        min-width: 120px;
+        height: 40px;
+        color: white;
+        border: none;
+    }
+</style>
+
+<style>
+    .table thead tr th, tbody tr td {
+        word-break: normal;
+    }
+</style>
+<div class="container-fluid">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 nPadding">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>
+            @(Model.isEdit ? "Return Order" : "Create Order")
+        </h1>
+    </div>
+    @if (Model.isEdit)
+    {
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="orderNo">Order No</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="orderNo" value="@Html.Raw(Model.orderNum)" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- New row for Submitted by and Submitted Date -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="submittedBy">Submitted By</label>
+                <span class="form-control" id="submittedBy" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>@Model.entryPerson</span>
+            </div>
+            <div class="col-md-4">
+                <label for="submittedDate">Submitted Date</label>
+                <span class="form-control" id="submittedDate" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>@Model.orderDate</span>
+            </div>
+            <div class="col-md-4">
+                <label for="submittedDate">Current Status</label>
+                <span class="form-control" id="orderStatus" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>@Model.orderStatus</span>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        @*<div class="col-md-4">
+                <label for="orderNo">Order No</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="orderNo" autocomplete="off" readonly>
+                </div>
+            </div>*@
+        <div class="col-md-4">
+            <label for="customer">Customer</label>
+            <div class="input-group selectCustomerContainer">
+                @*<select class="form-control selectCustomer" id="customer" @(Model.orderStatus == "Completed" ? "disabled" : "")>
+                    </select>
+                    <input type="hidden" class="selectCustomer" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")  />*@
+                <input type="text" class="form-control" readonly id="customerName" value="@Model.customerName" />
+                <input type="hidden" name="customer" id="customer" value="@Model.customer_Id" />
+                <span class="input-group-append">
+                    @* <button style="margin:0px; padding: 0px 12px;" class="btn btn-success" id="btnCustomerPicker" type="button">Browse</button>*@
+
+                    <button id="btnCustomerPicker" style="margin:0px; padding: 0px 12px;" class="btn btn-success button-common" type="button" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>
+
+                        Browse
+                    </button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="shipTo">Ship To</label>
+            <select class="form-control selectShipTo" id="shipTo" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>
+                <option>Select Ship To</option>
+            </select>
+        </div>
+        @if (Model.isEdit)
+        {
+            <div class="col-md-4">
+                <label for="orderDate">Order Date</label>
+                <input type="text" class="form-control" id="orderDate" placeholder="dd/MM/yyyy" autocomplete="off" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "readonly" : "")>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4">
+                <label for="orderDate">Order Date</label>
+                <input type="text" class="form-control" id="orderDate" placeholder="dd/MM/yyyy" autocomplete="off">
+            </div>
+        }
+    </div>
+
+    <!-- Customer search starts -->
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable nPadding customerPicker" style="display:none;">
+
+        <div class="jarviswidget jarviswidget-sortable" id="wid-id-110" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+            <header role="heading">
+                <div class="jarviswidget-ctrls" role="menu">
+                    <a href="#" class="button-icon closecustomerPicker" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-times "></i></a>
+                </div>
+                <h2>Search Panel </h2>
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+            </header>
+
+            <!-- widget div-->
+            <div role="content">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="searchName">Name</label>
+                                <input type="text" class="form-control" id="searchName" placeholder="Enter Name">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchCustomerCode">Code</label>
+                                <input type="text" class="form-control" id="searchCustomerCode" placeholder="Enter Code">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchCity">City</label>
+                                <input type="text" class="form-control" id="searchCity" placeholder="Enter City">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="searchState">State</label>
+                                <input type="text" class="form-control" id="searchState" placeholder="Enter State">
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <button class="btn btn-primary button-common" id="btnSearchCustomer">Search</button>
+                                <button class="btn btn-secondary button-common" id="btnResetCustomer">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="dt_customer_picker" class="table table-striped table-bordered" style="width: 100%">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Action</th>
+                                <th hidden>Id</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Address1</th>
+                                <th>Address2</th>
+                                <th>City</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- More rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div> <!-- content end -->
+        </div>
+    </article>
+
+    <!-- end Customer search -->
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <div class="form-check">
+                <input name="oneTimeCustomer" class="form-check-input" type="checkbox" id="oneTimeCustomer" @(Model.oneTimeCustomer ? "checked" : "")>
+                <label class="form-check-label" for="oneTimeCustomer">One Time Customer</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Fields for Contact, Name, and Phone -->
+    <div class="row mb-3" id="oneTimeCustomerFields" style="@(Model.oneTimeCustomer ? "" : "display: none;")">
+        <div class="col-md-4">
+            <label for="orderContact">Contact</label>
+            <input type="text" class="form-control" id="orderContact" placeholder="Enter Contact" value="@Model.orderContact">
+        </div>
+        <div class="col-md-4">
+            <label for="orderContactName">Name</label>
+            <input type="text" class="form-control" id="orderContactName" placeholder="Enter Name" value="@Model.orderContactName">
+        </div>
+        <div class="col-md-4">
+            <label for="orderContactPhone">Phone</label>
+            <input type="text" class="form-control" id="orderContactPhone" placeholder="Enter Phone Number" value="@Model.orderContactPhone">
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="remarks">Remarks</label>
+            <textarea class="form-control" id="remarks" rows="3" placeholder="Enter remarks here">@Model.orderComment</textarea>
+        </div>
+    </div>
+
+    @if (Model.verifiedStatus == "Pass" && Model.isEdit)
+    {
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="submittedBy">Verified By</label>
+                <span class="form-control" id="submittedBy" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>@Model.verifiedBy</span>
+            </div>
+            <div class="col-md-4">
+                <label for="submittedDate">Verified Date</label>
+                <span class="form-control" id="submittedDate" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>@Model.verifiedDate</span>
+            </div>
+            <div class="col-md-4">
+                <label for="submittedDate">Verified Status</label>
+                <span class="form-control" id="submittedDate" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")>@Model.verifiedStatus</span>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        @*<div class="col-md-4">
+                <label for="priceTier">Price Tier</label>
+                <select class="form-control" id="priceTier">
+                    <option>Select Price Tier</option>
+                </select>
+            </div>*@
+    </div>
+
+    <div class="row mb-3 align-items-end" id="AfterSubmitVisible">
+        <div class="col-md-6">
+            <h4>Product List</h4>
+        </div>
+        @if (Model.orderStatus != "Completed" && !Model.IsCashierLogin)
+        {
+            <div class="col-md-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Scan</span>
+                    </div>
+                    <input type="text" class="form-control" id="productSearch" autocomplete="off">
+                    <div class="input-group-append2">
+                        <button class="btn btn-success button-common" type="button" id="btnAddProduct">Add</button>
+                        <button class="btn btn-primary button-common" type="button" id="btnAdd">Browse</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    @if (Model.orderStatus != "Completed" && !Model.IsCashierLogin)
+    {
+        <div class="row mb-3 align-items-end">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+
+                    <span style="font-size:x-small">Please Click Enter or Add button to Proceed..</span>
+
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <!-- Product search starts -->
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable nPadding productPicker" style="display:none;">
+
+        <div class="jarviswidget jarviswidget-sortable" id="wid-id-110" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" style="" role="widget">
+            <header role="heading">
+                <div class="jarviswidget-ctrls" role="menu">
+                    <a href="javascript:void(0);" class="button-icon closeProductPicker" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-times "></i></a>
+                </div>
+                <h2>Search Panel </h2>
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+            </header>
+
+            <!-- widget div-->
+            <div role="content">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="searchPartNo">Part No</label>
+                                <input type="text" class="form-control" id="searchPartNo" placeholder="Enter Part No">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchCode">Code</label>
+                                <input type="text" class="form-control" id="searchCode" placeholder="Enter Code">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchDesc">Description</label>
+                                <input type="text" class="form-control" id="searchDesc" placeholder="Enter Description">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="searchPartGroup">Part Group</label>
+                                <input type="text" class="form-control" id="searchPartGroup" placeholder="Enter Part No">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="searchPartClass">Part Class</label>
+                                <input type="text" class="form-control" id="searchPartClass" placeholder="Enter Code">
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <button class="btn btn-primary button-common" id="btnSearch">Search</button>
+                                <button class="btn btn-secondary button-common" id="btnReset">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="dt_product_picker" class="table table-striped table-bordered" style="width: 100%">
+                        <thead class="bg-light">
+                            <tr>
+                                @*<th>Action</th>*@
+                                <th><input type="checkbox" id="selectAll"></th>
+                                <th hidden>Id</th>
+                                <th>Part No</th>
+                                <th>Part Name</th>
+                                <th hidden>Code</th>
+                                <th>Group</th>
+                                <th>UOM</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- More rows as needed -->
+                        </tbody>
+                    </table>
+                    <div class="row mt-2 mb-2 ml-2">
+                        <div class="col-12">
+                            <button class="btn btn-primary button-common" id="btnAddToOrders">Add to order</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- content end -->
+        </div>
+    </article>
+
+    <!-- end product search -->
+
+    <div class="table-responsive">
+        <!--  d-none d-md-block -->
+        <table id="dt2_product" class="table table-striped table-bordered">
+            <thead class="bg-light">
+                <tr>
+                    <th style="width: 68px;">Action</th>
+                    <th hidden>Id</th>
+                    <th>Part No</th>
+                    <th>Part Name</th>
+                    <th hidden>Code</th>
+                    <th>AVW</th>
+                    <th>Cutng Type</th>
+                    <th>Cutng Cost</th>
+                    <th>Comp</th>
+                    <th>Unit Price</th>
+                    <th>Discount(%)</th>
+                    <th>UOM</th>
+                    <th>Order Qty</th>
+                    <th class="all">Return Status</th>
+                    @if (Model.isEdit)
+                    {
+                        <th>Scanned Qty</th>
+                    }
+                    <th>Total</th>
+                    <th hidden>QtyType_ModuleItem_Id</th>
+                    <th hidden>OrderUOM_Id</th>
+                    <th hidden>operationStyle_ModuleItem_Id</th>
+                    <th hidden>operationCost</th>
+                    <th hidden>complimentary_ModuleItem_Id</th>
+                    <th hidden>orderItemId</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>
+                            <button class="btn btn-danger btn-sm btn-remove" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")><i class="fa fa-times"></i></button>
+                            <button class="btn btn-sm btn-success btn-edit" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")><i class="fa fa-edit"></i></button>
+                        </td>
+                        <td hidden>@item.product_Id</td>
+                        <td class="product-id-field" data-id="@item.product_Id" data-orderItemId="@item.orderItemId" data-itemId="@item.itemId">@item.partNum</td>
+                        <td class="product-desc-field">@item.lineDesc</td>
+                        <td class="product-allowvaryweight">@item.allowVaryWeight</td>
+                        <td class="product-cuttingtype">@item.operationName</td>
+                        <td class="product-cuttongcost">@item.operationCost</td>
+                        <td class="product-complimentary">@item.complementary</td>
+                        <td>
+                            <span data-oldunitcost="@item.originalUnitPrice" data-field="price">@item.unitPrice</span>
+                            <input type="hidden" name="originalUnitPrice" class="originalUnitPrice" value="@item.originalUnitPrice">
+                            <span class="product-returnTotal" style="display:none;">@item.returnTotal</span>
+                        </td>
+                        <td class="product-discountPer">@item.discountPer.ToString("F2")</td>
+                        <td class="product-code" hidden>@item.product_Id</td>
+                        <td class="product-orderUOM">@item.salesUm</td>
+                        <td class="product-productQty">@item.orderQty.ToString("F2")</td>
+                        <td class="product-returnStatus">@(item.IsReturned ? "Returned" : "")</td>
+                        @if (Model.isEdit)
+                        {
+                            <td class="product-scannedQty">@item.scannedQty</td>
+                        }
+                        @if (item.IsReturned)
+                        {
+                            <td class="product-lineTotal" data-originaltotal="@(((item.unitPrice * (item.scannedQty != 0 ? item.scannedQty : item.orderQty)) + item.operationCost).ToString("F2"))">0</td>
+                        }
+                        else
+                        {
+                            <td class="product-lineTotal" data-originaltotal="@(((item.unitPrice * (item.scannedQty != 0 ? item.scannedQty : item.orderQty)) + item.operationCost).ToString("F2"))">
+                                @(((item.unitPrice * (item.scannedQty != 0 ? item.scannedQty : item.orderQty)) + item.operationCost).ToString("F2"))
+                            </td>
+                        }
+                        <td class="product-QtyType_ModuleItem_Id" hidden>@item.QtyType_ModuleItem_Id</td>
+                        <td class="product-OrderUOM_Id" hidden>@item.OrderUOM_Id</td>
+                        <td class="product-operationStyle_ModuleItem_Id" hidden>@item.operationStyle_ModuleItem_Id</td>
+                        <td class="product-operationCost" hidden data-actualoperationcost="@item.actualOperationCost">@item.operationCost</td>
+                        <td class="product-complimentary_ModuleItem_Id" hidden>@item.complimentary_ModuleItem_Id</td>
+                        <td class="product-orderItemId" hidden>@item.orderItemId</td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="table-responsive d-block d-md-none" style="display:none;">
+        <table id="dt2_product_mobile" class="table table-striped table-bordered">
+            <thead class="bg-light">
+                <tr>
+                    <th class="none">Action</th>
+                    <th hidden>Id</th>
+                    <th class="all">Part No</th>
+                    <th class="none">Part Name</th>
+                    <th hidden>Code</th>
+                    <th>Allow Vary Weight</th>
+                    <th>Cutting Type</th>
+                    <th>Cutting Cost</th>
+                    <th>Complimentary</th>
+                    <th class="none">Unit Price</th>
+                    <th class="none">Group</th>
+                    <th class="none">UOM</th>
+                    <th class="all">Order Qty</th>
+                    <th class="all">Total</th>
+                    <th hidden>QtyType_ModuleItem_Id</th>
+                    <th hidden>OrderUOM_Id</th>
+                    <th hidden>operationStyle_ModuleItem_Id</th>
+                    <th hidden>operationCost</th>
+                    <th hidden>complimentary_ModuleItem_Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>
+                            <button class="btn btn-danger btn-sm btn-remove" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")><i class="fa fa-times"></i></button>
+                            <button class="btn btn-sm btn-success btn-edit" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "disabled" : "")><i class="fa fa-edit"></i></button>
+                        </td>
+                        <td hidden>@item.product_Id</td>
+                        <td class="product-id-field" data-id="@item.product_Id">@item.partNum</td>
+                        <td class="product-desc-field">@item.lineDesc</td>
+                        <td class="product-allowvaryweight">@item.allowVaryWeight</td>
+                        <td class="product-cuttingtype">@item.operationName</td>
+                        <td class="product-cuttongcost">@item.operationCost</td>
+                        <td class="product-complimentary">@item.complementary</td>
+                        <td><span data-oldunitcost="@item.originalUnitPrice" data-field="price">@item.unitPrice</span><input type="hidden" name="originalUnitPrice" class="originalUnitPrice" value="@item.originalUnitPrice"></td>
+                        <td class="product-prodGroup">@item.prodGroup</td>
+                        <td class="product-code" hidden>@item.product_Id</td>
+                        <td class="product-orderUOM">@item.salesUm</td>
+                        <td><input type="number" class="form-control" data-field="orderQty" value="@item.orderQty.ToString("F2")" @(Model.orderStatus == "Completed" || Model.IsCashierLogin ? "readonly" : "") /></td>
+                        <td class="product-lineTotal">@(((item.unitPrice * item.orderQty) + item.operationCost).ToString("F2"))</td>
+                        <td class="product-QtyType_ModuleItem_Id" hidden>@item.QtyType_ModuleItem_Id</td>
+                        <td class="product-OrderUOM_Id" hidden>@item.OrderUOM_Id</td>
+                        <td class="product-operationStyle_ModuleItem_Id" hidden>@item.operationStyle_ModuleItem_Id</td>
+                        <td class="product-operationCost" hidden>@item.operationCost</td>
+                        <td class="product-complimentary_ModuleItem_Id" hidden>@item.complimentary_ModuleItem_Id</td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6 offset-md-6 text-right">
+            <h4>Order Total: <span id="orderTotal">@Model.docOrderAmt</span></h4>
+        </div>
+    </div>
+
+    <br />
+    <!-- Return order items -->
+
+    <div class="row mb-3 align-items-end">
+        <div class="col-md-6">
+            <h4>Return Items</h4>
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Scan</span>
+                </div>
+                <input type="text" class="form-control" id="partNo" name="partNo">
+                <div class="input-group-append2">
+                    <button class="btn btn-primary btnScanProduct button-common" type="button" data-id="@Model.id">Scan</button>
+                    <button class="btn btn-danger resetBtn button-common" type="button" data-id="@Model.id">Reset</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="table-responsive2 d-none d-md-block">
+        <table id="dt2_productScan" class="table table-striped table-bordered">
+            <thead class="bg-light">
+                <tr>
+                    <th>Action</th>
+                    <th>Serial No</th>
+                    <th>Part No</th>
+                    <th>Part Name</th>
+                    <th>Order UOM</th>
+                    <th>Scanned Qty</th>
+                    <th>Return Qty</th>
+                    <th>Status</th>
+                    <th>Return Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.OrderScanned != null)
+                {
+                    foreach (var item in Model.OrderScanned)
+                    {
+
+                        <tr>
+                            <td>
+                                <button class="btn btn-success btn-sm" id="scanbtn"><i class="fa fa-undo"></i></button>
+                                <button class="btn btn-sm btn-danger" id="resetOrderbtn" data-id="@item.orderItem_Id"><i class="fa fa-refresh"></i></button>
+                            </td>
+                            <td><span class="product-barcode">@item.serialNo</span></td>
+                            <td><span data-id="@item.orderItem_Id" class="product-id-field" data-orderitemid="@item.orderItem_Id" data-scannedid="@item.Id">@item.partNo</span></td>
+                            <td><span class="product-lineDesc">@item.partName</span></td>
+                            <td><span class="product-orderUOM">@item.orderUOM</span></td>
+                            <td><span class="product-scannedQty">@item.scannedQty.ToString("F2")</span></td>
+                            <td>
+                                @if (item.allowVaryWeight)
+                                {
+                                    <input type="number" class="form-control returnQtyInput" data-id="@item.orderItem_Id" step="0.01" value="@item.returnQty.ToString("F2")" />
+                                }
+                                else
+                                {
+                                    <input type="number" class="form-control returnQtyInput" data-id="@item.orderItem_Id" step="1" value="@item.returnQty.ToString("F0")" />
+                                }
+                            </td>
+                            <td><span class="product-orderId">@item.status</span></td>
+                            <td><span class="product-verifyStatus">@(item.IsReturned ? "Return" : "")</span></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6 offset-md-6 text-right">
+            <h4>Return Items Total: <span id="returnTotal">0</span></h4>
+        </div>
+    </div>
+
+    <!-- return end -->
+
+    @if (Model.orderStatus == "Completed")
+    {
+        <div class="row mt-3 payment-tab">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4>Payment</h4>
+                </div>
+                <table id="paymentTable2" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Payment Type</th>
+                            <th>Bank</th>
+                            <th>Reference No</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.OrderPayments != null)
+                        {
+                            foreach (var payment in Model.OrderPayments.Where(p => p.IsRefund != true))
+                            {
+                                <tr>
+                                    <td>@payment.PaymentType</td>
+                                    <td>@payment.Bank</td>
+                                    <td>@payment.RefNumber</td>
+                                    <td>@payment.Amount</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4>Refunds</h4>
+                </div>
+                <table id="paymentTable2" class="table table-bordered refundsTable">
+                    <thead>
+                        <tr>
+                            <th>Payment Type</th>
+                            <th>Bank</th>
+                            <th>Reference No</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.OrderPayments != null)
+                        {
+                            foreach (var payment in Model.OrderPayments.Where(p => p.IsRefund == true))
+                            {
+                                <tr>
+                                    <td>@payment.PaymentType</td>
+                                    <td>@payment.Bank</td>
+                                    <td>@payment.RefNumber</td>
+                                    <td class="refundAmount">@payment.Amount</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    @if (Model.isEdit)
+    {
+        <div class="row mt-3">
+            <div class="col-md-4">
+
+                <button id="btnReceipt" type="button" onclick="loadTableData('receipt',modelData)">Thermal Print</button>
+                @if (showDiscountButton)
+                {
+                    <button onclick="showDiscountModal('@Model.id')">Discount Approval List</button>
+                }
+                <button id="btnInvoice" style="visibility:hidden" type="button" onclick="openPdfInModal('invoice')">Print</button>
+
+            </div>
+            <input type="hidden" id="form-congif" value="orders" data-mtc-btn="true" data-readonly="False">
+            <div class="col-md-8 text-right">
+                @if (!Model.readOnly)
+                {
+                    if (Model.orderStatus == "Completed")    /*&& !Model.IsCashierLogin*/
+                    {
+                        <button type="button" class="btn btn-warning button-common update-action" style="font-size: 15px; width: 150px; " data-id="@Model.id">Return Items</button>
+                    }
+                }
+                <button id="back-orders" class="btn btn-sm btn-primary button-common" type="button" data-url="Orders/Index">
+                    <i class="fa fa-mail-reply"></i>
+                    Back
+                </button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row mt-3">
+            @if (Model.readOnly)
+            {
+                <div class="col-md-6">
+
+                    <button id="btnReceipt" type="button" onclick="loadTableData('receipt',modelData)">Thermal Print</button>
+                    @if (showDiscountButton)
+                    {
+                        <button onclick="showDiscountModal('@Model.id')">Discount Approval List</button>
+                    }
+                    <button id="btnInvoice" style="visibility:hidden" type="button" onclick="openPdfInModal('invoice')">Print</button>
+
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6">
+                </div>
+            }
+            <input type="hidden" id="form-congif" value="orders" data-mtc-btn="true" data-readonly="False">
+            <div class="col-md-6 text-right">
+                @*<select class="form-control d-inline-block w-auto">
+                    <option>Action</option>
+                    <option>Complete</option>
+                    </select>*@
+                <select class="form-control d-inline-block w-auto order-action">
+                    <option value="SubmitForPicking" selected>Submit for Picking</option>
+                    <option value="Payment">Submit for Payment</option>
+                </select>
+                <button type="button" class="btn btn-success submitOrder">Submit</button>
+                @*<button type="button" class="btn btn-danger">Cancel Order</button>
+                    <button type="button" class="btn btn-warning">Verify Order</button> *@
+                <button id="back-orders" class="btn btn-sm btn-primary" type="button" data-url="Orders/Index">
+                    <i class="fa fa-mail-reply"></i>
+                    Back
+                </button>
+            </div>
+        </div>
+    }
+
+    <div class="row mt-3 payment-tab refund-tab" style="display:none;">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex align-items-center">
+                    <h4 class="mr-3">Refund</h4>
+                </div>
+                <div class="d-flex align-items-center">
+                    <strong class="mr-3">Payment Balance: <span id="paymentBalance">0.00</span></strong>
+                    <button id="addPaymentBtn" class="btn btn-primary btn-sm">Add Payment Type</button>
+                </div>
+            </div>
+            <table id="paymentTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Payment Type</th>
+                        <th>Bank</th>
+                        <th>Reference No</th>
+                        <th>Amount</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Payment rows will be added here dynamically -->
+                    <tr>
+                        <td><button class="btn btn-danger btn-sm removePayment"><i class="fa fa-times"></i></button></td>
+
+                        <td>
+                            <select class="form-control paymentType">
+                                @foreach (var item in Model.lstPaymentReturnTypes)
+                                {
+                                    <option value="@item.Value" @(item.Selected ? "selected" : "")>@item.Text</option>
+                                }
+                            </select>
+                            <input type="hidden" name="OrderId" value="@Model.id" class="orderId" />
+                        </td>
+                        <td><input type="text" class="form-control bank"></td>
+                        <td><input type="text" class="form-control referenceNo"></td>
+                        <td><input type="number" class="form-control amount" step="0.01"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right mb-2">
+                <strong>Total (RM): <span id="paymentTotal">0.00</span></strong>
+            </div>
+            <div class="text-right">
+                <button id="completePaymentBtn" class="btn btn-success">Complete Refund</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <input type="hidden" value="@Url.Action("UpdateOrderStatus", "Orders")" id="UpdateOrderStatusUrl" />
+    <input type="hidden" value="@Url.Action("SubmitOrder", "Orders")" id="SubmitOrderUrl" />
+    <input type="hidden" value="@Url.Action("UpdateOrderPayments", "Orders")" id="UpdateOrderPaymentsUrl" />
+    <input type="hidden" value="@Url.Action("GetProductByPartNum", "Product")" id="GetProductByPartNumUrl" />
+    <input type="hidden" value="@Url.Action("SearchCustomers", "Customer")" id="SearchCustomersUrl" />
+    <input type="hidden" value="@Url.Action("SearchProducts", "Product")" id="SearchProductsUrl" />
+    <input type="hidden" value="@Url.Action("UpdateOrder", "Orders")" id="UpdateOrderUrl" />
+
+</div>
+<div class="modal fade" id="DiscountGridModal" tabindex="-1" role="dialog" aria-labelledby="DiscountGridLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DiscountGridLabel">Discount Approval</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 0; margin: 0;">
+                <div id="discountPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
+                        <br />
+                        <table id="discountdata-table" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Part Number</th>
+                                    <th>Description</th>
+                                    <th>Approver Name</th>
+                                    <th>Approval Date</th>
+                                    <th>Discount</th>
+                                    <th>Remarks</th>
+                                    <th>Requested By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic data will be inserted here -->
+                            </tbody>
+                        </table>
+                        <br />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="width:100mm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 0; margin: 0;">
+                <div id="labelPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
+                        <div class="qrCodePrint"></div>
+                        <table id="data-table" style="text-align:center;">
+                            <!--<thead>
+                                <tr>
+                                    <th colspan="3" style="width: 98%; text-align: center">Lucky Frozen Sdn Bhd</th>-->
+                            <!-- Merging 3 columns into one -->
+                            <!--</tr>
+                                <tr>
+                                    <th style="width: 59%; text-align: left;">Product</th>
+                                    <th style="width: 20%; text-align: center">Qty</th>
+                                    <th style="width:20%; text-align:right">Price</th>
+                                </tr>
+                            </thead>-->
+                            <tbody>
+                                <!-- Dynamic data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary" onclick="printReceipt('@Model.id', '@Model.orderStatus')">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .form-control, .input-group-text, .btn {
+        border-radius: 0;
+    }
+
+    .table thead th {
+        background-color: #e9ecef;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .fade {
+        opacity: 1;
+    }
+
+    .modal-open #header1 {
+        z-index: 1;
+    }
+
+    /* Ensures table takes full width inside the modal */
+    .modal .table-responsive {
+        width: 100%;
+    }
+
+    /* Ensures table stretches to fill the available space */
+    .modal .table {
+        width: 100%;
+    }
+
+    .dataTables_filter [type='search'] {
+        width: auto !important;
+    }
+
+    .product-checkbox {
+        margin-left: 7px;
+    }
+
+    .selectCustomer, .selectShipTo {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .btn-sm {
+        padding: 2px 7px;
+    }
+
+        .btn-sm:nth-child(2) {
+            margin-left: 5px;
+        }
+
+    #dt_product_picker td:first-child {
+        text-align: center !important;
+    }
+
+        #dt_product_picker td:first-child input {
+            margin-left: 0px !important;
+        }
+
+    .selectCustomerContainer .select2-container {
+        width: 80%;
+    }
+</style>
+
+<style>
+    @@media print {
+        #labelPrint {
+            transform: scale(8.0);
+            transform-origin: top left;
+            margin: 0;
+            padding: 0;
+            zoom: 80%;
+        }
+
+        body {
+            background: none;
+        }
+        /* If you have any specific classes or IDs you want to hide, add them here */
+        header, footer, .no-print {
+            display: none;
+        }
+    }
+</style>
+
+@Scripts.Render(bundles.scripts.common_add_edit)
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    var isEdit = "@(Model.isEdit ? "yes" : "no")";
+    function parseDate(dateString) {
+        var parts = dateString.split(' ');
+        var dateParts = parts[0].split('/');
+        var timeParts = parts[1].split(':');
+        var period = parts[2];  // AM/PM
+
+        var day = parseInt(dateParts[0], 10);
+        var month = parseInt(dateParts[1], 10) - 1; // Month is 0-indexed in JS
+        var year = parseInt(dateParts[2], 10);
+        var hours = parseInt(timeParts[0], 10);
+        var minutes = parseInt(timeParts[1], 10);
+
+        // Adjust for AM/PM
+        if (period === 'PM' && hours < 12) {
+            hours += 12;
+        } else if (period === 'AM' && hours === 12) {
+            hours = 0;
+        }
+
+        // Create the JavaScript Date object
+        return new Date(year, month, day, hours, minutes);
+    }
+</script>
+
+@if (Model.isEdit)
+{
+    <script>
+      var today = parseDate('@Model.orderDate');
+    </script>
+}
+else
+{
+    <script>
+        var today = new Date();
+    </script>
+}
+
+<script>
+    // var $select = $('.selectCustomer');
+    var debounceTimeout;
+
+    $(document).ready(function () {
+        updateReturnTotal();
+        updatePaymentTotal();
+    })
+
+function formatNumberWithThousandSeparator(number) {
+    return number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+    var $selectShipTo = $('.selectShipTo');
+    // Reinitialize Select2 for ShipTo dropdown after updating options
+    $selectShipTo.select2({
+        placeholder: "Select Ship-To Address",
+        allowClear: true
+    });
+    var shipToId = '@Model.shipToAddress_Id';
+    var shipToName = '@Model.shipToName';
+
+    // Check if Model.shipToId and Model.shipToName exist
+    if (shipToId && shipToName) {
+        // Create a new option element
+        var option = $('<option></option>')
+            .val(shipToId)      // Set the value as shipToId
+            .text(shipToName);  // Set the text as shipToName
+
+        // Add the option to the select element
+        $selectShipTo.append(option);
+
+        // Set the newly added option as selected
+        $selectShipTo.val(shipToId).trigger('change');
+    }
+
+
+
+            // Optionally, handle removing rows dynamically
+            $(document).on('click', '.btn-remove', function () {
+                $(this).closest('tr').remove(); // Remove the corresponding row
+            });
+
+        var desktop_table = $('#dt2_product').DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching": false,
+            "responsive": true
+        });
+
+        var mobile_table = $('#dt2_product_mobile').DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching": false,
+            "responsive": true
+        });
+
+        function formatDate(date) {
+            var day = String(date.getDate()).padStart(2, '0');
+            var month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            var year = date.getFullYear();
+
+            return day + '/' + month + '/' + year;
+        }
+
+
+
+    $(document).on('change', 'input#finalQty', function () {
+        var preTr = $(this).closest('tr').prev('tr');
+        preTr.find('input[data-field="orderQty"]').val($(this).val());
+        updateTotal(preTr);
+      });
+
+        $('button.submitOrder').on('click', function() {
+            // localStorage.setItem('orderData', '');
+            // Get values from the input fields
+            var customerId = $('#customer').val();
+            var shipToAddressId = $('#shipTo').val();
+
+            // Check if customerId and shipToAddressId are not empty
+            if (!customerId) {
+                alert("Please select a customer.");
+                return; // Exit the function if customerId is not valid
+            }
+
+            if (!shipToAddressId) {
+                alert("Please select a shipping address.");
+                return; // Exit the function if shipToAddressId is not valid
+            }
+
+            var orderData = {
+                customer_Id: $('#customer').val(),
+                shipToAddress_Id: $('#shipTo').val(),
+                orderDate: $('#orderDate').val(),
+                orderComment: $('#remarks').val(), // Add a textarea for comments if needed
+                OrderItems: [],
+                orderStatus: $('.order-action').val(),
+                oneTimeCustomer: $('#oneTimeCustomer').is(':checked'),
+                orderContact: $('#orderContact').val(),
+                orderContactName: $('#orderContactName').val(),
+                orderContactPhone: $('#orderContactPhone').val()
+            };
+
+            $('#dt2_product tbody tr').each(function () {
+                if (!$(this).hasClass('edit-panel-row')) {
+                    var row = $(this);
+                    var item = {
+                        partNum: row.find('.product-id-field').text(),
+                        product_Id: row.find(".product-id-field").attr("data-id"),
+                        lineDesc: row.find('.product-desc-field').text(),
+                        unitPrice: parseFloat(row.find('span[data-field="price"]').text()),
+                        originalUnitPrice: parseFloat(row.find("input.originalUnitPrice").val()),
+                        prodGroup: row.find('.product-prodGroup').text(),
+                        code: row.find('.product-code').text(),
+                        ium: row.find('.product-orderUOM').text(),
+                        orderQty: parseFloat(row.find('input[data-field="orderQty').val()),
+                        discount: 0, // Add a field for discount if needed
+                        listPrice: parseFloat(row.find('span[data-field="price').text()),
+                        lineTotal: row.find('.product-lineTotal').text(),
+                        QtyType_ModuleItem_Id: row.find('.product-QtyType_ModuleItem_Id').text(),
+                        OrderUOM_Id: row.find('.product-OrderUOM_Id').text(),
+                        operationStyle_ModuleItem_Id: row.find('.product-operationStyle_ModuleItem_Id').text(),
+                        operationCost: row.find('.product-operationCost').text(),
+                        complimentary_ModuleItem_Id: row.find('.product-complimentary_ModuleItem_Id').text(),
+                        allowVaryWeight: row.find('.product-allowvaryweight').text() === "Yes" ? true : false,
+                    };
+                    orderData.OrderItems.push(item);
+                }
+            });
+            console.log(orderData);
+            //localStorage.setItem('orderData', JSON.stringify(orderData));
+            // Send the data to the server
+            debugger
+        $.ajax({
+            url: '@Url.Action("SubmitOrder", "Orders")', // Update with your controller and action names
+            type: 'POST',
+            data: JSON.stringify(orderData),
+            contentType: "application/json; charset=utf-8",
+            success: function(response) {
+                if (response.success) {
+                    // alert('Order submitted successfully!');
+                    userMessage.show("Success", "The order submitted successfully!");
+
+                    $("#back-orders").trigger("click");
+                    // Optionally, redirect or clear the form
+                } else {
+                    userMessage.show("Error", 'Error submitting order: ' + response.message);
+
+                }
+            },
+            error: function() {
+                userMessage.show("Error", 'An error occurred while submitting the order.');
+            }
+        });
+        });
+
+    // Edit functionalities
+    function updateReturnTotal() {
+        var scannedQtyMap = {};
+        // Step 2: Loop through each row to calculate total scannedQty by orderItemId
+        $('#dt2_productScan tbody tr').each(function () {
+            var row = $(this);
+            var orderItemId = row.find('.product-id-field').data('orderitemid');
+            var scannedQty = parseFloat(row.find('.returnQtyInput').val()) || 0;
+
+            // If row is NOT "Return" status, add scannedQty to the map
+            if (row.find('.product-verifyStatus').text() === 'Return') {
+                if (!scannedQtyMap[orderItemId]) {
+                    scannedQtyMap[orderItemId] = 0;
+                }
+                scannedQtyMap[orderItemId] += scannedQty;
+            }
+        });
+
+        // Now update the order grid with the consolidated quantities
+        $('#dt2_product tbody tr').each(function () {
+            const row = $(this);
+            const orderItemId = row.find('.product-orderItemId').text();
+
+            if (scannedQtyMap[orderItemId] !== undefined) {
+                // Assuming there's a cell with class 'consolidated-qty' to update in order grid
+                row.find('.product-returnStatus').text(scannedQtyMap[orderItemId]);
+            } else {
+                row.find('.product-returnStatus').text("0");
+            }
+        });
+
+        var returnTotal = 0;
+        debugger
+        $('#dt2_product tbody tr').each(function () {
+            const row = $(this);
+            var retQty = parseFloat(row.find('.product-returnStatus').text()) || 0;
+            var unitPrice = parseFloat(row.find('td span[data-field="price"]').text()) || 0;
+            var orderItemId = row.find(".product-orderItemId").text();
+
+            // Calculate base return amount
+            var baseReturnAmount = (retQty * unitPrice);
+
+            // Calculate cutting cost
+            var actualCuttingCost = parseFloat($(this).find(".product-operationCost").data("actualoperationcost")) || 0;
+            var cuttingCost = 0;
+            var returnCuttingCost = 0;
+
+            if (actualCuttingCost) {
+                var scannedQty = parseFloat($(this).find(".product-scannedQty").text()) || 0;
+                var actualQty = !isNaN(scannedQty) && scannedQty > 0 ? scannedQty : parseFloat($(this).find('product-productQty').text()) || 0;
+                var withoutDecimalQty = Math.floor(actualQty - retQty);
+                cuttingCost = Math.floor(actualQty) * actualCuttingCost;
+                returnCuttingCost = withoutDecimalQty * actualCuttingCost;
+            }
+
+            // Calculate subtotal for return (base amount + cutting cost difference)
+            var returnSubtotal = baseReturnAmount + (cuttingCost - returnCuttingCost);
+
+            // Get discount percentage from the row
+            var discountPercentage = parseFloat(row.find('.product-discountPer').text()) || 0;
+
+            // Calculate discount amount for return items
+            var returnDiscountAmount = 0;
+            if (discountPercentage > 0) {
+                returnDiscountAmount = Number(((returnSubtotal * discountPercentage) / 100).toFixed(2));
+            }
+            var returnTotalForItem = Number((returnSubtotal - returnDiscountAmount).toFixed(2))
+            row.find(".product-returnTotal").text(returnTotalForItem);
+            // Calculate final return total with discount
+            returnTotal += Number((returnSubtotal - returnDiscountAmount).toFixed(2));
+
+            console.log("Return Details for Item", orderItemId, ":",
+                "\nReturn Qty:", retQty,
+                "\nUnit Price:", unitPrice,
+                "\nBase Return Amount:", baseReturnAmount,
+                "\nCutting Cost Difference:", (cuttingCost - returnCuttingCost),
+                "\nReturn Subtotal:", returnSubtotal,
+                "\nDiscount %:", discountPercentage,
+                "\nDiscount Amount:", returnDiscountAmount,
+                "\nFinal Return Amount:", (returnSubtotal - returnDiscountAmount));
+
+            if (scannedQtyMap[orderItemId] !== undefined) {
+                row.find('.product-returnStatus').text(scannedQtyMap[orderItemId]);
+            }
+        });
+        //$('#dt2_product tbody tr').each(function () {
+        //    const row = $(this);
+        //    var retQty = parseFloat(row.find('.product-returnStatus').text()) || 0;
+        //    var unitPrice = parseFloat(row.find('td span[data-field="price"]').text()) || 0;
+        //    var orderItemId = row.find(".product-orderItemId").text();
+        //    returnTotal += (retQty * unitPrice);
+        //    // Calculate cutting cost
+        //    var actualCuttingCost = parseFloat($(this).find(".product-operationCost").data("actualoperationcost")) || 0;
+        //    var cuttingCost = 0;
+        //    var returnCuttingCost = 0;
+        //    if (actualCuttingCost) {
+        //        var scannedQty = parseFloat($(this).find(".product-scannedQty").text()) || 0;
+        //        var actualQty = !isNaN(scannedQty) && scannedQty > 0 ? scannedQty : parseFloat($(this).find('product-productQty').text()) || 0;
+        //        var withoutDecimalQty = Math.floor(actualQty - retQty);
+        //        cuttingCost = Math.floor(actualQty) * actualCuttingCost;
+        //        returnCuttingCost = withoutDecimalQty * actualCuttingCost;
+        //        returnTotal += cuttingCost - returnCuttingCost;
+        //    }
+        //    if (scannedQtyMap[orderItemId] !== undefined) {
+        //        // Assuming there's a cell with class 'consolidated-qty' to update in order grid
+        //        row.find('.product-returnStatus').text(scannedQtyMap[orderItemId]);
+        //    }
+        //});
+
+        $("#returnTotal").text(returnTotal.toFixed(2));
+        updateOrderTotal();
+    }
+    $(".update-action").on("click", function () {
+        var scannedData = constructOrderScanModel($(this));
+        if (scannedData == null) {
+            return;
+        }
+        console.log(scannedData);
+        debugger
+        $.ajax({
+            url: "@Url.Action("SubmitReturnedItems", "Orders")", // Update with your controller and action names
+            type: 'POST',
+            data: JSON.stringify(scannedData),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.success) {
+                    // alert('Order submitted successfully!');
+                    userMessage.show("Success", "The return order items submitted successfully!");
+                    //$("#back-pickup").trigger("click");
+                    // Optionally, redirect or clear the form
+                    $(".refund-tab").show();
+                } else {
+                    userMessage.show("Error", 'Error submitting order: ' + response.message);
+                }
+            },
+            error: function () {
+                userMessage.show("Error", 'An error occurred while submitting the order.');
+            }
+        });
+    })
+
+    function constructOrderScanModel(submitBtn) {
+        var orderId = submitBtn.attr("data-id");// Assuming all items have the same orderId
+
+        var orderScanModel = {
+            orderId: parseInt(orderId),
+            returnedItems: [],
+            ReturnOrderItems: [],
+            orderTotal: parseFloat($('#orderTotal').text().replace(/,/g, '')) || 0
+        };
+        var scannedItemMap = new Map();
+        // Construct scannedItems
+        var unmatchedProducts = [];
+        $('#dt2_productScan tbody tr').each(function() {
+            var row = $(this);
+            if (row.find('.product-verifyStatus').text() !== 'Return') {
+                // unmatchedProducts.push(row.find('.product-id-field').text());
+            } else {
+                var scannedItem = {
+                    orderId: parseInt(orderId),
+                    orderItemId: row.find('.product-id-field').data('orderitemid'),
+                    scannedId: row.find('.product-id-field').data('scannedid'),
+                    partNum: row.find('.product-id-field').text(),
+                    orderUOM: row.find('.product-orderUOM').text(),
+                    lineDesc: row.find('.product-partName').text(),
+                    prodGroup: row.find('.product-prodGroup').text(),
+                    scannedQty: row.find('.product-scannedQty').text(),
+                    returnQty: row.find('.returnQtyInput').val(),
+                    Status: "Matched",
+                    orderType: 'Full Quantity', // This info is not in the scanned item row, so we're using a default
+                    SerialNumber: row.find('.product-barcode').text() // Additional field from scanned items
+                };
+                orderScanModel.returnedItems.push(scannedItem);
+                scannedItemMap.set(row.find('.product-id-field').data('orderitemid'), scannedItem);
+            }
+        });
+
+        $('#dt2_product tbody tr').each(function () {
+            if (!$(this).hasClass('edit-panel-row') && !$(this).hasClass('child')) {
+                var row = $(this);
+                var item = {
+                    OrderItemId: row.find('.product-id-field').data('orderitemid'),
+                    cuttingCost: row.find('.product-operationCost').text(),
+                    listPrice: row.find('.product-lineTotal').text(),
+                    returnTotal: row.find('.product-returnTotal').text(),
+                    discountAmt: parseFloat(row.find('.product-lineTotal').data("discount-amount")) || 0,
+                }
+                orderScanModel.ReturnOrderItems.push(item);
+            }
+        });
+
+        return orderScanModel;
+    }
+
+
+    function updateOrder(orderId) {
+        return new Promise((resolve, reject) => {
+            var orderData = {
+                id: orderId,
+                customer_Id: $('#customer').val(),
+                shipToAddress_Id: $('#shipTo').val(),
+                orderDate: $('#orderDate').val(),
+                orderComment: $('#remarks').val(), // Add a textarea for comments if needed
+                OrderItems: [],
+                orderStatus: $('.order-action').val(),
+                oneTimeCustomer: $('#oneTimeCustomer').is(':checked'),
+                orderContact: $('#orderContact').val(),
+                orderContactName: $('#orderContactName').val(),
+                orderContactPhone: $('#orderContactPhone').val()
+            };
+
+            $('#dt2_product tbody tr').each(function () {
+                if (!$(this).hasClass('edit-panel-row')) {
+                    var row = $(this);
+                    var item = {
+                        partNum: row.find('.product-id-field').text(),
+                        product_Id: row.find(".product-id-field").attr("data-id"),
+                        lineDesc: row.find('.product-desc-field').text(),
+                        unitPrice: parseFloat(row.find('span[data-field="price"]').text()),
+                        originalUnitPrice: parseFloat(row.find("input.originalUnitPrice").val()),
+                        prodGroup: row.find('.product-prodGroup').text(),
+                        code: row.find('.product-code').text(),
+                        ium: row.find('.product-orderUOM').text(),
+                        orderQty: parseFloat(row.find('input[data-field="orderQty').val()),
+                        discount: 0, // Add a field for discount if needed
+                        listPrice: parseFloat(row.find('span[data-field="price').text()),
+                        lineTotal: row.find('.product-lineTotal').text(),
+                        QtyType_ModuleItem_Id: row.find('.product-QtyType_ModuleItem_Id').text(),
+                        OrderUOM_Id: row.find('.product-OrderUOM_Id').text(),
+                        operationStyle_ModuleItem_Id: row.find('.product-operationStyle_ModuleItem_Id').text(),
+                        operationCost: row.find('.product-operationCost').text(),
+                        complimentary_ModuleItem_Id: row.find('.product-complimentary_ModuleItem_Id').text(),
+                        allowVaryWeight: row.find('.product-allowvaryweight').text() === "Yes" ? true : false,
+                        orderItemId: row.find('.product-orderItemId').text(),
+                    };
+                    orderData.OrderItems.push(item);
+                }
+            });
+            console.log(orderData);
+            // Send the data to the server
+            $.ajax({
+                url: "@Url.Action("UpdateOrder", "Orders")", // Update with your controller and action names
+                type: 'POST',
+                data: JSON.stringify(orderData),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response.success) {
+                        // alert('Order submitted successfully!');
+                        //userMessage.show("Success", "The order updated successfully!");
+                        //$("#back-orders").trigger("click");
+                        resolve(true);
+                        // Optionally, redirect or clear the form
+                    } else {
+                        //userMessage.show("Error", 'Error submitting order: ' + response.message);
+                        reject('Error submitting order: ' + response.message);
+                    }
+                },
+                error: function () {
+                    // userMessage.show("Error", 'An error occurred while submitting the order.');
+                    reject('An error occurred while submitting the order.');
+                }
+            });
+        });
+    }
+        // Cart functions end
+
+        // Payment functions begins
+        var selectOptions = @Html.Raw(JsonConvert.SerializeObject(Model.lstPaymentReturnTypes))
+            .map(function(type) {
+                return `<option value="${type.Value}" ${type.Selected ? 'selected' : ''}>${type.Text}</option>`;
+            }).join('');
+
+$('#addPaymentBtn').on('click', function () {
+    var newRow = `
+        <tr>
+            <td><button class="btn btn-danger btn-sm removePayment"><i class="fa fa-times"></i></button></td>
+            <td>
+            <select class="form-control paymentType">
+                ${selectOptions}
+              </select>
+            <input type="hidden" name="OrderId" value="@Model.id" class="orderId" /></td>
+            <td><input type="text" class="form-control bank"></td>
+            <td><input type="text" class="form-control referenceNo"></td>
+            <td><input type="number" class="form-control amount" step="0.01"></td>
+        </tr>
+    `;
+    $('#paymentTable tbody').append(newRow);
+    updatePaymentTotal();
+});
+
+$(document).on('click', '.removePayment', function () {
+    $(this).closest('tr').remove();
+    updatePaymentTotal();
+});
+
+$(document).on('input', '.amount', function () {
+    updatePaymentTotal();
+});
+
+function updatePaymentTotal() {
+    var total = 0;
+    $('.amount').each(function () {
+        total += parseFloat($(this).val()) || 0;
+    });
+    $('.refundAmount').each(function () {
+        total += parseFloat($(this).text()) || 0;
+    });
+    $('#paymentTotal').text(total.toFixed(2));
+    var orderTotal = parseFloat($('#returnTotal').text().replace(/,/g, '')) || 0;
+    var balance = orderTotal - total;
+    if (balance > 0) {
+        $(".refund-tab").show();
+    }
+    debugger
+    $('#paymentBalance').text(balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+
+    }
+    // Function to remove commas and convert string to float
+    function parseCurrency(value) {
+        return parseFloat(value.replace(/,/g, ''));
+    }
+
+
+
+    $('#completePaymentBtn').on('click', function () {
+        // Get the text values from the elements
+        var paymentTotalText = $('#paymentTotal').text();
+        var orderTotalText = $('#returnTotal').text();
+
+        // Remove commas and convert to numbers
+        var paymentTotal = parseCurrency(paymentTotalText);
+        var orderTotal = parseCurrency(orderTotalText);
+
+        // Compare the numeric values
+        if (paymentTotal !== orderTotal) {
+            userMessage.show("Error", 'Total Amount Paid does not tally with Total Return Amount!');
+        }
+
+        else {
+            $.SmartMessageBox({
+                title: "Alert!",
+                content: '@Html.GetGlobalResource("CONFIRM_PAYMENT_MESSAGE")',
+                buttons: '[No][Yes]'
+            }, function (ButtonPressed) {
+
+                if (ButtonPressed === "Yes") {
+                    var paymentData = gatherPaymentData();
+                    if (paymentData.length > 0) {
+                        var orderId = $(".submit-action").attr("data-id");
+                        sendPaymentDataToApi(paymentData, true);
+                    } else {
+                        userMessage.show("Error", 'Please add at least one payment before completing.');
+                    }
+                }
+            });
+            }
+
+});
+    $('#savePaymentBtn').on('click', function () {
+
+        $.SmartMessageBox({
+            title: "Alert!",
+            content: '@Html.GetGlobalResource("SAVEORDERPAYMENT_MESSAGE")',
+            buttons: '[No][Yes]'
+        }, function (ButtonPressed) {
+
+            if (ButtonPressed === "Yes") {
+                var paymentData = gatherSavePaymentData();
+                if (paymentData.length > 0) {
+                    var orderId = $(".submit-action").attr("data-id");
+                    sendPaymentDataToApi(paymentData, false);
+                } else {
+                    userMessage.show("Error", 'Please add at least one payment before saving.');
+                }
+            }
+        });
+    });
+    function gatherSavePaymentData() {
+        var payments = [];
+
+        $('#paymentTable tbody tr').each(function () {
+
+            var row = $(this);
+            var payment = {
+                OrderId: row.find('.orderId').val(),
+                PaymentType: row.find('.paymentType').val(),
+                Bank: row.find('.bank').val(),
+                RefNumber: row.find('.referenceNo').val(),
+                Amount: parseFloat(row.find('.amount').val()) || 0,
+                PaymentDate: new Date().toISOString(),
+                PaymentStatus: 'Pending',
+                Payment: 'Refund'
+            };
+            if (payment.Amount > 0) {
+                payments.push(payment);
+            }
+        });
+        return payments;
+    }
+
+function gatherPaymentData() {
+    var payments = [];
+
+    $('#paymentTable tbody tr').each(function () {
+
+        var row = $(this);
+        var payment = {
+            OrderId: row.find('.orderId').val(),
+            PaymentType: row.find('.paymentType').val(),
+            Bank: row.find('.bank').val(),
+            RefNumber: row.find('.referenceNo').val(),
+            Amount: parseFloat(row.find('.amount').val()) || 0,
+            PaymentDate: new Date().toISOString(),
+            PaymentStatus: 'Pending',
+            Payment: "Refund",
+            IsRefund: true
+        };
+        if (payment.Amount >= 0) {
+            payments.push(payment);
+        }
+    });
+    return payments;
+}
+
+    function sendPaymentDataToApi(paymentData, IsOrderComplete) {
+    $.ajax({
+        url: $("#UpdateOrderPaymentsUrl").val(), // Update with your actual API endpoint
+        type: 'POST',
+        data: JSON.stringify({ OrderPayments: paymentData, IsOrderComplete: IsOrderComplete, IsRefund: true }),
+        contentType: 'application/json',
+        success: function (response) {
+            if (response.success) {
+
+                if (paymentData[0].Payment == 'Save') {
+                    // alert('Payment completed successfully!');
+                    userMessage.show("Success", "Payment saved successfully!");
+                }
+                else {
+                    // alert('Payment completed successfully!');
+                    //if (response.syncStatus) {
+                    //    userMessage.show("Success", "Payment completed successfully, and the order data has been posted to the API. \n API response: " + response.syncMessage);
+                    //} else {
+                    //    userMessage.show("Warning", "Payment completed successfully, but the order data failed to post to the API.\n Error: " + response.syncMessage);
+                    //}
+                    userMessage.show("Success", "Refund payment completed successfully.");
+                }
+                $("#back-orders").trigger("click");
+                // You can add more actions here, like refreshing the page or updating the UI
+            } else {
+                userMessage.show("Error", 'Error completing payment: ' + response.message);
+            }
+        },
+        error: function () {
+            userMessage.show("Error", 'An error occurred while processing the payment.');
+        }
+    });
+}
+
+// Payment functions end
+    function convertDateFormat(dateStr) {
+        const [day, month, year] = dateStr.split('/');
+        return `${year}-${month}-${day}`;
+    }
+
+
+    $('#oneTimeCustomer').on('change', function() {
+        if ($(this).is(':checked')) {
+            $('#oneTimeCustomerFields').show(); // Show the fields
+        } else {
+            $('#oneTimeCustomerFields').hide(); // Hide the fields
+        }
+    });
+
+    $('#orderDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        autoclose: true,
+        minDate: 0
+    }).datepicker('setDate', today);
+    $('#orderDate').attr('readonly', true);
+        //$('#orderDate').on('changeDate', function (e) {
+        //    $(this).val(e.format('dd/mm/yy'));
+        //});
+
+</script>
+
+<script>
+
+    function updateAllTotals() {
+        $('#dt2_product tbody tr').each(function () {
+            if (!$(this).hasClass('edit-panel-row')) {
+                updateTotal($(this));
+            }
+        });
+    }
+
+    function updateTotal(row) {
+        var scannedQty = parseFloat(row.find(".product-scannedQty").text());
+        var qty = !isNaN(scannedQty) && scannedQty > 0 ? scannedQty : parseFloat(row.find('input[data-field="orderQty"]').val());
+        var originalUnitPrice = parseFloat(row.find('input.originalUnitPrice').val());
+        var cuttingCostText = row.find('.product-cuttongcost').text().trim();
+        var cuttingCost = (cuttingCostText !== "-" && !isNaN(parseFloat(cuttingCostText))) ? parseFloat(cuttingCostText) : 0;
+        var complimentaryText = row.find('.product-complimentary').text().trim().toLowerCase();
+         
+        var unitPrice;
+        if (complimentaryText === 'foc' || complimentaryText === 'sample') {
+            unitPrice = 0; // cuttingCost;
+        } else {
+            unitPrice = originalUnitPrice;
+        }
+
+        // var total = (qty * unitPrice) + cuttingCost;
+
+        // Calculate subtotal before discount
+        var subtotal = (qty * unitPrice) + cuttingCost;
+
+        // Get discount percentage from .discountInput
+        var discountPercentage = parseFloat(row.find('.product-discountPer').text()) || 0;
+
+        // Calculate discount amount
+        var discountAmount = Number(((subtotal * discountPercentage) / 100).toFixed(2));
+        // row.find(".discountAmt").val(discountAmount);
+        // Calculate final total after discount
+        var total = subtotal - discountAmount;
+
+        console.log("Original Unit Price:", originalUnitPrice, "Cutting Cost:", cuttingCost, "Final Unit Price:", unitPrice);
+        row.find('span[data-field="price"]').text(formatNumberWithThousandSeparator(unitPrice));
+
+        row.find('.product-lineTotal').text(formatNumberWithThousandSeparator(total));
+        updateOrderTotal(); // Update the order total after each row's total is calculated
+    }
+
+    //function updateOrderTotal() {
+
+    //    var orderTotal = 0;
+    //    $('#dt2_product tbody tr').each(function () {
+    //        if (!$(this).hasClass('edit-panel-row')) {
+    //            // var rowTotal = parseFloat($(this).find('input[data - field= "orderQty"]').val().replace(/,/g, '')) || 0; // Remove thousand separators and parse
+    //            var retQty = parseFloat($(this).find('.product-returnStatus').text()) || 0;
+    //            var scannedQty = parseFloat($(this).find(".product-scannedQty").text()) || 0;
+    //            var actualQty = !isNaN(scannedQty) && scannedQty > 0 ? scannedQty : parseFloat($(this).find('product-productQty').text()) || 0;
+    //            var unitPrice = parseFloat($(this).find('td span[data-field="price"]').text()) || 0;
+    //            var remainingTotal = ((actualQty - retQty) * unitPrice);
+    //            // Calculate cutting cost
+    //            var actualCuttingCost = parseFloat($(this).find(".product-operationCost").data("actualoperationcost")) || 0;
+    //            var cuttingCost = 0;
+    //            if (actualCuttingCost) {
+    //                var withoutDecimalQty = Math.floor(actualQty - retQty);
+    //                cuttingCost = withoutDecimalQty * actualCuttingCost;
+    //                $(this).find(".product-operationCost").text(cuttingCost.toFixed(2));
+    //                $(this).find(".product-cuttongcost").text(cuttingCost.toFixed(2));
+    //                remainingTotal += cuttingCost;
+    //            }
+    //            $(this).find(".product-lineTotal").text(formatNumberWithThousandSeparator(remainingTotal));
+    //            orderTotal += remainingTotal;
+    //        }
+    //    });
+
+    //    $('#orderTotal').text(formatNumberWithThousandSeparator(orderTotal)); // Update the overall order total
+    //}
+
+    function updateOrderTotal() {
+        var orderTotal = 0;
+        $('#dt2_product tbody tr').each(function () {
+            if (!$(this).hasClass('edit-panel-row')) {
+                var row = $(this);
+
+                // Get quantities
+                var retQty = parseFloat(row.find('.product-returnStatus').text()) || 0;
+                var scannedQty = parseFloat(row.find(".product-scannedQty").text()) || 0;
+                var actualQty = !isNaN(scannedQty) && scannedQty > 0 ?
+                    scannedQty : parseFloat(row.find('.product-productQty').text()) || 0;
+
+                // Get unit price
+                var unitPrice = parseFloat(row.find('td span[data-field="price"]').text()) || 0;
+
+                // Calculate base amount for remaining quantity
+                var baseAmount = ((actualQty - retQty) * unitPrice);
+
+                // Calculate cutting cost
+                var actualCuttingCost = parseFloat(row.find(".product-operationCost").data("actualoperationcost")) || 0;
+                var cuttingCost = 0;
+
+                if (actualCuttingCost) {
+                    var withoutDecimalQty = Math.floor(actualQty - retQty);
+                    cuttingCost = withoutDecimalQty * actualCuttingCost;
+                    row.find(".product-operationCost").text(cuttingCost.toFixed(2));
+                    row.find(".product-cuttongcost").text(cuttingCost.toFixed(2));
+                }
+
+                // Calculate subtotal (base amount + cutting cost)
+                var subtotal = baseAmount + cuttingCost;
+
+                // Get discount percentage and calculate discount
+                var discountPercentage = parseFloat(row.find('.product-discountPer').text()) || 0;
+                var discountAmount = 0;
+
+                if (discountPercentage > 0) {
+                    discountAmount = Number(((subtotal * discountPercentage) / 100).toFixed(2));
+                }
+
+                // Calculate final remaining total after discount
+                var remainingTotal = Number((subtotal - discountAmount).toFixed(2));
+
+                // Store discount amount for future reference if needed
+                row.find(".product-lineTotal").attr('data-discount-amount', discountAmount);
+
+                // Update line total display
+                row.find(".product-lineTotal").text(formatNumberWithThousandSeparator(remainingTotal));
+
+                // Add to order total
+                orderTotal += remainingTotal;
+
+                console.log("Row Calculations:", {
+                    actualQty: actualQty,
+                    retQty: retQty,
+                    unitPrice: unitPrice,
+                    baseAmount: baseAmount,
+                    cuttingCost: cuttingCost,
+                    subtotal: subtotal,
+                    discountPercentage: discountPercentage,
+                    discountAmount: discountAmount,
+                    remainingTotal: remainingTotal
+                });
+            }
+        });
+
+        // Update the overall order total
+        $('#orderTotal').text(formatNumberWithThousandSeparator(Number(orderTotal.toFixed(2))));
+    }
+
+    function formatNumberWithThousandSeparator(number) {
+        return number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+
+    // Start new scan function
+    $(document).ready(function () {
+
+        $(document).off('click', '#resetOrderbtn').on('click', '#resetOrderbtn', function (e) {
+            var orderId = $(this).attr("data-id"); // Assuming the orderId is being tracked to match products
+
+            if (!orderId) {
+                userMessage.show("Error", 'Please select an order to reset.');
+                return;
+            }
+
+            var row = $(this).closest('tr');
+            row.find(".product-verifyStatus").text("");
+            updateReturnTotal();
+            // userMessage.show("Success", 'Scanned quantity reset and scanned log removed for the selected product.');
+        });
+
+        $(document).off('click', '#scanbtn').on('click', '#scanbtn', function (e) {
+            var row = $(this).closest('tr');
+            row.find(".product-verifyStatus").text("Return");
+            var returnQty = parseFloat(row.find(".returnQtyInput").val()) || 0;
+            if (returnQty > 0) {
+                // row.find(".returnQtyInput").val(returnQty);
+            } else {
+                row.find(".returnQtyInput").val(row.find(".product-scannedQty").text());
+            }
+            updateReturnTotal();
+            // userMessage.show("Success", 'Scanned quantity reset and scanned log removed for the selected product.');
+        });
+        var previousRetQty = 0;
+        $(document).off("focus", ".returnQtyInput").on("focus", ".returnQtyInput", function () {
+            previousRetQty = parseFloat($(this).val()) || 0;
+        });
+
+        $(document).off("change", ".returnQtyInput").on("change", ".returnQtyInput", function () {
+            var returnQty = parseFloat($(this).val()) || 0;
+            var partTr = $(this).closest("tr");
+            var scannedQty = parseFloat(partTr.find(".product-scannedQty").text()) || 0;
+            var step = parseFloat($(this).attr('step')) || 1; // Default step to 1 if not set
+
+            var allowDecimals = step < 1;
+            if (allowDecimals) {
+                var decimalPlaces = (returnQty.toString().split('.')[1] || "").length;
+                if (decimalPlaces > 2) {
+                    alert("Only up to 2 decimal places are allowed.");
+                    $(this).val(returnQty.toFixed(2)); // Round to 2 decimal places
+                    $("#finalQty").val(returnQty.toFixed(2));
+                    return;
+                }
+            }
+            // Validate decimals if not allowed
+            if (!allowDecimals && returnQty % 1 !== 0) {
+                alert("Decimal values are not allowed for this product.");
+                $(this).val(previousRetQty || 0);
+                return;
+            }
+
+            if (returnQty > scannedQty) {
+                alert("Return Qty should not greater than scanned qty.");
+                $(this).val(scannedQty || 0);
+            }
+            if (returnQty > 0) {
+                partTr.find("#scanbtn").trigger("click");
+            }
+            updateReturnTotal();
+        });
+
+    $('#partNo').on('focus', function () {
+        $(this).select();
+    });
+    // Bind keypress event for #partNo input
+    $('#partNo').on('keypress', function (e) {
+        if (e.which === 13) { // Check if Enter key is pressed
+            captureAndCallScan($(this).val());
+        }
+    });
+
+    // Bind click event for #btnScanProduct
+    $('.btnScanProduct').on('click', function () {
+        captureAndCallScan($('#partNo').val());
+    });
+
+    // Function to capture the part number and call the PickupController's Scan method
+    function captureAndCallScan(partNumber) {
+        if (!partNumber) {
+            alert('Please enter a label/serial number.');
+            return;
+        }
+        var serialNo = partNumber;
+            // Track if a valid product match was found
+        var matched = false;
+        var exceeds = false;
+
+            // Iterate through the #dt2_productScan table rows to find matching part number and serial number
+            $('#dt2_productScan tbody tr').each(function () {
+                var row = $(this);
+
+                // Extract values from the row for comparison
+                var scannedQtyElement = row.find('.product-scannedQty');
+                var rowSerialNo = row.find('.product-barcode').text();
+                var rowPartNo = row.find('.product-id-field').text();
+                var rowScannedQty = parseFloat(scannedQtyElement.text()) || 0;
+                var verifyStatus = row.find('.product-verifyStatus').text();
+
+
+                // Check if serial number, part number, and scanned quantity match
+                if (rowSerialNo === serialNo && verifyStatus !== 'Return') {
+                    let newScannedQty = rowScannedQty;
+                    // Update the scanned quantity and change the status to "Verified"
+                    // scannedQtyElement.text(newScannedQty.toFixed(2));
+                    row.find('.product-verifyStatus').text('Return'); // Update status to Verified
+
+                    // Mark as matched and stop checking other rows
+                    matched = true;
+                    exceeds = false;
+                    updateReturnTotal();
+                    return false; // Stop iteration once a match is found
+                } else if (rowSerialNo === serialNo && verifyStatus === 'Return') {
+                    matched = true;
+                    userMessage.show("Error", 'Product already marked as return.');
+                    return false;
+                }
+            });
+
+            // If no valid product match is found, show a warning
+        if (!matched) {
+            userMessage.show("Error", 'No matching product found!');
+        }
+        $('#partNo').val("")
+        @*var orderId = $('.btnScanProduct').attr("data-id");
+        $.ajax({
+            url: '@Url.Action("Scan", "Pickup")', // Replace with your actual Scan method URL
+            type: 'POST',
+            data: {
+                serial: partNumber,
+                orderId: orderId
+            },
+            success: function (response) {
+                if (response.scannedItem) {
+                    let scannedItem = response.scannedItem;
+                    let productId = scannedItem.productId;
+                    let weightValue = parseFloat(scannedItem.weightValue) || 0;
+                    let serialNo = scannedItem.barcode;
+                    let partNo = scannedItem.epicorePartNo;
+
+                    // Track if a valid product match was found
+                    let matched = false;
+                    let exceeds = false;
+
+                    // Iterate through the #dt2_productScan table rows to find matching part number and serial number
+                    $('#dt2_productScan tbody tr').each(function () {
+                        let row = $(this);
+
+                        // Extract values from the row for comparison
+                        let scannedQtyElement = row.find('.product-scannedQty');
+                        let rowSerialNo = row.find('.product-barcode').text();
+                        let rowPartNo = row.find('.product-id-field').text();
+                        let rowScannedQty = parseFloat(scannedQtyElement.text()) || 0;
+
+                        // Check if serial number, part number, and scanned quantity match
+                        if (rowSerialNo === serialNo && rowPartNo === partNo) {
+                            let newScannedQty = rowScannedQty;
+
+                            // Check if new scanned quantity matches the scanned item's quantity
+                            if (newScannedQty <= weightValue) {
+                                // Update the scanned quantity and change the status to "Verified"
+                                scannedQtyElement.text(newScannedQty.toFixed(2));
+                                row.find('.product-verifyStatus').text('Return'); // Update status to Verified
+
+                                // Mark as matched and stop checking other rows
+                                matched = true;
+                                exceeds = false;
+                                updateReturnTotal();
+                                return false; // Stop iteration once a match is found
+                            } else {
+                                exceeds = true;
+                            }
+                        }
+                    });
+
+                    // If no valid product match is found, show a warning
+                    if (!matched) {
+                        userMessage.show("Warning", exceeds ? "Quantity exceeds the scanned quantity" : "No matching product found!");
+                    }
+                } else {
+                    userMessage.show("Error", 'No matching product found!');
+                }
+            },
+            error: function () {
+                alert('Failed to fetch products.');
+            }
+        });*@
+    }
+
+
+
+    // Handle the reset button click
+    $('.resetBtn').click(function () {
+        // Reset scan quantities to 0
+        $('#dt2_productScan tbody tr').each(function () {
+            var row = $(this);
+            row.find('.product-verifyStatus').text('');
+        });
+
+        // Clear the scanned items log
+        // $('#dt2_productScan tbody').empty();
+        updateReturnTotal();
+    });
+
+    // Handle the individual scanning popup
+    $(document).off('keypress', '#serialNo').on('keypress', '#serialNo', function(event) {
+        if (event.which === 13) {
+            var serialNo = $(this).val();
+            var orderId = $('button.btnScanProduct').data('id'); // Assuming order ID is filled elsewhere or modify this to fetch accordingly.
+            scanInline(serialNo, orderId);
+        }
+    });
+    // Listen for changes in the serial number input field
+    $(document).off('click', '#scanButtonInline').on('click', '#scanButtonInline', function() {
+        var serialNo = $('#serialNo').val();
+        var orderId = $('button.btnScanProduct').data('id'); // Assuming order ID is filled elsewhere or modify this to fetch accordingly.
+        scanInline(serialNo, orderId);
+    });
+
+    function scanInline(serialNo, orderId) {
+        // Check if serial number is not empty
+        if (!serialNo) {
+            userMessage.show("Error", 'Please enter a serial number');
+            return;
+        }
+        $('#scanBtnSubmit').prop('disabled', true);
+        // API call to fetch product details based on serial number
+        $.ajax({
+            url: '@Url.Action("Scan", "Pickup")', // Replace with actual Scan method URL
+            type: 'POST',
+            data: {
+                serial: serialNo,
+                orderId: orderId
+            },
+            success: function(response) {
+                if (response.scannedItem) {
+                    let scannedItem = response.scannedItem;
+                    var curQty = parseFloat($('#orderQty').val()) || 0;
+                    let productId = scannedItem.productId;
+                    let weightValue = parseFloat(scannedItem.weightValue) || 0;
+                    var barcode = scannedItem.barcode;
+                    var epicorePartNo = scannedItem.epicorePartNo;
+                    var existingpartNum = $("#partNum").val();
+                    var orderItemId = $('#orderItemId').val();
+
+                    // Verify if same product
+                    if (existingpartNum == epicorePartNo) {
+                        // Verify if scanned qty is not exceeds the limit
+                        if (weightValue == curQty) {
+                            $("#scannedQty").val(weightValue)
+                            $('#scanBtnSubmit').prop('disabled', false);
+
+                            $('#dt2_productScan tbody tr').each(function() {
+                                let row = $(this);
+
+                                // Check if the product-id-field data-id matches the orderItemId
+                                if (row.find('.product-id-field').data('id') == orderItemId) {
+                                    // Update the verify status to "Verified"
+                                    row.find('.product-verifyStatus').text('Return');
+                                    $('#scanProductModal').modal('hide');
+                                    // Optionally, break the loop once the match is found
+                                    return false; // Exit loop after the first match
+                                }
+                            });
+
+                        } else {
+                            userMessage.show("Warning", "No matching product found!");
+                        }
+                    } else {
+                        userMessage.show("Warning", "No matching product found!");
+                    }
+                } else {
+                    $('#scanBtnSubmit').prop('disabled', true);
+                    userMessage.show("Error", 'No matching product found!');
+                }
+            },
+            error: function() {
+                userMessage.show("Error", 'Failed to fetch products.');
+            }
+        });
+    }
+    // End popup
+
+});
+    // End new scan function
+
+     function openPdfInModal(letterName) {
+      var url = '@Url.Action("PrintDocument", "Orders")' + '?id=' + encodeURIComponent('@Model.id') + '&letterName=' + encodeURIComponent(letterName);
+     // Open the modal
+     $('#pdfModal').modal('show');
+
+     // Set the iframe src to the PDF URL
+     $('#pdfFrame').attr('src', url);
+ }
+
+
+function printLabel() {
+    var printContents = document.getElementById('labelPrint').outerHTML;
+
+    // Create a new window for printing
+    var printWindow = window.open('', '_blank', 'width=100mm');
+    printWindow.document.write(`
+    <html>
+        <head>
+            <title>Print Label</title>
+            <style>
+
+                /* Add any other styles you need for the print layout here */
+            </style>
+        </head>
+        <body>
+            ${printContents}
+        </body>
+    </html>
+`);
+
+    printWindow.document.close(); // Close the document to render the content
+    printWindow.focus(); // Focus on the new window
+
+    // Print the contents and close the window afterward
+    printWindow.print();
+    printWindow.close();
+}
+
+
+
+</script>
+<script type="text/javascript">
+    var modelData = @Html.Raw(Json.Encode(Model));
+    var checkItemReturnStatusUrl = '@Url.Content(Url.Action("CheckItemReturnStatus", "Orders"))';
+    var checkPrintRefundStatusUrl = '@Url.Content(Url.Action("CheckPrintRefundStatus", "Orders"))';
+
+    var getOrderDiscountDetailsUrl = '@Url.Content(Url.Action("GetDiscountApprovalByOrder", "Orders"))';
+    function showDiscountModal(orderId) {
+        populateDiscountTable(orderId); // Populate the table with data
+        $('#DiscountGridModal').modal('show'); // Show the modal
+    }
+    function populateDiscountTable(orderId) {
+        // Clear any existing rows
+        const tbody = document.querySelector('#discountdata-table tbody');
+        tbody.innerHTML = '';
+
+       $.ajax({
+            url: '@Url.Action("GetDiscountApprovalByOrder", "Orders")', // Replace with your actual controller action URL
+            type: 'POST',
+           data: { orderId: orderId },
+           success: function (data) {
+                
+               if (data.success) {
+                   if (data && data.orderItemDiscounts) {
+                       data.orderItemDiscounts.forEach(item => {
+                           const row = document.createElement('tr');
+                           // Convert .NET Date format to JavaScript Date
+                           function convertDotNetDate(dotNetDate) {
+                               const timestamp = parseInt(dotNetDate.match(/\d+/)[0]);
+                               return new Date(timestamp);
+                           }
+
+                           // Format date in dd/MM/yyyy format
+                           function formatDate(date) {
+                               const day = ("0" + date.getDate()).slice(-2); // Ensure two-digit day
+                               const month = ("0" + (date.getMonth() + 1)).slice(-2); // Ensure two-digit month
+                               const year = date.getFullYear();
+                               return `${day}/${month}/${year}`;
+                           }
+
+                           const approvalDate = item.approvalDate
+                               ? formatDate(convertDotNetDate(item.approvalDate))
+                               : '-';
+                           // Create cells for each data field
+                           row.innerHTML = `
+                        <td>${item.PartNumber?.partNum || '-'}</td>
+                        <td>${item.PartNumber?.lineDesc || '-'}</td>
+                        <td>${item.ApproverName || '-'}</td>
+                           <td>${approvalDate}</td>
+                        <td>${item.discount != null ? item.discount.toFixed(2) : '-'}</td>
+                        <td>${item.remarks || '-'}</td>
+                        <td>${item.RequestedBy || '-'}</td>
+                    `;
+
+                           tbody.appendChild(row);
+                       });
+                   } else {
+                       // No data available
+                       const row = document.createElement('tr');
+                       row.innerHTML = `<td colspan="7">No data available</td>`;
+                       tbody.appendChild(row);
+                   }
+               } else {
+                   // Show error message if fetch fails
+                   const row = document.createElement('tr');
+                   row.innerHTML = `<td colspan="7">${data.message || 'Failed to fetch data'}</td>`;
+                   tbody.appendChild(row);
+               }
+           },
+           error: function (xhr, status, error) {
+               console.error('Error fetching order data:', error);
+               const row = document.createElement('tr');
+               row.innerHTML = `<td colspan="7">Error loading data</td>`;
+               tbody.appendChild(row);
+           }
+       });
+    }
+
+</script>
+
+<script src="~/Scripts/OrderPrintFunctions.js?ver=1.56"></script>

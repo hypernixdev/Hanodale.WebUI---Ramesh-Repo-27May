@@ -1,0 +1,10 @@
+﻿@model DateTime?
+<div class="input">
+    <i class="icon-append fa fa-calendar"></i>
+    @{
+        ViewData.Add("placeholder", "dd/MM/yyyy");
+    }
+    @Html.TextBox("", (Model.HasValue ? Model.Value.Date.ToString("dd/MM/yyyy"): string.Empty),ViewData)
+</div>
+
+

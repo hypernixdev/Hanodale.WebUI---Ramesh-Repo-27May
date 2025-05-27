@@ -1,0 +1,61 @@
+﻿@model Hanodale.WebUI.Models.OrganizationModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="tab-info" value="@Model.id" data-readOnly="@Model.readOnly">
+<input type="hidden" id="organization_Id" value="@Model.id">
+<!-- Hidden Variable -->
+
+
+
+<div role="content">
+
+    <!-- widget edit box -->
+    <div class="jarviswidget-editbox">
+        <!-- This area used as dropdown edit box -->
+
+    </div>
+    <!-- end widget edit box -->
+
+    <!-- widget content -->
+    <div class="widget-body">
+        <ul id="myTab1" class="nav nav-tabs bordered">
+            <li class="active1">
+                <a class="active" data-toggle="tab" href="#edt-org" data-url="Organization/Edit"><i class="fa fa-lg fa-info "></i><span class="hidden-mobile hidden-tablet">Detail(s) </span></a>
+            </li>
+
+            <li class="">
+                <a data-toggle="tab" href="#org-email" data-url="OrganizationEmail/Index"><i class="fa fa-lg fa-cubes "></i><span class="hidden-mobile hidden-tablet">Email Config</span> </a>
+            </li>
+
+        </ul>
+
+        <div id="myTabContent1" class="tab-content padding-10 whiteBackColor">
+            <div class="tab-pane active" id="edt-org">
+                <div id="d-edt-org" class="tab-pane-content">
+                    @Html.Partial(MVC.Organization.Views.Create, Model)
+                </div>
+            </div>
+
+
+            <div class="tab-pane " id="org-email">
+                <div id="d-org-email" class="tab-pane-content"></div>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!-- end widget content -->
+
+</div>
+
+<!-- NEW WIDGET START -->
+
+<!-- Protected Script -->
+<script src="~/Scripts/ProtectedScripts/web.common-func.js"></script>
+<!-- /.page-content -->

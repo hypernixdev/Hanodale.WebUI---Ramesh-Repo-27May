@@ -1,0 +1,141 @@
+﻿@model Hanodale.WebUI.Models.AccessRightsModel
+@using Hanodale.Utility.Globalize
+@using Hanodale.WebUI
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!-- Hidden Variable -->
+<input type="hidden" id="alert-delete" value ="@Resources.MSG_CONFIRM_DELETE">
+<input type="hidden" id="alert-reset" value ="@Resources.MSG_RESET_PASSWORD_CONFIRM">
+<input type="hidden" class="mainPart" value="business">
+<input type="hidden" class="table-congif" value="business" data-columncount="7" data-button="true" data-condition="true" data-conditionid="12" data-extended-event-btn="true" data-hidebtn="true" data-auto-hide-column="true" data-export-btn="true">
+<input type="hidden" id="elementId" value="@Model.elementId" />
+<!-- Hidden Variable -->
+
+<div class="row-flex">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i>@Resources.PAGE_HEADER_MANAGE_BUSINESS
+        </h1>
+    </div>
+    @if (@Model.canAdd && !Model.readOnly)
+    {
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            <ul id="sparks" class="">
+                <li class="sparks-info">
+                    <button id="create-business" data-url="Business/Create" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-plus"></i>
+                        @Resources.BTN_CREATE_BUSINESS
+                    </button>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+
+@*<div class="alert alert-warning fade in" id="popup1" style="visibility: visible">
+    <i class="fa-fw fa fa-warning"></i>
+    <strong>Warning</strong> Please Update Your Profile !
+</div>*@
+
+<div id="message" class="alert alert-success" style="display: none"></div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="row">
+        @Html.Action("GetCustomSearchPanel", "BusinessMaster", new { searchType = @Model.pageId })
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            @*<fieldset class="scheduler-border">
+                <legend class="scheduler-border">LEGEND</legend>*@
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0"
+                data-widget-editbutton="false"
+                data-widget-deletebutton="false"
+                data-widget-colorbutton="false"
+                data-widget-sortable="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+                    <h2>@Resources.BUSINESS_GRID_TITLE </h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <fieldset class="scheduler-border" style="margin: 10px">
+                            @* <legend class="scheduler-border"></legend>*@
+                            <br />
+                            <div class="control-group">
+                                <span style='color: #05B32E' class="fa fa-square fa-lg"></span>
+                                <label class="control-label input-label" for="Login Exist">Login Exist</label>
+
+                                <span style='color: #404040; margin-left: 1em' class="fa fa-square fa-lg"></span>
+                                <label class="control-label input-label" for="Login Not Exist">Login Not Exist</label>
+
+                                <span style='color: #F93509; margin-left: 1em' class="fa fa-square fa-lg"></span>
+                                <label class="control-label input-label" for="Login In-Active">Login In-Active</label>
+                            </div>
+                        </fieldset>
+                        <table id="dt_business" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    <th data-class="expand"><i class="fa fa-fw fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.BUSINESS_BUSINESS_TYPE</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-qrcode text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.BUSINESS_CODE</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-pencil text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.BUSINESS_NAME</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.BUSINESS_PRIMARY_CONTACTS</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.BUSINESS_PHONES</th>
+                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-envelope-o text-muted hidden-md hidden-sm hidden-xs tableIcon"></i>@Resources.BUSINESS_PRIMARY_EMAIL</th>
+                                    <th class="table-column-header" style="width: 100px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+
+
+<!-- /.page-content -->
+
+<!-- Protected Script -->
+
+@Scripts.Render(bundles.scripts.common_index)
+
+<!-- Protected Script -->
+<script>
+
+
+
+    _initActionExtended = function (partName, readOnly) {
+        $('.LoginExist').closest('tr').children('td').css('color', '#05B32E')
+        $('.LoginInActive').closest('tr').children('td').css('color', '#F93509')
+        $('.Empty').closest('tr').children('td').css('color', '#404040')
+
+    }
+    $('#businessType_Id').change(function () {
+        var businessType_Id = $('#businessType_Id').val();
+        $('#business_Ids').each(function () {
+            $(this).select2('val', '')
+        });
+    })
+</script>
+
