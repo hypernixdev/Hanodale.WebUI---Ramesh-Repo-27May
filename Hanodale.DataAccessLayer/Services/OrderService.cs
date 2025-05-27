@@ -642,12 +642,17 @@ namespace Hanodale.DataAccessLayer.Services
                                 {
                                     // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
                                     var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum  
-                                                && p.barcode == savedOrderItem.scannedLabel 
+                                                && p.barcode == savedOrderItem.scannedLabel  && p.Location == savedOrderItem.Location
                                                 && p.IsPickedComplete == false && p.OnHold == false)
                                         .FirstOrDefault();
                                     if (vwgBarcode != null)
                                     {
                                         vwgBarcode.IsPickedComplete = true;
+                                        vwgBarcode.PickedCompletedDate = DateTime.Now;
+                                        vwgBarcode.PickedOrderId = savedOrderItem.orderId;
+                                        vwgBarcode.PickedOrderItemId = savedOrderItem.id;
+                                        vwgBarcode.PickedLastModifiedDate = DateTime.Now;
+                                        vwgBarcode.IsPickStatusToSync = true;
                                         model.Entry(vwgBarcode).State = EntityState.Modified;
                                     }
                                 }
@@ -655,12 +660,17 @@ namespace Hanodale.DataAccessLayer.Services
                                 {
                                     // Std Carton is not unique, update as Pickupcomplete = true for top item
                                     var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum 
-                                                        && p.barcode == savedOrderItem.scannedLabel 
+                                                        && p.barcode == savedOrderItem.scannedLabel && p.Location == savedOrderItem.Location
                                                 && p.IsCarton==true && p.IsPickedComplete == false && p.OnHold == false)
                                         .FirstOrDefault();
                                     if (stdCartonBarcode != null)
                                     {
                                         stdCartonBarcode.IsPickedComplete = true;
+                                        stdCartonBarcode.PickedCompletedDate = DateTime.Now;
+                                        stdCartonBarcode.PickedOrderId = savedOrderItem.orderId;
+                                        stdCartonBarcode.PickedOrderItemId = savedOrderItem.id;
+                                        stdCartonBarcode.PickedLastModifiedDate = DateTime.Now;
+                                        stdCartonBarcode.IsPickStatusToSync = true;
                                         model.Entry(stdCartonBarcode).State = EntityState.Modified;
                                     }
                                 }
@@ -1078,6 +1088,11 @@ namespace Hanodale.DataAccessLayer.Services
                                         if (vwgBarcode != null)
                                         {
                                             vwgBarcode.IsPickedComplete = true;
+                                            vwgBarcode.PickedCompletedDate = DateTime.Now;
+                                            vwgBarcode.PickedOrderId = orderItem.orderId;
+                                            vwgBarcode.PickedOrderItemId = orderItem.id;
+                                            vwgBarcode.PickedLastModifiedDate = DateTime.Now;
+                                            vwgBarcode.IsPickStatusToSync = true;
                                             model.Entry(vwgBarcode).State = EntityState.Modified;
                                         }
                                     }
@@ -1091,6 +1106,11 @@ namespace Hanodale.DataAccessLayer.Services
                                         if (stdCartonBarcode != null)
                                         {
                                             stdCartonBarcode.IsPickedComplete = true;
+                                            stdCartonBarcode.PickedCompletedDate = DateTime.Now;
+                                            stdCartonBarcode.PickedOrderId = orderItem.orderId;
+                                            stdCartonBarcode.PickedOrderItemId = orderItem.id;
+                                            stdCartonBarcode.PickedLastModifiedDate = DateTime.Now;
+                                            stdCartonBarcode.IsPickStatusToSync = true;
                                             model.Entry(stdCartonBarcode).State = EntityState.Modified;
                                         }
                                     }
@@ -1463,6 +1483,31 @@ namespace Hanodale.DataAccessLayer.Services
                             foreach (var deletedScan in deletedItemsScanRecords)
                             {
                                 model.OrderItemScanned.Remove(deletedScan);
+
+                                // Update back IsPickCompleted=false the ProductCarton records if they are related to this order item
+                                
+                                    
+                                    var itemBarcodes = model.ProductCarton.Where(p => p.epicorPartNo == deleted.partNum
+                                                && p.barcode == deletedScan.serialNo
+                                                && p.PickedOrderId == deletedScan.orderId && p.PickedOrderItemId == deletedScan.orderItemId)
+                                        .ToList();
+                                    if (itemBarcodes != null)
+                                    {
+                                        foreach (var barcode in itemBarcodes)
+                                        {
+                                            
+                                            barcode.IsPickedComplete = false;
+                                            barcode.PickedCompletedDate = null;
+                                            barcode.PickedOrderId = 0;
+                                            barcode.PickedOrderItemId = 0;
+                                            barcode.PickedLastModifiedDate   = DateTime.Now;
+                                            barcode.IsPickStatusToSync = true; // Mark for sync
+                                            model.Entry(barcode).State = EntityState.Modified;
+                                            
+                                        }
+                                        
+                                    }
+                                
                             }
                         }
                         
@@ -1535,6 +1580,11 @@ namespace Hanodale.DataAccessLayer.Services
                                         if (vwgBarcode != null)
                                         {
                                             vwgBarcode.IsPickedComplete = true;
+                                            vwgBarcode.PickedCompletedDate = DateTime.Now;
+                                            vwgBarcode.PickedOrderId = savedOrderItem.orderId;
+                                            vwgBarcode.PickedOrderItemId = savedOrderItem.id;
+                                            vwgBarcode.PickedLastModifiedDate = DateTime.Now;
+                                            vwgBarcode.IsPickStatusToSync = true; // Mark for sync
                                             model.Entry(vwgBarcode).State = EntityState.Modified;
                                         }
                                     }
@@ -1548,6 +1598,11 @@ namespace Hanodale.DataAccessLayer.Services
                                         if (stdCartonBarcode != null)
                                         {
                                             stdCartonBarcode.IsPickedComplete = true;
+                                            stdCartonBarcode.PickedCompletedDate = DateTime.Now;
+                                            stdCartonBarcode.PickedOrderId = savedOrderItem.orderId;
+                                            stdCartonBarcode.PickedOrderItemId = savedOrderItem.id;
+                                            stdCartonBarcode.PickedLastModifiedDate = DateTime.Now;
+                                            stdCartonBarcode.IsPickStatusToSync = true; // Mark for sync
                                             model.Entry(stdCartonBarcode).State = EntityState.Modified;
                                         }
                                     }
@@ -2206,6 +2261,34 @@ namespace Hanodale.DataAccessLayer.Services
                                 order.cancelRemarks = remark;
                                 order.orderStatus = newStatus;
                                 orderUpdate.actionName = "Cancelled";
+
+                                // Update back IsPickCompleted=false the ProductCarton records if they are related to this order item
+
+                                var cancelOrderItems = model.OrderItems.Where(w => w.orderId == order.id).ToList();
+                                if (cancelOrderItems != null)
+                                {
+                                    foreach(var item in cancelOrderItems)
+                                    {
+                                        var itemBarcodes = model.ProductCarton.Where(p => p.epicorPartNo == item.partNum
+                                            && p.PickedOrderId == order.id && p.PickedOrderItemId == item.orderItemId).ToList();
+                                        if (itemBarcodes != null)
+                                        {
+                                            foreach (var barcode in itemBarcodes)
+                                            {
+                                                
+                                                    barcode.IsPickedComplete = false;
+                                                    barcode.PickedCompletedDate = null;
+                                                    barcode.PickedOrderId = 0;
+                                                    barcode.PickedOrderItemId = 0;
+                                                    barcode.PickedLastModifiedDate = DateTime.Now;
+                                                    barcode.IsPickStatusToSync = true; // Mark for sync
+                                                model.Entry(barcode).State = EntityState.Modified;
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                                
                             }
 
                             // Add OrderUpdate to the context
