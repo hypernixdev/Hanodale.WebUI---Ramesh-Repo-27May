@@ -179,6 +179,7 @@
                     <th>Available Locations</th>
                     <th hidden>OrderId</th>
                     <th hidden>OrderItemId</th>
+                    <th hidden>QtyType_ModuleItem_Id</th>
                 </tr>
             </thead>
             <tbody>
@@ -213,6 +214,7 @@
                         </td>
                         <td hidden><span class="product-orderId">@item.orderItemId</span></td>
                         <td hidden><span class="product-orderItemId">@item.orderItemId</span></td>
+                        <td hidden><span class="product-qtyType_ModuleItem_Id">@item.QtyType_ModuleItem_Id</span></td>
                     </tr>
                 }
             </tbody>
@@ -1567,17 +1569,19 @@
             let productId = scannedItem.productId;
             let exceedsQty = false;
             let exceedsMessage = "";
-
+            let isFullCartonExistInOrderItems = false; // Flag to check if Full Carton exists in order items
             // First pass: find the best matching row
             $('#dt2_product tr').each(function () {
                 let row = $(this);
                 let productElement = row.find('.product-id-field');
-
-                if (productElement.data('productid') == productId) {
+                console.log("ProductId: " + productId + " & ProductElementId: " + productElement.data('productid'));
+                var ordType = row.find('.product-qtyType_ModuleItem_Id').text();
+                console.log("ordType : "+ordType); //7704 means Full Carton
+                if (productElement.data('productid') == productId && ordType=="7704") {
                     let scannedQtyElement = row.find('#scannedQuantity');
                     let scannedQty = parseFloat(scannedQtyElement.text()) || 0;
                     let orderQty = parseFloat(row.find('.product-orderQty').text()) || 0;
-
+                    isFullCartonExistInOrderItems = true;
                     // Skip if already scanned
                     // if (scannedQty > 0) return true; // Continue to next iteration
 
@@ -1668,7 +1672,10 @@
                 return true; // Indicates a successful match and update
             } else {
                 debugger
-                if (exceedsQty) {
+                if (!isFullCartonExistInOrderItems) {
+                    // If no match was found, show a warning message
+                    userMessage.show("Warning", "FullQty Type Carton Not Product found in the OrderItems!");
+                } else if (exceedsQty) {
                     userMessage.show("Error", exceedsMessage);
                     return false;
                 } else {

@@ -681,6 +681,7 @@ namespace Hanodale.WebUI.Controllers
                     scanQtyStr = item.scannedQtyStr,
                     operationCost = item.operationCost,
                     listPrice = item.listPrice,
+                    QtyType_ModuleItem_Id = item.QtyType_ModuleItem_Id,
                     LocationList = stockService.GetStockLocationOptions(item.partNum), // Fetch locations for each partNum
                 }).ToList() ?? new List<ViewOrderItemModel>(),
                 OrderPayments = new List<OrderPaymentModel>(),
