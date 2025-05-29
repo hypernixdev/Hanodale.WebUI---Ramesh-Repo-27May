@@ -578,6 +578,7 @@ namespace Hanodale.WebUI.Controllers
                 return Msg_ErrorInRetriveData(ex);
             }
         }
+        
 
 
         [HttpPost]
@@ -629,6 +630,13 @@ namespace Hanodale.WebUI.Controllers
                         {
                             readOnly = true;
                         }
+                        //if(_model.orderStatus == "Verification")
+                        //{
+                        //    return Json(new
+                        //    {
+                        //        viewMarkup = Common.RenderPartialViewToString(this, readOnly ? "ViewOrder" : "Verification", _model)
+                        //    });
+                        //}
                         return Json(new
                         {
                             viewMarkup = Common.RenderPartialViewToString(this, readOnly ? "ViewOrder" : "Create", _model)
@@ -1578,6 +1586,70 @@ namespace Hanodale.WebUI.Controllers
                 });
             }
         }
+        [HttpPost]
+        [Authorize]
+        public virtual JsonResult ScanVerfication(int orderId, string serial)
+        {
+            
+            
+
+            try
+            {
+                var _order = this.svc.GetOrderDetails(orderId);
+                if (_order == null)
+                {
+                    return Json(new
+                    {
+                        message = $"{orderId} Order Not found",
+                        isBarcodeExist = false,
+                        barcodeCount = 0,
+                        barcodeTotalScanQty = 0
+
+                    });
+                }
+                if(_order.OrderScanned == null || !_order.OrderScanned.Any())
+                {
+                    return Json(new
+                    {
+                        message = "No Scanned Items found for this order",
+                        isBarcodeExist = false,
+                        barcodeCount = 0,
+                        barcodeTotalScanQty = 0
+                    });
+                }
+                var _barcodeExist = false;
+                var _barcodeCount = 0;
+                decimal _barcodeTotalScanQty = 0;
+                _order.OrderScanned.Where(w => w.serialNo == serial).ToList().ForEach(f =>
+                {
+                    _barcodeExist = true;
+                    _barcodeCount += 1;
+                    _barcodeTotalScanQty += f.scannedQty;
+                });
+
+                return Json(new
+                {
+                    message = _barcodeExist?"":"Barcode not found in Order Scanned Items",
+                    isBarcodeExist = _barcodeExist,
+                    barcodeCount = _barcodeCount,
+                    barcodeTotalScanQty = _barcodeTotalScanQty
+                });
+
+            }
+            catch (Exception ex)
+            {
+                //throw new FaultException(ex.InnerException?.InnerException?.Message ?? ex.Message);
+                return Json(new
+                {
+                    message = "Exception Error : "+ ex.InnerException?.InnerException?.Message ?? ex.Message,
+                    isBarcodeExist = false,
+                    barcodeCount = 0,
+                    barcodeTotalScanQty = 0
+                });
+            }
+
+            
+        }
 
         [HttpPost]
         [Authorize]
@@ -2095,7 +2167,9 @@ namespace Hanodale.WebUI.Controllers
                     serialNo = item.serialNo,
                     orderItem_Id = (int)item.orderItem_Id,
                     scannedQty = item.scannedQty,
+                    productLocation = item.productLocation,
                     status = item.status,
+                    verifyStatus = item.status,
                     Group = item.Group,
                     partNo = item.partNo,
                     partName = item.partName,

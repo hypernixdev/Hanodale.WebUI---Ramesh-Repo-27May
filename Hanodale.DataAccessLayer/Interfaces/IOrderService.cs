@@ -59,5 +59,6 @@ namespace Hanodale.DataAccessLayer.Interfaces
         OrderItemDiscountApproval OrderItemDiscountApproval(OrderItemDiscountApproval entity);
 
         SalesSummaryResult GetSalesSummary(DateTime dateFrom, DateTime dateTo);
+        List<ProductBarcode> GetStdLooseFromProductCartons(string serialNo, string barcodeType);
     }
 }

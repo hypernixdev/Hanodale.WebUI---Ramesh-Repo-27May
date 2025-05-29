@@ -25,6 +25,7 @@ using Hanodale.SyncService.Models;
 using System.Globalization;
 using Newtonsoft.Json.Linq;
 using System.Windows.Media.Media3D;
+using System.Threading;
 
 
 namespace Hanodale.WebUI.Controllers
@@ -715,19 +716,58 @@ namespace Hanodale.WebUI.Controllers
                                 }
                                 else
                                 {
-                                    // Check Serial Barcodes available or not
-                                    // For Valiadtion
-                                    barcodeType = "CartonAndLoose";
-                                    var productCartonAndLooseBarcode = this.orderService.GetProductCartons(partNum, barcodeType);
-                                    if(productCartonAndLooseBarcode != null && productCartonAndLooseBarcode.IsPickedComplete)
+
+                                    barcodeType = "StdLoose"; // Std Looose Barcode have to check based on Barcode Settings
+                                    var productStdLooseItems = this.orderService.GetStdLooseFromProductCartonTable(partNum, barcodeType);
+                                    if(productStdLooseItems!= null)
                                     {
-                                        //throw new Exception("This product is already picked complete, you cannot add it again.");
-                                        return Json(new
+                                        foreach(var item in productStdLooseItems)
                                         {
-                                            success = false,
-                                            message = "This product is already picked complete, you cannot add it again."
-                                        });
+                                            try
+                                            {
+                                                // Step 3a: Get barcode substring based on BarcodeFromPos and BarcodeToPos
+                                                int barcodeFrom = item.barcodeFromPos - 1; // Convert to 0-based index
+                                                int barcodeTo = item.barcodeToPos;
+                                                if (partNum.Length < barcodeTo)
+                                                    continue; // Or log and skip
+
+                                                string vendProductCode = partNum.Substring(barcodeFrom, barcodeTo - barcodeFrom);
+
+                                                // Step 3b: Compare with ItemNumber from master
+                                                if (vendProductCode == item.vendorProductCode)
+                                                {
+                                                    isSerialNumberFound = true;
+                                                    serialNumberLocation = item.productLocation;
+                                                    weightValue= "1"; // Default to 1 for Std Loose Qty
+                                                    continue; // Exit the loop if a match is found
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                // Handle exception (e.g., log it)
+                                                // some Exception
+                                            }
+                                        }
                                     }
+                                    else if (!isSerialNumberFound)
+                                    {
+                                        // Check Serial Barcodes available or not
+                                        // For Valiadtion
+                                        barcodeType = "CartonAndLoose";
+                                        var productCartonAndLooseBarcode = this.orderService.GetProductCartons(partNum, barcodeType);
+                                        if (productCartonAndLooseBarcode != null && productCartonAndLooseBarcode.IsPickedComplete)
+                                        {
+                                            //throw new Exception("This product is already picked complete, you cannot add it again.");
+                                            return Json(new
+                                            {
+                                                success = false,
+                                                message = "This product is already picked complete, cannot add it again."
+                                            });
+                                        }
+                                        
+
+                                    }
+                                        
                                 }
                             }
                         }
@@ -782,7 +822,7 @@ namespace Hanodale.WebUI.Controllers
                                             // Start with the base price
                                             decimal calculatedPrice = productPrice.CustGrpBasePrice ?? 0;
                                             
-                                            if (detail.UomCode != productPrice.UomCode)
+                                            if (detail.UomCode != productPrice.UomCode && priceListConv !=null)
                                             {
                                                 // Apply conversion based on the operator
                                                 

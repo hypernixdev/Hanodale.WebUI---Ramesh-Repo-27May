@@ -30,6 +30,14 @@
         display: inline-block;
         vertical-align: middle;
     }
+    .status-verificationpass {
+        color: green;
+        font-weight: bold; /* optional */
+    }
+    .status-verificationfail {
+        color: darkred;
+        font-weight: bold; /* optional */
+    }
 </style>
 
 <style>
@@ -826,10 +834,12 @@
                 @if (!Model.readOnly)
                 {
                     if (Model.orderStatus != "Completed" && !Model.IsCashierLogin && Model.orderStatus != "Cancelled")
-                    {<select class="form-control d-inline-block w-auto order-action">
+                    {
+                        <select class="form-control d-inline-block w-auto order-action">
                             <option value="SubmitForPicking" @(Model.orderStatus != "Payment" ? "selected" : "")>Submit for Picking</option>
                             <option value="Draft" @(Model.orderStatus == "Draft" ? "selected" : "")>Draft</option>
                             <option value="Payment" @(Model.orderStatus == "Payment" ? "selected" : "")>Submit for Payment</option>
+                            <option value="Verification" @(Model.orderStatus == "Verification" ? "selected" : "")>Submit for Verification</option>
                         </select>
                         <button type="button" class="btn btn-success submit-action button-common" data-id="@Model.id">Submit</button>
                         <button type="button" class="btn btn-success finalsubmit-action button-common" data-id="@Model.id" hidden>Submit</button>
@@ -840,9 +850,9 @@
                         <input type="hidden" class="submit-action" data-id="@Model.id" />
                     }
                     @*if (Model.orderStatus == "Picked" && Model.verifiedStatus != "Pass" && !Model.IsCashierLogin)
-            {
-                <button type="button" class="btn btn-warning button-common verify-order-action " data-id="@Model.id">Verify Order</button>
-            }*@
+                        {
+                            <button type="button" class="btn btn-warning button-common verify-order-action " data-id="@Model.id">Verify Order</button>
+                        }*@
                 }
 
                 @if (Model.syncStatus != true)
@@ -905,7 +915,96 @@
             </div>
         </div>
     }
+    @if (Model.isEdit && Model.orderStatus != "Completed" && Model.orderStatus != "Cancelled")
+    {
+        <div class="row verification-tab" style="@(Model.orderStatus != "Verification" ? "display:none;" : "")">
 
+            <div class="row mb-3 align-items-end" id="AfterSubmitVisible">
+                <div class="col-md-6">
+                    <h4>Scanned Barcode List</h4>
+                </div>
+
+                @if (Model.orderStatus != "Cancelled" && Model.orderStatus != "Completed" && !Model.IsCashierLogin)
+                {
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <div class="input-group" style="max-width: 400px;">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Verify Scan</span>
+                            </div>
+                            <input type="text" class="form-control" id="verificationScanSearch" autocomplete="off">
+                            <div class="input-group-append">
+                                <button class="btn btn-success button-common" type="button" id="btnVerifyScannedBarcode">Verify</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="table-responsive">
+                <table id="dt2_productScan" class="table table-striped table-bordered">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Serial No</th>
+                            <th>Part No</th>
+                            <th>Part Name</th>
+                            <th>Group</th>
+                            <th>Order UOM</th>
+                            <th>Scanned Qty</th>
+                            <th>Status</th>
+                            <th>Location</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.OrderScanned != null)
+                        {
+                            foreach (var item in Model.OrderScanned)
+                            {
+                                <tr>
+                                    <td><span class="product-barcode">@item.serialNo</span></td>
+                                    <td><span class="product-id-field" data-id="@item.orderItem_Id" data-orderItemId="@item.orderItem_Id">@item.partNo</span></td>
+                                    <td><span class="product-partName">@item.partName</span></td>
+                                    <td><span class="product-prodGroup">@item.Group</span></td>
+                                    <td><span class="product-orderUOM">@item.orderUOM</span></td>
+                                    @*<td><span class="product-scannedQty">@item.scannedQty.ToString("F2")</span></td>*@
+                                    <td>
+                                        @if (item.allowVaryWeight)
+                                        {
+                                            <span class="product-scannedQty">@item.scannedQty.ToString("F2")</span>
+                                        }
+                                        else
+                                        {
+                                            @*<input type="number" class="form-control scannedQtyInput" data-id="@item.orderItem_Id" step="1" value="@item.scannedQty.ToString("F0")" />*@
+                                            <span class="product-scannedQty" style="display:block;">@item.scannedQty.ToString("F0")</span>
+                                        }
+                                    </td>
+                                    @*<td><span class="product-status">@item.status</span></td>*@
+                                    <td><span class="product-verifystatus">@item.verifyStatus</span></td>
+
+
+                                    <td><span class="productLocation text-primary font-weight-bold">@item.productLocation</span></td>
+                                    @*<td>
+                                        <select class="form-control productLocation" id="productAvailableLocation_@item.Id" data-orderitemid="@item.Id">
+                                            @foreach (var location in item.LocationOptions)
+                                            {
+                                                <option value="@location.Value" @(location.Value == item.productLocation ? "selected" : "")>
+                                                    @location.Text
+                                                </option>
+                                            }
+                                        </select>
+                                    </td>*@
+
+
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    }
     @if (Model.isEdit && Model.orderStatus != "Completed" && Model.orderStatus != "Cancelled")
     {
         if (Model.OrderPayments.Count == 0)
@@ -965,59 +1064,59 @@
         {
             <div class="row mt-3 payment-tab">
                 <div class="col-md-12">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div class="d-flex align-items-center">
-                                <h4 class="mr-3">Payment</h4>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <strong class="mr-3">Payment Balance: <span id="paymentBalance">0.00</span></strong>
-                                <button id="addPaymentBtn" class="btn btn-primary btn-sm">Add Payment Type</button>
-                            </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                            <h4 class="mr-3">Payment</h4>
                         </div>
-                        <table id="paymentTable" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Payment Type</th>
-                                    <th>Bank</th>
-                                    <th>Reference No</th>
-                                    <th>Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    decimal totalAmount = 0; // Declare a variable to store the total amount
-                                }
-                                @foreach (var payment in Model.OrderPayments)
-                                {
-                                    totalAmount += payment.Amount;
-                                    <!-- Payment rows will be added here dynamically -->
-                                    <tr>
-                                        <td>
-                                            <select class="form-control paymentType">
-                                                @foreach (var item in Model.lstPaymentTypes)
-                                                {
-                                                    <option value="@item.Value" @(payment.PaymentType == item.Value ? "selected" : "")>@item.Text</option>
-                                                }
-                                            </select>
-                                            <input type="hidden" name="OrderId" value="@Model.id" class="orderId" />
-                                        </td>
-                                        <td><input type="text" class="form-control bank" value="@payment.Bank"></td>
-                                        <td><input type="text" class="form-control referenceNo" value="@payment.RefNumber"></td>
-                                        <td><input type="number" class="form-control amount" step="0.01" value="@payment.Amount"></td>
-                                        <td><button class="btn btn-danger btn-sm removePayment"><i class="fa fa-times"></i></button></td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <div class="text-right mb-2">
-                            <strong>Total (RM): <span id="paymentTotal">@totalAmount.ToString("F2")</span></strong>
-                        </div>
-                        <div class="text-right">
-                            <button id="savePaymentBtn" class="btn btn-warning">Save Payment</button>
-                            <button id="completePaymentBtn" class="btn btn-success">Complete Payment</button>
+                        <div class="d-flex align-items-center">
+                            <strong class="mr-3">Payment Balance: <span id="paymentBalance">0.00</span></strong>
+                            <button id="addPaymentBtn" class="btn btn-primary btn-sm">Add Payment Type</button>
                         </div>
                     </div>
+                    <table id="paymentTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Payment Type</th>
+                                <th>Bank</th>
+                                <th>Reference No</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                decimal totalAmount = 0; // Declare a variable to store the total amount
+                            }
+                            @foreach (var payment in Model.OrderPayments)
+                            {
+                                totalAmount += payment.Amount;
+                                <!-- Payment rows will be added here dynamically -->
+                                <tr>
+                                    <td>
+                                        <select class="form-control paymentType">
+                                            @foreach (var item in Model.lstPaymentTypes)
+                                            {
+                                                <option value="@item.Value" @(payment.PaymentType == item.Value ? "selected" : "")>@item.Text</option>
+                                            }
+                                        </select>
+                                        <input type="hidden" name="OrderId" value="@Model.id" class="orderId" />
+                                    </td>
+                                    <td><input type="text" class="form-control bank" value="@payment.Bank"></td>
+                                    <td><input type="text" class="form-control referenceNo" value="@payment.RefNumber"></td>
+                                    <td><input type="number" class="form-control amount" step="0.01" value="@payment.Amount"></td>
+                                    <td><button class="btn btn-danger btn-sm removePayment"><i class="fa fa-times"></i></button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="text-right mb-2">
+                        <strong>Total (RM): <span id="paymentTotal">@totalAmount.ToString("F2")</span></strong>
+                    </div>
+                    <div class="text-right">
+                        <button id="savePaymentBtn" class="btn btn-warning">Save Payment</button>
+                        <button id="completePaymentBtn" class="btn btn-success">Complete Payment</button>
+                    </div>
+                </div>
             </div>
         }
     }
@@ -1031,307 +1130,308 @@
     <input type="hidden" value="@Url.Action("SearchCustomers", "Customer")" id="SearchCustomersUrl" />
     <input type="hidden" value="@Url.Action("SearchProducts", "Product")" id="SearchProductsUrl" />
     <input type="hidden" value="@Url.Action("UpdateOrder", "Orders")" id="UpdateOrderUrl" />
+    <input type="hidden" value="@Url.Action("ScanVerfication", "Orders")" id="UpdateOrderUrl" />
 
 </div>
-<div class="modal fade" id="creditHoldModal" tabindex="-1" role="dialog" aria-labelledby="creditHoldModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="creditHoldModalLabel">Credit Hold Alert</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Credit On-Hold! Unable to proceed.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <iframe id="pdfFrame" style="width: 100%; height: 500px;" frameborder="0"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="DiscountGridModal" tabindex="-1" role="dialog" aria-labelledby="DiscountGridLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="DiscountGridLabel">Discount Approval</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="padding: 0; margin: 0;">
-                <div id="discountPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
-                        <br />
-                        <table id="discountdata-table" class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Part Number</th>
-                                    <th>Description</th>
-                                    <th>Approver Name</th>
-                                    <th>Approval Date</th>
-                                    <th>Discount</th>
-                                    <th>Remarks</th>
-                                    <th>Requested By</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Dynamic data will be inserted here -->
-                            </tbody>
-                        </table>
-                        <br />
+        <div class="modal fade" id="creditHoldModal" tabindex="-1" role="dialog" aria-labelledby="creditHoldModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="creditHoldModalLabel">Credit Hold Alert</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Credit On-Hold! Unable to proceed.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
-                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" style="width:100mm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="padding: 0; margin: 0;">
-                <div id="labelPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
-                        <div class="qrCodePrint"></div>
-                        <table id="data-table" style="text-align:center;">
-                            <!--<thead>
-                                <tr>
-                                    <th colspan="3" style="width: 98%; text-align: center">Lucky Frozen Sdn Bhd</th>-->
-                            <!-- Merging 3 columns into one -->
-                            <!--</tr>
-                                <tr>
-                                    <th style="width: 59%; text-align: left;">Product</th>
-                                    <th style="width: 20%; text-align: center">Qty</th>
-                                    <th style="width:20%; text-align:right">Price</th>
-                                </tr>
-                            </thead>-->
-                            <tbody>
-                                <!-- Dynamic data will be inserted here -->
-                            </tbody>
-                        </table>
+        <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="pdfFrame" style="width: 100%; height: 500px;" frameborder="0"></iframe>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary" onclick="printReceipt('@Model.id', '@Model.orderStatus')">Print</button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="DiscountGridModal" tabindex="-1" role="dialog" aria-labelledby="DiscountGridLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DiscountGridLabel">Discount Approval</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 0; margin: 0;">
+                        <div id="discountPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
+                                <br />
+                                <table id="discountdata-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Part Number</th>
+                                            <th>Description</th>
+                                            <th>Approver Name</th>
+                                            <th>Approval Date</th>
+                                            <th>Discount</th>
+                                            <th>Remarks</th>
+                                            <th>Requested By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Dynamic data will be inserted here -->
+                                    </tbody>
+                                </table>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="modal fade" id="discountApproval" tabindex="-1" role="dialog" aria-labelledby="discountApprovalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="discountApprovalLabel">Discount Approval</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <label for="username">Username</label>
-                <select class="form-control" id="username" required>
-                    <option value="">Loading...</option>
-                </select>
-
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter Password" required>
-
-                <label for="remarks">Remarks</label>
-                <textarea class="form-control" id="remarksdiscount" rows="4" placeholder="Enter Remarks" required></textarea>
-
-                <input type="hidden" id="orderId" value="@Model.id" />
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelApproval()">Cancel</button>
-                <button type="button" class="btn btn-primary" id="submitApproval">Confirm</button>
+        <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document" style="width:100mm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pdfModalLabel">Print Preview</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 0; margin: 0;">
+                        <div id="labelPrint" class="label-container" style="margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <div class="label-content" style="display: flex; flex-direction: column; align-items: center; width: 90%;">
+                                <div class="qrCodePrint"></div>
+                                <table id="data-table" style="text-align:center;">
+                                    <!--<thead>
+                                        <tr>
+                                            <th colspan="3" style="width: 98%; text-align: center">Lucky Frozen Sdn Bhd</th>-->
+                                    <!-- Merging 3 columns into one -->
+                                    <!--</tr>
+                                        <tr>
+                                            <th style="width: 59%; text-align: left;">Product</th>
+                                            <th style="width: 20%; text-align: center">Qty</th>
+                                            <th style="width:20%; text-align:right">Price</th>
+                                        </tr>
+                                    </thead>-->
+                                    <tbody>
+                                        <!-- Dynamic data will be inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary hideModal" data-dismiss="modal" aria-hidden="true">Close</button>
+                            <button class="btn btn-primary" onclick="printReceipt('@Model.id', '@Model.orderStatus')">Print</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<style>
-    .form-control, .input-group-text, .btn {
-        border-radius: 0;
-    }
+        <div class="modal fade" id="discountApproval" tabindex="-1" role="dialog" aria-labelledby="discountApprovalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="discountApprovalLabel">Discount Approval</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-    .table thead th {
-        background-color: #e9ecef;
-    }
+                        <label for="username">Username</label>
+                        <select class="form-control" id="username" required>
+                            <option value="">Loading...</option>
+                        </select>
 
-    .btn-success {
-        background-color: #28a745;
-        border-color: #28a745;
-    }
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter Password" required>
 
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
+                        <label for="remarks">Remarks</label>
+                        <textarea class="form-control" id="remarksdiscount" rows="4" placeholder="Enter Remarks" required></textarea>
 
-    .btn-danger {
-        background-color: #dc3545;
-        border-color: #dc3545;
-    }
+                        <input type="hidden" id="orderId" value="@Model.id" />
 
-    .fade {
-        opacity: 1;
-    }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelApproval()">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="submitApproval">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    .modal-open #header1 {
-        z-index: 1;
-    }
+        <style>
+            .form-control, .input-group-text, .btn {
+                border-radius: 0;
+            }
 
-    /* Ensures table takes full width inside the modal */
-    .modal .table-responsive {
-        width: 100%;
-    }
+            .table thead th {
+                background-color: #e9ecef;
+            }
 
-    /* Ensures table stretches to fill the available space */
-    .modal .table {
-        width: 100%;
-    }
+            .btn-success {
+                background-color: #28a745;
+                border-color: #28a745;
+            }
 
-    .dataTables_filter [type='search'] {
-        width: auto !important;
-    }
+            .btn-primary {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
 
-    .product-checkbox {
-        margin-left: 7px;
-    }
+            .btn-danger {
+                background-color: #dc3545;
+                border-color: #dc3545;
+            }
 
-    .selectCustomer, .selectShipTo, .selectDistrict {
-        border: 0;
-        margin: 0;
-        padding: 0;
-    }
+            .fade {
+                opacity: 1;
+            }
 
-    .btn-sm {
-        padding: 2px 7px;
-    }
+            .modal-open #header1 {
+                z-index: 1;
+            }
 
-        .btn-sm:nth-child(2) {
-            margin-left: 5px;
+            /* Ensures table takes full width inside the modal */
+            .modal .table-responsive {
+                width: 100%;
+            }
+
+            /* Ensures table stretches to fill the available space */
+            .modal .table {
+                width: 100%;
+            }
+
+            .dataTables_filter [type='search'] {
+                width: auto !important;
+            }
+
+            .product-checkbox {
+                margin-left: 7px;
+            }
+
+            .selectCustomer, .selectShipTo, .selectDistrict {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+
+            .btn-sm {
+                padding: 2px 7px;
+            }
+
+                .btn-sm:nth-child(2) {
+                    margin-left: 5px;
+                }
+
+            #dt_product_picker td:first-child {
+                text-align: center !important;
+            }
+
+                #dt_product_picker td:first-child input {
+                    margin-left: 0px !important;
+                }
+
+            .selectCustomerContainer .select2-container {
+                width: 80%;
+            }
+
+            .originalUnitPriceInput {
+                font-size: 12px;
+                padding-left: 2px;
+                padding-right: 2px;
+                min-width: 67px;
+            }
+
+            .orderQtyInput {
+                font-size: 12px;
+                padding-left: 2px;
+                padding-right: 2px;
+                min-width: 55px;
+            }
+
+            .discountInput {
+                font-size: 12px;
+                padding-left: 2px;
+                padding-right: 2px;
+                width: 70px;
+            }
+
+            td.product-lineTotal {
+                min-width: 50px;
+            }
+
+            .int-table td {
+                font-size: 1rem;
+            }
+
+                .int-table td:first-child, .int-table td:nth-child(3) {
+                    font-weight: bold;
+                    font-size: 1rem;
+                }
+
+                .int-table td:nth-child(1) {
+                    font-weight: bold;
+                    font-size: 1rem;
+                }
+
+                .int-table td span {
+                    font-size: 1rem;
+                }
+        </style>
+        @if (Model.disableComplimentary)
+        {
+            <style>
+                .complimentary-input {
+                    display: none;
+                }
+            </style>
         }
+        <style>
+            @@media print {
+                #labelPrint {
+                    transform: scale(8.0);
+                    transform-origin: top left;
+                    margin: 0;
+                    padding: 0;
+                    zoom: 80%;
+                }
 
-    #dt_product_picker td:first-child {
-        text-align: center !important;
-    }
+                body {
+                    background: none;
+                }
+                /* If you have any specific classes or IDs you want to hide, add them here */
+                header, footer, .no-print {
+                    display: none;
+                }
+            }
+        </style>
 
-        #dt_product_picker td:first-child input {
-            margin-left: 0px !important;
-        }
+        @Scripts.Render(bundles.scripts.common_add_edit)
+        @Scripts.Render("~/bundles/jqueryval")
 
-    .selectCustomerContainer .select2-container {
-        width: 80%;
-    }
-
-    .originalUnitPriceInput {
-        font-size: 12px;
-        padding-left: 2px;
-        padding-right: 2px;
-        min-width: 67px;
-    }
-
-    .orderQtyInput {
-        font-size: 12px;
-        padding-left: 2px;
-        padding-right: 2px;
-        min-width: 55px;
-    }
-
-    .discountInput {
-        font-size: 12px;
-        padding-left: 2px;
-        padding-right: 2px;
-        width: 70px;
-    }
-
-    td.product-lineTotal {
-        min-width: 50px;
-    }
-
-    .int-table td {
-        font-size: 1rem;
-    }
-
-        .int-table td:first-child, .int-table td:nth-child(3) {
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .int-table td:nth-child(1) {
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .int-table td span {
-            font-size: 1rem;
-        }
-</style>
-@if (Model.disableComplimentary)
-{
-    <style>
-        .complimentary-input {
-            display: none;
-        }
-    </style>
-}
-<style>
-    @@media print {
-        #labelPrint {
-            transform: scale(8.0);
-            transform-origin: top left;
-            margin: 0;
-            padding: 0;
-            zoom: 80%;
-        }
-
-        body {
-            background: none;
-        }
-        /* If you have any specific classes or IDs you want to hide, add them here */
-        header, footer, .no-print {
-            display: none;
-        }
-    }
-</style>
-
-@Scripts.Render(bundles.scripts.common_add_edit)
-@Scripts.Render("~/bundles/jqueryval")
-
-<script>
+        <script>
     var isEdit = "@(Model.isEdit ? "yes" : "no")";
     var defaultCustomerId = "@Model.defaultCustomerId";
     var defaultShipTo = "@Model.defaultShipTo";
@@ -1392,20 +1492,20 @@ function formatNumber(number) {
 }
 
 
-</script>
+        </script>
 
-@if (Model.isEdit)
-{
-    <script>
+        @if (Model.isEdit)
+        {
+            <script>
       var today = parseDate('@Model.orderDate');
-    </script>
-}
-else
-{
-    <script>
-        var today = new Date();
-    </script>
-}
+            </script>
+        }
+        else
+        {
+            <script>
+                var today = new Date();
+            </script>
+        }
 
 <script>
     // var $select = $('.selectCustomer');
@@ -1831,7 +1931,7 @@ function formatNumberWithThousandSeparator(number) {
             } else {
                 if (qtyType == "7705") {
                     $row.find('.product-scannedQty').text(orderQty);
-                }                
+                }
 
                 updateTotal($(this).closest('tr'));
                 $row.next("tr").find('input#finalQty').val(orderQty);
@@ -2083,8 +2183,13 @@ function submitOrder(orderData) {
         contentType: "application/json; charset=utf-8",
         success: (response) => {
             if (response.success) {
-                userMessage.show("Success", "The order submitted successfully!");
-                $("#back-orders").trigger("click");
+
+                userMessage.show("Success", "The order submitted successfully!", function () {
+
+                        $("#back-orders").trigger("click");
+
+                });
+
             } else {
                 alert('Error submitting order: ' + response.message);
             }
@@ -2139,6 +2244,11 @@ function loadUserRoleApprovalUsers() {
                             if ($('.order-action').val() === "Payment") {
                                 // Enable the display of the payment section
                                 $('.payment-tab').css('display', 'block');
+                                $('.verification-tab').css('display', 'none');
+                            } else if ($('.order-action').val() === "Verification") {
+                                // Enable the display of the verification section
+                                $('.verification-tab').css('display', 'block');
+                                $('.payment-tab').css('display', 'none');
                             } else {
                                 $("#back-orders").trigger("click");
                             }
@@ -2194,12 +2304,24 @@ function loadUserRoleApprovalUsers() {
 
 
     $("#orders-create .submit-action").on("click", function () {
-    if (!$('.order-action').val()) {
-        alert("Please select action to submit");
-        return false;
-    }
+        if (!$('.order-action').val()) {
+            alert("Please select action to submit");
+            return false;
+        }
+        console.log("Step1: 2274");
+        debugger;
+
         var orderId = $(this).attr("data-id");
-        //
+
+        // Check Verification Status before goting payment
+        var curOrderStatus = $("#orderStatus").text().trim();
+        var nextOrderStatus = $('.order-action').val();
+        var isAllVerified = CheckVerifyStatusForScanItem(curOrderStatus, nextOrderStatus);
+        if (!isAllVerified) {
+            alert("Scan Items pending to verifiy before proceed to Payment");
+            return false;
+        }
+        debugger;
         updateOrder(orderId, null).then(res => {
             // Start ajax
 
@@ -2208,6 +2330,8 @@ function loadUserRoleApprovalUsers() {
         }).catch(err => {
             userMessage.show("Error", err);
         });
+
+        console.log("Step1 Exit: 2288");
 
 })
 
@@ -2235,6 +2359,8 @@ function loadUserRoleApprovalUsers() {
     var isProcessingApproval = false;
 
     function updateOrder(orderId, paymentData) {
+        console.log("Step1 UpdateOrder: 2316");
+        debugger;
 
         return new Promise((resolve, reject) => {
             var orderData = {
@@ -2310,7 +2436,7 @@ function loadUserRoleApprovalUsers() {
                 alert("An error occurred while checking for approvals.");
             });
 
-
+            debugger;
 
             // Cancel Approval click event in the modal
             $('#cancelApproval').on('click', function () {
@@ -2424,104 +2550,111 @@ function loadUserRoleApprovalUsers() {
             });
 
 
-        var itemsRequiringApproval = [];
+            var itemsRequiringApproval = [];
 
 
-        // Function to check for approvals
-    function checkForApprovals(orderItems) {
+            // Function to check for approvals
+            function checkForApprovals(orderItems) {
 
 
-    var orderdata = extractOrderDataUpdate();
-    const itemsToCheck = orderdata.OrderItems.filter(item => item.discountAmt > 0).map(item => ({
-        orderId: item.orderId === 0 ? model.id : item.orderId,
-        orderItemId: item.orderItemId,
-        orderItemDiscount: item.discountAmt
-    }));
+            var orderdata = extractOrderDataUpdate();
+            const itemsToCheck = orderdata.OrderItems.filter(item => item.discountAmt > 0).map(item => ({
+                orderId: item.orderId === 0 ? model.id : item.orderId,
+                orderItemId: item.orderItemId,
+                orderItemDiscount: item.discountAmt
+            }));
 
-    if (itemsToCheck.length > 0) {
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: '@Url.Action("CheckBulkDiscountApproval", "Orders")',
-                type: 'POST',
-                data: JSON.stringify(itemsToCheck),
-                contentType: "application/json; charset=utf-8"
-            }).done(response => {
-                const itemsRequiringApproval = response.filter(r => r.needsApproval);
-                resolve({
-                    needsApproval: itemsRequiringApproval.length > 0,
-                    approvalItems: itemsRequiringApproval
+            if (itemsToCheck.length > 0) {
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: '@Url.Action("CheckBulkDiscountApproval", "Orders")',
+                        type: 'POST',
+                        data: JSON.stringify(itemsToCheck),
+                        contentType: "application/json; charset=utf-8"
+                    }).done(response => {
+                        const itemsRequiringApproval = response.filter(r => r.needsApproval);
+                        resolve({
+                            needsApproval: itemsRequiringApproval.length > 0,
+                            approvalItems: itemsRequiringApproval
+                        });
+                    }).fail(error => {
+                        //console.error("Error during approval check:", error);
+                        reject({
+                            needsApproval: false,
+                            approvalItems: []
+                        });
+                    });
                 });
-            }).fail(error => {
-                //console.error("Error during approval check:", error);
-                reject({
+            } else {
+                return Promise.resolve({
                     needsApproval: false,
                     approvalItems: []
                 });
-            });
-        });
-    } else {
-        return Promise.resolve({
-            needsApproval: false,
-            approvalItems: []
-        });
-    }
-    }
+            }
+            }
 
         });
 
+        debugger;
 
         // Function to save the order
-      function saveOrder(orderData) {
-    return new Promise(function (resolve, reject) {
-        $.ajax({
-            url: '@Url.Action("UpdateOrder", "Orders")',
-            type: 'POST',
-            data: JSON.stringify(orderData),
-            contentType: "application/json; charset=utf-8",
-            success: function (response) {
-                if (response.success) {
+        function saveOrder(orderData) {
+            debugger;
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    url: '@Url.Action("UpdateOrder", "Orders")',
+                    type: 'POST',
+                    data: JSON.stringify(orderData),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        if (response.success) {
 
-                   $.ajax({
-                url: "@Url.Action("UpdateOrderStatus", "Orders")", // Update with your controller and action names
-                type: 'POST',
-                data: JSON.stringify({
-                    orderId: orderId,
-                    newStatus: $('.order-action').val(),
-                    actionName: $('.order-action').val()
-                }),
-                contentType: "application/json; charset=utf-8",
-                success: function (response) {
-                    if (response.success) {
-                        // alert('Order submitted successfully!');
-                        userMessage.show("Success", "The order status updated successfully!");
-                        if ($('.order-action').val() === "Payment") {
-                            // Enable the display of the payment section
-                            $('.payment-tab').css('display', 'block');
-                        } else {
-                            $("#back-orders").trigger("click");
+                           $.ajax({
+                        url: "@Url.Action("UpdateOrderStatus", "Orders")", // Update with your controller and action names
+                        type: 'POST',
+                        data: JSON.stringify({
+                            orderId: orderId,
+                            newStatus: $('.order-action').val(),
+                            actionName: $('.order-action').val()
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            if (response.success) {
+                                // alert('Order submitted successfully!');
+                                userMessage.show("Success", "The order status updated successfully!");
+                                if ($('.order-action').val() === "Payment") {
+                                    // Enable the display of the payment section
+                                    $('.payment-tab').css('display', 'block');
+                                    $('.verification-tab').css('display', 'none');
+                                    //Update currentOrderStatus
+                                    $("#orderStatus").text("Payment");
+                                } else if ($('.order-action').val() === "Verification") {
+                                    // Enable the display of the verification section
+                                    $('.verification-tab').css('display', 'block');
+                                    $('.payment-tab').css('display', 'none');
+                                    //Update currentOrderStatus
+                                    $("#orderStatus").text("Verification");
+                                } else {
+                                    $("#back-orders").trigger("click");
+                                }
+                                if (paymentData != null) {
+                                    sendPaymentDataToApi(paymentData, true);
+                                }
+                            } else {
+                                userMessage.show("Error", 'Error submitting order: ' + response.message);
+                            }
+                        },
+                        error: function () {
+                            userMessage.show("Error", 'An error occurred while submitting the order.');
                         }
-                        if (paymentData != null) {
-                            sendPaymentDataToApi(paymentData, true);
+                    });
                         }
-                    } else {
-                        userMessage.show("Error", 'Error submitting order: ' + response.message);
                     }
-                },
-                error: function () {
-                    userMessage.show("Error", 'An error occurred while submitting the order.');
-                }
+                });
             });
-                }
-            }
-        });
-    });
 }
 
-
-
-
-
-
+        debugger;
 
         // Save discount approvals
         function saveDiscountApprovals(orderData, username, password, remarks) {
@@ -2547,7 +2680,7 @@ function loadUserRoleApprovalUsers() {
             });
         }
 
-
+        debugger;
         // Load users based on role
         function loadUserRoleApprovalUsers() {
             $.ajax({
@@ -2566,6 +2699,32 @@ function loadUserRoleApprovalUsers() {
                 }
             });
         }
+
+        console.log("StepLast UpdateOrder: 2316");
+    }
+
+    function CheckVerifyStatusForScanItem(curOrderStatus, nextOrderStatus) {
+        debugger;
+        let isAllVerified = true;
+        if (nextOrderStatus == "Payment") {
+            // Check if the current action is Verification
+            if (curOrderStatus === "Verification") {
+                // Iterate over each row in the table
+                $('#dt2_productScan tbody tr').each(function () {
+
+                        // Get the current status value from the .product-status span
+                    var currentScanItemStatus = $(this).find('.product-verifystatus').text().trim();
+                    if (currentScanItemStatus != "Pass") {
+                        // If the status is not "Pass", show an error message
+                        isAllVerified = false;
+                    }
+
+                });
+
+            }
+        }
+        return isAllVerified;
+
     }
 
     var selectOptions = @Html.Raw(JsonConvert.SerializeObject(Model.lstPaymentTypes))
@@ -3046,56 +3205,117 @@ function gatherPaymentData() {
                 SearchByPartNumber($(this).val());
             }
         });
-    $('#btnAddProduct').on('click', function () {
-        
-        SearchByPartNumber($('#productSearch').val());
+        $('#btnAddProduct').on('click', function () {
+
+            SearchByPartNumber($('#productSearch').val());
         });
 
+        function SearchByPartNumber(partNumber) {
+            var customerId = $("#customer").val(); // $('.selectCustomer').select2('val');
+            var selectedData = $('.selectShipTo').select2('data');
+            var selectedText = (selectedData) ? selectedData.text : null;
+            var shipToId = selectedText;
+            var orderDateInput = $('#orderDate').val(); // Assume this is in the format YYYY-MM-DD
+            var orderDate = "";
+            if (orderDateInput) {
+                // If the input is valid, use it; otherwise, you can set it to null or a default value
+                orderDate = convertDateFormat(orderDateInput); // Formats to YYYY-MM-DD
+            } else {
+                orderDate = null; // Or set a default date if needed
+            }
+            $.ajax({
+                url: '@Url.Action("GetProductByPartNum", "Product")', // Replace with your API endpoint
+                type: 'POST',
+                data: { partNum: partNumber, customerId: customerId, shipToId: shipToId, orderDate: orderDate },
+                success: function (response) {
+                    if (response.success && response.product && response.product.id) {
+                        // Clear the existing table rows
+                        // $('#dt2_product tbody').empty();
 
-    function SearchByPartNumber(partNumber) {
-        var customerId = $("#customer").val(); // $('.selectCustomer').select2('val');
-        var selectedData = $('.selectShipTo').select2('data');
-        var selectedText = (selectedData) ? selectedData.text : null;
-        var shipToId = selectedText;
-        var orderDateInput = $('#orderDate').val(); // Assume this is in the format YYYY-MM-DD
-        var orderDate = "";
-        if (orderDateInput) {
-            // If the input is valid, use it; otherwise, you can set it to null or a default value
-            orderDate = convertDateFormat(orderDateInput); // Formats to YYYY-MM-DD
-        } else {
-            orderDate = null; // Or set a default date if needed
+                        // Assuming response.product is an array of product objects
+                        let product = response.product;
+                            // Create a new row for each product
+                        addOrUpdateProductRow(product, desktop_table, mobile_table);
+                        $("#productSearch").val("");
+                    } else if (response.message) {
+                        alert(response.message);
+                    } else {
+                        alert('No products found or an error occurred.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    let errorMessage = "An error occurred while fetching product.";
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage = xhr.responseJSON.message;
+                    } else if (xhr.responseText) {
+                        errorMessage = xhr.responseText;
+                    }
+                    alert(errorMessage);
+                }
+            });
         }
-        $.ajax({
-            url: '@Url.Action("GetProductByPartNum", "Product")', // Replace with your API endpoint
-            type: 'POST',
-            data: { partNum: partNumber, customerId: customerId, shipToId: shipToId, orderDate: orderDate },
-            success: function (response) {
-                if (response.success && response.product && response.product.id) {
-                    // Clear the existing table rows
-                    // $('#dt2_product tbody').empty();
 
-                    // Assuming response.product is an array of product objects
-                    let product = response.product;
-                        // Create a new row for each product
-                    addOrUpdateProductRow(product, desktop_table, mobile_table);
-                    $("#productSearch").val("");
-                } else if (response.message) {
-                    alert(response.message);
-                } else {
-                    alert('No products found or an error occurred.');
+        $('#btnVerifyScannedBarcode').on('click', function () {
+
+            VerifyScanItem($('#verificationScanSearch').val());
+        });
+
+        function VerifyScanItem(scannedBarcode) {
+            if (!scannedBarcode) {
+                alert('Please enter a scan number');
+                return;
+            }
+            debugger;
+            var orderId = $('.orderId').val();
+            $.ajax({
+                url: '@Url.Action("ScanVerfication", "Orders")', // Replace with your actual Scan method URL
+                type: 'POST',
+                data: {
+                    serial: scannedBarcode,
+                    orderId: orderId
+                },
+                success: function (response) {
+                    if (response.isBarcodeExist) {
+
+                        //matched = updateOrderScanWithOptimalMatch(scannedItem, weightValue);
+                        UpdateVerifyStatusForScanItem(scannedBarcode, response)
+                    } else {
+                        userMessage.show("Error", response.message);
+                        alert(response.message);
+                    }
+                    $("#verificationScanSearch").val("")
+                },
+                error: function () {
+                    $("#verificationScanSearch").val("")
+                    alert('Failed to verify scanned barcode.');
                 }
-            },
-            error: function (xhr, status, error) {
-                let errorMessage = "An error occurred while fetching product.";
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    errorMessage = xhr.responseJSON.message;
-                } else if (xhr.responseText) {
-                    errorMessage = xhr.responseText;
-                }
-                alert(errorMessage);
+            });
+        }
+
+    function UpdateVerifyStatusForScanItem(scannedBarcode, response) {
+
+        // Iterate over each row in the table
+        $('#dt2_productScan tbody tr').each(function () {
+            // Get the barcode value from the current row
+            var barcode = $(this).find('.product-barcode').text().trim();
+
+            // Check if the scanned barcode matches the barcode in the row
+            if (barcode === scannedBarcode) {
+                // Get the current status value from the .product-status span
+                var currentStatus = $(this).find('.product-verifystatus').text().trim();
+
+                console.log("Matched barcode:", barcode);
+                console.log("Current status:", currentStatus);
+
+                // Now you can update the status if needed
+                $(this).find('.product-verifystatus').removeClass('status-verificationfail') // example
+                    .addClass('status-verificationpass').text('Pass');
             }
         });
+
     }
+
+
 
     $('#btnResetCustomer').on('click', function () {
             $('#searchName, #searchCustomerCode, #searchCity,#searchState').val('');
@@ -3180,7 +3400,7 @@ function gatherPaymentData() {
         });
 
 </script>
-<script>
+        <script>
     $(document).ready(function () {
 
         updateAllTotals();
@@ -3910,9 +4130,9 @@ function gatherPaymentData() {
 
 
     })
-</script>
+        </script>
 
-<script>
+        <script>
 
     function updateSerialNumbers() {
         desktop_table.rows().every(function (rowIdx, tableLoop, rowLoop) {
@@ -3924,7 +4144,7 @@ function gatherPaymentData() {
 
     function addOrUpdateProductRow(product, desktop_table, mobile_table) {
         debugger;
-        
+
         // Check if a row with the same product ID already exists
         var tbody = $('#dt2_product tbody');
         var existingRow = tbody.find('tr td').find('span[data-id="' + product.id + '"]');
@@ -4066,7 +4286,7 @@ function gatherPaymentData() {
                 return;
             }
 
-            
+
 
             if (product.UomPrices) {
                 var defaultUomText = defaultUom.toUpperCase();
@@ -4077,7 +4297,7 @@ function gatherPaymentData() {
 
             var prodGroup = product.prodGrup_Description || '';
             var code = product.partCode || '';
-            var lineTotal = (unitPrice * orderQty).toFixed(2);            
+            var lineTotal = (unitPrice * orderQty).toFixed(2);
             var orderUOM_Id = product.OrderUOM_Id || '';
             var operationStyle_ModuleItem_Id = product.operationStyle_ModuleItem_Id || '';
             var operationCost = product.operationCost || '';
@@ -4087,7 +4307,7 @@ function gatherPaymentData() {
             var avlQty = product.remainingQty || 0;
             var scannedLabel = product.allowVaryWeight === "Yes" ? splitSerialNumber : "" ;//product.serialNumber || "";
             var scannedLocation = product.allowVaryWeight === "Yes" ? splitLocation : "";//product.serialNumber || "";
-            var conversionFactor = product.conversionFactor || 1;            
+            var conversionFactor = product.conversionFactor || 1;
 
             //debugger
             var scannedQtyField = isEdit == "yes" ? "<td class='product-scannedQty'></td>" : "";
@@ -4323,8 +4543,8 @@ function gatherPaymentData() {
     // Set the iframe src to the PDF URL
     $('#pdfFrame').attr('src', url);
 }
-</script>
-<script type="text/javascript">
+        </script>
+        <script type="text/javascript">
     var modelData = @Html.Raw(Json.Encode(Model));
     var checkItemReturnStatusUrl = '@Url.Content(Url.Action("CheckItemReturnStatus", "Orders"))';
     var checkPrintRefundStatusUrl = '@Url.Content(Url.Action("CheckPrintRefundStatus", "Orders"))';
@@ -4402,5 +4622,5 @@ function gatherPaymentData() {
 
 
 
-</script>
-<script src="~/Scripts/OrderPrintFunctions.js?ver=1.0.56"></script>
+        </script>
+        <script src="~/Scripts/OrderPrintFunctions.js?ver=1.0.56"></script>

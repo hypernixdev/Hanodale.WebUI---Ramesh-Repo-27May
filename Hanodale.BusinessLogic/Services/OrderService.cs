@@ -111,6 +111,10 @@ namespace Hanodale.BusinessLogic
         {
             return this.DataProvider.GetProductCartons(serialNo, barcodeType);
         }
+        public List<ProductBarcode> GetStdLooseFromProductCartonTable(string serialNo, string barcodeType)
+        {
+            return this.DataProvider.GetStdLooseFromProductCartons(serialNo, barcodeType);
+        }
 
         public ProductBarcode GetProductWeightBarcodes(string serialNo)
         {

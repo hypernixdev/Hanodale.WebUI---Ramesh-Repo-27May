@@ -334,6 +334,7 @@ namespace Hanodale.Domain.DTOs
         public int orderItemId { get; set; }
         public string epicorePartNo { get; set; }
         public string barcode { get; set; }
+        public string vendorProductCode { get; set; }
         public string weightValue { get; set; }
         public decimal? weightMutiplier { get; set; }
         public int productId { get; set; }

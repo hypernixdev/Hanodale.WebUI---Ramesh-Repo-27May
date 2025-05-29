@@ -2202,7 +2202,31 @@ namespace Hanodale.DataAccessLayer.Services
                     var order = model.Order.SingleOrDefault(o => o.id == orderId);
                     if (order != null)
                     {
-                        if (newStatus == "VerificationPass")
+                        if (newStatus == "Verification")
+                        {
+                            order.orderStatus = "Verification";
+                            // Update order status
+                            order.verifiedStatus = "PendingVerification";
+                            order.verifiedBy = userId;
+                            order.verifiedDate = DateTime.Now;
+                            order.verifyRemarks = remark;
+
+                            // Create OrderUpdate
+                            var orderUpdate = new OrderUpdate
+                            {
+                                order_Id = orderId,
+                                actionDate = DateTime.Now,
+                                actionName = actionName,
+                                user_Id = userId,
+                            };
+
+                            // Add OrderUpdate to the context
+                            model.OrderUpdate.Add(orderUpdate);
+
+                            // Save changes
+                            model.SaveChanges();
+                        }
+                        else if (newStatus == "VerificationPass")
                         {
                             // Update order status
                             order.verifiedStatus = "Pass";
@@ -2224,15 +2248,58 @@ namespace Hanodale.DataAccessLayer.Services
 
                             // Save changes
                             model.SaveChanges();
-                        } else if (newStatus == "EditPayment")
+                        } 
+                        else if (newStatus == "EditPayment")
                         {
                             order.orderStatus = "Payment";
+                            
                             // Create OrderUpdate
                             var orderUpdate = new OrderUpdate
                             {
                                 order_Id = orderId,
                                 actionDate = DateTime.Now,
                                 actionName = "Editing order",                                
+                                user_Id = userId,
+                            };
+                            // Add OrderUpdate to the context
+                            model.OrderUpdate.Add(orderUpdate);
+                            // Update the order items here 
+                            ResetReturnQtyAndRefunds(orderId);
+                            model.SaveChanges();
+                        }
+                        else if (newStatus == "Payment")
+                        {
+                            order.orderStatus = "Payment";
+                            // Update Verified order status
+                            order.verifiedStatus = "Verified";
+                            order.verifiedBy = userId;
+                            order.verifiedDate = DateTime.Now;
+                            order.verifyRemarks = remark;
+
+                            var scanItems = model.OrderItemScanned.Where(p => p.orderId == orderId)
+                                .ToList();
+                            if (scanItems != null && scanItems.Count > 0)
+                            {
+                                foreach (var item in scanItems)
+                                {
+                                    if(item.IsItemReturned == true)
+                                    {
+                                        // No need to update status for returned items
+                                    }
+                                    else
+                                    {
+                                        item.verifyStatus = "Pass";
+                                        model.Entry(item).State = EntityState.Modified;
+                                    }
+                                    
+                                }
+                            }
+                            // Create OrderUpdate
+                            var orderUpdate = new OrderUpdate
+                            {
+                                order_Id = orderId,
+                                actionDate = DateTime.Now,
+                                actionName = "Editing order",
                                 user_Id = userId,
                             };
                             // Add OrderUpdate to the context
@@ -2469,6 +2536,18 @@ namespace Hanodale.DataAccessLayer.Services
                                                     && ois.IsCarton == false)
                                                 .ToList();
                     }
+                    else if (!string.IsNullOrEmpty(barcodeType) && barcodeType == "StdLoose")
+                    {
+                        // Std Loose Normally doesnt direct SerialNumber, So return all Std Loose Items and Use the Barcode Settings to get the relevent record.
+                        cartonList = model.ProductCarton
+                                                .Where(ois => ois.productBarcodeLength == serialNo.Length
+                                                    && ois.IsPartialCarton == false
+                                                    && ois.IsPickedComplete == false
+                                                    && ois.IsVaryWg == false
+                                                    && ois.OnHold == false
+                                                    && ois.IsCarton == false)
+                                                .ToList();
+                    }
                     else if (!string.IsNullOrEmpty(barcodeType) && barcodeType == "CartonAndLoose")
                     {
                         // PickedComplete also include
@@ -2521,6 +2600,82 @@ namespace Hanodale.DataAccessLayer.Services
                     };
 
                     return _product;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.InnerException?.InnerException?.Message ?? ex.Message);
+            }
+        }
+        public List<ProductBarcode> GetStdLooseFromProductCartons(string serialNo, string barcodeType)
+        {
+            List<ProductBarcode> productBarcodes = new List<ProductBarcode>();
+            try
+            {
+                using (HanodaleEntities model = new HanodaleEntities())
+                {
+                    // Query once and store the result
+                    List<ProductCarton> cartonList = new List<ProductCarton>();
+                    if (!string.IsNullOrEmpty(barcodeType) && barcodeType == "StdLoose")
+                    {
+                        // Std Loose Normally doesnt direct SerialNumber, So return all Std Loose Items and Use the Barcode Settings to get the relevent record.
+                        cartonList = model.ProductCarton
+                                                .Where(ois => ois.productBarcodeLength == serialNo.Length
+                                                    && ois.IsPartialCarton == false
+                                                    && ois.IsPickedComplete == false
+                                                    && ois.IsVaryWg == false
+                                                    && ois.OnHold == false
+                                                    && ois.IsCarton == false)
+                                                .ToList();
+                    }
+                    
+
+                    if (!cartonList.Any())
+                        return null;
+
+                    // Map the first item to ProductBarcode
+                    foreach (var carton in cartonList) 
+                    {
+                       
+                        var _product = new ProductBarcode
+                        {
+                            id = carton.id,
+                            epicorePartNo = carton.epicorPartNo,
+                            barcode = carton.barcode,
+                            vendorProductCode = carton.vendorProductCode,
+                            weightValue = carton.weightValue,
+                            weightMutiplier = carton.weightMutiplier,
+                            barcodeFromPos = Convert.ToInt32(carton.productCodeFromPosition),
+                            barcodeToPos = Convert.ToInt32(carton.productCodeToPosition),
+                            weightFromPos = Convert.ToInt32(carton.weightFromPosition),
+                            weightToPos = Convert.ToInt32(carton.weightToPosition),
+                            Location = carton.Location,
+                            CtnQty = carton.CtnQty ?? 0,
+                            IumQty = carton.IumQty ?? 0,
+                            Ium = carton.Ium,
+                            IsCarton = carton.IsCarton ?? false,
+                            IsPickedComplete = carton.IsPickedComplete ?? false,
+                            IsPartialCarton = carton.IsPartialCarton ?? false,
+                            IsVaryWg = carton.IsVaryWg ?? false,
+                            LooseQty = carton.LooseQty ?? 0,
+                            LooseUom = carton.LooseUom,
+                            ReceivedDate = carton.ReceivedDate,
+                            ExpiryDate = carton.ExpiryDate,
+                            OnHold = carton.OnHold ?? false,
+                            SeqNum = carton.SeqNum ?? 0,
+                            allowVaryWeight = carton.IsVaryWg,
+                            productLocation = carton.Location,
+                            //LocationList = cartonList
+                            //    .Where(x => !string.IsNullOrEmpty(x.Location))
+                            //    .Select(x => x.Location)
+                            //    .Distinct()
+                            //    .ToList()
+                        };
+
+                        productBarcodes.Add(_product);
+                    }
+
+                    return productBarcodes;
                 }
             }
             catch (Exception ex)
