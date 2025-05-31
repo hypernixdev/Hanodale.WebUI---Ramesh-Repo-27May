@@ -1034,6 +1034,11 @@
     <Property Name="ExpiryDate" Type="datetime" />
     <Property Name="SeqNum" Type="bigint" />
     <Property Name="OnHold" Type="bit" />
+    <Property Name="PickedCompletedDate" Type="datetime" />
+    <Property Name="PickedOrderId" Type="int" />
+    <Property Name="PickedOrderItemId" Type="int" />
+    <Property Name="PickedLastModifiedDate" Type="datetime" />
+    <Property Name="IsPickStatusToSync" Type="bit" />
   </EntityType>
   <EntityType Name="ProductWeightBarcode">
     <Key>

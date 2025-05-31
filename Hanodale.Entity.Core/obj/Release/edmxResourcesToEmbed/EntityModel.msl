@@ -982,6 +982,25 @@
     <EntitySetMapping Name="ProductCarton">
       <EntityTypeMapping TypeName="HanodaleEntitiesModel.ProductCarton">
         <MappingFragment StoreEntitySet="ProductCarton">
+          <ScalarProperty Name="IsPickStatusToSync" ColumnName="IsPickStatusToSync" />
+          <ScalarProperty Name="PickedLastModifiedDate" ColumnName="PickedLastModifiedDate" />
+          <ScalarProperty Name="PickedOrderItemId" ColumnName="PickedOrderItemId" />
+          <ScalarProperty Name="PickedOrderId" ColumnName="PickedOrderId" />
+          <ScalarProperty Name="PickedCompletedDate" ColumnName="PickedCompletedDate" />
+          <ScalarProperty Name="OnHold" ColumnName="OnHold" />
+          <ScalarProperty Name="SeqNum" ColumnName="SeqNum" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+          <ScalarProperty Name="IsVaryWg" ColumnName="IsVaryWg" />
+          <ScalarProperty Name="LooseUom" ColumnName="LooseUom" />
+          <ScalarProperty Name="LooseQty" ColumnName="LooseQty" />
+          <ScalarProperty Name="Ium" ColumnName="Ium" />
+          <ScalarProperty Name="IumQty" ColumnName="IumQty" />
+          <ScalarProperty Name="IsPartialCarton" ColumnName="IsPartialCarton" />
+          <ScalarProperty Name="IsCarton" ColumnName="IsCarton" />
+          <ScalarProperty Name="IsPickedComplete" ColumnName="IsPickedComplete" />
+          <ScalarProperty Name="PickedCtnQty" ColumnName="PickedCtnQty" />
+          <ScalarProperty Name="CtnQty" ColumnName="CtnQty" />
           <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
@@ -1128,6 +1147,10 @@
     <EntitySetMapping Name="ProductWeightBarcode">
       <EntityTypeMapping TypeName="HanodaleEntitiesModel.ProductWeightBarcode">
         <MappingFragment StoreEntitySet="ProductWeightBarcode">
+          <ScalarProperty Name="IsPickedComplete" ColumnName="IsPickedComplete" />
+          <ScalarProperty Name="PickedStdLooseQty" ColumnName="PickedStdLooseQty" />
+          <ScalarProperty Name="StdLooseUom" ColumnName="StdLooseUom" />
+          <ScalarProperty Name="StdLooseQty" ColumnName="StdLooseQty" />
           <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
@@ -1549,20 +1572,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="StockBalanceView">
-      <EntityTypeMapping TypeName="HanodaleEntitiesModel.StockBalanceView">
-        <MappingFragment StoreEntitySet="StockBalanceView">
-          <ScalarProperty Name="remainingQty" ColumnName="remainingQty" />
-          <ScalarProperty Name="totalQtyAfterPayment" ColumnName="totalQtyAfterPayment" />
-          <ScalarProperty Name="totalQtyBeforePayment" ColumnName="totalQtyBeforePayment" />
-          <ScalarProperty Name="uom" ColumnName="uom" />
-          <ScalarProperty Name="onHandQty" ColumnName="onHandQty" />
-          <ScalarProperty Name="warehouseCode" ColumnName="warehouseCode" />
-          <ScalarProperty Name="partNum" ColumnName="partNum" />
-          <ScalarProperty Name="company" ColumnName="company" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="OrderItemScanned">
       <EntityTypeMapping TypeName="HanodaleEntitiesModel.OrderItemScanned">
         <MappingFragment StoreEntitySet="OrderItemScanned">
@@ -1585,6 +1594,18 @@
           <ScalarProperty Name="scannedQty" ColumnName="scannedQty" />
           <ScalarProperty Name="serialNo" ColumnName="serialNo" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockBalanceView">
+      <EntityTypeMapping TypeName="HanodaleEntitiesModel.StockBalanceView">
+        <MappingFragment StoreEntitySet="StockBalanceView">
+          <ScalarProperty Name="remainingQty" ColumnName="remainingQty" />
+          <ScalarProperty Name="totalQtyAfterPayment" ColumnName="totalQtyAfterPayment" />
+          <ScalarProperty Name="totalQtyBeforePayment" ColumnName="totalQtyBeforePayment" />
+          <ScalarProperty Name="onHandQty" ColumnName="onHandQty" />
+          <ScalarProperty Name="uom" ColumnName="uom" />
+          <ScalarProperty Name="partNum" ColumnName="partNum" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

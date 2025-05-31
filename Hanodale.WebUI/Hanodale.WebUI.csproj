@@ -2282,6 +2282,8 @@
     <Content Include="Views\SchedulerLog\Index.cshtml" />
     <Content Include="Views\SchedulerLog\RenderAction.cshtml" />
     <Content Include="Views\Orders\_OrderSearchPanel.cshtml" />
+    <Content Include="Views\Orders\Verification.cshtml" />
+    <Content Include="Views\Orders\Create - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

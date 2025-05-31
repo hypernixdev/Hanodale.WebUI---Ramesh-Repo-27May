@@ -618,12 +618,12 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="OrderItems" EntitySet="OrderItems" />
     </AssociationSet>
-    <EntitySet Name="StockBalanceView" EntityType="HanodaleEntitiesModel.StockBalanceView" />
     <EntitySet Name="OrderItemScanned" EntityType="HanodaleEntitiesModel.OrderItemScanned" />
     <AssociationSet Name="OrderItemScanned_UserCreatedBy_FK" Association="HanodaleEntitiesModel.OrderItemScanned_UserCreatedBy_FK">
       <End Role="User" EntitySet="Users" />
       <End Role="OrderItemScanned" EntitySet="OrderItemScanned" />
     </AssociationSet>
+    <EntitySet Name="StockBalanceView" EntityType="HanodaleEntitiesModel.StockBalanceView" />
   </EntityContainer>
   <ComplexType Name="DB_Ticket_Datatable_Details_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -2615,6 +2615,25 @@
     <Property Name="modifiedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="LooseConversion" Relationship="HanodaleEntitiesModel.FK__LooseConv__produ__62108194" FromRole="ProductCarton" ToRole="LooseConversion" />
     <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CtnQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PickedCtnQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsPickedComplete" Type="Boolean" />
+    <Property Name="IsCarton" Type="Boolean" />
+    <Property Name="IsPartialCarton" Type="Boolean" />
+    <Property Name="IumQty" Type="Decimal" Precision="8" Scale="4" />
+    <Property Name="Ium" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LooseQty" Type="Decimal" Precision="8" Scale="4" />
+    <Property Name="LooseUom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsVaryWg" Type="Boolean" />
+    <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="SeqNum" Type="Int64" />
+    <Property Name="OnHold" Type="Boolean" />
+    <Property Name="PickedCompletedDate" Type="DateTime" Precision="3" />
+    <Property Name="PickedOrderId" Type="Int32" />
+    <Property Name="PickedOrderItemId" Type="Int32" />
+    <Property Name="PickedLastModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsPickStatusToSync" Type="Boolean" />
   </EntityType>
   <EntityType Name="ShipToAddress">
     <Key>
@@ -2824,6 +2843,10 @@
     <Property Name="modifiedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="LooseConversionItem" Relationship="HanodaleEntitiesModel.FK__LooseConv__weigh__69B1A35C" FromRole="ProductWeightBarcode" ToRole="LooseConversionItem" />
     <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="StdLooseQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="StdLooseUom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PickedStdLooseQty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsPickedComplete" Type="Boolean" />
   </EntityType>
   <EntityType Name="StockBalance">
     <Key>
@@ -3788,22 +3811,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="StockBalanceView">
-    <Key>
-      <PropertyRef Name="company" />
-      <PropertyRef Name="partNum" />
-      <PropertyRef Name="warehouseCode" />
-      <PropertyRef Name="uom" />
-    </Key>
-    <Property Name="company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="partNum" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="warehouseCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="onHandQty" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="uom" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="totalQtyBeforePayment" Type="Decimal" Precision="38" Scale="2" />
-    <Property Name="totalQtyAfterPayment" Type="Decimal" Precision="38" Scale="2" />
-    <Property Name="remainingQty" Type="Decimal" Precision="38" Scale="2" />
-  </EntityType>
   <EntityType Name="OrderItemScanned">
     <Key>
       <PropertyRef Name="id" />
@@ -3841,4 +3848,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="StockBalanceView">
+    <Key>
+      <PropertyRef Name="partNum" />
+      <PropertyRef Name="totalQtyBeforePayment" />
+      <PropertyRef Name="totalQtyAfterPayment" />
+    </Key>
+    <Property Name="partNum" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="uom" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="onHandQty" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="totalQtyBeforePayment" Type="Decimal" Nullable="false" Precision="38" Scale="6" />
+    <Property Name="totalQtyAfterPayment" Type="Decimal" Nullable="false" Precision="38" Scale="6" />
+    <Property Name="remainingQty" Type="Decimal" Precision="38" Scale="6" />
+  </EntityType>
 </Schema>

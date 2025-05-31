@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\ASUS\Documents\CodeWithMukesh\HXPOSPublishFiles</_PublishTargetUrl>
-    <History>True|2025-05-17T10:50:46.9717434Z||;True|2025-05-13T01:48:29.5006387+08:00||;True|2025-05-11T15:38:32.6975184+08:00||;True|2025-05-10T02:49:31.1010630+08:00||;</History>
+    <History>True|2025-05-29T15:23:48.9524067Z||;True|2025-05-17T18:50:46.9717434+08:00||;True|2025-05-13T01:48:29.5006387+08:00||;True|2025-05-11T15:38:32.6975184+08:00||;True|2025-05-10T02:49:31.1010630+08:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -47,76 +47,76 @@
       <publishTime>04/25/2025 03:16:44</publishTime>
     </File>
     <File Include="bin/Hanodale.BusinessLogic.dll">
-      <publishTime>05/17/2025 18:50:26</publishTime>
+      <publishTime>05/29/2025 23:23:34</publishTime>
     </File>
     <File Include="bin/Hanodale.BusinessLogic.dll.config">
       <publishTime>04/25/2025 03:15:34</publishTime>
     </File>
     <File Include="bin/Hanodale.BusinessLogic.pdb">
-      <publishTime>05/17/2025 18:50:26</publishTime>
+      <publishTime>05/29/2025 23:23:34</publishTime>
     </File>
     <File Include="bin/Hanodale.ConfigurationService.Entity.dll">
       <publishTime>04/25/2025 03:16:44</publishTime>
     </File>
     <File Include="bin/Hanodale.DataAccessLayer.dll">
-      <publishTime>05/17/2025 18:50:26</publishTime>
+      <publishTime>05/29/2025 23:23:33</publishTime>
     </File>
     <File Include="bin/Hanodale.DataAccessLayer.dll.config">
       <publishTime>04/25/2025 03:15:42</publishTime>
     </File>
     <File Include="bin/Hanodale.DataAccessLayer.pdb">
-      <publishTime>05/17/2025 18:50:26</publishTime>
+      <publishTime>05/29/2025 23:23:33</publishTime>
     </File>
     <File Include="bin/Hanodale.Domain.dll">
-      <publishTime>05/17/2025 18:50:24</publishTime>
+      <publishTime>05/29/2025 23:23:30</publishTime>
     </File>
     <File Include="bin/Hanodale.Domain.dll.config">
       <publishTime>04/25/2025 03:15:50</publishTime>
     </File>
     <File Include="bin/Hanodale.Domain.pdb">
-      <publishTime>05/17/2025 18:50:24</publishTime>
+      <publishTime>05/29/2025 23:23:30</publishTime>
     </File>
     <File Include="bin/Hanodale.Entity.Core.dll">
-      <publishTime>05/11/2025 15:38:17</publishTime>
+      <publishTime>05/29/2025 23:23:31</publishTime>
     </File>
     <File Include="bin/Hanodale.Entity.Core.dll.config">
       <publishTime>05/07/2025 18:08:44</publishTime>
     </File>
     <File Include="bin/Hanodale.Entity.Core.pdb">
-      <publishTime>05/11/2025 15:38:17</publishTime>
+      <publishTime>05/29/2025 23:23:31</publishTime>
     </File>
     <File Include="bin/Hanodale.Services.dll">
-      <publishTime>05/17/2025 18:50:27</publishTime>
+      <publishTime>05/29/2025 23:23:35</publishTime>
     </File>
     <File Include="bin/Hanodale.Services.dll.config">
       <publishTime>04/25/2025 03:16:16</publishTime>
     </File>
     <File Include="bin/Hanodale.Services.pdb">
-      <publishTime>05/17/2025 18:50:27</publishTime>
+      <publishTime>05/29/2025 23:23:35</publishTime>
     </File>
     <File Include="bin/Hanodale.SyncService.dll">
-      <publishTime>05/17/2025 18:50:25</publishTime>
+      <publishTime>05/29/2025 23:23:32</publishTime>
     </File>
     <File Include="bin/Hanodale.SyncService.dll.config">
       <publishTime>04/25/2025 03:16:28</publishTime>
     </File>
     <File Include="bin/Hanodale.SyncService.pdb">
-      <publishTime>05/17/2025 18:50:25</publishTime>
+      <publishTime>05/29/2025 23:23:32</publishTime>
     </File>
     <File Include="bin/Hanodale.Utility.dll">
-      <publishTime>05/17/2025 18:50:26</publishTime>
+      <publishTime>05/29/2025 23:23:32</publishTime>
     </File>
     <File Include="bin/Hanodale.Utility.dll.config">
       <publishTime>04/25/2025 03:16:38</publishTime>
     </File>
     <File Include="bin/Hanodale.Utility.pdb">
-      <publishTime>05/17/2025 18:50:26</publishTime>
+      <publishTime>05/29/2025 23:23:32</publishTime>
     </File>
     <File Include="bin/Hanodale.WebUI.dll">
-      <publishTime>05/17/2025 18:50:30</publishTime>
+      <publishTime>05/29/2025 23:23:38</publishTime>
     </File>
     <File Include="bin/Hanodale.WebUI.pdb">
-      <publishTime>05/17/2025 18:50:30</publishTime>
+      <publishTime>05/29/2025 23:23:38</publishTime>
     </File>
     <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
       <publishTime>04/25/2025 03:16:46</publishTime>
@@ -4819,8 +4819,11 @@
     <File Include="Views/OrderApproval/RenderAction.cshtml">
       <publishTime>04/25/2025 03:18:46</publishTime>
     </File>
+    <File Include="Views/Orders/Create - Copy.cshtml">
+      <publishTime>05/28/2025 22:24:16</publishTime>
+    </File>
     <File Include="Views/Orders/Create.cshtml">
-      <publishTime>05/10/2025 02:48:48</publishTime>
+      <publishTime>05/29/2025 23:35:11</publishTime>
     </File>
     <File Include="Views/Orders/CustomerBrowse.cshtml">
       <publishTime>04/25/2025 03:18:46</publishTime>
@@ -4836,6 +4839,9 @@
     </File>
     <File Include="Views/Orders/ReturnOrder.cshtml">
       <publishTime>04/25/2025 03:18:46</publishTime>
+    </File>
+    <File Include="Views/Orders/Verification.cshtml">
+      <publishTime>05/28/2025 17:41:12</publishTime>
     </File>
     <File Include="Views/Orders/ViewOrder - Copy.cshtml">
       <publishTime>04/25/2025 03:18:46</publishTime>
@@ -4877,7 +4883,7 @@
       <publishTime>04/25/2025 03:18:46</publishTime>
     </File>
     <File Include="Views/Pickup/OrderPicking.cshtml">
-      <publishTime>05/17/2025 18:42:13</publishTime>
+      <publishTime>05/27/2025 15:22:27</publishTime>
     </File>
     <File Include="Views/Pickup/RenderAction.cshtml">
       <publishTime>04/25/2025 03:18:46</publishTime>

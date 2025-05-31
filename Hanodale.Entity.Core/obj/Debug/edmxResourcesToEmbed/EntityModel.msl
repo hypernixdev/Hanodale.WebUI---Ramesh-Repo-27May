@@ -982,6 +982,11 @@
     <EntitySetMapping Name="ProductCarton">
       <EntityTypeMapping TypeName="HanodaleEntitiesModel.ProductCarton">
         <MappingFragment StoreEntitySet="ProductCarton">
+          <ScalarProperty Name="IsPickStatusToSync" ColumnName="IsPickStatusToSync" />
+          <ScalarProperty Name="PickedLastModifiedDate" ColumnName="PickedLastModifiedDate" />
+          <ScalarProperty Name="PickedOrderItemId" ColumnName="PickedOrderItemId" />
+          <ScalarProperty Name="PickedOrderId" ColumnName="PickedOrderId" />
+          <ScalarProperty Name="PickedCompletedDate" ColumnName="PickedCompletedDate" />
           <ScalarProperty Name="OnHold" ColumnName="OnHold" />
           <ScalarProperty Name="SeqNum" ColumnName="SeqNum" />
           <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />

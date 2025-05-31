@@ -2629,6 +2629,11 @@
     <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
     <Property Name="SeqNum" Type="Int64" />
     <Property Name="OnHold" Type="Boolean" />
+    <Property Name="PickedCompletedDate" Type="DateTime" Precision="3" />
+    <Property Name="PickedOrderId" Type="Int32" />
+    <Property Name="PickedOrderItemId" Type="Int32" />
+    <Property Name="PickedLastModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsPickStatusToSync" Type="Boolean" />
   </EntityType>
   <EntityType Name="ShipToAddress">
     <Key>

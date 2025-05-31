@@ -1020,6 +1020,25 @@
     <Property Name="modifiedBy" Type="varchar" MaxLength="20" />
     <Property Name="modifiedDate" Type="datetime" />
     <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="CtnQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PickedCtnQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsPickedComplete" Type="bit" />
+    <Property Name="IsCarton" Type="bit" />
+    <Property Name="IsPartialCarton" Type="bit" />
+    <Property Name="IumQty" Type="decimal" Precision="8" Scale="4" />
+    <Property Name="Ium" Type="nvarchar" MaxLength="50" />
+    <Property Name="LooseQty" Type="decimal" Precision="8" Scale="4" />
+    <Property Name="LooseUom" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsVaryWg" Type="bit" />
+    <Property Name="ReceivedDate" Type="datetime" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="SeqNum" Type="bigint" />
+    <Property Name="OnHold" Type="bit" />
+    <Property Name="PickedCompletedDate" Type="datetime" />
+    <Property Name="PickedOrderId" Type="int" />
+    <Property Name="PickedOrderItemId" Type="int" />
+    <Property Name="PickedLastModifiedDate" Type="datetime" />
+    <Property Name="IsPickStatusToSync" Type="bit" />
   </EntityType>
   <EntityType Name="ProductWeightBarcode">
     <Key>
@@ -1044,6 +1063,10 @@
     <Property Name="modifiedBy" Type="varchar" MaxLength="20" />
     <Property Name="modifiedDate" Type="datetime" />
     <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="StdLooseQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="StdLooseUom" Type="nvarchar" MaxLength="100" />
+    <Property Name="PickedStdLooseQty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsPickedComplete" Type="bit" />
   </EntityType>
   <EntityType Name="ReportCategory">
     <Key>
@@ -1428,19 +1451,16 @@ warning 6002: The table/view 'HXPOSV2.dbo.UserLocation' does not have a primary 
 warning 6002: The table/view 'HXPOSV2.dbo.StockBalanceView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="StockBalanceView">
     <Key>
-      <PropertyRef Name="company" />
       <PropertyRef Name="partNum" />
-      <PropertyRef Name="warehouseCode" />
-      <PropertyRef Name="uom" />
+      <PropertyRef Name="totalQtyBeforePayment" />
+      <PropertyRef Name="totalQtyAfterPayment" />
     </Key>
-    <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="partNum" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="warehouseCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="onHandQty" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="uom" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="totalQtyBeforePayment" Type="decimal" Precision="38" Scale="2" />
-    <Property Name="totalQtyAfterPayment" Type="decimal" Precision="38" Scale="2" />
-    <Property Name="remainingQty" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="uom" Type="nvarchar" MaxLength="10" />
+    <Property Name="onHandQty" Type="decimal" Precision="38" Scale="6" />
+    <Property Name="totalQtyBeforePayment" Type="decimal" Precision="38" Scale="6" Nullable="false" />
+    <Property Name="totalQtyAfterPayment" Type="decimal" Precision="38" Scale="6" Nullable="false" />
+    <Property Name="remainingQty" Type="decimal" Precision="38" Scale="6" />
   </EntityType>
   <Association Name="FK__Address_C__addre__503BEA1C">
     <End Role="Address_State" Type="Self.Address_State" Multiplicity="0..1" />
@@ -3058,11 +3078,9 @@ FROM [dbo].[UserLocation] AS [UserLocation]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="StockBalanceView" EntityType="Self.StockBalanceView" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
-[StockBalanceView].[company] AS [company], 
 [StockBalanceView].[partNum] AS [partNum], 
-[StockBalanceView].[warehouseCode] AS [warehouseCode], 
-[StockBalanceView].[onHandQty] AS [onHandQty], 
 [StockBalanceView].[uom] AS [uom], 
+[StockBalanceView].[onHandQty] AS [onHandQty], 
 [StockBalanceView].[totalQtyBeforePayment] AS [totalQtyBeforePayment], 
 [StockBalanceView].[totalQtyAfterPayment] AS [totalQtyAfterPayment], 
 [StockBalanceView].[remainingQty] AS [remainingQty]

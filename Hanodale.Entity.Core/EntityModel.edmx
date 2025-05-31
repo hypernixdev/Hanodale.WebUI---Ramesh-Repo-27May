@@ -1039,6 +1039,11 @@
           <Property Name="ExpiryDate" Type="datetime" />
           <Property Name="SeqNum" Type="bigint" />
           <Property Name="OnHold" Type="bit" />
+          <Property Name="PickedCompletedDate" Type="datetime" />
+          <Property Name="PickedOrderId" Type="int" />
+          <Property Name="PickedOrderItemId" Type="int" />
+          <Property Name="PickedLastModifiedDate" Type="datetime" />
+          <Property Name="IsPickStatusToSync" Type="bit" />
         </EntityType>
         <EntityType Name="ProductWeightBarcode">
           <Key>
@@ -6212,6 +6217,11 @@ FROM [dbo].[StockBalanceView] AS [StockBalanceView]</DefiningQuery>
           <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
           <Property Name="SeqNum" Type="Int64" />
           <Property Name="OnHold" Type="Boolean" />
+          <Property Name="PickedCompletedDate" Type="DateTime" Precision="3" />
+          <Property Name="PickedOrderId" Type="Int32" />
+          <Property Name="PickedOrderItemId" Type="Int32" />
+          <Property Name="PickedLastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsPickStatusToSync" Type="Boolean" />
         </EntityType>
         <EntityType Name="ShipToAddress">
           <Key>
@@ -8426,6 +8436,11 @@ FROM [dbo].[StockBalanceView] AS [StockBalanceView]</DefiningQuery>
           <EntitySetMapping Name="ProductCarton">
             <EntityTypeMapping TypeName="HanodaleEntitiesModel.ProductCarton">
               <MappingFragment StoreEntitySet="ProductCarton">
+                <ScalarProperty Name="IsPickStatusToSync" ColumnName="IsPickStatusToSync" />
+                <ScalarProperty Name="PickedLastModifiedDate" ColumnName="PickedLastModifiedDate" />
+                <ScalarProperty Name="PickedOrderItemId" ColumnName="PickedOrderItemId" />
+                <ScalarProperty Name="PickedOrderId" ColumnName="PickedOrderId" />
+                <ScalarProperty Name="PickedCompletedDate" ColumnName="PickedCompletedDate" />
                 <ScalarProperty Name="OnHold" ColumnName="OnHold" />
                 <ScalarProperty Name="SeqNum" ColumnName="SeqNum" />
                 <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />

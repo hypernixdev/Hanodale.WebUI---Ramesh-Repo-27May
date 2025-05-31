@@ -164,6 +164,7 @@
             <thead class="bg-light">
                 <tr>
                     <th>Action</th>
+                    <th>LineNo</th>
                     <th>Part No</th>
                     <th>Part Name</th>
                     <th>Group</th>
@@ -175,8 +176,10 @@
                     <th>Complimentary</th>
                     <th>Order Qty</th>
                     <th>Scanned Qty</th>
+                    <th>Available Locations</th>
                     <th hidden>OrderId</th>
                     <th hidden>OrderItemId</th>
+                    <th hidden>QtyType_ModuleItem_Id</th>
                 </tr>
             </thead>
             <tbody>
@@ -188,6 +191,8 @@
                             <button class="btn btn-success btn-sm" id="scanbtn"><i class="fa fa-search"></i></button>
                             <button class="btn btn-sm btn-danger" id="resetOrderbtn" data-id="@item.orderItemId"><i class="fa fa-refresh"></i></button>
                         </td>
+                        <td class="product-orderLine">@item.orderLine</td>
+                        @*<td><span class="product-lineDesc">@item.lineDesc</span></td*@>
                         <td><span data-dbid="@item.itemDbId" data-id="@item.product_Id" data-itemId="@item.orderItemId" data-productid="@item.product_Id" class="product-id-field">@item.partNum</span></td>
                         <td><span class="product-lineDesc">@item.lineDesc</span></td>
                         <td><span class="product-prodGroup">@item.prodGroup</span></td>
@@ -199,8 +204,17 @@
                         <td><span class="product-complementary">@item.complementary</span></td>
                         <td><span class="product-orderQty">@item.orderQty</span></td>
                         <td><span class="product-scannedQty" id="scannedQuantity">@item.scannedQty</span></td>
+                        <td>
+                            <select class="form-control product-availableLocation" id="productAvailableLocation_@item.orderItemId" data-orderitemid="@item.orderItemId">
+                                @foreach (var location in item.LocationList)
+                                {
+                                    <option value="@location" @(location == item.productLocation ? "selected" : "")>@location</option>
+                                }
+                            </select>
+                        </td>
                         <td hidden><span class="product-orderId">@item.orderItemId</span></td>
                         <td hidden><span class="product-orderItemId">@item.orderItemId</span></td>
+                        <td hidden><span class="product-qtyType_ModuleItem_Id">@item.QtyType_ModuleItem_Id</span></td>
                     </tr>
                 }
             </tbody>
@@ -297,10 +311,19 @@
                             </td>
                             <td><span class="product-status">@item.status</span></td>
 
-                            
 
-                            <td><span class="productLocation text-primary font-weight-bold">@item.productLocation</span></td>
 
+                            @*<td><span class="productLocation text-primary font-weight-bold">@item.productLocation</span></td>*@
+                            <td>
+                                <select class="form-control productLocation" id="productAvailableLocation_@item.Id" data-orderitemid="@item.Id">
+                                    @foreach (var location in item.LocationOptions)
+                                    {
+                                        <option value="@location.Value" @(location.Value == item.productLocation ? "selected" : "")>
+                                            @location.Text
+                                        </option>
+                                    }
+                                </select>
+                            </td>
 
 
                         </tr>
@@ -885,8 +908,8 @@
 
     var priority1 = [0, 1, 5, 9, 10];
     var priority2 = [0, 1, 3, 9, 10];
-    var priority3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    var hidden = [12, 13];
+    var priority3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    var hidden = [14, 15];
 
     var desktop_table = $('#dt2_product').DataTable({
         "paging": false,
@@ -1517,7 +1540,7 @@
         function updateOrderScanWithOptimalMatch(scannedItem, weightValue) {
             // Iterate and check the table if barcode already exists
             var isBarcodeExists = false;
-            var allowVaryWeightLc = scannedItem.allowvaryWeight;
+            var allowVaryWeightLc = scannedItem.allowVaryWeight;
             debugger
             // Iterate over each row in the table
             $('#dt2_productScan tbody tr').each(function () {
@@ -1546,17 +1569,19 @@
             let productId = scannedItem.productId;
             let exceedsQty = false;
             let exceedsMessage = "";
-
+            let isFullCartonExistInOrderItems = false; // Flag to check if Full Carton exists in order items
             // First pass: find the best matching row
             $('#dt2_product tr').each(function () {
                 let row = $(this);
                 let productElement = row.find('.product-id-field');
-
-                if (productElement.data('productid') == productId) {
+                console.log("ProductId: " + productId + " & ProductElementId: " + productElement.data('productid'));
+                var ordType = row.find('.product-qtyType_ModuleItem_Id').text();
+                console.log("ordType : "+ordType); //7704 means Full Carton
+                if (productElement.data('productid') == productId && ordType=="7704") {
                     let scannedQtyElement = row.find('#scannedQuantity');
                     let scannedQty = parseFloat(scannedQtyElement.text()) || 0;
                     let orderQty = parseFloat(row.find('.product-orderQty').text()) || 0;
-
+                    isFullCartonExistInOrderItems = true;
                     // Skip if already scanned
                     // if (scannedQty > 0) return true; // Continue to next iteration
 
@@ -1647,7 +1672,10 @@
                 return true; // Indicates a successful match and update
             } else {
                 debugger
-                if (exceedsQty) {
+                if (!isFullCartonExistInOrderItems) {
+                    // If no match was found, show a warning message
+                    userMessage.show("Warning", "FullQty Type Carton Not Product found in the OrderItems!");
+                } else if (exceedsQty) {
                     userMessage.show("Error", exceedsMessage);
                     return false;
                 } else {

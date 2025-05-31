@@ -50,6 +50,11 @@ namespace Hanodale.Entity.Core
         public Nullable<System.DateTime> ExpiryDate { get; set; }
         public Nullable<long> SeqNum { get; set; }
         public Nullable<bool> OnHold { get; set; }
+        public Nullable<System.DateTime> PickedCompletedDate { get; set; }
+        public Nullable<int> PickedOrderId { get; set; }
+        public Nullable<int> PickedOrderItemId { get; set; }
+        public Nullable<System.DateTime> PickedLastModifiedDate { get; set; }
+        public Nullable<bool> IsPickStatusToSync { get; set; }
     
         public virtual ICollection<LooseConversion> LooseConversion { get; set; }
     }
