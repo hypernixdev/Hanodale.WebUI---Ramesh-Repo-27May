@@ -623,81 +623,110 @@ namespace Hanodale.DataAccessLayer.Services
                             // Get ProductCtn Barcode / Weighting Barcode
                             // Location
                             //var looseBarcode = productCartonBarcodes.Where(a=>a.barcode == savedOrderItem.scannedLabel).FirstOrDefault();
+
+                            var newScannedItem = new OrderItemScanned
+                            {
+                                orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
+                                serialNo = savedOrderItem.scannedLabel,
+                                scannedQty = savedOrderItem.orderQty, // Define specific scanned quantity if available
+                                scannedDate = DateTime.Now,
+                                scannedBy = currentUser.userName,
+                                status = "Matched", // Replace with savedOrderItem.Status if needed
+                                orderId = savedOrderItem.orderId,
+                                Location = savedOrderItem.Location,
+                            };
+                            model.OrderItemScanned.Add(newScannedItem);
+
                             if (savedOrderItem.allowVaryWeight == true)
                             {
-                                var newScannedItem = new OrderItemScanned
+                                // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
+                                var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                            && p.barcode == savedOrderItem.scannedLabel && p.Location == savedOrderItem.Location
+                                            && p.IsPickedComplete == false && p.OnHold == false)
+                                    .FirstOrDefault();
+                                if (vwgBarcode != null)
                                 {
-                                    orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
-                                    serialNo = savedOrderItem.scannedLabel,
-                                    scannedQty = savedOrderItem.orderQty, // Define specific scanned quantity if available
-                                    scannedDate = DateTime.Now,
-                                    scannedBy = currentUser.userName,
-                                    status = "Matched", // Replace with savedOrderItem.Status if needed
-                                    orderId = savedOrderItem.orderId,
-                                    Location = savedOrderItem.Location,
-                                };
-                                model.OrderItemScanned.Add(newScannedItem);
-
-                                if (savedOrderItem.allowVaryWeight==true)
-                                {
-                                    // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
-                                    var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum  
-                                                && p.barcode == savedOrderItem.scannedLabel  && p.Location == savedOrderItem.Location
-                                                && p.IsPickedComplete == false && p.OnHold == false)
-                                        .FirstOrDefault();
-                                    if (vwgBarcode != null)
-                                    {
-                                        vwgBarcode.IsPickedComplete = true;
-                                        vwgBarcode.PickedCompletedDate = DateTime.Now;
-                                        vwgBarcode.PickedOrderId = savedOrderItem.orderId;
-                                        vwgBarcode.PickedOrderItemId = savedOrderItem.id;
-                                        vwgBarcode.PickedLastModifiedDate = DateTime.Now;
-                                        vwgBarcode.IsPickStatusToSync = true;
-                                        model.Entry(vwgBarcode).State = EntityState.Modified;
-                                    }
+                                    vwgBarcode.IsPickedComplete = true;
+                                    vwgBarcode.PickedCompletedDate = DateTime.Now;
+                                    vwgBarcode.PickedOrderId = savedOrderItem.orderId;
+                                    vwgBarcode.PickedOrderItemId = savedOrderItem.id;
+                                    vwgBarcode.PickedLastModifiedDate = DateTime.Now;
+                                    vwgBarcode.IsPickStatusToSync = true;
+                                    model.Entry(vwgBarcode).State = EntityState.Modified;
                                 }
-                                else
-                                {
-                                    // Std Carton is not unique, update as Pickupcomplete = true for top item
-                                    var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum 
-                                                        && p.barcode == savedOrderItem.scannedLabel && p.Location == savedOrderItem.Location
-                                                && p.IsCarton==true && p.IsPickedComplete == false && p.OnHold == false)
-                                        .FirstOrDefault();
-                                    if (stdCartonBarcode != null)
-                                    {
-                                        stdCartonBarcode.IsPickedComplete = true;
-                                        stdCartonBarcode.PickedCompletedDate = DateTime.Now;
-                                        stdCartonBarcode.PickedOrderId = savedOrderItem.orderId;
-                                        stdCartonBarcode.PickedOrderItemId = savedOrderItem.id;
-                                        stdCartonBarcode.PickedLastModifiedDate = DateTime.Now;
-                                        stdCartonBarcode.IsPickStatusToSync = true;
-                                        model.Entry(stdCartonBarcode).State = EntityState.Modified;
-                                    }
-                                }
-                                
                             }
                             else
                             {
-                                //Check later this logic when it works - Ramesh
-                                int orderQty = 1; //  (int)Math.Floor(savedOrderItem.orderQty); // Ensure orderQty is not null
-
-                                for (int i = 0; i < orderQty; i++)
+                                // Std Carton is not unique, update as Pickupcomplete = true for top item
+                                var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                                    && p.barcode == savedOrderItem.scannedLabel && p.Location == savedOrderItem.Location
+                                            && p.IsCarton == true && p.IsPickedComplete == false && p.OnHold == false)
+                                    .FirstOrDefault();
+                                if (stdCartonBarcode != null)
                                 {
-                                    var newScannedItem = new OrderItemScanned
-                                    {
-                                        orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
-                                        serialNo = savedOrderItem.scannedLabel, // You can modify this if serial numbers vary
-                                        scannedQty = 1, // Always set to 1
-                                        scannedDate = DateTime.Now,
-                                        scannedBy = currentUser.userName,
-                                        status = "Matched", // Replace with savedOrderItem.Status if needed
-                                        orderId = savedOrderItem.orderId,
-                                        Location = savedOrderItem.Location,
-                                    };
+                                    stdCartonBarcode.IsPickedComplete = true;
+                                    stdCartonBarcode.PickedCompletedDate = DateTime.Now;
+                                    stdCartonBarcode.PickedOrderId = savedOrderItem.orderId;
+                                    stdCartonBarcode.PickedOrderItemId = savedOrderItem.id;
+                                    stdCartonBarcode.PickedLastModifiedDate = DateTime.Now;
+                                    stdCartonBarcode.IsPickStatusToSync = true;
+                                    model.Entry(stdCartonBarcode).State = EntityState.Modified;
+                                }
+                                else
+                                {
+                                    // If no stdCartonBarcode found, check for loose barcode
+                                    int barcodeCount = savedOrderItems.Where(x => x.partNum == savedOrderItem.partNum && x.scannedLabel == savedOrderItem.scannedLabel)
+                                            .Count();
+                                    var looseBarcodes = model.ProductCarton
+                                        .Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                            && p.barcode == savedOrderItem.scannedLabel
+                                            && p.Location == savedOrderItem.Location
+                                            && p.IsCarton == false
+                                            && p.IsPickedComplete == false
+                                            && p.OnHold == false)
+                                        .Take(barcodeCount)
+                                        .ToList();
 
-                                    model.OrderItemScanned.Add(newScannedItem);
+                                    foreach (var looseBarcode in looseBarcodes)
+                                    {
+                                        looseBarcode.IsPickedComplete = true;
+                                        looseBarcode.PickedCompletedDate = DateTime.Now;
+                                        looseBarcode.PickedOrderId = savedOrderItem.orderId;
+                                        looseBarcode.PickedOrderItemId = savedOrderItem.id;
+                                        looseBarcode.PickedLastModifiedDate = DateTime.Now;
+                                        looseBarcode.IsPickStatusToSync = true;
+                                        model.Entry(looseBarcode).State = EntityState.Modified;
+                                    }
                                 }
                             }
+
+
+                            //if (savedOrderItem.allowVaryWeight == true)
+                            //{
+                                
+                            //}
+                            //else
+                            //{
+                            //    //Check later this logic when it works - Ramesh
+                            //    int orderQty = 1; //  (int)Math.Floor(savedOrderItem.orderQty); // Ensure orderQty is not null
+
+                            //    for (int i = 0; i < orderQty; i++)
+                            //    {
+                            //        var newScannedItem = new OrderItemScanned
+                            //        {
+                            //            orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
+                            //            serialNo = savedOrderItem.scannedLabel, // You can modify this if serial numbers vary
+                            //            scannedQty = 1, // Always set to 1
+                            //            scannedDate = DateTime.Now,
+                            //            scannedBy = currentUser.userName,
+                            //            status = "Matched", // Replace with savedOrderItem.Status if needed
+                            //            orderId = savedOrderItem.orderId,
+                            //            Location = savedOrderItem.Location,
+                            //        };
+
+                            //        model.OrderItemScanned.Add(newScannedItem);
+                            //    }
+                            //}
 
                         }
                         if (savedOrderItem.discountAmt > 0)
@@ -1555,79 +1584,107 @@ namespace Hanodale.DataAccessLayer.Services
                             if (!string.IsNullOrWhiteSpace(savedOrderItem.scannedLabel))
                             {
                                 //var looseBarcode = productCartonBarcodes.Where(a => a.barcode == savedOrderItem.scannedLabel).FirstOrDefault();
+                                var newScannedItem = new OrderItemScanned
+                                {
+                                    orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
+                                    serialNo = savedOrderItem.scannedLabel,
+                                    scannedQty = savedOrderItem.orderQty, // Define specific scanned quantity if available
+                                    scannedDate = DateTime.Now,
+                                    scannedBy = currentUser.userName,
+                                    status = "Matched", // Replace with savedOrderItem.Status if needed
+                                    orderId = savedOrderItem.orderId,
+                                    Location = savedOrderItem.Location,
+                                };
+                                model.OrderItemScanned.Add(newScannedItem);
+
                                 if (savedOrderItem.allowVaryWeight == true)
                                 {
-                                    var newScannedItem = new OrderItemScanned
+                                    // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
+                                    var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                                && p.barcode == savedOrderItem.scannedLabel
+                                                && p.IsPickedComplete == false && p.OnHold == false)
+                                        .FirstOrDefault();
+                                    if (vwgBarcode != null)
                                     {
-                                        orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
-                                        serialNo = savedOrderItem.scannedLabel,
-                                        scannedQty = savedOrderItem.orderQty, // Define specific scanned quantity if available
-                                        scannedDate = DateTime.Now,
-                                        scannedBy = currentUser.userName,
-                                        status = "Matched", // Replace with savedOrderItem.Status if needed
-                                        orderId = savedOrderItem.orderId,
-                                        Location = savedOrderItem.Location,
-                                    };
-                                    model.OrderItemScanned.Add(newScannedItem);
-
-                                    if (savedOrderItem.allowVaryWeight == true)
-                                    {
-                                        // Carton Vwg Or Loose Vwg is unique SerialNumber, update as Pickupcomplete = true
-                                        var vwgBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
-                                                    && p.barcode == savedOrderItem.scannedLabel
-                                                    && p.IsPickedComplete == false && p.OnHold == false)
-                                            .FirstOrDefault();
-                                        if (vwgBarcode != null)
-                                        {
-                                            vwgBarcode.IsPickedComplete = true;
-                                            vwgBarcode.PickedCompletedDate = DateTime.Now;
-                                            vwgBarcode.PickedOrderId = savedOrderItem.orderId;
-                                            vwgBarcode.PickedOrderItemId = savedOrderItem.id;
-                                            vwgBarcode.PickedLastModifiedDate = DateTime.Now;
-                                            vwgBarcode.IsPickStatusToSync = true; // Mark for sync
-                                            model.Entry(vwgBarcode).State = EntityState.Modified;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // Std Carton is not unique, update as Pickupcomplete = true for top item
-                                        var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
-                                                            && p.barcode == savedOrderItem.scannedLabel
-                                                    && p.IsCarton == true && p.IsPickedComplete == false && p.OnHold == false)
-                                            .FirstOrDefault();
-                                        if (stdCartonBarcode != null)
-                                        {
-                                            stdCartonBarcode.IsPickedComplete = true;
-                                            stdCartonBarcode.PickedCompletedDate = DateTime.Now;
-                                            stdCartonBarcode.PickedOrderId = savedOrderItem.orderId;
-                                            stdCartonBarcode.PickedOrderItemId = savedOrderItem.id;
-                                            stdCartonBarcode.PickedLastModifiedDate = DateTime.Now;
-                                            stdCartonBarcode.IsPickStatusToSync = true; // Mark for sync
-                                            model.Entry(stdCartonBarcode).State = EntityState.Modified;
-                                        }
+                                        vwgBarcode.IsPickedComplete = true;
+                                        vwgBarcode.PickedCompletedDate = DateTime.Now;
+                                        vwgBarcode.PickedOrderId = savedOrderItem.orderId;
+                                        vwgBarcode.PickedOrderItemId = savedOrderItem.id;
+                                        vwgBarcode.PickedLastModifiedDate = DateTime.Now;
+                                        vwgBarcode.IsPickStatusToSync = true; // Mark for sync
+                                        model.Entry(vwgBarcode).State = EntityState.Modified;
                                     }
                                 }
                                 else
                                 {
-                                    int orderQty = 1; //  (int)Math.Floor(savedOrderItem.orderQty); // Ensure orderQty is not null
-
-                                    for (int i = 0; i < orderQty; i++)
+                                    // Std Carton is not unique, update as Pickupcomplete = true for top item
+                                    var stdCartonBarcode = model.ProductCarton.Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                                        && p.barcode == savedOrderItem.scannedLabel
+                                                && p.IsCarton == true && p.IsPickedComplete == false && p.OnHold == false)
+                                        .FirstOrDefault();
+                                    if (stdCartonBarcode != null)
                                     {
-                                        var newScannedItem = new OrderItemScanned
-                                        {
-                                            orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
-                                            serialNo = savedOrderItem.scannedLabel, // You can modify this if serial numbers vary
-                                            scannedQty = 1, // Always set to 1
-                                            scannedDate = DateTime.Now,
-                                            scannedBy = currentUser.userName,
-                                            status = "Matched", // Replace with savedOrderItem.Status if needed
-                                            orderId = savedOrderItem.orderId,
-                                            Location = savedOrderItem.Location,
-                                        };
+                                        stdCartonBarcode.IsPickedComplete = true;
+                                        stdCartonBarcode.PickedCompletedDate = DateTime.Now;
+                                        stdCartonBarcode.PickedOrderId = savedOrderItem.orderId;
+                                        stdCartonBarcode.PickedOrderItemId = savedOrderItem.id;
+                                        stdCartonBarcode.PickedLastModifiedDate = DateTime.Now;
+                                        stdCartonBarcode.IsPickStatusToSync = true; // Mark for sync
+                                        model.Entry(stdCartonBarcode).State = EntityState.Modified;
+                                    }
+                                    else
+                                    {
+                                        // If no stdCartonBarcode found, check for loose barcode
+                                        int barcodeCount = savedOrderItems.Where(x => x.partNum==savedOrderItem.partNum && x.scannedLabel == savedOrderItem.scannedLabel)
+                                            .Count();  
+                                        var looseBarcodes = model.ProductCarton
+                                            .Where(p => p.epicorPartNo == savedOrderItem.partNum
+                                                && p.barcode == savedOrderItem.scannedLabel
+                                                && p.Location == savedOrderItem.Location
+                                                && p.IsCarton == false
+                                                && p.IsPickedComplete == false
+                                                && p.OnHold == false)
+                                            .Take(barcodeCount)
+                                            .ToList();
 
-                                        model.OrderItemScanned.Add(newScannedItem);
+                                        foreach (var looseBarcode in looseBarcodes)
+                                        {
+                                            looseBarcode.IsPickedComplete = true;
+                                            looseBarcode.PickedCompletedDate = DateTime.Now;
+                                            looseBarcode.PickedOrderId = savedOrderItem.orderId;
+                                            looseBarcode.PickedOrderItemId = savedOrderItem.id;
+                                            looseBarcode.PickedLastModifiedDate = DateTime.Now;
+                                            looseBarcode.IsPickStatusToSync = true;
+                                            model.Entry(looseBarcode).State = EntityState.Modified;
+                                        }
                                     }
                                 }
+
+                                //if (savedOrderItem.allowVaryWeight == true)
+                                //{
+                                    
+                                //}
+                                //else
+                                //{
+                                //    int orderQty = 1; //  (int)Math.Floor(savedOrderItem.orderQty); // Ensure orderQty is not null
+
+                                //    for (int i = 0; i < orderQty; i++)
+                                //    {
+                                //        var newScannedItem = new OrderItemScanned
+                                //        {
+                                //            orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id,
+                                //            serialNo = savedOrderItem.scannedLabel, // You can modify this if serial numbers vary
+                                //            scannedQty = 1, // Always set to 1
+                                //            scannedDate = DateTime.Now,
+                                //            scannedBy = currentUser.userName,
+                                //            status = "Matched", // Replace with savedOrderItem.Status if needed
+                                //            orderId = savedOrderItem.orderId,
+                                //            Location = savedOrderItem.Location,
+                                //        };
+
+                                //        model.OrderItemScanned.Add(newScannedItem);
+                                //    }
+                                //}
 
                                 savedOrderItem.orderItemId = savedOrderItem.orderItemId ?? savedOrderItem.id;
                                 model.Entry(savedOrderItem).State = EntityState.Modified;
@@ -2532,18 +2589,6 @@ namespace Hanodale.DataAccessLayer.Services
                                                 .Where(ois => ois.barcode == serialNo
                                                     && ois.IsPartialCarton == false
                                                     && ois.IsPickedComplete == false
-                                                    && ois.OnHold == false
-                                                    && ois.IsCarton == false)
-                                                .ToList();
-                    }
-                    else if (!string.IsNullOrEmpty(barcodeType) && barcodeType == "StdLoose")
-                    {
-                        // Std Loose Normally doesnt direct SerialNumber, So return all Std Loose Items and Use the Barcode Settings to get the relevent record.
-                        cartonList = model.ProductCarton
-                                                .Where(ois => ois.productBarcodeLength == serialNo.Length
-                                                    && ois.IsPartialCarton == false
-                                                    && ois.IsPickedComplete == false
-                                                    && ois.IsVaryWg == false
                                                     && ois.OnHold == false
                                                     && ois.IsCarton == false)
                                                 .ToList();

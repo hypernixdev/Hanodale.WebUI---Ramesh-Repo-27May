@@ -714,60 +714,64 @@ namespace Hanodale.WebUI.Controllers
                                     
                                     
                                 }
+                                else if (!isSerialNumberFound)
+                                {
+                                    // Check Serial Barcodes available or not
+                                    // For Valiadtion
+                                    barcodeType = "CartonAndLoose";
+                                    var productCartonAndLooseBarcode = this.orderService.GetProductCartons(partNum, barcodeType);
+                                    if (productCartonAndLooseBarcode != null && productCartonAndLooseBarcode.IsPickedComplete)
+                                    {
+                                        //throw new Exception("This product is already picked complete, you cannot add it again.");
+                                        return Json(new
+                                        {
+                                            success = false,
+                                            message = "This product is already picked complete, cannot add it again."
+                                        });
+                                    }
+                                }
                                 else
                                 {
 
-                                    barcodeType = "StdLoose"; // Std Looose Barcode have to check based on Barcode Settings
-                                    var productStdLooseItems = this.orderService.GetStdLooseFromProductCartonTable(partNum, barcodeType);
-                                    if(productStdLooseItems!= null)
-                                    {
-                                        foreach(var item in productStdLooseItems)
-                                        {
-                                            try
-                                            {
-                                                // Step 3a: Get barcode substring based on BarcodeFromPos and BarcodeToPos
-                                                int barcodeFrom = item.barcodeFromPos - 1; // Convert to 0-based index
-                                                int barcodeTo = item.barcodeToPos;
-                                                if (partNum.Length < barcodeTo)
-                                                    continue; // Or log and skip
+                                    //barcodeType = "StdLoose"; // Std Looose Barcode have to check based on Barcode Settings
+                                    //var productStdLooseItems = this.orderService.GetStdLooseFromProductCartonTable(partNum, barcodeType);
+                                    //if (productStdLooseItems != null)
+                                    //{
+                                    //    foreach (var item in productStdLooseItems)
+                                    //    {
+                                    //        try
+                                    //        {
+                                    //            // Step 3a: Get barcode substring based on BarcodeFromPos and BarcodeToPos
+                                    //            int barcodeFrom = item.barcodeFromPos - 1; // Convert to 0-based index
+                                    //            int barcodeTo = item.barcodeToPos;
+                                    //            if (partNum.Length < barcodeTo)
+                                    //                continue; // Or log and skip
 
-                                                string vendProductCode = partNum.Substring(barcodeFrom, barcodeTo - barcodeFrom);
+                                    //            string vendProductCode = partNum.Substring(barcodeFrom, barcodeTo - barcodeFrom);
 
-                                                // Step 3b: Compare with ItemNumber from master
-                                                if (vendProductCode == item.vendorProductCode)
-                                                {
-                                                    isSerialNumberFound = true;
-                                                    serialNumberLocation = item.productLocation;
-                                                    weightValue= "1"; // Default to 1 for Std Loose Qty
-                                                    continue; // Exit the loop if a match is found
-                                                }
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                // Handle exception (e.g., log it)
-                                                // some Exception
-                                            }
-                                        }
-                                    }
-                                    else if (!isSerialNumberFound)
-                                    {
-                                        // Check Serial Barcodes available or not
-                                        // For Valiadtion
-                                        barcodeType = "CartonAndLoose";
-                                        var productCartonAndLooseBarcode = this.orderService.GetProductCartons(partNum, barcodeType);
-                                        if (productCartonAndLooseBarcode != null && productCartonAndLooseBarcode.IsPickedComplete)
-                                        {
-                                            //throw new Exception("This product is already picked complete, you cannot add it again.");
-                                            return Json(new
-                                            {
-                                                success = false,
-                                                message = "This product is already picked complete, cannot add it again."
-                                            });
-                                        }
+                                    //            // Step 3b: Compare with ItemNumber from master
+                                    //            if (vendProductCode == item.vendorProductCode)
+                                    //            {
+                                    //                isSerialNumberFound = true;
+                                    //                serialNumberLocation = item.productLocation;
+                                    //                weightValue = "1"; // Default to 1 for Std Loose Qty
+                                    //                continue; // Exit the loop if a match is found
+                                    //            }
+                                    //        }
+                                    //        catch (Exception ex)
+                                    //        {
+                                    //            // Handle exception (e.g., log it)
+                                    //            // some Exception
+                                    //        }
+                                    //    }
+                                    //}
+                                    //else if (!isSerialNumberFound)
+                                    //{
                                         
 
-                                    }
-                                        
+
+                                    //}
+
                                 }
                             }
                         }

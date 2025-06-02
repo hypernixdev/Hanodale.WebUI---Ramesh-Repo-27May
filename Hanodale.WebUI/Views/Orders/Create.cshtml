@@ -4163,17 +4163,14 @@ function gatherPaymentData() {
             console.log("splitSerialNumber :" + splitSerialNumber + " And splitLocation :" + splitLocation);
         }
         var existingOrderQty = orderQty;
-        var isLooseSerialNumExistInOrderDetail = false;
+        
         $('#dt2_product tbody tr').each(function () {
             if (!$(this).hasClass('edit-panel-row')) {
                 var row = $(this);
                 var partNum = row.find('.product-id-field').text().trim();
                 var scannedLabel = row.find('.product-scannedlabel').text().trim();
                 console.log(partNum + " | " + scannedLabel);
-                if (scannedLabel!="" && splitSerialNumber == scannedLabel) {
-
-                    isLooseSerialNumExistInOrderDetail = true;
-                }
+                
                 var orderQty = parseFloat(row.find('input[data-field="orderQty"]').val()) || 0;
 
                 // Accumulate order quantity for matching part numbers
@@ -4182,10 +4179,10 @@ function gatherPaymentData() {
                 }
             }
         });
-        if (isLooseSerialNumExistInOrderDetail) {
-            alert(`Barcode (${product.serialNumber}) is already scanned in OrderItems!`);
-            return;
-        }
+        //if (isLooseSerialNumExistInOrderDetail) {
+        //    alert(`Barcode (${product.serialNumber}) is already scanned in OrderItems!`);
+        //    return;
+        //}
         if (existingOrderQty > product.remainingQty && validateStockBalance == "True") {
             alert(`Insufficient Stock Balance! Order Qty (${existingOrderQty}) is more than Available Qty (${product.remainingQty}).`);
             return;
@@ -4281,9 +4278,28 @@ function gatherPaymentData() {
                 alert(`Insufficient Stock Balance! Order Qty (${existingOrderQty}) is more than Available Qty (${product2.remainingQty}).`);
                 return;
             }
+            debugger;
+            var isLooseSerialNumExistInOrderDetail = false;
+            $('#dt2_product tbody tr').each(function () {
+                if (!$(this).hasClass('edit-panel-row')) {
+                    var row = $(this);
+                    var partNum = row.find('.product-id-field').text();
+                    var rowOrderQty = parseFloat(row.find('input[data-field="orderQty"]').val()) || 0;
+                    var scannedLabel = row.find('.product-scannedlabel').text().trim();
 
+                    // Accumulate order quantity for matching part numbers
+                    if (partNum === selectedPartNumber && product.allowVaryWeight !== "Yes" && scannedLabel !== "" && splitSerialNumber === scannedLabel) {
+                        console.log(partNum + " | " + scannedLabel);
+                        isLooseSerialNumExistInOrderDetail = true;
+                        row.find('input[data-field="orderQty"]').val(rowOrderQty + orderQty);
+                    }
+                }
+            });
 
-
+            if (isLooseSerialNumExistInOrderDetail) {
+                // above foreach udpated partnum qty for same serialnumber
+                return;
+            }
             if (product.UomPrices) {
                 var defaultUomText = defaultUom.toUpperCase();
                 var uomPriceKey = defaultUomText + "_Price";
@@ -4301,15 +4317,15 @@ function gatherPaymentData() {
             var allowVaryWeight = product.allowVaryWeight;
             var defaultUomId = product.defaultUomId;
             var avlQty = product.remainingQty || 0;
-            var scannedLabel = product.allowVaryWeight === "Yes" ? splitSerialNumber : "" ;//product.serialNumber || "";
-            var scannedLocation = product.allowVaryWeight === "Yes" ? splitLocation : "";//product.serialNumber || "";
+            var scannedLabel = splitSerialNumber;//product.allowVaryWeight === "Yes" ? splitSerialNumber : "" ;//product.serialNumber || "";
+            var scannedLocation = splitLocation; // product.allowVaryWeight === "Yes" ? splitLocation : "";//product.serialNumber || "";
             var conversionFactor = product.conversionFactor || 1;
-
+            //orderQty = product.allowVaryWeight === "Yes" ? orderQty : existingOrderQty;
             //debugger
             var scannedQtyField = isEdit == "yes" ? "<td class='product-scannedQty'></td>" : "";
             var allowDecimals = product.allowVaryWeight === "Yes";
             var stepValue = allowDecimals ? "0.01" : "1";
-            var isReadOnly = scannedLabel.trim() !== "" ? "readonly" : "";
+            var isReadOnly = "";//scannedLabel.trim() !== "" ? "readonly" : "";
             var qtyField = `
                 <td>
                     <input
